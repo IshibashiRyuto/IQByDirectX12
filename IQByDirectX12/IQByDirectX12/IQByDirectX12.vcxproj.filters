@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{2fed6c96-c4d2-44ea-afb9-8647e2b65e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WICTextureLoader">
+      <UniqueIdentifier>{26ac1718-16b0-4193-ab21-98134a388f55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,26 +51,26 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Math_Vector2.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Math\Math_Common.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math_Vector3.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Math\Math_Matrix.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math_Vector4.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Math\Math_Quaternion.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math_Common.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Math\Math_Vector2.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math_Matrix.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Math\Math_Vector3.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Math\Math_Vector4.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math_Quaternion.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp">
+      <Filter>WICTextureLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +101,11 @@
     <ClInclude Include="VertexBuffer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Math\Math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="WICTextureLoader\WICTextureLoader12.h">
+      <Filter>WICTextureLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
