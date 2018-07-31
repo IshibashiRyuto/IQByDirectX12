@@ -11,6 +11,9 @@
 #include "RenderTarget.h"
 #include "DepthBuffer.h"
 #include "VertexBuffer.h"
+#include "TextureLoader.h"
+#include "Texture.h"
+#include "DescriptorHeap.h"
 #include <D3DCompiler.h>
 
 // ライブラリリンク
@@ -115,10 +118,10 @@ bool Application::Initialize(const Window & window)
 		mStaticSamplerDesc.MipLODBias = 0.0f;
 		mStaticSamplerDesc.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
 		mStaticSamplerDesc.ShaderRegister = 0;
-		mStaticSamplerDesc.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+		mStaticSamplerDesc.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 		mStaticSamplerDesc.RegisterSpace = 0;
 		mStaticSamplerDesc.MaxAnisotropy = 0;
-		mStaticSamplerDesc.ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER;
+		mStaticSamplerDesc.ComparisonFunc = D3D12_COMPARISON_FUNC_LESS;
 	}
 
 	// フェンスオブジェクトの作成
@@ -152,15 +155,22 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
+
 	// 頂点バッファ作成
-	Vertex tmp[3] = 
+	Vertex tmp[6] = 
 	{
-		{ { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, -1.0f },{ 0.0f, 0.0f } },
-		{ { 1.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, -1.0f },{ 1.0f, 0.0f } },
-		{ { 0.0f, 1.0f, 0.0f },{ 0.0f, 0.0f, -1.0f },{ 0.0f, 1.0f } },
+		{ { -0.5f, 0.5f, 0.0f }, { 0.0f, 0.0f, -1.0f }, { 0.0f, 0.0f } },
+		{ { 0.5f, 0.5f, 0.0f }, { 0.0f, 0.0f, -1.0f }, { 1.0f, 0.0f } },
+		{ { -0.5f, -0.5f, 0.0f }, { 0.0f, 0.0f, -1.0f }, { 0.0f, 1.0f } },
+		{ { -0.5f, -0.5f, 0.0f },{ 0.0f, 0.0f, -1.0f },{ 0.0f, 1.0f } },
+		{ { 0.5f, 0.5f, 0.0f },{ 0.0f, 0.0f, -1.0f },{ 1.0f, 0.0f } },
+		{ { 0.5f, -0.5f, 0.0f }, { 0.0f, 0.0f, -1.0f }, { 1.0f, 1.0f }},
 	};
 
-	mVertexBuffer = VertexBuffer::Create(mDevice->GetDevice(), &tmp, 3, sizeof(Vertex));
+	mVertexBuffer = VertexBuffer::Create(mDevice->GetDevice(), &tmp, _countof(tmp), sizeof(Vertex));
+
+
+	LoadTexture();
 
 	return true;
 }
@@ -188,10 +198,13 @@ void Application::Render()
 	mRenderTarget->ClearRenderTarget(mCommandList);
 	mDepthBuffer->ClearDepthBuffer(mCommandList);
 
+	//デスクリプタヒープバインド
+	mDescriptorHeap->BindGraphicsCommandList(mCommandList);
+
 	// ポリゴン描画
 	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	mCommandList->IASetVertexBuffers(0, 1, &mVertexBuffer->GetVertexBufferView());
-	mCommandList->DrawInstanced(3, 1, 0, 0);
+	mCommandList->DrawInstanced(6, 1, 0, 0);
 
 	//描画終了処理
 	mRenderTarget->FinishRendering(mCommandList);
@@ -255,7 +268,7 @@ bool Application::CreateRootSignature()
 	ComPtr<ID3DBlob> error;
 
 	// ルートパラメータ
-	std::vector<D3D12_ROOT_PARAMETER> rootParam;
+	std::vector<D3D12_ROOT_PARAMETER> rootParams;
 
 	// CBV用ディスクリプタレンジの設定
 	D3D12_DESCRIPTOR_RANGE cbvRange;
@@ -265,20 +278,30 @@ bool Application::CreateRootSignature()
 	cbvRange.RegisterSpace = 0;
 	cbvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
-	// CBV用ルートパラメータの設定
-	D3D12_ROOT_PARAMETER cbvParam;
-	cbvParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-	cbvParam.DescriptorTable = { 1, &cbvRange };
-	cbvParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+	// SRV用ディスクリプタレンジの設定
+	D3D12_DESCRIPTOR_RANGE srvRange;
+	srvRange.NumDescriptors = 1;
+	srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange.BaseShaderRegister = 0;
+	srvRange.RegisterSpace = 0;
+	srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
-	rootParam.resize(1);
-	rootParam[0] = cbvParam;
+
+
+	/// ルートパラメータの設定
+	D3D12_ROOT_PARAMETER rootParam;
+	rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+	rootParam.DescriptorTable = { 1, &srvRange };
+	rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+
+	rootParams.resize(1);
+	rootParams[0] = rootParam;
 
 	// ルートシグネチャの設定
 	CD3DX12_ROOT_SIGNATURE_DESC rsd{};
 	rsd.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
-	rsd.NumParameters = (UINT)rootParam.size();
-	rsd.pParameters = rootParam.data();
+	rsd.NumParameters = (UINT)rootParams.size();
+	rsd.pParameters = rootParams.data();
 	rsd.NumStaticSamplers = 1;
 	rsd.pStaticSamplers = &mStaticSamplerDesc;
 
@@ -387,7 +410,7 @@ bool Application::CreatePipelineState()
 	gpsDesc.pRootSignature = mRootSignature.Get();
 	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
+	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
 	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 	gpsDesc.NumRenderTargets = 1;
 	gpsDesc.SampleDesc.Count = 1;
@@ -424,4 +447,12 @@ bool Application::CreateCommandList()
 		return false;
 	}
 	return true;
+}
+
+void Application::LoadTexture()
+{
+	mTextureLoader = TextureLoader::Create(mDevice->GetDevice());
+	mTexture = mTextureLoader->Load("Img/test.png");
+	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 1);
+	mDescriptorHeap->SetTexture(mTexture, 0);
 }

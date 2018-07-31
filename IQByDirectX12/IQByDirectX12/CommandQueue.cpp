@@ -27,17 +27,39 @@ std::shared_ptr<CommandQueue> CommandQueue::Create(ComPtr<ID3D12Device> device, 
 {
 	auto commandQueue = std::shared_ptr<CommandQueue>(new CommandQueue());
 	auto result = device->CreateCommandQueue(&commandQueueDesc, IID_PPV_ARGS(&(commandQueue->mCommandQueue)));
-	if (result == S_OK)
+	if (FAILED(result))
 	{
-		return commandQueue;
-	}
 #ifdef _DEBUG
-	std::cout << "Failed Create CommandQueue." << std::endl;
+		std::cout << "Failed Create CommandQueue." << std::endl;
 #endif
-	return nullptr;
+		return nullptr;
+	}
+	
+	result = device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&(commandQueue->mFence)));
+	if (FAILED(result))
+	{
+
+#ifdef _DEBUG
+		std::cout << "Failed Create CommandQueue Fance." << std::endl;
+#endif
+		return nullptr;
+	}
+	return commandQueue;
 }
 
 ComPtr<ID3D12CommandQueue> CommandQueue::GetCommandQueue() const
 {
 	return mCommandQueue;
+}
+
+void CommandQueue::ExecuteCommandList(UINT numCommandLists, ID3D12CommandList *const * ppCommandLists)
+{
+	mCommandQueue->ExecuteCommandLists(numCommandLists, ppCommandLists);
+}
+
+void CommandQueue::Signal()
+{
+	++mFenceValue;
+	mCommandQueue->Signal(mFence.Get(), mFenceValue);
+	while (mFence->GetCompletedValue() != mFenceValue);
 }

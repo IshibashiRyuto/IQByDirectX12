@@ -40,6 +40,12 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(ComPtr<ID3D12Device> device, 
 	// レンダーターゲットビューの作成
 	renderTarget->mRenderTargets.resize(renderTargetsNum);
 
+	D3D12_RENDER_TARGET_VIEW_DESC rtvDesc;
+	rtvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	rtvDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
+	rtvDesc.Texture2D.MipSlice = 0;
+	rtvDesc.Texture2D.PlaneSlice = 0;
+
 	CD3DX12_CPU_DESCRIPTOR_HANDLE descHandle(renderTarget->mRTVDescHeap->GetCPUDescriptorHandleForHeapStart());
 	for (int i = 0; i < renderTargetsNum; ++i)
 	{
@@ -51,7 +57,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(ComPtr<ID3D12Device> device, 
 #endif
 			return nullptr;
 		}
-		device->CreateRenderTargetView(renderTarget->mRenderTargets[i].Get(), nullptr, descHandle);
+		device->CreateRenderTargetView(renderTarget->mRenderTargets[i].Get(), &rtvDesc, descHandle);
 		descHandle.Offset(1, renderTarget->RENDER_TARGET_VIEW_DESCRIPTOR_SIZE);
 	}
 

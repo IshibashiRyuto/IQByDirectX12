@@ -47,8 +47,8 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Create(ComPtr<ID3D12Device> device, 
 	// 頂点バッファビューの作成
 	{
 		vertexBuffer->mVertexBufferView.BufferLocation = vertexBuffer->mVertexBuffer->GetGPUVirtualAddress();
-		vertexBuffer->mVertexBufferView.StrideInBytes = vertexSize;
-		vertexBuffer->mVertexBufferView.SizeInBytes = vertexSize*vertexCount;
+		vertexBuffer->mVertexBufferView.StrideInBytes = (UINT)vertexSize;
+		vertexBuffer->mVertexBufferView.SizeInBytes = (UINT)(vertexSize*vertexCount);
 	}
 	return vertexBuffer;
 }

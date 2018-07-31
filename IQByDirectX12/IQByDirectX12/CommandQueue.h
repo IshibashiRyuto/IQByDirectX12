@@ -4,6 +4,7 @@
 	@author Ishibashi Ryuto
 	@history
 	2018/07/11 初版作成
+	2018/07/30 ExecuteCommandLists, Signalを追加
 */
 #pragma once
 /* システムヘッダインクルード */
@@ -38,8 +39,20 @@ public:
 	/// @retval ID3D12CommandQueueのComPtr
 	ComPtr<ID3D12CommandQueue> GetCommandQueue() const;
 
+	/// @fn ExecuteCommandLists
+	/// コマンドを実行する
+	/// @param[in] numCommandLists	:	コマンドリストの個数
+	/// @param[in] ppCommandLists	:	コマンドリスト配列へのポインタ
+	void ExecuteCommandList(UINT numCommandLists, ID3D12CommandList *const *ppCommandLists);
+
+	/// @fn Signal
+	/// コマンドキューの実行を待つ
+	void Signal();
+
 private:
 	/* 変数宣言 */
-	ComPtr<ID3D12CommandQueue> mCommandQueue;
+	ComPtr<ID3D12CommandQueue> mCommandQueue;	// コマンドリストの実体
+	UINT mFenceValue;							// フェンスパラメータ
+	ComPtr<ID3D12Fence> mFence;					// フェンスオブジェクト
 };
 

@@ -20,6 +20,9 @@ class CommandQueue;
 class RenderTarget;
 class DepthBuffer;
 class VertexBuffer;
+class Texture;
+class TextureLoader;
+class DescriptorHeap;
 
 using Microsoft::WRL::ComPtr;
 
@@ -67,6 +70,9 @@ private:
 	std::shared_ptr<DepthBuffer>		mDepthBuffer;
 	std::shared_ptr<VertexBuffer>		mVertexBuffer;
 	std::vector<D3D12_INPUT_ELEMENT_DESC> mInputLayoutDescs;
+	std::shared_ptr<TextureLoader>		mTextureLoader;
+	std::shared_ptr<Texture>			mTexture;
+	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
 
 	D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;
 	int mWindowWidth;
@@ -104,5 +110,9 @@ private:
 	/// コマンドリストの生成
 	/// @retval true: 生成成功, false: 生成失敗
 	bool CreateCommandList();
+
+	/// @fn LoadTexture
+	/// テクスチャロード
+	void LoadTexture();
 };
 

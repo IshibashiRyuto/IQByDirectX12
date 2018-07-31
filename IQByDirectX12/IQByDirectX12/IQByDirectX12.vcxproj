@@ -121,6 +121,7 @@
     <ClCompile Include="CommandAllocator.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="DepthBuffer.cpp" />
+    <ClCompile Include="DescriptorHeap.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\Math_Common.cpp" />
@@ -131,6 +132,8 @@
     <ClCompile Include="Math\Math_Vector4.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="SwapChain.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -140,10 +143,13 @@
     <ClInclude Include="CommandAllocator.h" />
     <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="DepthBuffer.h" />
+    <ClInclude Include="DescriptorHeap.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="SwapChain.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="WICTextureLoader\WICTextureLoader12.h" />
     <ClInclude Include="Window.h" />
