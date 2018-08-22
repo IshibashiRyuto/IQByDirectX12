@@ -124,13 +124,6 @@ bool Application::Initialize(const Window & window)
 		mStaticSamplerDesc.ComparisonFunc = D3D12_COMPARISON_FUNC_LESS;
 	}
 
-	// フェンスオブジェクトの作成
-	if (!CreateFence())
-	{
-		return false;
-	}
-	mFenceValue = 0;
-
 	// ルートシグニチャの作成
 	if (!CreateRootSignature())
 	{
@@ -212,15 +205,9 @@ void Application::Render()
 
 	// 描画コマンド実行
 	ID3D12CommandList* commandLists[] = { mCommandList.Get() };
-	mCommandQueue->GetCommandQueue()->ExecuteCommandLists(_countof(commandLists), commandLists);
+	mCommandQueue->ExecuteCommandList(_countof(commandLists), commandLists);
 
-	// フェンスによる待機処理
-	++mFenceValue;
-	mCommandQueue->GetCommandQueue()->Signal(mFence.Get(), mFenceValue);
-	while (mFence->GetCompletedValue() != mFenceValue)
-	{
-
-	}
+	mCommandQueue->Signal();
 
 	// 画面スワップ
 	mSwapChain->Present(1, 0);
@@ -286,8 +273,6 @@ bool Application::CreateRootSignature()
 	srvRange.RegisterSpace = 0;
 	srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
-
-
 	/// ルートパラメータの設定
 	D3D12_ROOT_PARAMETER rootParam;
 	rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
@@ -331,18 +316,6 @@ bool Application::CreateRootSignature()
 	return true;
 }
 
-bool Application::CreateFence()
-{
-	auto result = mDevice->GetDevice().Get()->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&mFence));
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Failed Create Fence." << std::endl;
-#endif
-		return false;
-	}
-	return true;
-}
 
 bool Application::ReadShader()
 {

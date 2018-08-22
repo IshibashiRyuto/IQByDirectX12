@@ -58,7 +58,6 @@ private:
 	ComPtr<IDXGIFactory4>				mFactory;
 	ComPtr<IDXGISwapChain3>				mSwapChain;
 	ComPtr<ID3D12RootSignature>			mRootSignature;
-	ComPtr<ID3D12Fence>					mFence;
 	ComPtr<ID3DBlob>					mVertexShader;
 	ComPtr<ID3DBlob>					mPixelShader;
 	ComPtr<ID3D12PipelineState>			mPipelineState;
@@ -77,7 +76,6 @@ private:
 	D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;
 	int mWindowWidth;
 	int mWindowHeight;
-	int mFenceValue;
 
 	/* ローカルメソッド定義 */
 
@@ -90,11 +88,6 @@ private:
 	/// ルートシグネチャを生成する
 	/// @retval ture: 生成成功, false: 生成失敗
 	bool CreateRootSignature();
-
-	/// @fn CreateFence
-	/// フェンスを生成する
-	/// @retval true: 生成成功, false: 生成失敗
-	bool CreateFence();
 
 	/// @fn ReadShader
 	/// シェーダを読み込む
