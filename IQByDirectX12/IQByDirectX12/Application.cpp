@@ -14,6 +14,7 @@
 #include "TextureLoader.h"
 #include "Texture.h"
 #include "DescriptorHeap.h"
+#include "ConstantBuffer.h"
 #include <D3DCompiler.h>
 
 // ƒ‰ƒCƒuƒ‰ƒŠƒŠƒ“ƒN
@@ -428,4 +429,10 @@ void Application::LoadTexture()
 	mTexture = mTextureLoader->Load("Img/test.png");
 	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 1);
 	mDescriptorHeap->SetTexture(mTexture, 0);
+}
+
+bool Application::CreateConstantBuffer()
+{
+	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), 1, 1);
+	return false;
 }

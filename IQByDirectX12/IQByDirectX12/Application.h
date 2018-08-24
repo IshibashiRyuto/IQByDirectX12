@@ -12,6 +12,7 @@
 #include <vector>
 #include <wrl.h>
 #include <memory>
+#include "Math/Math.h"
 
 class Window;
 class Device;
@@ -23,6 +24,7 @@ class VertexBuffer;
 class Texture;
 class TextureLoader;
 class DescriptorHeap;
+class ConstantBuffer;
 
 using Microsoft::WRL::ComPtr;
 
@@ -72,6 +74,13 @@ private:
 	std::shared_ptr<TextureLoader>		mTextureLoader;
 	std::shared_ptr<Texture>			mTexture;
 	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
+	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
+
+	Math::Matrix4x4 mWorldMatrix;
+	Math::Matrix4x4 mViewMatrix;
+	Math::Matrix4x4 mProjectionMatrix;
+	Math::Matrix4x4 mAffineMatrix;
+
 
 	D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;
 	int mWindowWidth;
@@ -107,5 +116,11 @@ private:
 	/// @fn LoadTexture
 	/// テクスチャロード
 	void LoadTexture();
+
+	/// @fn CreateConstantBuffer
+	/// コンスタントバッファ生成
+	/// @retval 生成成功: true
+	/// @retval 生成失敗: false
+	bool CreateConstantBuffer();
 };
 

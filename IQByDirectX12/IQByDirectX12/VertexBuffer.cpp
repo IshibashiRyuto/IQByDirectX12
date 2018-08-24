@@ -31,7 +31,9 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Create(ComPtr<ID3D12Device> device, 
 
 		if (FAILED(result))
 		{
+#ifdef _DEBUG
 			std::cout << "Failed Create Vertex Buffer Resource." << std::endl;
+#endif
 			return nullptr;
 		}
 	}
