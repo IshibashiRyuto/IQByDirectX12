@@ -434,5 +434,9 @@ void Application::LoadTexture()
 bool Application::CreateConstantBuffer()
 {
 	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), 1, 1);
-	return false;
+	if (mConstantBuffer == nullptr)
+	{
+		return false;
+	}
+	return true;
 }

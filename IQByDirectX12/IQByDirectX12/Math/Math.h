@@ -4,6 +4,9 @@
 	@author Ishibashi Ryuto
 	@history 
 	2018/07/19 初版作成
+	2018/08/26 行列クラスに機能を追加
+		・LookAt行列の生成
+		・
 */
 #pragma once
 namespace Math
@@ -229,6 +232,15 @@ namespace Math
 	/// 任意軸を中止に回転を行う4x4行列を取得する
 	Matrix4x4 CreateAxisRotMatrix(const Vector3& axis,float rad);
 
+	/// 視点、注視点、上方向ベクトルからLookAt行列を作成する
+	Matrix4x4 CreateLookAtMatrix(const Vector3& eye, const Vector3& target, const Vector3& upper);
+
+	/// カメラ行列からLookAt行列を作成する
+	Matrix4x4 CreateLookAtMatrixFromCameraMatrix(const Matrix4x4& cameraMatrix);
+
+	/// アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する
+	Matrix4x4 CreatePerspectiveMatrix(float Aspect, float nearZ, float farZ, float fov);
+
 
 	struct Quaternion
 	{
@@ -305,4 +317,5 @@ namespace Math
 
 	/// クォータニオンから回転行列を求める
 	Matrix4x4 GetMatrixFromQuat(const Quaternion& quat);
+
 }

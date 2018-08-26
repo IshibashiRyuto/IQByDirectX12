@@ -438,3 +438,44 @@ Matrix4x4 Math::CreateAxisRotMatrix(const Vector3& axis, float rad)
 	);
 }
 
+Matrix4x4 Math::CreateLookAtMatrix(const Vector3 & eye, const Vector3 & target, const Vector3 & upper)
+{
+	auto eyeSightVec = Normalize(target - eye);
+	auto rightVec = Normalize(Cross(upper, eyeSightVec));
+	auto upVec = Normalize(Cross(eyeSightVec, rightVec));
+	float xPos = Dot(rightVec, eye);
+	float yPos = Dot(upVec, eye);
+	float zPos = Dot(eyeSightVec, eye);
+	return Matrix4x4
+	(
+		rightVec.x,		upVec.x,		eyeSightVec.x,	0.0f,
+		rightVec.y,		upVec.y,		eyeSightVec.y,	0.0f,
+		rightVec.z,		upVec.z,		eyeSightVec.z,	0.0f,
+		-xPos,			-yPos,			-zPos,			1.0f
+	);
+}
+
+Matrix4x4 Math::CreateLookAtMatrixFromCameraMatrix(const Matrix4x4 & cameraMatrix)
+{
+	auto retMatrix = GetTransposeMatrix(cameraMatrix);
+	retMatrix(0, 3) = 0.0f;
+	retMatrix(1, 3) = 0.0f;
+	retMatrix(2, 3) = 0.0f;
+	retMatrix(3, 0) = -cameraMatrix(3, 0);
+	retMatrix(3, 1) = -cameraMatrix(3, 1);
+	retMatrix(3, 2) = -cameraMatrix(3, 2);
+	return retMatrix;
+}
+
+Matrix4x4 Math::CreatePerspectiveMatrix(float aspect, float nearZ, float farZ, float fov)
+{
+	auto tanFoV = tanf(fov);
+	return Matrix4x4
+	(
+		1.0f/aspect/tanFoV, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f/tanFoV, 0.0f, 0.0f,
+		0.0f, 0.0f, farZ/(farZ-nearZ), 1.0f,
+		0.0f, 0.0f, -(nearZ*farZ)/(farZ-nearZ), 0.0f
+	);
+}
+
