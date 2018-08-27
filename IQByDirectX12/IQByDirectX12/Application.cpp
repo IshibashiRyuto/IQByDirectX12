@@ -15,7 +15,9 @@
 #include "Texture.h"
 #include "DescriptorHeap.h"
 #include "ConstantBuffer.h"
+#include <DirectXMath.h>
 #include <D3DCompiler.h>
+#include "MathConvert.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -163,8 +165,17 @@ bool Application::Initialize(const Window & window)
 
 	mVertexBuffer = VertexBuffer::Create(mDevice->GetDevice(), &tmp, _countof(tmp), sizeof(Vertex));
 
-
+	// テクスチャ読み込み
 	LoadTexture();
+
+	// コンスタントバッファ作成
+	if (!CreateConstantBuffer())
+	{
+		return false;
+	}
+
+	// 行列設定
+	SetWVPMatrix();
 
 	return true;
 }
@@ -177,7 +188,7 @@ void Application::Render()
 	mCommandList->SetGraphicsRootSignature(mRootSignature.Get());
 
 	// 描画範囲設定
-	D3D12_VIEWPORT vp = { 0,0, mWindowWidth, mWindowHeight, 0.0f,1.0f };
+	D3D12_VIEWPORT vp = { 0.0f,0.0f, (FLOAT)mWindowWidth, (FLOAT)mWindowHeight, 0.0f,1.0f };
 	D3D12_RECT rc = { 0,0,mWindowWidth, mWindowHeight };
 	mCommandList->RSSetViewports(1, &vp);
 	mCommandList->RSSetScissorRects(1, &rc);
@@ -280,8 +291,14 @@ bool Application::CreateRootSignature()
 	rootParam.DescriptorTable = { 1, &srvRange };
 	rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
-	rootParams.resize(1);
+	D3D12_ROOT_PARAMETER rootParam2;
+	rootParam2.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+	rootParam2.DescriptorTable = { 1, &cbvRange };
+	rootParam2.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+
+	rootParams.resize(2);
 	rootParams[0] = rootParam;
+	rootParams[1] = rootParam2;
 
 	// ルートシグネチャの設定
 	CD3DX12_ROOT_SIGNATURE_DESC rsd{};
@@ -427,16 +444,41 @@ void Application::LoadTexture()
 {
 	mTextureLoader = TextureLoader::Create(mDevice->GetDevice());
 	mTexture = mTextureLoader->Load("Img/test.png");
-	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 1);
+	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
 	mDescriptorHeap->SetTexture(mTexture, 0);
 }
 
 bool Application::CreateConstantBuffer()
 {
-	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), 1, 1);
+	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), sizeof(DirectX::XMMATRIX), 1);
 	if (mConstantBuffer == nullptr)
 	{
 		return false;
 	}
 	return true;
+}
+
+void Application::SetWVPMatrix()
+{
+	if (mConstantBuffer != nullptr)
+	{
+		mWorldMatrix = Math::CreateIdent();
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 0.0f, -10.0f), Math::Vector3(0.0f, 0.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f, Math::F_PI/2.0f);
+		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
+		auto data = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
+		
+
+		DirectX::XMVECTOR eye, target, upper;
+		eye = { 0.0f, 0.0f,-10.0f };
+		target = { 0.0f, 0.0f, 0.0f };
+		upper = { 0.0f,1.0f, 0.0f };
+		auto wldMat = DirectX::XMMatrixIdentity();
+		auto viewMat = DirectX::XMMatrixLookAtLH(eye, target, upper);
+		auto projMat = DirectX::XMMatrixPerspectiveFovLH(Math::F_PI / 2.0f, (float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f);
+		auto data2 = wldMat * viewMat * projMat;
+
+		mConstantBuffer->SetData(&data2, sizeof(DirectX::XMMATRIX), 0);
+		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+	}
 }

@@ -41,14 +41,14 @@ std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(ComPtr<ID3D12Device> devi
 	return Create(device, heapDesc);
 }
 
-void DescriptorHeap::SetConstantBufferView(D3D12_CONSTANT_BUFFER_VIEW_DESC & constantBufferView, UINT index)
+void DescriptorHeap::SetConstantBufferView(const D3D12_CONSTANT_BUFFER_VIEW_DESC & constantBufferView, UINT index)
 {
 	auto handle = mDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 	handle.ptr += HEAP_STRIDE * index;
 	mDevice->CreateConstantBufferView(&constantBufferView, handle);
 }
 
-void DescriptorHeap::SetShaderResourceView(D3D12_SHADER_RESOURCE_VIEW_DESC & shaderResourceView, ComPtr<ID3D12Resource> shaderResource, UINT index)
+void DescriptorHeap::SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC & shaderResourceView, ComPtr<ID3D12Resource> shaderResource, UINT index)
 {
 	auto handle = mDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 	handle.ptr += HEAP_STRIDE * index;
@@ -62,12 +62,15 @@ void DescriptorHeap::SetTexture(std::shared_ptr<Texture> texture, UINT index)
 	texture->SetShaderResourceView(srv);
 }
 
-void DescriptorHeap::SetUnorderedAccessView(D3D12_UNORDERED_ACCESS_VIEW_DESC & unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index)
+void DescriptorHeap::SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC & unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index)
 {
 }
 
 void DescriptorHeap::BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
+	auto gpuHandle = mDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 	commandList->SetDescriptorHeaps(1, (mDescriptorHeap.GetAddressOf()));
-	commandList->SetGraphicsRootDescriptorTable(0, mDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+	commandList->SetGraphicsRootDescriptorTable(0, gpuHandle);
+	gpuHandle.ptr += HEAP_STRIDE;
+	commandList->SetGraphicsRootDescriptorTable(1, gpuHandle);
 }

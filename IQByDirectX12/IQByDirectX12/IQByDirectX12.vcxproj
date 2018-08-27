@@ -125,6 +125,7 @@
     <ClCompile Include="DescriptorHeap.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathConvert.cpp" />
     <ClCompile Include="Math\Math_Common.cpp" />
     <ClCompile Include="Math\Math_Matrix.cpp" />
     <ClCompile Include="Math\Math_Quaternion.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="DescriptorHeap.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="MathConvert.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="SwapChain.h" />

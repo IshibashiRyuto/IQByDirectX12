@@ -338,7 +338,12 @@ Matrix4x4 Math::GetInvertMatrix(const Matrix4x4& mat)
 
 Matrix4x4 Math::CreateIdent()
 {
-	return Matrix4x4();
+	return Matrix4x4(
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+		);
 }
 
 Matrix4x4 Math::CreateScaleMatrix(float scale)
@@ -376,7 +381,7 @@ Matrix4x4 Math::CreateScaleMatrix(const Vector3& scale)
 
 Matrix4x4 Math::CreateTranslateMatrix(float tx, float ty, float tz)
 {
-	Matrix4x4 tmp;
+	Matrix4x4 tmp = CreateIdent();
 	tmp(3, 0) = tx;
 	tmp(3, 1) = ty;
 	tmp(3, 2) = tz;
@@ -385,7 +390,7 @@ Matrix4x4 Math::CreateTranslateMatrix(float tx, float ty, float tz)
 
 Matrix4x4 Math::CreateTranslateMatrix(const Vector3& movement)
 {
-	Matrix4x4 tmp;
+	Matrix4x4 tmp = CreateIdent();
 	tmp(3, 0) = movement.x;
 	tmp(3, 1) = movement.y;
 	tmp(3, 2) = movement.z;
@@ -440,18 +445,18 @@ Matrix4x4 Math::CreateAxisRotMatrix(const Vector3& axis, float rad)
 
 Matrix4x4 Math::CreateLookAtMatrix(const Vector3 & eye, const Vector3 & target, const Vector3 & upper)
 {
-	auto eyeSightVec = Normalize(target - eye);
-	auto rightVec = Normalize(Cross(upper, eyeSightVec));
-	auto upVec = Normalize(Cross(eyeSightVec, rightVec));
-	float xPos = Dot(rightVec, eye);
-	float yPos = Dot(upVec, eye);
-	float zPos = Dot(eyeSightVec, eye);
+	auto zAxis = Normalize(target - eye);
+	auto xAxis = Normalize(Cross(upper, zAxis));
+	auto yAxis = Normalize(Cross(zAxis, xAxis));
+	float xPos = Dot(xAxis, eye);
+	float yPos = Dot(yAxis, eye);
+	float zPos = Dot(zAxis, eye);
 	return Matrix4x4
 	(
-		rightVec.x,		upVec.x,		eyeSightVec.x,	0.0f,
-		rightVec.y,		upVec.y,		eyeSightVec.y,	0.0f,
-		rightVec.z,		upVec.z,		eyeSightVec.z,	0.0f,
-		-xPos,			-yPos,			-zPos,			1.0f
+		xAxis.x,		yAxis.x,		zAxis.x,	0.0f,
+		xAxis.y,		yAxis.y,		zAxis.y,	0.0f,
+		xAxis.z,		yAxis.z,		zAxis.z,	0.0f,
+		-xPos,			-yPos,			-zPos,		1.0f
 	);
 }
 

@@ -122,5 +122,9 @@ private:
 	/// @retval 生成成功: true
 	/// @retval 生成失敗: false
 	bool CreateConstantBuffer();
+
+	/// @fn SetWVPMatrix
+	/// WVP行列をコンスタントバッファにセットする
+	void SetWVPMatrix();
 };
 

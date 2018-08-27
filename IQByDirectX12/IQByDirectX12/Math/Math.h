@@ -6,7 +6,7 @@
 	2018/07/19 初版作成
 	2018/08/26 行列クラスに機能を追加
 		・LookAt行列の生成
-		・
+		・Perspective行列の生成
 */
 #pragma once
 namespace Math
@@ -241,6 +241,7 @@ namespace Math
 	/// アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する
 	Matrix4x4 CreatePerspectiveMatrix(float Aspect, float nearZ, float farZ, float fov);
 
+	
 
 	struct Quaternion
 	{

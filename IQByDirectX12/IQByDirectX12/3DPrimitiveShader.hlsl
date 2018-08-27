@@ -1,5 +1,9 @@
 Texture2D<float4> tex : register(t0);
 SamplerState smp : register(s0);
+cbuffer mat:register(b0)
+{
+	float4x4 wvp;	/// wvpçsóÒ
+}
 
 struct VSInput
 {
@@ -20,7 +24,7 @@ typedef VSOutput PSInput;
 VSOutput VSMain( VSInput input )
 {
     VSOutput output;
-    output.position = float4(input.position, 1.0f);
+    output.position = mul(wvp, float4(input.position, 1.0f));
     output.normal = input.normal;
     output.uv = input.uv;
 	return output;

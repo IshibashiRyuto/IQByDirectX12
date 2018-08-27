@@ -41,14 +41,14 @@ public:
 	/// @param[in] constantBufferView	コンスタントバッファビュー
 	/// @param[in] constantBuffer		コンスタントバッファ
 	/// @param[in] index				ヒープのインデックス
-	void SetConstantBufferView(D3D12_CONSTANT_BUFFER_VIEW_DESC& constantBufferView, UINT index);
+	void SetConstantBufferView(const D3D12_CONSTANT_BUFFER_VIEW_DESC& constantBufferView, UINT index);
 
 	/// @fn SetShaderResourceView
 	/// シェーダリソースビューをセットする
 	/// @param[in]	shaderResourceView	シェーダリソースビュー
 	/// @param[in]	shaderResource		シェーダリソース
 	/// @param[in] index				ヒープのインデックス
-	void SetShaderResourceView(D3D12_SHADER_RESOURCE_VIEW_DESC& shaderResourceView, ComPtr<ID3D12Resource> shaderResource, UINT index);
+	void SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC& shaderResourceView, ComPtr<ID3D12Resource> shaderResource, UINT index);
 
 	/// @fn SetTexture
 	/// テクスチャ情報をセットする
@@ -61,7 +61,7 @@ public:
 	/// @param[in]	unorderedAccessView	構造化バッファビュー
 	/// @param[in]	structuredBuffer	構造化バッファ
 	/// @param[in] index				ヒープのインデックス
-	void SetUnorderedAccessView(D3D12_UNORDERED_ACCESS_VIEW_DESC& unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index);
+	void SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC& unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index);
 
 	/// @fn BindGraphicsCommandList
 	/// デスクリプタヒープをコマンドリストにバインドする
