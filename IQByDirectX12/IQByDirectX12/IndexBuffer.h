@@ -30,9 +30,14 @@ public:
 	/// @param[in] indexSize: インデックス1つ当たりのサイズ(sizeofで取得)
 	/// @retval 生成成功: VertexBufferのshared_ptr, 生成失敗: nullptr
 	static std::shared_ptr<IndexBuffer> Create(ComPtr<ID3D12Device> device, void* pIndexResource, size_t indexCount, size_t indexSize);
+
+	const D3D12_INDEX_BUFFER_VIEW& GetIndexBufferView();
+
+	unsigned int GetIndexCount();
 private:
 	IndexBuffer();
-	ComPtr<ID3D12Resource> mIndexBuffer;
+	unsigned int			mIndexCount;
+	ComPtr<ID3D12Resource>	mIndexBuffer;
 	D3D12_INDEX_BUFFER_VIEW mIndexBufferView;
 };
 

@@ -11,6 +11,7 @@
 
 // 自作ヘッダインクルード
 #include "../Math/Math.h"
+#include "ModelData.h"
 
 ///	@struct PMDHeader
 /// PMDヘッダ情報
@@ -50,13 +51,14 @@ struct PMDMaterial
 
 #pragma pack()
 
-class PMDModelData
+class PMDModelData : public ModelData
 {
 public:
-	PMDModelData();
+	PMDModelData(ComPtr<ID3D12Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials);
 	~PMDModelData();
 	
-	static std::shared_ptr<PMDModelData> Create(const std::vector<PMDVertex>& vertexData,
+	static std::shared_ptr<PMDModelData> Create(ComPtr<ID3D12Device> device,
+		const std::vector<PMDVertex>& vertexData,
 		const std::vector<unsigned short>& indexData,
 		const std::vector<PMDMaterial>& materials);
 

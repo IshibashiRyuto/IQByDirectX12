@@ -11,9 +11,11 @@ PMDLoader::~PMDLoader()
 {
 }
 
-std::shared_ptr<PMDLoader> PMDLoader::Create()
+std::shared_ptr<PMDLoader> PMDLoader::Create(ComPtr<ID3D12Device> device)
 {
-	return std::shared_ptr<PMDLoader>(new PMDLoader());
+	auto pmdLoader = std::shared_ptr<PMDLoader>(new PMDLoader());
+	pmdLoader->mDevice = device;
+	return pmdLoader;
 }
 
 std::shared_ptr<PMDModelData> PMDLoader::LoadModel(const std::string & filePath)
@@ -38,10 +40,10 @@ std::shared_ptr<PMDModelData> PMDLoader::LoadModel(const std::string & filePath)
 
 	// ファイルフォーマットの確認
 	{
-		char pmdSignature[3];
-		fread(pmdSignature, sizeof(pmdSignature), 1, fp);
-
-		if (strcmp(pmdSignature, "Pmd") != 0)
+		char pmdSignature[4];
+		fread(pmdSignature, sizeof(char)*3, 1, fp);
+		pmdSignature[3] = '\0';
+		if (pmdSignature == nullptr || strcmp(pmdSignature, "Pmd") != 0)
 		{
 			std::cout << "This file is not pmd.\n Please load \".pmd\" file." << std::endl;
 			fclose(fp);
@@ -60,7 +62,7 @@ std::shared_ptr<PMDModelData> PMDLoader::LoadModel(const std::string & filePath)
 	// 頂点インデックス情報読み込み
 	fread(&indexCount, sizeof(int), 1, fp);
 	index.resize(indexCount);
-	fread(index.data(), sizeof(int), index.size(), fp);
+	fread(index.data(), sizeof(short), index.size(), fp);
 
 	// マテリアルパラメータ読み込み
 	fread(&materialCount, sizeof(int), 1, fp);
@@ -69,5 +71,5 @@ std::shared_ptr<PMDModelData> PMDLoader::LoadModel(const std::string & filePath)
 
 	fclose(fp);
 
-	return PMDModelData::Create(vertex, index, materials);
+	return PMDModelData::Create(mDevice, vertex, index, materials);
 }

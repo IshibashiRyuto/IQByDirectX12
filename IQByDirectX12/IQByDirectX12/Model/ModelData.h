@@ -15,8 +15,18 @@
 class ModelData
 {
 public:
-	ModelData();
+	/// コンストラクタ
+	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer);
+
+	/// デストラクタ
 	~ModelData();
+
+	/// 頂点バッファを取得する
+	std::shared_ptr<VertexBuffer> GetVertexBuffer();
+
+	/// インデックスバッファを取得する
+	std::shared_ptr<IndexBuffer> GetIndexBuffer();
+	
 
 protected:
 	std::shared_ptr<VertexBuffer> mVertexBuffer;

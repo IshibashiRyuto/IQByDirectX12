@@ -179,6 +179,9 @@ bool Application::Initialize(const Window & window)
 	// 行列設定
 	SetWVPMatrix();
 
+	// モデルデータ読込
+	LoadPMD();
+
 	return true;
 }
 
@@ -210,8 +213,14 @@ void Application::Render()
 
 	// ポリゴン描画
 	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	/*
 	mCommandList->IASetVertexBuffers(0, 1, &mVertexBuffer->GetVertexBufferView());
 	mCommandList->DrawInstanced(6, 1, 0, 0);
+	*/
+
+	mCommandList->IASetVertexBuffers(0, 1, &mModelData->GetVertexBuffer()->GetVertexBufferView());
+	mCommandList->IASetIndexBuffer(&mModelData->GetIndexBuffer()->GetIndexBufferView());
+	mCommandList->DrawIndexedInstanced(mModelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
 
 	//描画終了処理
 	mRenderTarget->FinishRendering(mCommandList);
@@ -465,20 +474,11 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 0.5f, -1.0f), Math::Vector3(0.0f, 0.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 10.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		auto data = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
 		
-
-		DirectX::XMVECTOR eye, target, upper;
-		eye = { 0.0f, 0.5f,-1.0f };
-		target = { 0.0f, 0.0f, 0.0f };
-		upper = { 0.0f,1.0f, 0.0f };
-		auto wldMat = DirectX::XMMatrixIdentity();
-		auto viewMat = DirectX::XMMatrixLookAtLH(eye, target, upper);
-		auto projMat = DirectX::XMMatrixPerspectiveFovLH(Math::F_PI / 2.0f, (float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f);
-		auto data2 = wldMat * viewMat * projMat;
 
 		mConstantBuffer->SetData(&data, sizeof(DirectX::XMMATRIX), 0);
 		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
@@ -487,6 +487,6 @@ void Application::SetWVPMatrix()
 
 void Application::LoadPMD()
 {
-	mModelLoader = PMDLoader::Create();
-	mModelData = mModelLoader->LoadModel("初音ミク.pmd");
+	mModelLoader = PMDLoader::Create(mDevice->GetDevice());
+	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
 }

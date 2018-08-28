@@ -11,12 +11,13 @@ class PMDLoader
 public:
 	~PMDLoader();
 
-	static std::shared_ptr<PMDLoader> Create();
+	static std::shared_ptr<PMDLoader> Create(ComPtr<ID3D12Device> device);
 
 	std::shared_ptr<PMDModelData> LoadModel(const std::string& filePath);
 private:
 	PMDLoader();
 	PMDLoader(const PMDLoader&);
 	void operator=(const PMDLoader&) {}
+	ComPtr<ID3D12Device> mDevice;
 };
 

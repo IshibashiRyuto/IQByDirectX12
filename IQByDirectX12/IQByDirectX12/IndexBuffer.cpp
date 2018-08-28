@@ -16,6 +16,7 @@ IndexBuffer::~IndexBuffer()
 std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, void * pIndexResource, size_t indexCount, size_t indexSize)
 {
 	auto indexBuffer = std::shared_ptr<IndexBuffer>(new IndexBuffer());
+	indexBuffer->mIndexCount = (unsigned int)indexCount;
 	// インデックスバッファリソースの作成
 	{
 		// TODO: RESOURCE_STATEの修正
@@ -50,15 +51,15 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, vo
 	// インデックスバッファビューの作成
 	{
 		DXGI_FORMAT indexFormat;
-		if (indexSize == 8)
+		if (indexSize == 1)
 		{
 			indexFormat = DXGI_FORMAT_R8_UINT;
 		}
-		else if (indexSize == 16)
+		else if (indexSize == 2)
 		{
 			indexFormat = DXGI_FORMAT_R16_UINT;
 		}
-		else if (indexSize == 32)
+		else if (indexSize == 4)
 		{
 			indexFormat = DXGI_FORMAT_R32_UINT;
 		}
@@ -75,4 +76,14 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, vo
 	}
 
 	return indexBuffer;
+}
+
+const D3D12_INDEX_BUFFER_VIEW & IndexBuffer::GetIndexBufferView()
+{
+	return mIndexBufferView;
+}
+
+unsigned int IndexBuffer::GetIndexCount()
+{
+	return mIndexCount;
 }
