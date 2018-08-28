@@ -463,14 +463,14 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 0.0f, -10.0f), Math::Vector3(0.0f, 0.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 0.5f, -1.0f), Math::Vector3(0.0f, 0.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		auto data = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
 		
 
 		DirectX::XMVECTOR eye, target, upper;
-		eye = { 0.0f, 0.0f,-10.0f };
+		eye = { 0.0f, 0.5f,-1.0f };
 		target = { 0.0f, 0.0f, 0.0f };
 		upper = { 0.0f,1.0f, 0.0f };
 		auto wldMat = DirectX::XMMatrixIdentity();
@@ -478,7 +478,7 @@ void Application::SetWVPMatrix()
 		auto projMat = DirectX::XMMatrixPerspectiveFovLH(Math::F_PI / 2.0f, (float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f);
 		auto data2 = wldMat * viewMat * projMat;
 
-		mConstantBuffer->SetData(&data2, sizeof(DirectX::XMMATRIX), 0);
+		mConstantBuffer->SetData(&data, sizeof(DirectX::XMMATRIX), 0);
 		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
 	}
 }

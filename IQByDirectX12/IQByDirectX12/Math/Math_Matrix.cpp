@@ -474,7 +474,7 @@ Matrix4x4 Math::CreateLookAtMatrixFromCameraMatrix(const Matrix4x4 & cameraMatri
 
 Matrix4x4 Math::CreatePerspectiveMatrix(float aspect, float nearZ, float farZ, float fov)
 {
-	auto tanFoV = tanf(fov);
+	auto tanFoV = tanf(fov/ 2.0f);
 	return Matrix4x4
 	(
 		1.0f/aspect/tanFoV, 0.0f, 0.0f, 0.0f,
