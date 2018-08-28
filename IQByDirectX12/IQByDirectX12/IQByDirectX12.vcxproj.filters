@@ -19,6 +19,9 @@
     <Filter Include="WICTextureLoader">
       <UniqueIdentifier>{26ac1718-16b0-4193-ab21-98134a388f55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{18ce2fb1-dc85-42d1-a33f-3b90ca336d03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -87,6 +90,24 @@
     <ClCompile Include="MathConvert.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Model\ModelData.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\PMXModelData.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\PMDLoader.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\PMDModelData.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\PMXImporter.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -136,6 +157,24 @@
     </ClInclude>
     <ClInclude Include="MathConvert.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\PMXModelData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\PMDLoader.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\PMDModelData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\PMXImporter.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

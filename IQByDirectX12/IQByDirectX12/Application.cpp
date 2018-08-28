@@ -2,6 +2,8 @@
 #include <d3d12.h>
 #include <d3dx12.h>
 #include <dxgi1_4.h>
+#include <DirectXMath.h>
+#include <D3DCompiler.h>
 
 #include "Application.h"
 #include "Window.h"
@@ -15,9 +17,9 @@
 #include "Texture.h"
 #include "DescriptorHeap.h"
 #include "ConstantBuffer.h"
-#include <DirectXMath.h>
-#include <D3DCompiler.h>
 #include "MathConvert.h"
+#include "Model/PMDLoader.h"
+#include "Model/PMDModelData.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -481,4 +483,10 @@ void Application::SetWVPMatrix()
 		mConstantBuffer->SetData(&data, sizeof(DirectX::XMMATRIX), 0);
 		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
 	}
+}
+
+void Application::LoadPMD()
+{
+	mModelLoader = PMDLoader::Create();
+	mModelData = mModelLoader->LoadModel("初音ミク.pmd");
 }

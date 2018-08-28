@@ -13,8 +13,6 @@ using Microsoft::WRL::ComPtr;
 class VertexBuffer
 {
 public:
-	/// コンストラクタ
-	VertexBuffer();
 	/// デストラクタ
 	~VertexBuffer();
 
@@ -34,6 +32,10 @@ public:
 	const D3D12_VERTEX_BUFFER_VIEW& GetVertexBufferView();
 
 private:
+	/// コンストラクタ
+	VertexBuffer();
+	VertexBuffer(const VertexBuffer&);
+
 	ComPtr<ID3D12Resource> mVertexBuffer;			// 頂点バッファリソース
 	D3D12_VERTEX_BUFFER_VIEW mVertexBufferView;		// 頂点バッファビュー
 };

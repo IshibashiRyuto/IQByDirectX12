@@ -25,6 +25,8 @@ class Texture;
 class TextureLoader;
 class DescriptorHeap;
 class ConstantBuffer;
+class PMDLoader;
+class PMDModelData;
 
 using Microsoft::WRL::ComPtr;
 
@@ -75,6 +77,8 @@ private:
 	std::shared_ptr<Texture>			mTexture;
 	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
 	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
+	std::shared_ptr<PMDLoader>			mModelLoader;
+	std::shared_ptr<PMDModelData>		mModelData;
 
 	Math::Matrix4x4 mWorldMatrix;
 	Math::Matrix4x4 mViewMatrix;
@@ -126,5 +130,9 @@ private:
 	/// @fn SetWVPMatrix
 	/// WVP行列をコンスタントバッファにセットする
 	void SetWVPMatrix();
+
+	/// @fn LoadPMD
+	/// PMDモデルデータをロードする
+	void LoadPMD();
 };
 

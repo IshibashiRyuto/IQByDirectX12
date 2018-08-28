@@ -124,6 +124,7 @@
     <ClCompile Include="DepthBuffer.cpp" />
     <ClCompile Include="DescriptorHeap.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathConvert.cpp" />
     <ClCompile Include="Math\Math_Common.cpp" />
@@ -132,6 +133,11 @@
     <ClCompile Include="Math\Math_Vector2.cpp" />
     <ClCompile Include="Math\Math_Vector3.cpp" />
     <ClCompile Include="Math\Math_Vector4.cpp" />
+    <ClCompile Include="Model\ModelData.cpp" />
+    <ClCompile Include="Model\PMDLoader.cpp" />
+    <ClCompile Include="Model\PMDModelData.cpp" />
+    <ClCompile Include="Model\PMXImporter.cpp" />
+    <ClCompile Include="Model\PMXModelData.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -148,8 +154,14 @@
     <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="DescriptorHeap.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="MathConvert.h" />
     <ClInclude Include="Math\Math.h" />
+    <ClInclude Include="Model\ModelData.h" />
+    <ClInclude Include="Model\PMDLoader.h" />
+    <ClInclude Include="Model\PMDModelData.h" />
+    <ClInclude Include="Model\PMXImporter.h" />
+    <ClInclude Include="Model\PMXModelData.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Texture.h" />

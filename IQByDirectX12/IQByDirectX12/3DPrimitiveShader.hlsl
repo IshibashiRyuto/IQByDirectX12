@@ -35,5 +35,4 @@ VSOutput VSMain( VSInput input )
 float4 PSMain(PSInput input) : SV_Target
 {
     return tex.Sample(smp, input.uv);
- //   return float4(input.uv, 1.0f, 1.0f);
 }
