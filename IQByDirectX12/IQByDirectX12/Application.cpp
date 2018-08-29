@@ -20,6 +20,8 @@
 #include "MathConvert.h"
 #include "Model/PMDLoader.h"
 #include "Model/PMDModelData.h"
+#include "Model/PMXLoader.h"
+#include "Model/PMXModelData.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -181,6 +183,7 @@ bool Application::Initialize(const Window & window)
 
 	// モデルデータ読込
 	LoadPMD();
+	LoadPMX();
 
 	return true;
 }
@@ -489,4 +492,10 @@ void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice->GetDevice());
 	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
+}
+
+void Application::LoadPMX()
+{
+	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
+	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 }

@@ -27,6 +27,8 @@ class DescriptorHeap;
 class ConstantBuffer;
 class PMDLoader;
 class PMDModelData;
+class PMXLoader;
+class PMXModelData;
 
 using Microsoft::WRL::ComPtr;
 
@@ -79,6 +81,8 @@ private:
 	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
 	std::shared_ptr<PMDLoader>			mModelLoader;
 	std::shared_ptr<PMDModelData>		mModelData;
+	std::shared_ptr<PMXLoader>			mPMXModelLoader;
+	std::shared_ptr<PMXModelData>		mPMXModelData;
 
 	Math::Matrix4x4 mWorldMatrix;
 	Math::Matrix4x4 mViewMatrix;
@@ -134,5 +138,9 @@ private:
 	/// @fn LoadPMD
 	/// PMDモデルデータをロードする
 	void LoadPMD();
+
+	/// @fn LoadPMX
+	/// PMXモデルデータをロードする
+	void LoadPMX();
 };
 
