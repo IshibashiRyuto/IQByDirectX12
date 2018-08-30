@@ -22,10 +22,10 @@ std::shared_ptr<PMXModelData> PMXLoader::LoadModel(const std::string & filePath)
 {
 	FILE *fp;
 
-	PMX::PMXHeader header;
+	PMX::Header header;
 	PMX::ModelInfo modelInfo;
-
-	std::shared_ptr<PMXModelData> modelData;
+	std::vector<PMX::Vertex> vertices;
+	std::vector<PMX::Index> indexies;
 
 	auto err = fopen_s(&fp, filePath.c_str(), "rb");
 	if (err != 0)
@@ -48,218 +48,16 @@ std::shared_ptr<PMXModelData> PMXLoader::LoadModel(const std::string & filePath)
 	}
 
 	// ヘッダデータ読み込み
-	fread(&header, sizeof(header), 1, fp);
+	LoadHeader(header, fp);
 
 	// モデル情報の読み込み
-	modelInfo.modelName = ReadTextBuf(fp);
-	modelInfo.modelNameEng = ReadTextBuf(fp);
-	modelInfo.comment = ReadTextBuf(fp);
-	modelInfo.commentEng = ReadTextBuf(fp);
 
 	// 頂点情報読み込み
-	int vertsNum;
-
-	fread(&vertsNum, sizeof(int), 1, fp);
-
-	if (header.boneIndexSize == 1)
-	{
-		std::vector<PMX::Vertex<char>> verts;
-		verts.resize(vertsNum);
-		for (auto& vertex : verts)
-		{
-			fread(&vertex.position, sizeof(vertex.position), 1, fp);
-			fread(&vertex.normal, sizeof(vertex.normal), 1, fp);
-			fread(&vertex.uv, sizeof(vertex.uv), 1, fp);
-			if (header.appendUvCount != 0)
-			{
-				vertex.appendUV.resize(header.appendUvCount);
-				fread((void*)vertex.appendUV.data(), vertex.appendUV.size(), 1, fp);
-			}
-			fread(&vertex.weightDeformType, sizeof(vertex.weightDeformType), 1, fp);
-			
-			if (vertex.weightDeformType == 0)
-			{
-				fread(&vertex.bdef1, sizeof(vertex.bdef1), 1, fp);
-			}
-			else if (vertex.weightDeformType == 1)
-			{
-				fread(&vertex.bdef2, sizeof(vertex.bdef2), 1, fp);
-			}
-			else if (vertex.weightDeformType == 2)
-			{
-				fread(&vertex.bdef4, sizeof(vertex.bdef4), 1, fp);
-			}
-			else if (vertex.weightDeformType == 2)
-			{
-				fread(&vertex.sdef, sizeof(vertex.sdef), 1, fp);
-			}
-
-			fread(&vertex.edgeScale, sizeof(vertex.edgeScale), 1, fp);
-		}
-
-		// 頂点インデックス情報の読み込み
-		int indexCount;
-		fread(&indexCount, sizeof(int), 1, fp);
-		if (header.vertexIndexSize == 1)
-		{
-			std::vector<PMX::Index<unsigned char>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		else if (header.vertexIndexSize == 2)
-		{
-			std::vector<PMX::Index<unsigned short>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		else if (header.vertexIndexSize == 4)
-		{
-			std::vector<PMX::Index<int>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-
-	}
-	else if (header.boneIndexSize == 2)
-	{
-		std::vector<PMX::Vertex<short>> verts;
-		verts.resize(vertsNum);
-		for (auto& vertex : verts)
-		{
-			fread(&vertex.position, sizeof(vertex.position), 1, fp);
-			fread(&vertex.normal, sizeof(vertex.normal), 1, fp);
-			fread(&vertex.uv, sizeof(vertex.uv), 1, fp);
-			if (header.appendUvCount != 0)
-			{
-				vertex.appendUV.resize(header.appendUvCount);
-				fread((void*)vertex.appendUV.data(), vertex.appendUV.size(), 1, fp);
-			}
-			fread(&vertex.weightDeformType, sizeof(vertex.weightDeformType), 1, fp);
-
-			if (vertex.weightDeformType == 0)
-			{
-				fread(&vertex.bdef1, sizeof(vertex.bdef1), 1, fp);
-			}
-			else if (vertex.weightDeformType == 1)
-			{
-				fread(&vertex.bdef2, sizeof(vertex.bdef2), 1, fp);
-			}
-			else if (vertex.weightDeformType == 2)
-			{
-				fread(&vertex.bdef4, sizeof(vertex.bdef4), 1, fp);
-			}
-			else if (vertex.weightDeformType == 2)
-			{
-				fread(&vertex.sdef, sizeof(vertex.sdef), 1, fp);
-			}
-
-			fread(&vertex.edgeScale, sizeof(vertex.edgeScale), 1, fp);
-		}
 
 
-		// 頂点インデックス情報の読み込み
-		int indexCount;
-		fread(&indexCount, sizeof(int), 1, fp);
-		if (header.vertexIndexSize == 1)
-		{
-			std::vector<PMX::Index<unsigned char>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		else if (header.vertexIndexSize == 2)
-		{
-			std::vector<PMX::Index<unsigned short>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		else if (header.vertexIndexSize == 4)
-		{
-			std::vector<PMX::Index<int>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-	}
-	else if (header.boneIndexSize == 4)
-	{
-		/*
-		std::vector<PMX::Vertex<int>> verts;
-		verts.resize(vertsNum);
-		for (auto& vertex : verts)
-		{
-			fread(&vertex.position, sizeof(vertex.position), 1, fp);
-			fread(&vertex.normal, sizeof(vertex.normal), 1, fp);
-			fread(&vertex.uv, sizeof(vertex.uv), 1, fp);
-			if (header.appendUvCount != 0)
-			{
-				vertex.appendUV.resize(header.appendUvCount);
-				fread((void*)vertex.appendUV.data(), vertex.appendUV.size(), 1, fp);
-			}
-			fread(&vertex.weightDeformType, sizeof(vertex.weightDeformType), 1, fp);
-
-			if (vertex.weightDeformType == 0)
-			{
-				fread(&vertex.bdef1, sizeof(vertex.bdef1), 1, fp);
-			}
-			else if (vertex.weightDeformType == 1)
-			{
-				fread(&vertex.bdef2, sizeof(vertex.bdef2), 1, fp);
-			}
-			else if (vertex.weightDeformType == 2)
-			{
-				fread(&vertex.bdef4, sizeof(vertex.bdef4), 1, fp);
-			}
-			else if (vertex.weightDeformType == 2)
-			{
-				fread(&vertex.sdef, sizeof(vertex.sdef), 1, fp);
-			}
-
-			fread(&vertex.edgeScale, sizeof(vertex.edgeScale), 1, fp);
-		}
-
-		// 頂点インデックス情報の読み込み
-		int indexCount;
-		fread(&indexCount, sizeof(int), 1, fp);
-		if (header.vertexIndexSize == 1)
-		{
-			std::vector<PMX::Index<unsigned char>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		else if (header.vertexIndexSize == 2)
-		{
-			std::vector<PMX::Index<unsigned short>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		else if (header.vertexIndexSize == 4)
-		{
-			std::vector<PMX::Index<int>> indexies;
-			indexies.resize(indexCount);
-			fread((void*)indexies.data(), sizeof(indexies[0]), indexCount, fp);
-
-			modelData = PMXModelData::Create(mDevice, verts, indexies);
-		}
-		*/
-	}
 	fclose(fp);
 
-	return modelData;
+	return nullptr;
 }
 
 std::string PMXLoader::ReadTextBuf(FILE * fp)
@@ -271,4 +69,91 @@ std::string PMXLoader::ReadTextBuf(FILE * fp)
 	fread((void*)text.data(), sizeof(char) * bufSize, 1, fp);
 
 	return text;
+}
+
+void PMXLoader::LoadHeader(PMX::Header & header, FILE * fp)
+{
+	fread(&header.version, sizeof(header.version), 1, fp);
+	fread(&header.byteSize, sizeof(header.byteSize), 1, fp);
+
+	if (header.byteSize <= 0)
+	{
+		return;
+	}
+
+	header.pmxDataInfo.resize(header.byteSize);
+	fread((void*)header.pmxDataInfo.data(), sizeof(header.pmxDataInfo[0]), header.pmxDataInfo.size(), fp);
+}
+
+void PMXLoader::LoadModelInfo(PMX::ModelInfo & modelInfo, FILE * fp)
+{
+	modelInfo.modelName = ReadTextBuf(fp);
+	modelInfo.modelNameEng = ReadTextBuf(fp);
+	modelInfo.comment = ReadTextBuf(fp);
+	modelInfo.commentEng = ReadTextBuf(fp);
+}
+
+void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::Header & header, FILE * fp)
+{
+	int vertexCount;
+	bool isUseAppendUV = (header.pmxDataInfo[(int)PMX::DataInfo::appendUVCount] > 0);
+	size_t boneIndexSize = header.pmxDataInfo[(int)PMX::DataInfo::boneIndexSize];
+
+	fread(&vertexCount, sizeof(vertexCount), 1, fp);
+	vertexData.resize(vertexCount);
+
+	for (auto& vertex : vertexData)
+	{
+		fread(&vertex.position, sizeof(vertex.position), 1, fp);
+		fread(&vertex.normal, sizeof(vertex.normal), 1, fp);
+		fread(&vertex.uv, sizeof(vertex.uv), 1, fp);
+		
+		if (isUseAppendUV)
+		{
+			vertex.appendUV.resize(header.pmxDataInfo[(int)PMX::DataInfo::appendUVCount]);
+			fread((void*)vertex.appendUV.data(), sizeof(vertex.appendUV[0]), vertex.appendUV.size(), fp);
+		}
+
+		fread(&vertex.weightDeformType, sizeof(char), 1, fp);
+		
+		switch (vertex.weightDeformType)
+		{
+		case PMX::WeightDeformType::BDEF1:
+			fread(&vertex.bdef1, boneIndexSize, 1, fp);
+			break;
+
+		case PMX::WeightDeformType::BDEF2:
+			fread(&vertex.bdef2.boneIndex, boneIndexSize, 2, fp);
+			fread(&vertex.bdef2.boneWeight, sizeof(vertex.bdef2.boneWeight), 1, fp);
+			break;
+
+		case PMX::WeightDeformType::BDEF4:
+			fread(&vertex.bdef4.boneIndex, boneIndexSize, 4, fp);
+			fread(&vertex.bdef4.boneWeight, sizeof(vertex.bdef2.boneWeight), 4, fp);
+			break;
+
+		case PMX::WeightDeformType::SDEF:
+			fread(&vertex.sdef.boneIndex, boneIndexSize, 2, fp);
+			fread(&vertex.sdef.boneWeight, sizeof(vertex.sdef.boneWeight), 1, fp);
+			fread(&vertex.sdef.c, sizeof(vertex.sdef.c), 1, fp);
+			fread(&vertex.sdef.r0, sizeof(vertex.sdef.r0), 1, fp);
+			fread(&vertex.sdef.r1, sizeof(vertex.sdef.r1), 1, fp);
+			break;
+		default:
+#ifdef _DEBUG
+			std::cout << "PMX File Load Error." << std::endl;
+#endif
+			return;
+			break;
+		}
+		fread(&vertex.edgeScale, sizeof(vertex.edgeScale), 1, fp);
+	}
+}
+
+void PMXLoader::LoadIndexData(std::vector<PMX::Index>& indexData, const PMX::Header & header, FILE * fp)
+{
+	int indexCount;
+	fread(&indexCount, sizeof(indexCount), 1, fp);
+	indexData.resize(indexCount);
+	fread((void*)indexData.data(), header.pmxDataInfo[(int)PMX::DataInfo::vertexIndexSize], indexData.size(), fp);
 }

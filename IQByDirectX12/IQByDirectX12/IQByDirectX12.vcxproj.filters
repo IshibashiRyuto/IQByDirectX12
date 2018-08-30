@@ -105,10 +105,10 @@
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ModelLoader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Model\PMXLoader.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\ModelLoader.cpp">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -179,8 +179,8 @@
     <ClInclude Include="Model\PMXLoader.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="ModelLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Model\ModelLoader.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

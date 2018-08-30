@@ -20,18 +20,23 @@ class IndexBuffer;
 
 namespace PMX
 {
-	struct PMXHeader
+	struct Header
 	{
 		float version;
 		unsigned char byteSize;
-		unsigned char encodeType;
-		unsigned char appendUvCount;
-		unsigned char vertexIndexSize;
-		unsigned char textureIndexSize;
-		unsigned char materialIndexSize;
-		unsigned char boneIndexSize;
-		unsigned char morphIndexSize;
-		unsigned char rigidIndexSize;
+		std::vector<unsigned char> pmxDataInfo;
+	};
+
+	enum class DataInfo
+	{
+		encodeType,
+		appendUVCount,
+		vertexIndexSize,
+		textureIndexSize,
+		materialIndexSize,
+		boneIndexSize,
+		morphIndexSize,
+		rigidIndexSize,
 	};
 
 	struct ModelInfo
@@ -42,70 +47,70 @@ namespace PMX
 		std::string commentEng;
 	};
 
-	template<typename T>
 	struct BDEF1
 	{
-		T boneIndex;
+		int boneIndex;
 	};
 
-	template<typename T>
 	struct BDEF2
 	{
-		T boneIndex[2];
-		float bone1Weight;
+		int boneIndex[2];
+		float boneWeight;
 	};
 
-	template<typename T>
 	struct BDEF4
 	{
-		T boneIndex[4];
+		int boneIndex[4];
 		float boneWeight[4];
 	};
 
-	template<typename T>
 	struct SDEF
 	{
-		T boneIndex[2];
-		float bone1Weight;
+		int boneIndex[2];
+		float boneWeight;
 		Math::Vector3 c;
 		Math::Vector3 r0;
 		Math::Vector3 r1;
 	};
 
-	template<typename T>
+	enum class WeightDeformType
+	{
+		BDEF1,
+		BDEF2,
+		BDEF4,
+		SDEF,
+	};
+
 	struct Vertex
 	{
-		Vertex() {}
 		Math::Vector3 position;
 		Math::Vector3 normal;
 		Math::Vector2 uv;
 		std::vector<Math::Vector4> appendUV;
-		unsigned char weightDeformType;
+		WeightDeformType weightDeformType;
 		union
 		{
-			BDEF1<T> bdef1;
-			BDEF2<T> bdef2;
-			BDEF4<T> bdef4;
-			SDEF<T> sdef;
+			BDEF1 bdef1;
+			BDEF2 bdef2;
+			BDEF4 bdef4;
+			SDEF sdef;
 		};
 		float edgeScale;
 	};
 
 
-	template<typename T>
 	struct Index
 	{
-		T vertIndex;
+		int vertIndex;
 	};
 }
 
 class PMXModelData : ModelData
 {
 public:
-	template<typename BoneIndexType, typename VertIndexType>
 	PMXModelData(ComPtr<ID3D12Device> device,
-		std::vector<PMX::Vertex<BoneIndexType>> vertexData,
-		std::vector<PMX::Index<VertIndexType>> indexData);
+		std::vector<PMX::Vertex> vertexData,
+		std::vector<PMX::Index> indexData);
 	~PMXModelData();
 
 	/// @fn Create
@@ -116,28 +121,10 @@ public:
 	/// @param[in] vertIndexData: 頂点インデックス情報
 	/// @retval 生成成功: PMXModelDataのスマートポインタ
 	/// @retval 生成失敗時: nullptr
-	template<typename BoneIndexType, typename VertIndexType>
 	static std::shared_ptr<PMXModelData> Create(ComPtr<ID3D12Device> device, 
-		std::vector<PMX::Vertex<BoneIndexType>> vertexData,
-		std::vector<PMX::Index<VertIndexType>> indexData);
+		std::vector<PMX::Vertex> vertexData,
+		std::vector<PMX::Index> indexData);
 
 private:
 	
 };
-
-template<typename BoneIndexType, typename VertIndexType>
-inline PMXModelData::PMXModelData(ComPtr<ID3D12Device> device, std::vector<PMX::Vertex<BoneIndexType>> vertexData, std::vector<PMX::Index<VertIndexType>> indexData)
-	: ModelData(VertexBuffer::Create(device, (void*)vertexData.data(), vertexData.size(),sizeof(PMX::Vertex<BoneIndexType>)), IndexBuffer::Create(device, (void*)indexData.data(), indexData.size(), sizeof(PMX::Index<VertIndexType>)) )
-{
-}
-
-template<typename BoneIndexType, typename VertIndexType>
-inline std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, std::vector<PMX::Vertex<BoneIndexType>> vertexData, std::vector<PMX::Index<VertIndexType>> indexData)
-{
-	auto model = std::shared_ptr<PMXModelData>( new PMXModelData(device, vertexData, indexData));
-	if (model->mVertexBuffer == nullptr || model->mIndexBuffer == nullptr)
-	{
-		return nullptr;
-	}
-	return model;
-}
