@@ -81,6 +81,14 @@ namespace PMX
 		SDEF,
 	};
 
+	union BoneDeform
+	{
+		BDEF1 bdef1;
+		BDEF2 bdef2;
+		BDEF4 bdef4;
+		SDEF sdef;
+	};
+
 	struct Vertex
 	{
 		Math::Vector3 position;
@@ -88,13 +96,7 @@ namespace PMX
 		Math::Vector2 uv;
 		std::vector<Math::Vector4> appendUV;
 		WeightDeformType weightDeformType;
-		union
-		{
-			BDEF1 bdef1;
-			BDEF2 bdef2;
-			BDEF4 bdef4;
-			SDEF sdef;
-		};
+		BoneDeform boneDeform;
 		float edgeScale;
 	};
 

@@ -51,9 +51,13 @@ std::shared_ptr<PMXModelData> PMXLoader::LoadModel(const std::string & filePath)
 	LoadHeader(header, fp);
 
 	// モデル情報の読み込み
+	LoadModelInfo(modelInfo, fp);
 
 	// 頂点情報読み込み
+	LoadVertexData(vertices, header, fp);
 
+	// インデックス情報読み込み
+	LoadIndexData(indexies, header, fp);
 
 	fclose(fp);
 
@@ -119,25 +123,25 @@ void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::
 		switch (vertex.weightDeformType)
 		{
 		case PMX::WeightDeformType::BDEF1:
-			fread(&vertex.bdef1, boneIndexSize, 1, fp);
+			fread(&vertex.boneDeform.bdef1, boneIndexSize, 1, fp);
 			break;
 
 		case PMX::WeightDeformType::BDEF2:
-			fread(&vertex.bdef2.boneIndex, boneIndexSize, 2, fp);
-			fread(&vertex.bdef2.boneWeight, sizeof(vertex.bdef2.boneWeight), 1, fp);
+			fread(&vertex.boneDeform.bdef2.boneIndex, boneIndexSize, 2, fp);
+			fread(&vertex.boneDeform.bdef2.boneWeight, sizeof(vertex.boneDeform.bdef2.boneWeight), 1, fp);
 			break;
 
 		case PMX::WeightDeformType::BDEF4:
-			fread(&vertex.bdef4.boneIndex, boneIndexSize, 4, fp);
-			fread(&vertex.bdef4.boneWeight, sizeof(vertex.bdef2.boneWeight), 4, fp);
+			fread(&vertex.boneDeform.bdef4.boneIndex, boneIndexSize, 4, fp);
+			fread(&vertex.boneDeform.bdef4.boneWeight, sizeof(vertex.boneDeform.bdef2.boneWeight), 4, fp);
 			break;
 
 		case PMX::WeightDeformType::SDEF:
-			fread(&vertex.sdef.boneIndex, boneIndexSize, 2, fp);
-			fread(&vertex.sdef.boneWeight, sizeof(vertex.sdef.boneWeight), 1, fp);
-			fread(&vertex.sdef.c, sizeof(vertex.sdef.c), 1, fp);
-			fread(&vertex.sdef.r0, sizeof(vertex.sdef.r0), 1, fp);
-			fread(&vertex.sdef.r1, sizeof(vertex.sdef.r1), 1, fp);
+			fread(&vertex.boneDeform.sdef.boneIndex, boneIndexSize, 2, fp);
+			fread(&vertex.boneDeform.sdef.boneWeight, sizeof(vertex.boneDeform.sdef.boneWeight), 1, fp);
+			fread(&vertex.boneDeform.sdef.c, sizeof(vertex.boneDeform.sdef.c), 1, fp);
+			fread(&vertex.boneDeform.sdef.r0, sizeof(vertex.boneDeform.sdef.r0), 1, fp);
+			fread(&vertex.boneDeform.sdef.r1, sizeof(vertex.boneDeform.sdef.r1), 1, fp);
 			break;
 		default:
 #ifdef _DEBUG
