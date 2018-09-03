@@ -38,6 +38,5 @@ float4 PSMain(PSInput input) : SV_Target
     float brightness = dot(input.normal, light);
     
     return float4(brightness, brightness, brightness, 1.0f);
-    //return float4(1.0f, 1.0f, 1.0f, 1.0f);
     //return tex.Sample(smp, input.uv);
 }

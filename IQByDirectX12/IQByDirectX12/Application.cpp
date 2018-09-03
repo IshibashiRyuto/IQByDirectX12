@@ -22,6 +22,7 @@
 #include "Model/PMDModelData.h"
 #include "Model/PMXLoader.h"
 #include "Model/PMXModelData.h"
+#include "TextureManager.h"
 
 // ƒ‰ƒCƒuƒ‰ƒŠƒŠƒ“ƒN
 #pragma comment(lib,"d3d12.lib")
@@ -216,15 +217,20 @@ void Application::Render()
 
 	// ƒ|ƒŠƒSƒ“•`‰æ
 	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	
+
+	// ”Âƒ|ƒŠ•`‰æ
 	/*
 	mCommandList->IASetVertexBuffers(0, 1, &mVertexBuffer->GetVertexBufferView());
 	mCommandList->DrawInstanced(6, 1, 0, 0);
 	*/
 
-	mCommandList->IASetVertexBuffers(0, 1, &mModelData->GetVertexBuffer()->GetVertexBufferView());
-	mCommandList->IASetIndexBuffer(&mModelData->GetIndexBuffer()->GetIndexBufferView());
-	mCommandList->DrawIndexedInstanced(mModelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
-
+	// PMXƒ‚ƒfƒ‹•`‰æ
+	
+	mCommandList->IASetVertexBuffers(0, 1, &mPMXModelData->GetVertexBuffer()->GetVertexBufferView());
+	mCommandList->IASetIndexBuffer(&mPMXModelData->GetIndexBuffer()->GetIndexBufferView());
+	mCommandList->DrawIndexedInstanced(mPMXModelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
+	
 	//•`‰æI—¹ˆ—
 	mRenderTarget->FinishRendering(mCommandList);
 	mCommandList->Close();
@@ -457,9 +463,9 @@ bool Application::CreateCommandList()
 void Application::LoadTexture()
 {
 	mTextureLoader = TextureLoader::Create(mDevice->GetDevice());
-	mTexture = mTextureLoader->Load("Img/test.png");
+	mTextureHandle = mTextureLoader->Load("Img/test.png");
 	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
-	mDescriptorHeap->SetTexture(mTexture, 0);
+	mDescriptorHeap->SetTexture(TextureManager::GetInstance().GetTexture(mTextureHandle), 0);
 }
 
 bool Application::CreateConstantBuffer()

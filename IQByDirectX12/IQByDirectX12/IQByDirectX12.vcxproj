@@ -143,6 +143,7 @@
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="WICTextureLoader\WICTextureLoader12.h" />
     <ClInclude Include="Window.h" />

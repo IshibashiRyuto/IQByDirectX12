@@ -14,6 +14,7 @@
 
 /*自作ヘッダインクルード*/
 #include "Texture.h"
+#include "TextureManager.h"
 
 /// @class TextureLoader
 /// @brief テクスチャの読み込みを行うクラス
@@ -36,11 +37,17 @@ public:
 	/// 実体を直接持つことはできない
 	static std::shared_ptr<TextureLoader> Create(ComPtr<ID3D12Device> device);
 
-	std::shared_ptr<Texture> Load(const std::string& str);
+	/// @fn Load
+	/// テクスチャをロードし、テクスチャのハンドルを返す
+	/// @param[in] filePath : テクスチャのファイルパス
+	/// @retval int :		テクスチャ管理ハンドル
+	int Load(const std::string& filePath);
 private:
 	/*変数宣言*/
-	std::map< std::string, std::shared_ptr<Texture>> mTextureResource;
-	ComPtr<ID3D12Device> mDevice;
+	std::map< std::string, int> mTextureHandleManager;						// 読み込み済みテクスチャのハンドルを管理する
+	ComPtr<ID3D12Device> mDevice;											// ID3D12デバイス
+	TextureManager &mTextureManager;
+
 
 	/*ローカルメソッド*/
 
@@ -55,5 +62,6 @@ private:
 	/// @param[in]	resource ID3D12Resourceのポインタ
 	/// @param[in]	subresource サブリソースデータ
 	void UpdateTextureSubresource(ComPtr<ID3D12Resource> resource, D3D12_SUBRESOURCE_DATA& subresource);
+
 };
 

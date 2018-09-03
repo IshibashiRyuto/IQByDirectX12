@@ -1,11 +1,13 @@
 #include <Windows.h>
 #include <d3dx12.h>
+#include <iostream>
 #include "TextureLoader.h"
 #include "WICTextureLoader/WICTextureLoader12.h"
 #include"CommandAllocator.h"
 #include "CommandQueue.h"
 
 TextureLoader::TextureLoader()
+	: mTextureManager(TextureManager::GetInstance())
 {
 }
 
@@ -21,28 +23,36 @@ std::shared_ptr<TextureLoader> TextureLoader::Create(ComPtr<ID3D12Device> device
 	return textureLoader;
 }
 
-std::shared_ptr<Texture> TextureLoader::Load(const std::string & str)
+int TextureLoader::Load(const std::string & str)
 {
-	auto it = mTextureResource.find(str);
-	if(it == mTextureResource.end())
+	auto it = mTextureHandleManager.find(str);
+	if(it == mTextureHandleManager.end() || !mTextureManager.IsExist((*it).second))
 	{
 		auto wstr = GetWString(str);
 		ComPtr<ID3D12Resource> resource;
 		
 		D3D12_SUBRESOURCE_DATA subResourceData;
 		std::unique_ptr<uint8_t[]> decodedData;
-		DirectX::LoadWICTextureFromFile(mDevice.Get(),
+		auto result = DirectX::LoadWICTextureFromFile(mDevice.Get(),
 			wstr.data(),
 			&resource,
 			decodedData,
 			subResourceData);
 
+		if (FAILED(result))
+		{
+#ifdef _DEBUG
+			std::cout << "Failed Load Texture File \"" << str << "\".";
+#endif
+			return -1;
+		}
+
 		UpdateTextureSubresource(resource, subResourceData);
 
 		auto textureData = Texture::Create(resource);
-		mTextureResource[str] = textureData;
+		mTextureHandleManager[str] = mTextureManager.Regist(textureData);
 	}
-	return mTextureResource[str];
+	return mTextureHandleManager[str];
 }
 
 std::wstring TextureLoader::GetWString(const std::string & str)

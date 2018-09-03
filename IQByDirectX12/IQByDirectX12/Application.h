@@ -76,7 +76,7 @@ private:
 	std::shared_ptr<VertexBuffer>		mVertexBuffer;
 	std::vector<D3D12_INPUT_ELEMENT_DESC> mInputLayoutDescs;
 	std::shared_ptr<TextureLoader>		mTextureLoader;
-	std::shared_ptr<Texture>			mTexture;
+	int									mTextureHandle;
 	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
 	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
 	std::shared_ptr<PMDLoader>			mModelLoader;

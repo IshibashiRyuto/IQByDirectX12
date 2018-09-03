@@ -62,5 +62,8 @@ private:
 	/// @param[in] header		: PMXファイルヘッダ
 	/// @param[in] fp			: ファイルポインタ
 	void LoadIndexData(std::vector<PMX::Index>& indexData, const PMX::Header& header, FILE* fp);
+
+	/// @fn LoadTextureData
+	/// 
 };
 

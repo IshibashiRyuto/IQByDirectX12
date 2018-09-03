@@ -15,3 +15,8 @@ std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, 
 {
 	return std::shared_ptr<PMXModelData>(new PMXModelData(device, vertexData, indexData));
 }
+
+std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, const PMX::ModelDataDesc & modelDataDesc)
+{
+	return std::shared_ptr<PMXModelData>(new PMXModelData(device, modelDataDesc.vertices, modelDataDesc.indexies));
+}
