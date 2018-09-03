@@ -220,17 +220,19 @@ void Application::Render()
 	
 
 	// 板ポリ描画
+	
 	/*
 	mCommandList->IASetVertexBuffers(0, 1, &mVertexBuffer->GetVertexBufferView());
 	mCommandList->DrawInstanced(6, 1, 0, 0);
 	*/
 
+	mPMXModelData->Draw(mCommandList);
 	// PMXモデル描画
-	
+	/*
 	mCommandList->IASetVertexBuffers(0, 1, &mPMXModelData->GetVertexBuffer()->GetVertexBufferView());
 	mCommandList->IASetIndexBuffer(&mPMXModelData->GetIndexBuffer()->GetIndexBufferView());
 	mCommandList->DrawIndexedInstanced(mPMXModelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
-	
+	*/
 	//描画終了処理
 	mRenderTarget->FinishRendering(mCommandList);
 	mCommandList->Close();
@@ -484,7 +486,7 @@ void Application::SetWVPMatrix()
 	{
 		mWorldMatrix = Math::CreateIdent();
 		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 10.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
-		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 0.5f, 100.0f, Math::F_PI/2.0f);
+		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 100.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		auto data = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
 		
@@ -498,10 +500,12 @@ void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice->GetDevice());
 	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
+	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
 }
 
 void Application::LoadPMX()
 {
 	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
 	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
 }

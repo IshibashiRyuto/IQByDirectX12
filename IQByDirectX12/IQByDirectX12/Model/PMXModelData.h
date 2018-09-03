@@ -8,6 +8,8 @@
 // システムヘッダインクルード
 #include <memory>
 #include <vector>
+#include <wrl.h>
+#include <d3d12.h>
 
 // 自作ヘッダインクルード
 #include "ModelData.h"
@@ -16,7 +18,7 @@
 // クラス使用宣言
 class VertexBuffer;
 class IndexBuffer;
-
+using Microsoft::WRL::ComPtr;
 
 namespace PMX
 {

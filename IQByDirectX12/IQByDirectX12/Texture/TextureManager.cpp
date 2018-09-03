@@ -22,15 +22,11 @@ void TextureManager::Erase(int textureHandle)
 
 std::shared_ptr<Texture> TextureManager::GetTexture(int textureHandle) const
 {
-	try
-	{
-		auto texture = mData.at(textureHandle);
-		return texture;
-	}
-	catch (std::out_of_range &)
+	if (!IsExist(textureHandle))
 	{
 		return nullptr;
 	}
+	return mData.at(textureHandle);
 }
 
 bool TextureManager::IsExist(int handle) const

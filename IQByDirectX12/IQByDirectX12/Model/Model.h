@@ -8,12 +8,20 @@
 #pragma once
 // システムヘッダインクルード
 #include <memory>
+#include <d3d12.h>
+#include <DirectXMath.h>
+#include <wrl.h>
 
 // 自作ヘッダインクルード
 #include "../Math/Math.h"
 
 // クラス使用宣言
 class ModelDataManager;
+class CommandList;
+/*Debug*/
+class DescriptorHeap;
+/*DebugEnd*/
+using Microsoft::WRL::ComPtr;
 
 class Model
 {
@@ -30,7 +38,7 @@ public:
 	/// @note Modelクラスの実体はこのメソッドでのみ生成可能
 	/// @param[in] modelHandle	: モデルハンドル
 	/// @retval モデルのスマートポインタ
-	std::shared_ptr<Model> Create(int modelHandle);
+	static std::shared_ptr<Model> Create(int modelHandle);
 
 	/// @fn SetPosition
 	/// 位置を指定する
@@ -54,7 +62,9 @@ public:
 
 	/// @fn Draw
 	/// モデルの描画処理を行う
-	void Draw() const;
+	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList) const;
+
+	std::shared_ptr<DescriptorHeap> _DebugGetDescHeap();
 
 private:
 	// 変数宣言

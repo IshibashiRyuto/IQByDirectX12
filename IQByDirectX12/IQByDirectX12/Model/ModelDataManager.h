@@ -62,7 +62,7 @@ private:
 
 	/* 変数宣言 */
 	std::map<int, std::shared_ptr<ModelData>> mData;		// 管理データ
-	int mNextTextureHandle;									// 次に使用するテクスチャハンドル
+	int mNextHandle;									// 次に使用するテクスチャハンドル
 
 
 	/* ローカルメソッド宣言 */

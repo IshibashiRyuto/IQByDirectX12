@@ -29,6 +29,7 @@ class PMDLoader;
 class PMDModelData;
 class PMXLoader;
 class PMXModelData;
+class Model;
 
 using Microsoft::WRL::ComPtr;
 
@@ -80,9 +81,9 @@ private:
 	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
 	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
 	std::shared_ptr<PMDLoader>			mModelLoader;
-	std::shared_ptr<PMDModelData>		mModelData;
+	std::shared_ptr<Model>				mModelData;
 	std::shared_ptr<PMXLoader>			mPMXModelLoader;
-	std::shared_ptr<PMXModelData>		mPMXModelData;
+	std::shared_ptr<Model>				mPMXModelData;
 
 	Math::Matrix4x4 mWorldMatrix;
 	Math::Matrix4x4 mViewMatrix;

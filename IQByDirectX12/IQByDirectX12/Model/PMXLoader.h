@@ -29,7 +29,6 @@ public:
 	void ClearModelData();
 
 private:
-	ComPtr<ID3D12Device> mDevice;
 	const std::string FILE_SIGNATURE = "PMX ";
 	const size_t SIGNATURE_SIZE = sizeof(char) * 4;
 

@@ -10,27 +10,29 @@
 
 //自作ヘッダインクルード
 #include "../Math/Math.h"
+#include "../VertexBuffer.h"
+#include "../IndexBuffer.h"
+#include "../DescriptorHeap.h"
 
 // クラス使用宣言
-class VertexBuffer;
-class IndexBuffer;
-class DescriptorHeap;
-class ConstantBuffer;
 
 class ModelData
 {
 public:
 	/// コンストラクタ
-	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer);
+	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer, std::shared_ptr<DescriptorHeap> descriptorHeap);
 
 	/// デストラクタ
 	~ModelData();
 
 	/// 頂点バッファを取得する
-	std::shared_ptr<VertexBuffer> GetVertexBuffer();
+	std::shared_ptr<VertexBuffer> GetVertexBuffer() const;
 
 	/// インデックスバッファを取得する
-	std::shared_ptr<IndexBuffer> GetIndexBuffer();
+	std::shared_ptr<IndexBuffer> GetIndexBuffer() const;
+
+	/// デスクリプタヒープを取得する
+	std::shared_ptr<DescriptorHeap> GetDescriptorHeap() const;
 
 protected:
 	std::shared_ptr<VertexBuffer> mVertexBuffer;
