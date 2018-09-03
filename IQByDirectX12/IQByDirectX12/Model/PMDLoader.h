@@ -3,21 +3,27 @@
 #include <memory>
 
 // 自作ヘッダインクルード
+#include "ModelLoader.h"
 #include "PMDModelData.h"
 
 
-class PMDLoader
+class PMDLoader : public ModelLoader
 {
 public:
 	~PMDLoader();
 
 	static std::shared_ptr<PMDLoader> Create(ComPtr<ID3D12Device> device);
 
-	std::shared_ptr<PMDModelData> LoadModel(const std::string& filePath);
+	/// @fn LoadModel
+	std::shared_ptr<Model> LoadModel(const std::string& filePath);
+
+	/// @fn ClearModelData
+	/// 読み込んだモデル情報を削除する
+	void ClearModelData();
+
 private:
-	PMDLoader();
+	PMDLoader(ComPtr<ID3D12Device> device);
 	PMDLoader(const PMDLoader&);
 	void operator=(const PMDLoader&) {}
-	ComPtr<ID3D12Device> mDevice;
 };
 

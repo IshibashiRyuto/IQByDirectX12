@@ -1,6 +1,8 @@
 /*
 	TextureManager.h
 	テクスチャ管理クラス
+	@author Ishibashi Ryuto
+	@date
 	2018/09/02 初版作成
 */
 #pragma once
@@ -45,8 +47,8 @@ public:
 	/// @fn IsExist
 	/// 対象としたハンドルの先が存在するか確認する
 	/// @param[in] handle テクスチャハンドル
-	/// @retval true: 存在する
-	/// @retval false: 存在しない
+	/// @retval 存在する: true
+	/// @retval 存在しない: false
 	bool IsExist(int handle) const;
 	
 private:

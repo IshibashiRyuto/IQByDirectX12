@@ -9,8 +9,13 @@
 #include<memory>
 
 //自作ヘッダインクルード
-#include "../VertexBuffer.h"
-#include "../IndexBuffer.h"
+#include "../Math/Math.h"
+
+// クラス使用宣言
+class VertexBuffer;
+class IndexBuffer;
+class DescriptorHeap;
+class ConstantBuffer;
 
 class ModelData
 {
@@ -26,11 +31,11 @@ public:
 
 	/// インデックスバッファを取得する
 	std::shared_ptr<IndexBuffer> GetIndexBuffer();
-	
 
 protected:
 	std::shared_ptr<VertexBuffer> mVertexBuffer;
 	std::shared_ptr<IndexBuffer> mIndexBuffer;
+	std::shared_ptr<DescriptorHeap> mDescHeap;
 private:
 };
 

@@ -177,6 +177,14 @@ Quaternion Math::CreateRotAxisQuaternion(const Vector3 & axis, float angle)
 	return Quaternion(tCos, nAxis.x * tSin, nAxis.y * tSin, nAxis.z * tSin);
 }
 
+Quaternion Math::CreateRotXYZQuaternion(const Vector3 & rotAngle)
+{
+	Quaternion xAxisQuat = CreateRotAxisQuaternion(Vector3(1.0f, 0.0f, 0.0f), rotAngle.x);
+	Quaternion yAxisQuat = CreateRotAxisQuaternion(Vector3(0.0f, 1.0f, 0.0f), rotAngle.y);
+	Quaternion zAxisQuat = CreateRotAxisQuaternion(Vector3(0.0f, 0.0f, 1.0f), rotAngle.z);
+	return zAxisQuat * yAxisQuat * xAxisQuat;
+}
+
 Quaternion Math::CreateRotVecToVec(const Vector3 & dstVec, const Vector3 & srcVec, const Vector3& up)
 {
 	auto rotAxis = Cross(dstVec, srcVec);

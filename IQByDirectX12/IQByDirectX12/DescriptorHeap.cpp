@@ -1,6 +1,6 @@
 #include <iostream>
 #include "DescriptorHeap.h"
-#include "Texture.h"
+#include "Texture/Texture.h"
 
 
 DescriptorHeap::DescriptorHeap(ComPtr<ID3D12Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc)

@@ -13,8 +13,8 @@
 #include "RenderTarget.h"
 #include "DepthBuffer.h"
 #include "VertexBuffer.h"
-#include "TextureLoader.h"
-#include "Texture.h"
+#include "Texture/TextureLoader.h"
+#include "Texture/Texture.h"
 #include "DescriptorHeap.h"
 #include "ConstantBuffer.h"
 #include "MathConvert.h"
@@ -22,7 +22,7 @@
 #include "Model/PMDModelData.h"
 #include "Model/PMXLoader.h"
 #include "Model/PMXModelData.h"
-#include "TextureManager.h"
+#include "Texture/TextureManager.h"
 
 // ƒ‰ƒCƒuƒ‰ƒŠƒŠƒ“ƒN
 #pragma comment(lib,"d3d12.lib")

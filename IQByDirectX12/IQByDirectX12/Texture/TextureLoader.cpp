@@ -2,9 +2,9 @@
 #include <d3dx12.h>
 #include <iostream>
 #include "TextureLoader.h"
-#include "WICTextureLoader/WICTextureLoader12.h"
-#include"CommandAllocator.h"
-#include "CommandQueue.h"
+#include "../WICTextureLoader/WICTextureLoader12.h"
+#include "../CommandAllocator.h"
+#include "../CommandQueue.h"
 
 TextureLoader::TextureLoader()
 	: mTextureManager(TextureManager::GetInstance())
@@ -14,6 +14,10 @@ TextureLoader::TextureLoader()
 
 TextureLoader::~TextureLoader()
 {
+	for (auto& textureHandle : mTextureHandleManager)
+	{
+		mTextureManager.Erase(textureHandle.second);
+	}
 }
 
 std::shared_ptr<TextureLoader> TextureLoader::Create(ComPtr<ID3D12Device> device)

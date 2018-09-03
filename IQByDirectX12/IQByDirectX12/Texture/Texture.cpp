@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "WICTextureLoader\WICTextureLoader12.h"
+#include "../WICTextureLoader\WICTextureLoader12.h"
 
 
 Texture::Texture()

@@ -2,7 +2,8 @@
 #include <cstdio>
 #include <iostream>
 
-PMXLoader::PMXLoader()
+PMXLoader::PMXLoader(ComPtr<ID3D12Device> device)
+	: ModelLoader(device)
 {
 }
 
@@ -13,54 +14,64 @@ PMXLoader::~PMXLoader()
 
 std::shared_ptr<PMXLoader> PMXLoader::Create(ComPtr<ID3D12Device> device)
 {
-	auto modelLoader = std::shared_ptr<PMXLoader>(new PMXLoader());
-	modelLoader->mDevice = device;
+	auto modelLoader = std::shared_ptr<PMXLoader>(new PMXLoader(device));
 	return modelLoader;
 }
 
-std::shared_ptr<PMXModelData> PMXLoader::LoadModel(const std::string & filePath)
+std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 {
-	FILE *fp;
+	auto handleItr = mModelHandleManager.find(filePath);
 
-	PMX::ModelDataDesc modelDataDesc;
-
-	auto err = fopen_s(&fp, filePath.c_str(), "rb");
-	if (err != 0)
+	if (handleItr == mModelHandleManager.end() || !mModelDataManager.IsExist((*handleItr).second))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed File Open \"" << filePath << std::endl;
-#endif
-		return nullptr;
-	}
 
-	std::string fileSignature;
-	fileSignature.clear();
-	fileSignature.resize(SIGNATURE_SIZE);
-	fread((void*)fileSignature.data(), SIGNATURE_SIZE, 1, fp);
-	if (fileSignature != FILE_SIGNATURE)
-	{
+		FILE *fp;
+		PMX::ModelDataDesc modelDataDesc;
+
+		auto err = fopen_s(&fp, filePath.c_str(), "rb");
+		if (err != 0)
+		{
 #ifdef _DEBUG
-		std::cout << "This file is not PMX. Prease load \".pmx\" file." << std::endl;
+			std::cout << "Failed File Open \"" << filePath << std::endl;
 #endif
+			return nullptr;
+		}
+
+		std::string fileSignature;
+		fileSignature.clear();
+		fileSignature.resize(SIGNATURE_SIZE);
+		fread((void*)fileSignature.data(), SIGNATURE_SIZE, 1, fp);
+		if (fileSignature != FILE_SIGNATURE)
+		{
+#ifdef _DEBUG
+			std::cout << "This file is not PMX. Prease load \".pmx\" file." << std::endl;
+#endif
+			fclose(fp);
+			return nullptr;
+		}
+
+		// ヘッダデータ読み込み
+		LoadHeader(modelDataDesc.header, fp);
+
+		// モデル情報の読み込み
+		LoadModelInfo(modelDataDesc.modelInfo, fp);
+
+		// 頂点情報読み込み
+		LoadVertexData(modelDataDesc.vertices, modelDataDesc.header, fp);
+
+		// インデックス情報読み込み
+		LoadIndexData(modelDataDesc.indexies, modelDataDesc.header, fp);
+
 		fclose(fp);
-		return nullptr;
+
+		auto modelData = PMXModelData::Create(mDevice, modelDataDesc);
+		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
 	}
+	return std::shared_ptr<Model>(new Model(mModelHandleManager[filePath]));
+}
 
-	// ヘッダデータ読み込み
-	LoadHeader(modelDataDesc.header, fp);
-
-	// モデル情報の読み込み
-	LoadModelInfo(modelDataDesc.modelInfo, fp);
-
-	// 頂点情報読み込み
-	LoadVertexData(modelDataDesc.vertices, modelDataDesc.header, fp);
-
-	// インデックス情報読み込み
-	LoadIndexData(modelDataDesc.indexies, modelDataDesc.header, fp);
-
-	fclose(fp);
-
-	return PMXModelData::Create(mDevice, modelDataDesc);
+void PMXLoader::ClearModelData()
+{
 }
 
 std::string PMXLoader::ReadTextBuf(FILE * fp)

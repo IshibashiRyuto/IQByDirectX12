@@ -133,7 +133,10 @@
     <ClCompile Include="Math\Math_Vector2.cpp" />
     <ClCompile Include="Math\Math_Vector3.cpp" />
     <ClCompile Include="Math\Math_Vector4.cpp" />
+    <ClCompile Include="Model\InstancingDataManager.cpp" />
+    <ClCompile Include="Model\Model.cpp" />
     <ClCompile Include="Model\ModelData.cpp" />
+    <ClCompile Include="Model\ModelDataManager.cpp" />
     <ClCompile Include="Model\ModelLoader.cpp" />
     <ClCompile Include="Model\PMDLoader.cpp" />
     <ClCompile Include="Model\PMDModelData.cpp" />
@@ -141,9 +144,9 @@
     <ClCompile Include="Model\PMXModelData.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="SwapChain.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureLoader.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Texture\Texture.cpp" />
+    <ClCompile Include="Texture\TextureLoader.cpp" />
+    <ClCompile Include="Texture\TextureManager.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -159,7 +162,10 @@
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="MathConvert.h" />
     <ClInclude Include="Math\Math.h" />
+    <ClInclude Include="Model\InstancingDataManager.h" />
+    <ClInclude Include="Model\Model.h" />
     <ClInclude Include="Model\ModelData.h" />
+    <ClInclude Include="Model\ModelDataManager.h" />
     <ClInclude Include="Model\ModelLoader.h" />
     <ClInclude Include="Model\PMDLoader.h" />
     <ClInclude Include="Model\PMDModelData.h" />
@@ -167,9 +173,9 @@
     <ClInclude Include="Model\PMXModelData.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="SwapChain.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureLoader.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Texture\TextureLoader.h" />
+    <ClInclude Include="Texture\TextureManager.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="WICTextureLoader\WICTextureLoader12.h" />
     <ClInclude Include="Window.h" />

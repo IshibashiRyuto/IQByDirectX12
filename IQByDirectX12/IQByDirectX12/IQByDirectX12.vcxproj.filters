@@ -22,6 +22,9 @@
     <Filter Include="Model">
       <UniqueIdentifier>{18ce2fb1-dc85-42d1-a33f-3b90ca336d03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{e6164005-70a2-4459-a613-d06ae9541956}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,12 +78,6 @@
     <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp">
       <Filter>WICTextureLoader</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureLoader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="DescriptorHeap.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -111,8 +108,23 @@
     <ClCompile Include="Model\ModelLoader.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Model\InstancingDataManager.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Model.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\ModelDataManager.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\TextureLoader.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\TextureManager.cpp">
+      <Filter>Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,12 +161,6 @@
     <ClInclude Include="WICTextureLoader\WICTextureLoader12.h">
       <Filter>WICTextureLoader</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="DescriptorHeap.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -185,8 +191,23 @@
     <ClInclude Include="Model\ModelLoader.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Model\InstancingDataManager.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Model.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelDataManager.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\Texture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureLoader.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureManager.h">
+      <Filter>Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -44,7 +44,7 @@ public:
 	/// @fn GetConstantBufferView
 	/// コンスタントバッファビューを取得する
 	/// @retval コンスタントバッファビュー
-	const D3D12_CONSTANT_BUFFER_VIEW_DESC & GetConstantBufferView(UINT elementIndex);
+	const D3D12_CONSTANT_BUFFER_VIEW_DESC & GetConstantBufferView(UINT elementIndex = 0);
 
 private:
 	ComPtr<ID3D12Resource> mBuffer;				// バッファ

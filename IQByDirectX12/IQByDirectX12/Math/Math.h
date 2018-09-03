@@ -294,6 +294,9 @@ namespace Math
 	/// 任意軸方向回転を行う四元数を作成する
 	Quaternion CreateRotAxisQuaternion(const Vector3& axis, float angle);
 
+	/// XYZ軸回転を行う資源数を作成する
+	Quaternion CreateRotXYZQuaternion(const Vector3& rotAngle);
+
 	/// R3ワールド座標系で任意の方向ベクトルを
 	/// 任意の方向ベクトルへ回転させる四元数を作成する
 	Quaternion CreateRotVecToVec(const Vector3& dstVec, const Vector3& srcVec, const Vector3& up = Vector3(0.0f,1.0f,0.0f));

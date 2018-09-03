@@ -10,20 +10,23 @@
 
 // 自作ヘッダインクルード
 #include "PMXModelData.h"
+#include "ModelLoader.h"
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
 
-class PMXLoader
+class PMXLoader : public ModelLoader
 {
 public:
-	PMXLoader();
+	PMXLoader(ComPtr<ID3D12Device> device);
 	~PMXLoader();
 
 
 	static std::shared_ptr<PMXLoader> Create(ComPtr<ID3D12Device> device);
 
-	std::shared_ptr<PMXModelData> LoadModel(const std::string& filePath);
+	std::shared_ptr<Model> LoadModel(const std::string& filePath);
+
+	void ClearModelData();
 
 private:
 	ComPtr<ID3D12Device> mDevice;
