@@ -23,7 +23,7 @@ public:
 	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer, std::shared_ptr<DescriptorHeap> descriptorHeap);
 
 	/// デストラクタ
-	~ModelData();
+	virtual ~ModelData();
 
 	/// 頂点バッファを取得する
 	std::shared_ptr<VertexBuffer> GetVertexBuffer() const;

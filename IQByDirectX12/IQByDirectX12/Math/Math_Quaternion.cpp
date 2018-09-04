@@ -76,6 +76,8 @@ Quaternion& Quaternion::operator*=(const Quaternion& quat)
 {
 	auto mw = this->w * quat.w - Dot(this->v, quat.v);
 	auto mv = this->w * quat.v + quat.w * this->v + Cross(this->v, quat.v);
+	this->w = mw;
+	this->v = mv;
 	return *this;
 }
 
@@ -182,6 +184,8 @@ Quaternion Math::CreateRotXYZQuaternion(const Vector3 & rotAngle)
 	Quaternion xAxisQuat = CreateRotAxisQuaternion(Vector3(1.0f, 0.0f, 0.0f), rotAngle.x);
 	Quaternion yAxisQuat = CreateRotAxisQuaternion(Vector3(0.0f, 1.0f, 0.0f), rotAngle.y);
 	Quaternion zAxisQuat = CreateRotAxisQuaternion(Vector3(0.0f, 0.0f, 1.0f), rotAngle.z);
+	auto tmp = zAxisQuat * yAxisQuat;
+	tmp = tmp * xAxisQuat;
 	return zAxisQuat * yAxisQuat * xAxisQuat;
 }
 

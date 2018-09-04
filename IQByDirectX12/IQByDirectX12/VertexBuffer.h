@@ -31,10 +31,10 @@ public:
 	/// @retval D3D12_VERTEX_BUFFER_VIEW 頂点バッファビューへの参照
 	const D3D12_VERTEX_BUFFER_VIEW& GetVertexBufferView();
 
-private:
+protected:
 	/// コンストラクタ
 	VertexBuffer();
-	VertexBuffer(const VertexBuffer&);
+	VertexBuffer(const VertexBuffer&) {}
 
 	ComPtr<ID3D12Resource> mVertexBuffer;			// 頂点バッファリソース
 	D3D12_VERTEX_BUFFER_VIEW mVertexBufferView;		// 頂点バッファビュー

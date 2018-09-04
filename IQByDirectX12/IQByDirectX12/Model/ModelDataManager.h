@@ -13,6 +13,9 @@
 // 自作ヘッダインクルード
 #include "ModelData.h"
 
+// クラス使用宣言
+class InstancingDataManager;
+
 class ModelDataManager
 {
 public:
@@ -51,9 +54,14 @@ public:
 	/// @retval 存在しない: false
 	bool IsExist(int handle) const;
 
+	/// @fn Draw
+	/// 管理しているモデルデータを描画する
+	/// @param[in] graphicsCommandList	: 描画先コマンドリスト
+	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList);
+
 private:
 	ModelDataManager();
-	ModelDataManager(const ModelDataManager&) {}
+	ModelDataManager(const ModelDataManager&);
 	void operator=(const ModelDataManager &){}
 
 	/* 定数定義 */
@@ -63,6 +71,7 @@ private:
 	/* 変数宣言 */
 	std::map<int, std::shared_ptr<ModelData>> mData;		// 管理データ
 	int mNextHandle;									// 次に使用するテクスチャハンドル
+	InstancingDataManager& mInstancingDataManager;		// インスタンシング用データ管理クラスへの参照
 
 
 	/* ローカルメソッド宣言 */

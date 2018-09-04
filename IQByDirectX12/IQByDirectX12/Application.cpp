@@ -23,6 +23,7 @@
 #include "Model/PMXLoader.h"
 #include "Model/PMXModelData.h"
 #include "Texture/TextureManager.h"
+#include "Model/InstancingDataManager.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -182,6 +183,9 @@ bool Application::Initialize(const Window & window)
 	// 行列設定
 	SetWVPMatrix();
 
+	// インスタンシングデータマネージャにデバイスを登録
+	InstancingDataManager::GetInstance().SetDevice(mDevice->GetDevice());
+
 	// モデルデータ読込
 	LoadPMD();
 	LoadPMX();
@@ -191,6 +195,11 @@ bool Application::Initialize(const Window & window)
 
 void Application::Render()
 {
+	for (auto model : mInstancingTestModels)
+	{
+		model->Draw();
+	}
+
 	// コマンドリスト初期化
 	mCommandAllocator->Get()->Reset();
 	mCommandList->Reset(mCommandAllocator->Get().Get(), mPipelineState.Get());
@@ -225,14 +234,14 @@ void Application::Render()
 	mCommandList->IASetVertexBuffers(0, 1, &mVertexBuffer->GetVertexBufferView());
 	mCommandList->DrawInstanced(6, 1, 0, 0);
 	*/
-
-	mPMXModelData->Draw(mCommandList);
-	// PMXモデル描画
+	// モデル描画
 	/*
 	mCommandList->IASetVertexBuffers(0, 1, &mPMXModelData->GetVertexBuffer()->GetVertexBufferView());
 	mCommandList->IASetIndexBuffer(&mPMXModelData->GetIndexBuffer()->GetIndexBufferView());
 	mCommandList->DrawIndexedInstanced(mPMXModelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
 	*/
+	ModelDataManager::GetInstance().Draw(mCommandList);
+
 	//描画終了処理
 	mRenderTarget->FinishRendering(mCommandList);
 	mCommandList->Close();
@@ -406,6 +415,10 @@ bool Application::CreatePipelineState()
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"		, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "NORMAL"			, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCORD"			, 0, DXGI_FORMAT_R32G32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	0,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	1,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	2,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	3,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 	}
 
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
@@ -506,6 +519,23 @@ void Application::LoadPMD()
 void Application::LoadPMX()
 {
 	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
+	mInstancingTestModels.resize(10000);
 	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+	float x = -10.0f;
+	float z = 0.0f;
+	for (auto &model : mInstancingTestModels)
+	{
+		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+		model->SetPosition(Math::Vector3(x, 0.0f, z));
+		model->SetScale((float)(rand() % 10000) / 10000.0f + 0.5f);
+		model->SetRotation(Math::Vector3(0.0f, (float)(rand() % 10000) / 10000.0f * Math::F_PI *2.0f, 0.0f));
+		if (x >= 10.0f)
+		{
+			x = -20.0f;
+			z += 10.0f;
+		}
+		x += 10.0f;
+	}
 }

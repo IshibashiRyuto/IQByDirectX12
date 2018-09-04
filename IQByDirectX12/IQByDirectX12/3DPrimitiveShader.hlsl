@@ -11,6 +11,7 @@ struct VSInput
     float3 position     : POSITION;
     float3 normal       : NORMAL;
     float2 uv           : TEXCORD;
+    float4x4 modelMatrix : INSTANCE_MATRIX;
 };
 
 struct VSOutput
@@ -25,7 +26,7 @@ typedef VSOutput PSInput;
 VSOutput VSMain( VSInput input )
 {
     VSOutput output;
-    output.position = mul(wvp, float4(input.position, 1.0f));
+    output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
 	output.normal = input.normal;
     output.uv = input.uv;
 	return output;

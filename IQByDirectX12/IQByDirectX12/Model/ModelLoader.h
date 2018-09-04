@@ -25,7 +25,7 @@ public:
 	ModelLoader(ComPtr<ID3D12Device> mDevice);
 	
 	/// デストラクタ
-	~ModelLoader();
+	virtual ~ModelLoader();
 
 	/// @fn LoadModel
 	/// モデルをロードする

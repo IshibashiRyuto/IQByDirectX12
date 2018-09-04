@@ -22,6 +22,7 @@ class CommandList;
 class DescriptorHeap;
 /*DebugEnd*/
 using Microsoft::WRL::ComPtr;
+class InstancingDataManager;
 
 class Model
 {
@@ -59,10 +60,12 @@ public:
 	/// モデルの拡縮率を指定する
 	/// @param scale : モデルスケール
 	void SetScale(const Math::Vector3& scale);
+	void SetScale(float scale);
+
 
 	/// @fn Draw
 	/// モデルの描画処理を行う
-	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList) const;
+	void Draw() const;
 
 	std::shared_ptr<DescriptorHeap> _DebugGetDescHeap();
 
@@ -73,6 +76,7 @@ private:
 	Math::Vector3		mScale;			// 拡縮
 	Math::Matrix4x4		mModelMatrix;	// モデル行列
 	int					mModelHandle;	// モデルハンドル
+	InstancingDataManager& mInstancingDataManager;// インスタンシングデータのマネージャ
 
 	// ローカルメソッド定義
 	/// @fn CalcModelMatrix

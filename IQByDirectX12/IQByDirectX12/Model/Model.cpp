@@ -2,15 +2,22 @@
 #include "ModelDataManager.h"
 #include "../DescriptorHeap.h"
 #include "ModelData.h"
+#include "InstancingDataManager.h"
+#include "../MathConvert.h"
 
 using namespace Math;
 
 Model::Model()
+	: mInstancingDataManager(InstancingDataManager::GetInstance())
 {
 }
 
 Model::Model(int modelHandle)
 	: mModelHandle(modelHandle)
+	, mInstancingDataManager(InstancingDataManager::GetInstance())
+	, mPosition(0.0f, 0.0f, 0.0f)
+	, mRotation(0.0f, 0.0f, 0.0f)
+	, mScale(1.0f, 1.0f, 1.0f)
 {
 }
 
@@ -47,13 +54,15 @@ void Model::SetScale(const Math::Vector3 & scale)
 	CalcModelMatrix();
 }
 
-void Model::Draw(ComPtr<ID3D12GraphicsCommandList> commandList) const
+void Model::SetScale(float scale)
 {
-	auto modelData = ModelDataManager::GetInstance().GetModelData(mModelHandle);
-	//modelData->GetDescriptorHeap()->BindGraphicsCommandList(commandList);
-	commandList->IASetVertexBuffers(0, 1, &modelData->GetVertexBuffer()->GetVertexBufferView());
-	commandList->IASetIndexBuffer(&modelData->GetIndexBuffer()->GetIndexBufferView());
-	commandList->DrawIndexedInstanced(modelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
+	SetScale(Vector3(scale, scale, scale));
+}
+
+void Model::Draw() const
+{
+	auto instanceMatrix = ConvertMatrix4x4ToXMMATRIX(mModelMatrix);
+	mInstancingDataManager.SetInstanceData(mModelHandle, (void*)&instanceMatrix, sizeof(DirectX::XMMATRIX));
 }
 
 std::shared_ptr<DescriptorHeap> Model::_DebugGetDescHeap()

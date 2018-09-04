@@ -1,10 +1,36 @@
 #include "ModelDataManager.h"
+#include "InstancingDataManager.h"
+#include "../InstanceBuffer.h"
+#include <DirectXMath.h>
 
 
+void ModelDataManager::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList)
+{
+	auto instancingDataMap = mInstancingDataManager.GetInstanceDataAll();
+	for (auto tData : mData)
+	{
+		auto modelHandle = tData.first;
+		auto modelData = tData.second;
+		if (instancingDataMap.find(modelHandle) == instancingDataMap.end()
+			|| instancingDataMap[modelHandle].nowInstanceCount <= 0)
+		{
+			continue;
+		}
+		auto instancingData = instancingDataMap[modelHandle];
+		modelData->GetDescriptorHeap()->BindGraphicsCommandList(graphicsCommandList);
+		
+		D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { modelData->GetVertexBuffer()->GetVertexBufferView(), instancingData.instanceBuffer->GetVertexBufferView() };
+		graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
+		graphicsCommandList->IASetIndexBuffer(&modelData->GetIndexBuffer()->GetIndexBufferView());
 
+		graphicsCommandList->DrawIndexedInstanced(modelData->GetIndexBuffer()->GetIndexCount(), instancingData.nowInstanceCount, 0, 0, 0);
+	}
+	mInstancingDataManager.ResetInstanceDataAll();
+}
 
 ModelDataManager::ModelDataManager()
 	: mNextHandle(MODEL_DATA_SIGNATURE)
+	, mInstancingDataManager(InstancingDataManager::GetInstance())
 {
 }
 
@@ -16,6 +42,7 @@ int ModelDataManager::Regist(std::shared_ptr<ModelData> modelData)
 {
 	int handle = mNextHandle;
 	mData[handle] = modelData;
+	mInstancingDataManager.ResetMaxInstanceCount(handle, sizeof(DirectX::XMMATRIX), 10000);
 	UpdateNextHandle();
 	return handle;
 }

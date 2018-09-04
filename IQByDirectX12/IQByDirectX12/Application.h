@@ -84,6 +84,7 @@ private:
 	std::shared_ptr<Model>				mModelData;
 	std::shared_ptr<PMXLoader>			mPMXModelLoader;
 	std::shared_ptr<Model>				mPMXModelData;
+	std::vector<std::shared_ptr<Model>>	mInstancingTestModels;
 
 	Math::Matrix4x4 mWorldMatrix;
 	Math::Matrix4x4 mViewMatrix;

@@ -126,6 +126,9 @@
     <ClCompile Include="Texture\TextureManager.cpp">
       <Filter>Texture</Filter>
     </ClCompile>
+    <ClCompile Include="InstanceBuffer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="Texture\TextureManager.h">
       <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="InstanceBuffer.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

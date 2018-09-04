@@ -125,6 +125,7 @@
     <ClCompile Include="DescriptorHeap.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="InstanceBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathConvert.cpp" />
     <ClCompile Include="Math\Math_Common.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="DescriptorHeap.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="InstanceBuffer.h" />
     <ClInclude Include="MathConvert.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="Model\InstancingDataManager.h" />
