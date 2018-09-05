@@ -56,7 +56,7 @@ public:
 	/// @param[in] baseShaderRegister	: シェーダレジスタの開始番号
 	void AddDescriptorRange(int rootParamIndex,
 		D3D12_DESCRIPTOR_RANGE_TYPE rangeType,
-		UINT descriptorNum,
+		UINT numDescriptors,
 		UINT baseShaderRegister);
 
 	/// @fn AddRootParameter

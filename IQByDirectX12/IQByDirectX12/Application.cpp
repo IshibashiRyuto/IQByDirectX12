@@ -26,6 +26,7 @@
 #include "Model/PMXModelData.h"
 #include "Texture/TextureManager.h"
 #include "Model/InstancingDataManager.h"
+#include "RootSignature.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -321,12 +322,12 @@ bool Application::CreateRootSignature()
 	/// ルートパラメータの設定
 	D3D12_ROOT_PARAMETER rootParam;
 	rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-	rootParam.DescriptorTable = { 1, &srvRange };
+	rootParam.DescriptorTable = { 1, &cbvRange };
 	rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
 	D3D12_ROOT_PARAMETER rootParam2;
 	rootParam2.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-	rootParam2.DescriptorTable = { 1, &cbvRange };
+	rootParam2.DescriptorTable = { 1, &srvRange };
 	rootParam2.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
 	rootParams.resize(2);
@@ -365,8 +366,16 @@ bool Application::CreateRootSignature()
 		}
 	}
 
+	mRootSignatureClass = RootSignature::Create();
+	int cbvIndex = mRootSignatureClass->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int srvIndex = mRootSignatureClass->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 
-	return true;
+	mRootSignatureClass->AddDescriptorRange(cbvIndex, cbvRange);
+	mRootSignatureClass->AddDescriptorRange(srvIndex, srvRange);
+
+	
+
+	return mRootSignatureClass->ConstructRootSignature(mDevice->GetDevice());;
 }
 
 
@@ -437,7 +446,7 @@ bool Application::CreatePipelineState()
 	gpsDesc.PS = CD3DX12_SHADER_BYTECODE(mPixelShader.Get());
 	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
 	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
-	gpsDesc.pRootSignature = mRootSignature.Get();
+	gpsDesc.pRootSignature = mRootSignatureClass->GetRootSignature().Get();
 	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
 	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
@@ -484,7 +493,7 @@ void Application::LoadTexture()
 	mTextureLoader = TextureLoader::Create(mDevice->GetDevice());
 	mTextureHandle = mTextureLoader->Load("Img/test.png");
 	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
-	mDescriptorHeap->SetTexture(TextureManager::GetInstance().GetTexture(mTextureHandle), 0);
+	mDescriptorHeap->SetTexture(TextureManager::GetInstance().GetTexture(mTextureHandle), 1);
 }
 
 bool Application::CreateConstantBuffer()
@@ -503,13 +512,13 @@ void Application::SetWVPMatrix()
 	{
 		mWorldMatrix = Math::CreateIdent();
 		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 30.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 50.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
-		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 1000.0f, Math::F_PI/2.0f);
+		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 100.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		auto data = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
 		
 
 		mConstantBuffer->SetData(&data, sizeof(DirectX::XMMATRIX), 0);
-		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 }
 
@@ -517,28 +526,28 @@ void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice->GetDevice());
 	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
-	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 }
 
 void Application::LoadPMX()
 {
 	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
-	mInstancingTestModels.resize(10000);
+	mInstancingTestModels.resize(100);
 	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	float x = -10.0f;
 	float z = 0.0f;
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
 		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
+		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 
 	int modelCount = 0;
-	for (int x = 0; z < 100; ++z)
+	for (int x = 0; z < 10; ++z)
 	{
-		for (int x = -50; x < 50; ++x)
+		for (int x = -5; x < 5; ++x)
 		{
 			mInstancingTestModels[modelCount]->SetPosition(Math::Vector3(x * 5.0f, 0.0f, z*5.0f));
 			mInstancingTestModels[modelCount]->SetScale((float)(rand() % 10000) / 10000.0f + 0.2f);

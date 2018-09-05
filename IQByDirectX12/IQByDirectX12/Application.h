@@ -21,6 +21,7 @@ class CommandQueue;
 class RenderTarget;
 class DepthBuffer;
 class VertexBuffer;
+class RootSignature;
 class Texture;
 class TextureLoader;
 class DescriptorHeap;
@@ -73,6 +74,7 @@ private:
 	std::shared_ptr<CommandAllocator>	mCommandAllocator;
 	std::shared_ptr<CommandQueue>		mCommandQueue;
 	std::shared_ptr<RenderTarget>		mRenderTarget;
+	std::shared_ptr<RootSignature>		mRootSignatureClass;
 	std::shared_ptr<DepthBuffer>		mDepthBuffer;
 	std::shared_ptr<VertexBuffer>		mVertexBuffer;
 	std::vector<D3D12_INPUT_ELEMENT_DESC> mInputLayoutDescs;
