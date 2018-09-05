@@ -5,6 +5,8 @@
 #include <DirectXMath.h>
 #include <D3DCompiler.h>
 
+#include <time.h>
+
 #include "Application.h"
 #include "Window.h"
 #include "Device.h"
@@ -524,12 +526,13 @@ void Application::LoadPMX()
 	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
 	float x = -10.0f;
 	float z = 0.0f;
+	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
 		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 1);
 		model->SetPosition(Math::Vector3(x, 0.0f, z));
-		model->SetScale((float)(rand() % 10000) / 10000.0f + 0.5f);
+		model->SetScale((float)(rand() % 10000) / 10000.0f + 0.2f);
 		model->SetRotation(Math::Vector3(0.0f, (float)(rand() % 10000) / 10000.0f * Math::F_PI *2.0f, 0.0f));
 		if (x >= 10.0f)
 		{
