@@ -27,16 +27,18 @@ VSOutput VSMain( VSInput input )
 {
     VSOutput output;
     output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
-    input.modelMatrix._31_32_33 = float3(0.0f, 0.0f, 0.0f);
+    input.modelMatrix._14_24_34 = float3(0.0f, 0.0f, 0.0f);
     output.normal = normalize(mul(input.modelMatrix, float4(input.normal, 1.0f)).xyz);
-    output.uv = input.uv;
+	//output.normal = input.normal;
+
+	output.uv = input.uv;
 	return output;
 }
 
 
 float4 PSMain(PSInput input) : SV_Target
 {
-    float3 light = normalize(float3(-1.0f, 1.0f, -1.0f));
+    float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
     float brightness = dot(input.normal, light) * 0.8f + 0.2f;
     
     
