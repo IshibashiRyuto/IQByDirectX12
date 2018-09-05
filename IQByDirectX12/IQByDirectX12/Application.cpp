@@ -364,6 +364,8 @@ bool Application::CreateRootSignature()
 			return false;
 		}
 	}
+
+
 	return true;
 }
 
