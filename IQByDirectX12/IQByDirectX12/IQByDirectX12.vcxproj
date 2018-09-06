@@ -145,6 +145,7 @@
     <ClCompile Include="Model\PMXModelData.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="RootSignature.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
     <ClCompile Include="Texture\TextureLoader.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Model\PMXModelData.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="RootSignature.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureLoader.h" />

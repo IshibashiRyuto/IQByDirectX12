@@ -31,6 +31,7 @@ class PMDModelData;
 class PMXLoader;
 class PMXModelData;
 class Model;
+class Shader;
 
 using Microsoft::WRL::ComPtr;
 
@@ -65,7 +66,6 @@ private:
 	/* ïœêîêÈåæ */
 	ComPtr<IDXGIFactory4>				mFactory;
 	ComPtr<IDXGISwapChain3>				mSwapChain;
-	ComPtr<ID3D12RootSignature>			mRootSignature;
 	ComPtr<ID3DBlob>					mVertexShader;
 	ComPtr<ID3DBlob>					mPixelShader;
 	ComPtr<ID3D12PipelineState>			mPipelineState;
@@ -74,7 +74,7 @@ private:
 	std::shared_ptr<CommandAllocator>	mCommandAllocator;
 	std::shared_ptr<CommandQueue>		mCommandQueue;
 	std::shared_ptr<RenderTarget>		mRenderTarget;
-	std::shared_ptr<RootSignature>		mRootSignatureClass;
+	std::shared_ptr<RootSignature>		mRootSignature;
 	std::shared_ptr<DepthBuffer>		mDepthBuffer;
 	std::shared_ptr<VertexBuffer>		mVertexBuffer;
 	std::vector<D3D12_INPUT_ELEMENT_DESC> mInputLayoutDescs;
@@ -82,6 +82,8 @@ private:
 	int									mTextureHandle;
 	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
 	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
+	std::shared_ptr<Shader>				mPixelShaderClass;
+	std::shared_ptr<Shader>				mVertexShaderClass;
 	std::shared_ptr<PMDLoader>			mModelLoader;
 	std::shared_ptr<Model>				mModelData;
 	std::shared_ptr<PMXLoader>			mPMXModelLoader;

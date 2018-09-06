@@ -27,6 +27,7 @@
 #include "Texture/TextureManager.h"
 #include "Model/InstancingDataManager.h"
 #include "RootSignature.h"
+#include "Shader.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -206,7 +207,7 @@ void Application::Render()
 	// コマンドリスト初期化
 	mCommandAllocator->Get()->Reset();
 	mCommandList->Reset(mCommandAllocator->Get().Get(), mPipelineState.Get());
-	mCommandList->SetGraphicsRootSignature(mRootSignature.Get());
+	mCommandList->SetGraphicsRootSignature(mRootSignature->GetRootSignature().Get());
 
 	// 描画範囲設定
 	D3D12_VIEWPORT vp = { 0.0f,0.0f, (FLOAT)mWindowWidth, (FLOAT)mWindowHeight, 0.0f,1.0f };
@@ -238,11 +239,6 @@ void Application::Render()
 	mCommandList->DrawInstanced(6, 1, 0, 0);
 	*/
 	// モデル描画
-	/*
-	mCommandList->IASetVertexBuffers(0, 1, &mPMXModelData->GetVertexBuffer()->GetVertexBufferView());
-	mCommandList->IASetIndexBuffer(&mPMXModelData->GetIndexBuffer()->GetIndexBufferView());
-	mCommandList->DrawIndexedInstanced(mPMXModelData->GetIndexBuffer()->GetIndexCount(), 1, 0, 0, 0);
-	*/
 	ModelDataManager::GetInstance().Draw(mCommandList);
 
 	//描画終了処理
@@ -297,126 +293,58 @@ bool Application::CreateSwapChain(const Window& window)
 
 bool Application::CreateRootSignature()
 {
-	ComPtr<ID3DBlob> signature;
-	ComPtr<ID3DBlob> error;
+	mRootSignature = RootSignature::Create();
+	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int srvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 
-	// ルートパラメータ
-	std::vector<D3D12_ROOT_PARAMETER> rootParams;
+	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+	mRootSignature->AddDescriptorRange(srvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
 
-	// CBV用ディスクリプタレンジの設定
-	D3D12_DESCRIPTOR_RANGE cbvRange;
-	cbvRange.NumDescriptors = 1;
-	cbvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
-	cbvRange.BaseShaderRegister = 0;
-	cbvRange.RegisterSpace = 0;
-	cbvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
-
-	// SRV用ディスクリプタレンジの設定
-	D3D12_DESCRIPTOR_RANGE srvRange;
-	srvRange.NumDescriptors = 1;
-	srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-	srvRange.BaseShaderRegister = 0;
-	srvRange.RegisterSpace = 0;
-	srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
-
-	/// ルートパラメータの設定
-	D3D12_ROOT_PARAMETER rootParam;
-	rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-	rootParam.DescriptorTable = { 1, &cbvRange };
-	rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
-
-	D3D12_ROOT_PARAMETER rootParam2;
-	rootParam2.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-	rootParam2.DescriptorTable = { 1, &srvRange };
-	rootParam2.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
-
-	rootParams.resize(2);
-	rootParams[0] = rootParam;
-	rootParams[1] = rootParam2;
-
-	// ルートシグネチャの設定
-	CD3DX12_ROOT_SIGNATURE_DESC rsd{};
-	rsd.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
-	rsd.NumParameters = (UINT)rootParams.size();
-	rsd.pParameters = rootParams.data();
-	rsd.NumStaticSamplers = 1;
-	rsd.pStaticSamplers = &mStaticSamplerDesc;
-
-	// シグネチャの作成
-	{
-		auto result = D3D12SerializeRootSignature(&rsd, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error);
-		if (FAILED(result))
-		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Signautre." << std::endl;
-#endif
-			return false;
-		}
-	}
-
-	// ルートシグネチャの作成
-	{
-		auto result = mDevice->GetDevice().Get()->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&mRootSignature));
-		if (FAILED(result))
-		{
-#ifdef _DEBUG
-			std::cout << "Failed Create RootSignautre." << std::endl;
-#endif
-			return false;
-		}
-	}
-
-	mRootSignatureClass = RootSignature::Create();
-	int cbvIndex = mRootSignatureClass->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	int srvIndex = mRootSignatureClass->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-
-	mRootSignatureClass->AddDescriptorRange(cbvIndex, cbvRange);
-	mRootSignatureClass->AddDescriptorRange(srvIndex, srvRange);
-
-	
-
-	return mRootSignatureClass->ConstructRootSignature(mDevice->GetDevice());;
+	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());;
 }
 
 
 bool Application::ReadShader()
 {
-	//ReadVertexShader
-	{
-		auto result = D3DCompileFromFile(L"3DPrimitiveShader.hlsl",
-			nullptr,
-			nullptr,
-			"VSMain",
-			"vs_5_0",
-			D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-			0,
-			&mVertexShader,
-			nullptr);
-		if (FAILED(result))
-		{
-			std::cout << "Failed Compile Vertex Shader." << std::endl;
-			return false;
-		}
-	}
+	////ReadVertexShader
+	//{
+	//	auto result = D3DCompileFromFile(L"3DPrimitiveShader.hlsl",
+	//		nullptr,
+	//		nullptr,
+	//		"VSMain",
+	//		"vs_5_0",
+	//		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+	//		0,
+	//		&mVertexShader,
+	//		nullptr);
+	//	if (FAILED(result))
+	//	{
+	//		std::cout << "Failed Compile Vertex Shader." << std::endl;
+	//		return false;
+	//	}
+	//}
+	mVertexShaderClass = Shader::Create(L"3DPrimitiveShader.hlsl", "VSMain", "vs_5_0");
 
-	//ReadPixelShader
-	{
-		auto result = D3DCompileFromFile(L"3DPrimitiveShader.hlsl",
-			nullptr,
-			nullptr,
-			"PSMain",
-			"ps_5_0",
-			D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-			0,
-			&mPixelShader,
-			nullptr);
+	////ReadPixelShader
+	//{
+	//	auto result = D3DCompileFromFile(L"3DPrimitiveShader.hlsl",
+	//		nullptr,
+	//		nullptr,
+	//		"PSMain",
+	//		"ps_5_0",
+	//		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+	//		0,
+	//		&mPixelShader,
+	//		nullptr);
 
-		if (FAILED(result))
-		{
-			std::cout << "Failed Compile Pixel Shader." << std::endl;
-			return false;
-		}
-	}
+	//	if (FAILED(result))
+	//	{
+	//		std::cout << "Failed Compile Pixel Shader." << std::endl;
+	//		return false;
+	//	}
+	//}
+	mPixelShaderClass = Shader::Create(L"3DPrimitiveShader.hlsl", "PSMain", "ps_5_0");
+
 	return true;
 }
 
@@ -442,11 +370,11 @@ bool Application::CreatePipelineState()
 	gpsDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
 	gpsDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
 	gpsDesc.DepthStencilState.StencilEnable = FALSE;
-	gpsDesc.VS = CD3DX12_SHADER_BYTECODE(mVertexShader.Get());
-	gpsDesc.PS = CD3DX12_SHADER_BYTECODE(mPixelShader.Get());
+	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
+	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
 	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
 	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
-	gpsDesc.pRootSignature = mRootSignatureClass->GetRootSignature().Get();
+	gpsDesc.pRootSignature = mRootSignature->GetRootSignature().Get();
 	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
 	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
@@ -455,7 +383,8 @@ bool Application::CreatePipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	auto result = mDevice->GetDevice().Get()->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	auto device = mDevice->GetDevice().Get();
+	auto result = device->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG

@@ -74,7 +74,7 @@ public:
 	ComPtr<ID3D12RootSignature> GetRootSignature() const;
 
 private:
-	D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;
+	D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;			// 静的サンプラ
 	std::map<int ,std::vector<D3D12_DESCRIPTOR_RANGE> >	mDescriptorRanges;	// ディスクリプタレンジ
 	std::vector<D3D12_ROOT_PARAMETER> mRootParameters;		// ルートパラメータ
 	ComPtr<ID3D12RootSignature> mRootSignature;				// ルートシグネチャ群
