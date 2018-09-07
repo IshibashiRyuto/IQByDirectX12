@@ -15,6 +15,7 @@
 #include "../DescriptorHeap.h"
 
 // クラス使用宣言
+struct InstanceData;
 
 class ModelData
 {
@@ -33,6 +34,9 @@ public:
 
 	/// デスクリプタヒープを取得する
 	std::shared_ptr<DescriptorHeap> GetDescriptorHeap() const;
+
+	/// 描画処理
+	virtual void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
 
 protected:
 	std::shared_ptr<VertexBuffer> mVertexBuffer;

@@ -27,7 +27,6 @@ const D3D12_SHADER_BYTECODE & Shader::GetShaderByteCode() const
 
 void Shader::LoadShader(const std::wstring & filePath, const std::string & entryPoint, const std::string & compileTarget)
 {
-	ComPtr<ID3DBlob> shaderCode;
 	UINT compileOption = 0;
 
 #ifdef _DEBUG
@@ -42,7 +41,7 @@ void Shader::LoadShader(const std::wstring & filePath, const std::string & entry
 		compileTarget.c_str(),
 		compileOption,
 		0,
-		&shaderCode,
+		&mShaderCode,
 		nullptr);
 
 	if (FAILED(result))
@@ -50,6 +49,6 @@ void Shader::LoadShader(const std::wstring & filePath, const std::string & entry
 		std::cout << "Failed Load Shader \" " << filePath.c_str() << "\"." << std::endl;
 		return;
 	}
+	mShaderByteCode = CD3DX12_SHADER_BYTECODE(mShaderCode.Get());
 
-	mShaderByteCode = CD3DX12_SHADER_BYTECODE(shaderCode.Get());
 }

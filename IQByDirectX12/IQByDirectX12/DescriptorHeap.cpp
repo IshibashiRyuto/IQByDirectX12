@@ -68,9 +68,22 @@ void DescriptorHeap::SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DE
 
 void DescriptorHeap::BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
-	auto gpuHandle = mDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+	mGraphicsCommandList = commandList;
 	commandList->SetDescriptorHeaps(1, (mDescriptorHeap.GetAddressOf()));
-	commandList->SetGraphicsRootDescriptorTable(0, gpuHandle);
-	gpuHandle.ptr += HEAP_STRIDE;
-	commandList->SetGraphicsRootDescriptorTable(1, gpuHandle);
+}
+
+void DescriptorHeap::BindRootDescriptorTable(int rootParamIndex, int descriptorHeapIndex)
+{
+	if (descriptorHeapIndex >= (int)mNumDescriptors)
+	{
+		return;
+	}
+	auto gpuHandle = mDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+	gpuHandle.ptr += HEAP_STRIDE * descriptorHeapIndex;
+	if (!mGraphicsCommandList)
+	{
+		return;
+	}
+
+	mGraphicsCommandList->SetGraphicsRootDescriptorTable(rootParamIndex, gpuHandle);
 }

@@ -17,6 +17,7 @@
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
+class ConstantBuffer;
 
 ///	@struct PMDHeader
 /// PMDヘッダ情報
@@ -71,7 +72,9 @@ public:
 
 	void SetIndexData(const std::vector<unsigned short>& indexData);
 
-	void SetMaterialData(const std::vector<PMDMaterial>& materials);
+	void SetMaterialData(ComPtr<ID3D12Device> device, const std::vector<PMDMaterial>& materials);
+
+	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
 	unsigned int mVertexCount;			// 頂点数
@@ -80,5 +83,6 @@ private:
 	std::vector<unsigned short> mIndex;	// インデックスデータ
 	unsigned int mMaterialCount;
 	std::vector<PMDMaterial> mMaterials;
+	std::shared_ptr<ConstantBuffer> mMaterialData;
 };
 

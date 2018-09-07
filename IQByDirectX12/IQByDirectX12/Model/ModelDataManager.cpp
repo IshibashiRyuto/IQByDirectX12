@@ -16,14 +16,7 @@ void ModelDataManager::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandLis
 		{
 			continue;
 		}
-		auto instancingData = instancingDataMap[modelHandle];
-		modelData->GetDescriptorHeap()->BindGraphicsCommandList(graphicsCommandList);
-		
-		D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { modelData->GetVertexBuffer()->GetVertexBufferView(), instancingData.instanceBuffer->GetVertexBufferView() };
-		graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
-		graphicsCommandList->IASetIndexBuffer(&modelData->GetIndexBuffer()->GetIndexBufferView());
-
-		graphicsCommandList->DrawIndexedInstanced(modelData->GetIndexBuffer()->GetIndexCount(), instancingData.nowInstanceCount, 0, 0, 0);
+		modelData->Draw(graphicsCommandList, instancingDataMap[modelHandle]);
 	}
 	mInstancingDataManager.ResetInstanceDataAll();
 }

@@ -44,7 +44,8 @@ public:
 
 private:
 	/* メンバ変数定義 */
-	D3D12_SHADER_BYTECODE mShaderByteCode;		// シェーダコード
+	ComPtr<ID3DBlob> mShaderCode;
+	D3D12_SHADER_BYTECODE mShaderByteCode;
 
 	/* ローカルメソッド定義 */
 	/// コンストラクタ

@@ -1,4 +1,3 @@
-Texture2D<float4> tex : register(t0);
 SamplerState smp : register(s0);
 
 cbuffer mat:register(b0)
@@ -26,12 +25,14 @@ typedef VSOutput PSInput;
 VSOutput VSMain( VSInput input )
 {
     VSOutput output;
-    output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
-    input.modelMatrix._14_24_34 = float3(0.0f, 0.0f, 0.0f);
+    
+	output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
+    
+	input.modelMatrix._14_24_34 = float3(0.0f, 0.0f, 0.0f);
     output.normal = normalize(mul(input.modelMatrix, float4(input.normal, 1.0f)).xyz);
-	//output.normal = input.normal;
-
+	
 	output.uv = input.uv;
+
 	return output;
 }
 

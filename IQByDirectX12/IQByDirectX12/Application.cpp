@@ -231,13 +231,6 @@ void Application::Render()
 	// ポリゴン描画
 	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	
-
-	// 板ポリ描画
-	
-	/*
-	mCommandList->IASetVertexBuffers(0, 1, &mVertexBuffer->GetVertexBufferView());
-	mCommandList->DrawInstanced(6, 1, 0, 0);
-	*/
 	// モデル描画
 	ModelDataManager::GetInstance().Draw(mCommandList);
 
@@ -295,55 +288,20 @@ bool Application::CreateRootSignature()
 {
 	mRootSignature = RootSignature::Create();
 	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	int srvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int materialCBVIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
-	mRootSignature->AddDescriptorRange(srvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
-
+	mRootSignature->AddDescriptorRange(materialCBVIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());;
 }
 
 
 bool Application::ReadShader()
 {
-	////ReadVertexShader
-	//{
-	//	auto result = D3DCompileFromFile(L"3DPrimitiveShader.hlsl",
-	//		nullptr,
-	//		nullptr,
-	//		"VSMain",
-	//		"vs_5_0",
-	//		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-	//		0,
-	//		&mVertexShader,
-	//		nullptr);
-	//	if (FAILED(result))
-	//	{
-	//		std::cout << "Failed Compile Vertex Shader." << std::endl;
-	//		return false;
-	//	}
-	//}
-	mVertexShaderClass = Shader::Create(L"3DPrimitiveShader.hlsl", "VSMain", "vs_5_0");
+	mVertexShaderClass = Shader::Create(L"PMDModelShader.hlsl", "VSMain", "vs_5_0");
 
-	////ReadPixelShader
-	//{
-	//	auto result = D3DCompileFromFile(L"3DPrimitiveShader.hlsl",
-	//		nullptr,
-	//		nullptr,
-	//		"PSMain",
-	//		"ps_5_0",
-	//		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-	//		0,
-	//		&mPixelShader,
-	//		nullptr);
-
-	//	if (FAILED(result))
-	//	{
-	//		std::cout << "Failed Compile Pixel Shader." << std::endl;
-	//		return false;
-	//	}
-	//}
-	mPixelShaderClass = Shader::Create(L"3DPrimitiveShader.hlsl", "PSMain", "ps_5_0");
+	mPixelShaderClass = Shader::Create(L"PMDModelShader.hlsl", "PSMain", "ps_5_0");
 
 	return true;
 }
@@ -355,7 +313,7 @@ bool Application::CreatePipelineState()
 		mInputLayoutDescs.clear();
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"		, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "NORMAL"			, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
-		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCORD"			, 0, DXGI_FORMAT_R32G32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"			, 0, DXGI_FORMAT_R32G32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	0,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	1,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	,	2,	DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
@@ -427,7 +385,7 @@ void Application::LoadTexture()
 
 bool Application::CreateConstantBuffer()
 {
-	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), sizeof(DirectX::XMMATRIX), 1);
+	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), sizeof(DirectX::XMMATRIX)*4, 1);
 	if (mConstantBuffer == nullptr)
 	{
 		return false;
@@ -443,10 +401,15 @@ void Application::SetWVPMatrix()
 		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 30.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 50.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 100.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
-		auto data = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
 		
+		DirectX::XMMATRIX data[4];
+		data[0] = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
+		data[1] = ConvertMatrix4x4ToXMMATRIX(mWorldMatrix);
+		data[2] = ConvertMatrix4x4ToXMMATRIX(mViewMatrix);
+		data[3] = ConvertMatrix4x4ToXMMATRIX(mProjectionMatrix);
 
-		mConstantBuffer->SetData(&data, sizeof(DirectX::XMMATRIX), 0);
+
+		mConstantBuffer->SetData(data, sizeof(DirectX::XMMATRIX), 0);
 		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 }
@@ -456,20 +419,14 @@ void Application::LoadPMD()
 	mModelLoader = PMDLoader::Create(mDevice->GetDevice());
 	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
 	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
-}
 
-void Application::LoadPMX()
-{
-	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
 	mInstancingTestModels.resize(100);
-	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	float x = -10.0f;
 	float z = 0.0f;
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 
@@ -484,4 +441,12 @@ void Application::LoadPMX()
 			++modelCount;
 		}
 	}
+}
+
+void Application::LoadPMX()
+{
+	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
+	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
+
 }

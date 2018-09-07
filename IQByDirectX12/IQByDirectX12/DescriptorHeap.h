@@ -67,6 +67,12 @@ public:
 	/// デスクリプタヒープをコマンドリストにバインドする
 	void BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> commandList);
 
+	/// @fn BindRootDiscriptorTable
+	/// ディスクリプタテーブルとヒープをバインドする
+	/// @param[in]	rootParamIndex	: ルートパラメータのインデックス
+	/// @param[in]	descriptorHeapIndex	:	ヒープ側のインデックス
+	void BindRootDescriptorTable(int rootParamIndex, int descriptorHeapIndex);
+
 private:
 	/*定数宣言*/
 	const UINT HEAP_STRIDE;
@@ -75,6 +81,7 @@ private:
 	ComPtr<ID3D12Device>			mDevice;			//! デバイス
 	ComPtr<ID3D12DescriptorHeap>	mDescriptorHeap;	//! ディスクリプタヒープの実態
 	UINT							mNumDescriptors;		//! ディスクリプタの数
+	ComPtr<ID3D12GraphicsCommandList>	mGraphicsCommandList;	//!	描画コマンドリスト
 
 	/*ローカルメソッド*/
 

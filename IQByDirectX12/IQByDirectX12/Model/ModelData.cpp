@@ -1,8 +1,6 @@
 #include "ModelData.h"
-#include "../VertexBuffer.h"
-#include "../IndexBuffer.h"
-#include "../DescriptorHeap.h"
-#include "../ConstantBuffer.h"
+#include "InstancingDataManager.h"
+#include "../InstanceBuffer.h"
 
 ModelData::ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer, std::shared_ptr<DescriptorHeap> descriptorHeap)
 	: mVertexBuffer(vertexBuffer)
@@ -18,6 +16,17 @@ ModelData::~ModelData()
 std::shared_ptr<DescriptorHeap> ModelData::GetDescriptorHeap() const
 {
 	return mDescHeap;
+}
+
+void ModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instancingData) const
+{
+	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
+	mDescHeap->BindRootDescriptorTable(0, 0);
+	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instancingData.instanceBuffer->GetVertexBufferView() };
+	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
+	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
+
+	graphicsCommandList->DrawIndexedInstanced(mIndexBuffer->GetIndexCount(), instancingData.nowInstanceCount, 0, 0, 0);
 }
 
 std::shared_ptr<VertexBuffer> ModelData::GetVertexBuffer() const
