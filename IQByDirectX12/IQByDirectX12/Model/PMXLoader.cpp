@@ -176,3 +176,21 @@ void PMXLoader::LoadIndexData(std::vector<PMX::Index>& indexData, const PMX::Hea
 		fread(&index.vertIndex, vertIndexSize, 1, fp);
 	}
 }
+
+void PMXLoader::LoadTextureData(std::vector<PMX::Texture>& textureData, FILE * fp)
+{
+	int textureNum;
+	fread(&textureNum, sizeof(textureNum), 1, fp);
+	textureData.resize(textureNum);
+	for (auto& texture : textureData)
+	{
+		texture.texturePath = ReadTextBuf(fp);
+	}
+}
+
+void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX::Header & header, FILE * fp)
+{
+	int materialNum;
+	fread(&materialNum, sizeof(materialNum), 1, fp);
+	materialData.resize(materialNum);
+}

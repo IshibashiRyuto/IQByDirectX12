@@ -14,6 +14,7 @@
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
+class TextureLoader;
 
 class PMXLoader : public ModelLoader
 {
@@ -29,9 +30,11 @@ public:
 	void ClearModelData();
 
 private:
+	/* 定数定義 */
 	const std::string FILE_SIGNATURE = "PMX ";
 	const size_t SIGNATURE_SIZE = sizeof(char) * 4;
 
+	/* ローカルメソッド定義 */
 	/// @fn ReadTextBuf
 	/// 文字列バッファデータを取得する
 	/// @param[in] fp: ファイルポインタ
@@ -66,6 +69,17 @@ private:
 	void LoadIndexData(std::vector<PMX::Index>& indexData, const PMX::Header& header, FILE* fp);
 
 	/// @fn LoadTextureData
-	/// 
+	/// テクスチャ情報を読み込む
+	/// @param[in] textureData	: テクスチャデータのベクタ
+	/// @param[in] fp			: ファイルポインタ
+	void LoadTextureData(std::vector<PMX::Texture>& textureData, FILE* fp);
+
+	/// @fn LoadMaterial
+	/// マテリアル情報を読み込む
+	/// @param[in] materialData		: マテリアルデータのベクタ
+	/// @param[in] header			: PMXファイルヘッダ
+	/// @param[in] fp				: ファイルポインタ
+	void LoadMaterial(std::vector<PMX::Material>& materialData, const PMX::Header& header, FILE* fp);
+
 };
 
