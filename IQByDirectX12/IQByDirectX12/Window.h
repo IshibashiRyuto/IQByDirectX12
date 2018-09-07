@@ -35,7 +35,7 @@ public:
 private:
 	
 	/*’è”’è‹`*/
-	const RECT WINDOW_RECT = { 0, 0, 640, 480 };
+	const RECT WINDOW_RECT = { 0, 0, 1280, 720 };
 	const char* WINDOW_TITLE = "IQByDirectX12";
 
 	/*•Ï”éŒ¾*/

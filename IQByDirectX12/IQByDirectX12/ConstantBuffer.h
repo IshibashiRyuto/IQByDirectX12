@@ -39,7 +39,7 @@ public:
 	/// @param[in] elementNum 何番目の要素を更新するか
 	/// @retval データサイズよりバッファサイズが大きい場合: true
 	/// @retval データサイズよりバッファサイズが小さい場合: false
-	bool SetData(void* data, UINT elementSize, UINT elementIndex);
+	bool SetData(const void* data, UINT elementSize, UINT elementIndex);
 
 	/// @fn GetConstantBufferView
 	/// コンスタントバッファビューを取得する

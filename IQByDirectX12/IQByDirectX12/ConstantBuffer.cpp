@@ -34,7 +34,7 @@ std::shared_ptr<ConstantBuffer> ConstantBuffer::Create(const ComPtr<ID3D12Device
 	return constantBuffer;
 }
 
-bool ConstantBuffer::SetData(void * data, UINT elementSize, UINT elementIndex)
+bool ConstantBuffer::SetData(const void * data, UINT elementSize, UINT elementIndex)
 {
 	if (elementIndex >= mElementCount || elementSize > mElementSize)
 	{

@@ -54,5 +54,6 @@ private:
 	ComPtr<ID3D12CommandQueue> mCommandQueue;	// コマンドリストの実体
 	UINT mFenceValue;							// フェンスパラメータ
 	ComPtr<ID3D12Fence> mFence;					// フェンスオブジェクト
+	HANDLE mFenceEvent;							// フェンスイベント
 };
 

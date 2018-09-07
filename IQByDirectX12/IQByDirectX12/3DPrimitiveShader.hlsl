@@ -9,7 +9,7 @@ struct VSInput
 {
     float3 position     : POSITION;
     float3 normal       : NORMAL;
-    float2 uv           : TEXCORD;
+    float2 uv           : TEXCOORD;
     float4x4 modelMatrix : INSTANCE_MATRIX;
 };
 
@@ -17,7 +17,7 @@ struct VSOutput
 {
     float4 position : SV_POSITION;
     float3 normal   : NORMAL;
-    float2 uv       : TEXCORD;
+    float2 uv       : TEXCOORD;
 };
 
 typedef VSOutput PSInput;
@@ -46,3 +46,4 @@ float4 PSMain(PSInput input) : SV_Target
     return float4(brightness, brightness, brightness, 1.0f);
     //return tex.Sample(smp, input.uv);
 }
+

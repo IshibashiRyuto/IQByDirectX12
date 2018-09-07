@@ -62,6 +62,12 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		// インデックス情報読み込み
 		LoadIndexData(modelDataDesc.indexies, modelDataDesc.header, fp);
 
+		// テクスチャ情報読み込み
+		LoadTextureData(modelDataDesc.textures, fp);
+
+		// マテリアル情報読み込み
+		LoadMaterial(modelDataDesc.materials, modelDataDesc.header, fp);
+
 		fclose(fp);
 
 		auto modelData = PMXModelData::Create(mDevice, modelDataDesc);
@@ -191,6 +197,34 @@ void PMXLoader::LoadTextureData(std::vector<PMX::Texture>& textureData, FILE * f
 void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX::Header & header, FILE * fp)
 {
 	int materialNum;
+	int textureIndexSize = header.pmxDataInfo[(int)PMX::DataInfo::textureIndexSize];
 	fread(&materialNum, sizeof(materialNum), 1, fp);
 	materialData.resize(materialNum);
+	for (auto& material : materialData)
+	{
+		material.name = ReadTextBuf(fp);
+		material.nameEng = ReadTextBuf(fp);
+		fread(&material.diffuse, sizeof(material.diffuse), 1, fp);
+		fread(&material.specular, sizeof(material.specular), 1, fp);
+		fread(&material.specularFactor, sizeof(material.specularFactor), 1, fp);
+		fread(&material.ambient, sizeof(material.ambient), 1, fp);
+		fread(&material.drawFlags, sizeof(material.drawFlags), 1, fp);
+		fread(&material.edgeColor, sizeof(material.edgeColor), 1, fp);
+		fread(&material.edgeSize, sizeof(material.edgeSize), 1, fp);
+		fread(&material.textureIndex, textureIndexSize, 1, fp);
+		fread(&material.sphereTextureIndex, textureIndexSize, 1, fp);
+		fread(&material.sphereMode, sizeof(material.sphereMode), 1, fp);
+		fread(&material.shareToonFlag, sizeof(material.shareToonFlag), 1, fp);
+		if (material.shareToonFlag == 0)
+		{
+			fread(&material.toonTextureIndex, textureIndexSize, 1, fp);
+		}
+		else if (material.shareToonFlag == 1)
+		{
+			fread(&material.shareToonTexture, sizeof(material.shareToonTexture), 1, fp);
+		}
+
+		material.materialMemo = ReadTextBuf(fp);
+		fread(&material.vertNum, sizeof(material.vertNum), 1, fp);
+	}
 }

@@ -56,7 +56,7 @@ void InstancingDataManager::ResetInstanceData(int handle)
 
 void InstancingDataManager::ResetInstanceDataAll()
 {
-	for (auto instanceData : mInstanceDataMap)
+	for (auto& instanceData : mInstanceDataMap)
 	{
 		instanceData.second.nowInstanceCount = 0;
 	}

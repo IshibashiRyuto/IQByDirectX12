@@ -64,7 +64,7 @@ float4 PSMain(PSInput input) : SV_Target
 	float3 vray = normalize(input.origPosition - eyePosition);
 	
 	float brightness = dot(input.normal, light);
-
+    
 	float attenuation = 1.0f;
 
 	/// アンビエントカラー計算

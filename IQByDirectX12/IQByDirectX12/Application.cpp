@@ -199,10 +199,20 @@ bool Application::Initialize(const Window & window)
 
 void Application::Render()
 {
+	//debug
+	static float zAngle = 0.0f;
+	
 	for (auto model : mInstancingTestModels)
 	{
+		model->SetRotation(Math::Vector3(0.0f, zAngle, 0.0f));
 		model->Draw();
 	}
+
+	zAngle += 0.01f;
+
+	mModelData->Draw();
+
+
 
 	// コマンドリスト初期化
 	mCommandAllocator->Get()->Reset();
@@ -217,16 +227,17 @@ void Application::Render()
 
 	// 描画先変更処理
 	int backBufferIndex = mSwapChain->GetCurrentBackBufferIndex();
+	
 	mRenderTarget->ChangeRenderTarget(mCommandList, backBufferIndex);
+
 	auto rtvHandle = mRenderTarget->GetRTVHandle();
 	auto dsvHandle = mDepthBuffer->GetDSVHandle();
+	
 	mCommandList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
 	mRenderTarget->ClearRenderTarget(mCommandList);
 	mDepthBuffer->ClearDepthBuffer(mCommandList);
 
-	//デスクリプタヒープバインド
-	mDescriptorHeap->BindGraphicsCommandList(mCommandList);
 
 	// ポリゴン描画
 	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -399,7 +410,7 @@ void Application::SetWVPMatrix()
 	{
 		mWorldMatrix = Math::CreateIdent();
 		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 30.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 50.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
-		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 100.0f, Math::F_PI/2.0f);
+		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		
 		DirectX::XMMATRIX data[4];
@@ -420,27 +431,6 @@ void Application::LoadPMD()
 	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
 	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 
-	mInstancingTestModels.resize(100);
-	float x = -10.0f;
-	float z = 0.0f;
-	srand((unsigned int)time(0));
-	for (auto &model : mInstancingTestModels)
-	{
-		model = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
-		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
-	}
-
-	int modelCount = 0;
-	for (int x = 0; z < 10; ++z)
-	{
-		for (int x = -5; x < 5; ++x)
-		{
-			mInstancingTestModels[modelCount]->SetPosition(Math::Vector3(x * 5.0f, 0.0f, z*5.0f));
-			mInstancingTestModels[modelCount]->SetScale((float)(rand() % 10000) / 10000.0f + 0.2f);
-			mInstancingTestModels[modelCount]->SetRotation(Math::Vector3(0.0f, (float)(rand() % 10000) / 10000.0f * Math::F_PI *2.0f, 0.0f));
-			++modelCount;
-		}
-	}
 }
 
 void Application::LoadPMX()
@@ -449,4 +439,24 @@ void Application::LoadPMX()
 	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 
+
+	mInstancingTestModels.resize(100);
+	float x = -10.0f;
+	float z = 0.0f;
+	srand((unsigned int)time(0));
+	for (auto &model : mInstancingTestModels)
+	{
+		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
+	}
+
+	int modelCount = 0;
+	for (int x = 0; z < 10; ++z)
+	{
+		for (int x = -5; x < 5; ++x)
+		{
+			mInstancingTestModels[modelCount]->SetPosition(Math::Vector3(x * 15.0f, 0.0f, z*15.0f));
+			++modelCount;
+		}
+	}
 }

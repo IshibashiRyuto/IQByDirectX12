@@ -18,6 +18,7 @@
 // クラス使用宣言
 class VertexBuffer;
 class IndexBuffer;
+class ConstantBuffer;
 using Microsoft::WRL::ComPtr;
 
 namespace PMX
@@ -372,6 +373,16 @@ namespace PMX
 		std::vector<RigitBody> rigidBodies;
 		std::vector<Joint> joints;
 	};
+
+
+	struct MaterialData
+	{
+		Math::Vector4 diffuse;
+		Math::Vector3 specular;
+		float specularity;
+		Math::Vector3 ambient;
+		int vertsNum;
+	};
 }
 
 
@@ -380,7 +391,8 @@ class PMXModelData : public ModelData
 public:
 	PMXModelData(ComPtr<ID3D12Device> device,
 		std::vector<PMX::Vertex> vertexData,
-		std::vector<PMX::Index> indexData);
+		std::vector<PMX::Index> indexData,
+		int materialCount);
 	~PMXModelData();
 
 	/// @fn Create
@@ -396,6 +408,19 @@ public:
 		std::vector<PMX::Index> indexData);
 	static std::shared_ptr<PMXModelData> Create(ComPtr<ID3D12Device> device, const PMX::ModelDataDesc& modelDataDesc);
 
+	/// @fn Draw
+	/// 描画処理
+	/// @param[in]	graphicsCommandList	: コマンドリスト
+	/// @param[in]	instanceData		: インスタンスデータ
+	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+
 private:
-	
+	/* 定数定義 */
+
+	/* 変数宣言 */
+	std::shared_ptr<ConstantBuffer> mMaterialDataBuffer;			// マテリアルデータを保存する定数バッファ
+	std::vector<PMX::MaterialData> mMaterialData;
+
+	/* ローカルメソッド定義 */
+	void SetMaterial(const std::vector<PMX::Material>& materials);
 };

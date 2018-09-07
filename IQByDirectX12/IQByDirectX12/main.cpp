@@ -25,11 +25,8 @@ int main(void)
 			{
 				break;
 			}
-			else
-			{
-				app->Render();
-			}
 		}
+		app->Render();		
 	}
 
 	return 0;

@@ -59,7 +59,15 @@ void CommandQueue::ExecuteCommandList(UINT numCommandLists, ID3D12CommandList *c
 
 void CommandQueue::Signal()
 {
-	++mFenceValue;
 	mCommandQueue->Signal(mFence.Get(), mFenceValue);
-	while (mFence->GetCompletedValue() != mFenceValue);
+	//while (mFence->GetCompletedValue() != mFenceValue);
+	if (mFence->GetCompletedValue() < mFenceValue)
+	{
+		mFenceEvent = CreateEvent(nullptr, false, false, nullptr);
+		mFence->SetEventOnCompletion(mFenceValue, mFenceEvent);
+		WaitForSingleObject(mFenceEvent, INFINITE);
+		CloseHandle(mFenceEvent);
+	}
+	
+	++mFenceValue;
 }
