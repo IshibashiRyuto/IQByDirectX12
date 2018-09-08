@@ -43,13 +43,13 @@ bool RootSignature::ConstructRootSignature(ComPtr<ID3D12Device> device)
 	for (int i = 0; i < mRootParameters.size(); ++i)
 	{
 		// parameterType : DescriptorTableの場合
-		mRootParameters[i].DescriptorTable.NumDescriptorRanges = mDescriptorRanges[i].size();
+		mRootParameters[i].DescriptorTable.NumDescriptorRanges = (UINT)mDescriptorRanges[i].size();
 		mRootParameters[i].DescriptorTable.pDescriptorRanges = mDescriptorRanges[i].data();
 	}
 
 	// シグネチャ作成
 	{
-		auto rootSignatureDesc = CD3DX12_ROOT_SIGNATURE_DESC(mRootParameters.size(), mRootParameters.data(), 1, &mStaticSamplerDesc, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+		auto rootSignatureDesc = CD3DX12_ROOT_SIGNATURE_DESC((UINT)mRootParameters.size(), mRootParameters.data(), 1, &mStaticSamplerDesc, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 
 		auto result = D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error);
 

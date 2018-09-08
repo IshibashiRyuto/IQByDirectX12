@@ -45,7 +45,7 @@ void PMDModelData::SetMaterialData(ComPtr<ID3D12Device> device, const std::vecto
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
 	mMaterialData = ConstantBuffer::Create(device, sizeof(PMDMaterial), mMaterialCount);
-	for (int i = 0; i < mMaterialCount; ++i)
+	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
 		mMaterialData->SetData(&mMaterials[i], sizeof(PMDMaterial), i);
 		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i + 1);
@@ -61,7 +61,7 @@ void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const Ins
 	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
 
 	int indexOffset = 0;
-	for (int i = 0; i < mMaterialCount; ++i)
+	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
 		mDescHeap->BindRootDescriptorTable(1, i + 1);
 		commandList->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);

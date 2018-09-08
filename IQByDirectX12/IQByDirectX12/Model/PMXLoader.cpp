@@ -139,25 +139,25 @@ void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::
 		switch (vertex.weightDeformType)
 		{
 		case PMX::WeightDeformType::BDEF1:
-			fread(&vertex.bdef1, boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 1, fp);
 			break;
 
 		case PMX::WeightDeformType::BDEF2:
-			fread(&vertex.bdef2.boneIndex, boneIndexSize, 2, fp);
-			fread(&vertex.bdef2.boneWeight, sizeof(vertex.bdef2.boneWeight), 1, fp);
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 2, fp);
+			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
 			break;
 
 		case PMX::WeightDeformType::BDEF4:
-			fread(&vertex.bdef4.boneIndex, boneIndexSize, 4, fp);
-			fread(&vertex.bdef4.boneWeight, sizeof(vertex.bdef2.boneWeight), 4, fp);
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 4, fp);
+			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 4, fp);
 			break;
 
 		case PMX::WeightDeformType::SDEF:
-			fread(&vertex.sdef.boneIndex, boneIndexSize, 2, fp);
-			fread(&vertex.sdef.boneWeight, sizeof(vertex.sdef.boneWeight), 1, fp);
-			fread(&vertex.sdef.c, sizeof(vertex.sdef.c), 1, fp);
-			fread(&vertex.sdef.r0, sizeof(vertex.sdef.r0), 1, fp);
-			fread(&vertex.sdef.r1, sizeof(vertex.sdef.r1), 1, fp);
+			fread(&vertex.deformParam.boneIndex, boneIndexSize, 2, fp);
+			fread(&vertex.deformParam.boneWeight, sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
+			fread(&vertex.deformParam.c, sizeof(vertex.deformParam.c), 1, fp);
+			fread(&vertex.deformParam.r0, sizeof(vertex.deformParam.r0), 1, fp);
+			fread(&vertex.deformParam.r1, sizeof(vertex.deformParam.r1), 1, fp);
 			break;
 		default:
 #ifdef _DEBUG

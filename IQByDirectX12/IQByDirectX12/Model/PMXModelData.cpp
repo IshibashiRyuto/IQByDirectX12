@@ -25,7 +25,7 @@ std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, 
 
 std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, const PMX::ModelDataDesc & modelDataDesc)
 {
-	auto modelData = std::shared_ptr<PMXModelData>(new PMXModelData(device, modelDataDesc.vertices, modelDataDesc.indexies, modelDataDesc.materials.size()));
+	auto modelData = std::shared_ptr<PMXModelData>(new PMXModelData(device, modelDataDesc.vertices, modelDataDesc.indexies, (int)modelDataDesc.materials.size()));
 	modelData->SetMaterial(modelDataDesc.materials);
 	return modelData;
 }

@@ -71,7 +71,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, vo
 			return nullptr;
 		}
 		indexBuffer->mIndexBufferView.BufferLocation = indexBuffer->mIndexBuffer->GetGPUVirtualAddress();
-		indexBuffer->mIndexBufferView.SizeInBytes = indexSize * indexCount;
+		indexBuffer->mIndexBufferView.SizeInBytes = (UINT)(indexSize * indexCount);
 		indexBuffer->mIndexBufferView.Format = indexFormat;		
 	}
 

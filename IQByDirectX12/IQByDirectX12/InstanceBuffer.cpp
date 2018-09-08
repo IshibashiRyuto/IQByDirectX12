@@ -47,7 +47,7 @@ std::shared_ptr<InstanceBuffer> InstanceBuffer::Create(ComPtr<ID3D12Device> devi
 		instanceBuffer->mVertexBufferView.SizeInBytes = (UINT)(instanceDataSize * maxInstanceCount);
 	}
 	instanceBuffer->mMaxInstanceCount = maxInstanceCount;
-	instanceBuffer->mInstanceDataSize = instanceDataSize;
+	instanceBuffer->mInstanceDataSize = (int)instanceDataSize;
 
 	// 頂点をマップ
 	{

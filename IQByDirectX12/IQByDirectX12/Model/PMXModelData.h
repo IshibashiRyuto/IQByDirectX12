@@ -50,38 +50,16 @@ namespace PMX
 		std::string commentEng;
 	};
 
-	struct BDEF1
-	{
-		int boneIndex;
-	};
 
-	struct BDEF2
-	{
-		int boneIndex[2];
-		float boneWeight;
-	};
-
-	struct BDEF4
+	struct DeformParam
 	{
 		int boneIndex[4];
 		float boneWeight[4];
+		Math::Vector3 c;
+		Math::Vector3 r0;
+		Math::Vector3 r1;
 	};
 
-	struct Position
-	{
-		float x;
-		float y;
-		float z;
-	};
-
-	struct SDEF
-	{
-		int boneIndex[2];
-		float boneWeight;
-		Position c;
-		Position r0;
-		Position r1;
-	};
 
 	enum class WeightDeformType
 	{
@@ -98,13 +76,7 @@ namespace PMX
 		Math::Vector2 uv;
 		std::vector<Math::Vector4> appendUV;
 		WeightDeformType weightDeformType;
-		union
-		{
-			BDEF1 bdef1;
-			BDEF2 bdef2;
-			BDEF4 bdef4;
-			SDEF sdef;
-		};
+		DeformParam deformParam;
 
 		float edgeScale;
 	};
