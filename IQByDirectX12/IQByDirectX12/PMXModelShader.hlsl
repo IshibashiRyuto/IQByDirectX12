@@ -1,12 +1,14 @@
-Texture2D<float4> tex : register(t0);
-SamplerState smp : register(s0);
+Texture2D<float4> materialNormalTexture : register(t0);   // マテリアル通常テクスチャ
+Texture2D<float4> materialSphereTexture : register(t1); // マテリアルスフィアテクスチャ
+
+SamplerState smp : register(s0);  
 
 cbuffer mat : register(b0)
 {
-    float4x4 wvp; // wvp行列
-    float4x4 world; // world行列
-    float4x4 view; // view行列
-    float4x4 projection; // projection行列	
+    float4x4 wvp;           // wvp行列
+    float4x4 world;         // world行列
+    float4x4 view;          // view行列
+    float4x4 projection;    // projection行列	
 }
 
 cbuffer material : register(b1)
@@ -31,7 +33,7 @@ struct VSOutput
     float4 position : SV_POSITION;
     float3 origPosition : POSITION1;
     float3 normal : NORMAL;
-    float2 uv : TEXCORD;
+    float2 uv : TEXCOORD;
 };
 
 typedef VSOutput PSInput;
@@ -59,7 +61,7 @@ float4 PSMain(PSInput input) : SV_Target
     float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);
 
-    float3 eyePosition = float3(0.0f, 30.0f, -15.0f);
+    float3 eyePosition = float3(0.0f, 10.0f, -15.0f);
 
     float3 vray = normalize(input.origPosition - eyePosition);
 	
@@ -84,7 +86,15 @@ float4 PSMain(PSInput input) : SV_Target
     float spec = saturate(pow(dot(reflect(-light, input.normal), -vray), specularity));
     modelSpecularColor = modelSpecularColor * spec;
 
-    float4 modelColor = float4(modelAmbientColor, 1.0f) + float4(modelDiffuseColor, alpha) + float4(modelSpecularColor, 1.0f);
+    
+    float4 texColor = materialNormalTexture.Sample(smp, input.uv);
+    +materialSphereTexture.Sample(smp, input.uv);
+
+    float4 modelColor = (float4(modelAmbientColor, 0.0f) + float4(modelDiffuseColor, alpha));
+    modelColor = modelColor * texColor;
+
+
+    modelColor = modelColor +float4(modelSpecularColor, 1.0f);
 
     return modelColor;
 }

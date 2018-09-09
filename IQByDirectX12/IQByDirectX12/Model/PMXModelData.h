@@ -19,6 +19,7 @@
 class VertexBuffer;
 class IndexBuffer;
 class ConstantBuffer;
+class TextureLoader;
 using Microsoft::WRL::ComPtr;
 
 namespace PMX
@@ -44,10 +45,10 @@ namespace PMX
 
 	struct ModelInfo
 	{
-		std::string modelName;
-		std::string modelNameEng;
-		std::string comment;
-		std::string commentEng;
+		std::wstring modelName;
+		std::wstring modelNameEng;
+		std::wstring comment;
+		std::wstring commentEng;
 	};
 
 
@@ -89,13 +90,13 @@ namespace PMX
 
 	struct Texture
 	{
-		std::string texturePath;
+		std::wstring texturePath;
 	};
 
 	struct Material
 	{
-		std::string name;
-		std::string nameEng;
+		std::wstring name;
+		std::wstring nameEng;
 		Math::Vector4 diffuse;
 		Math::Vector3 specular;
 		float specularFactor;
@@ -124,7 +125,7 @@ namespace PMX
 			int toonTextureIndex;
 		};
 
-		std::string materialMemo;
+		std::wstring materialMemo;
 		int vertNum;
 	};
 
@@ -155,8 +156,8 @@ namespace PMX
 
 	struct Bone
 	{
-		std::string name;
-		std::string nameEng;
+		std::wstring name;
+		std::wstring nameEng;
 		Math::Vector3 position;
 		int parentBoneIndex;
 		int deformHierarchy;
@@ -248,8 +249,8 @@ namespace PMX
 
 	struct Morph
 	{
-		std::string name;
-		std::string nameEng;
+		std::wstring name;
+		std::wstring nameEng;
 		unsigned char controlPanel;
 		unsigned char morphType;
 		int morphDataCount;
@@ -281,17 +282,17 @@ namespace PMX
 
 	struct DisplayFrame
 	{
-		std::string name;
-		std::string nameEng;
+		std::wstring name;
+		std::wstring nameEng;
 		unsigned char specialFrameFlag;
 		int FrameDataCount;
 		std::vector<FrameData> frameData;
 	};
 
-	struct RigitBody
+	struct RigidBody
 	{
-		std::string name;
-		std::string nameEng;
+		std::wstring name;
+		std::wstring nameEng;
 		int boneIndex;
 		unsigned char groupe;
 		unsigned short notCorrisionGroupeFlag;
@@ -325,14 +326,15 @@ namespace PMX
 
 	struct Joint
 	{
-		std::string name;
-		std::string nameEng;
+		std::wstring name;
+		std::wstring nameEng;
 		unsigned char jointType;
 		NormalJoint jointData;
 	};
 
 	struct ModelDataDesc
 	{
+		std::wstring modelFilePath;
 		Header header;
 		ModelInfo modelInfo;
 		std::vector<Vertex> vertices;
@@ -342,7 +344,7 @@ namespace PMX
 		std::vector<Bone> bones;
 		std::vector<Morph> morphs;
 		std::vector<DisplayFrame> displayFrame;
-		std::vector<RigitBody> rigidBodies;
+		std::vector<RigidBody> rigidBodies;
 		std::vector<Joint> joints;
 	};
 
@@ -392,7 +394,20 @@ private:
 	/* 変数宣言 */
 	std::shared_ptr<ConstantBuffer> mMaterialDataBuffer;			// マテリアルデータを保存する定数バッファ
 	std::vector<PMX::MaterialData> mMaterialData;
+	std::shared_ptr<TextureLoader> mTextureLoader;
+	std::vector<int>				mTextureHandle;		// テクスチャハンドル
 
 	/* ローカルメソッド定義 */
+
+	/// @fn LoadModelTexture
+	/// モデルのテクスチャデータをロードする
+	/// @param[in] textures テクスチャデータ配列
+	/// @param[in] modelFilePath モデルファイルパス
+	void LoadModelTexture(const std::vector<PMX::Texture> & textures, const std::wstring& modelFilePath);
+
+	/// @fn SetMaterial
+	/// マテリアルデータをセットする
+	/// @param[in] materials マテリアルデータ配列
 	void SetMaterial(const std::vector<PMX::Material>& materials);
+
 };

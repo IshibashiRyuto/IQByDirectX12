@@ -1,6 +1,8 @@
 #include "PMXLoader.h"
+#include "../ConvertString.h"
 #include <cstdio>
 #include <iostream>
+
 
 PMXLoader::PMXLoader(ComPtr<ID3D12Device> device)
 	: ModelLoader(device)
@@ -50,6 +52,8 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 			return nullptr;
 		}
 
+		modelDataDesc.modelFilePath = ConvertStringToWString(filePath);
+
 		// ヘッダデータ読み込み
 		LoadHeader(modelDataDesc.header, fp);
 
@@ -86,6 +90,19 @@ std::string PMXLoader::ReadTextBuf(FILE * fp)
 
 	int bufSize;
 	fread(&bufSize, sizeof(int), 1, fp);
+	text.resize(bufSize);
+	fread((void*)text.data(), sizeof(char) * bufSize, 1, fp);
+
+	return text;
+}
+
+std::wstring PMXLoader::ReadTextBufWString(FILE * fp)
+{
+	std::wstring text;
+
+	int bufSize;
+	fread(&bufSize, sizeof(int), 1, fp);
+	text.resize(bufSize);
 	fread((void*)text.data(), sizeof(char) * bufSize, 1, fp);
 
 	return text;
@@ -107,10 +124,10 @@ void PMXLoader::LoadHeader(PMX::Header & header, FILE * fp)
 
 void PMXLoader::LoadModelInfo(PMX::ModelInfo & modelInfo, FILE * fp)
 {
-	modelInfo.modelName = ReadTextBuf(fp);
-	modelInfo.modelNameEng = ReadTextBuf(fp);
-	modelInfo.comment = ReadTextBuf(fp);
-	modelInfo.commentEng = ReadTextBuf(fp);
+	modelInfo.modelName = ReadTextBufWString(fp);
+	modelInfo.modelNameEng = ReadTextBufWString(fp);
+	modelInfo.comment = ReadTextBufWString(fp);
+	modelInfo.commentEng = ReadTextBufWString(fp);
 }
 
 void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::Header & header, FILE * fp)
@@ -190,7 +207,7 @@ void PMXLoader::LoadTextureData(std::vector<PMX::Texture>& textureData, FILE * f
 	textureData.resize(textureNum);
 	for (auto& texture : textureData)
 	{
-		texture.texturePath = ReadTextBuf(fp);
+		texture.texturePath = ReadTextBufWString(fp);
 	}
 }
 
@@ -202,8 +219,8 @@ void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX
 	materialData.resize(materialNum);
 	for (auto& material : materialData)
 	{
-		material.name = ReadTextBuf(fp);
-		material.nameEng = ReadTextBuf(fp);
+		material.name = ReadTextBufWString(fp);
+		material.nameEng = ReadTextBufWString(fp);
 		fread(&material.diffuse, sizeof(material.diffuse), 1, fp);
 		fread(&material.specular, sizeof(material.specular), 1, fp);
 		fread(&material.specularFactor, sizeof(material.specularFactor), 1, fp);
@@ -224,7 +241,7 @@ void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX
 			fread(&material.shareToonTexture, sizeof(material.shareToonTexture), 1, fp);
 		}
 
-		material.materialMemo = ReadTextBuf(fp);
+		material.materialMemo = ReadTextBufWString(fp);
 		fread(&material.vertNum, sizeof(material.vertNum), 1, fp);
 	}
 }

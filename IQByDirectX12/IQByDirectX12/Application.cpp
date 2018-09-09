@@ -299,20 +299,21 @@ bool Application::CreateRootSignature()
 {
 	mRootSignature = RootSignature::Create();
 	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	int materialCBVIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int materialIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
-	mRootSignature->AddDescriptorRange(materialCBVIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 2, 0);
 	
-	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());;
+	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
 
 
 bool Application::ReadShader()
 {
-	mVertexShaderClass = Shader::Create(L"PMDModelShader.hlsl", "VSMain", "vs_5_0");
+	mVertexShaderClass = Shader::Create(L"PMXModelShader.hlsl", "VSMain", "vs_5_0");
 
-	mPixelShaderClass = Shader::Create(L"PMDModelShader.hlsl", "PSMain", "ps_5_0");
+	mPixelShaderClass = Shader::Create(L"PMXModelShader.hlsl", "PSMain", "ps_5_0");
 
 	return true;
 }
@@ -409,7 +410,7 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 30.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 50.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 10.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 50.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		
@@ -446,7 +447,7 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 

@@ -39,8 +39,8 @@ bool TextureManager::IsExist(int handle) const
 }
 
 TextureManager::TextureManager()
-	: mNextTextureHandle(TEXTURE_SIGNATURE)
 {
+	mNextTextureHandle = TEXTURE_SIGNATURE;
 }
 
 void TextureManager::UpdateNextTextureHandle()

@@ -5,12 +5,15 @@
 #include "../ConstantBuffer.h"
 #include "InstancingDataManager.h"
 #include "../InstanceBuffer.h"
+#include "../Texture/TextureLoader.h"
+#include "../Texture/TextureManager.h"
 
-PMXModelData::PMXModelData(ComPtr<ID3D12Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData,int materialCount)
-	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)), 
+PMXModelData::PMXModelData(ComPtr<ID3D12Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount)
+	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
 		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device, 1 + materialCount))
-	, mMaterialDataBuffer( ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount) )
+		DescriptorHeap::Create(device, 1 + materialCount * 3))
+	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
+	, mTextureLoader(TextureLoader::Create(device))
 {
 }
 
@@ -26,6 +29,7 @@ std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, 
 std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, const PMX::ModelDataDesc & modelDataDesc)
 {
 	auto modelData = std::shared_ptr<PMXModelData>(new PMXModelData(device, modelDataDesc.vertices, modelDataDesc.indexies, (int)modelDataDesc.materials.size()));
+	modelData->LoadModelTexture(modelDataDesc.textures, modelDataDesc.modelFilePath);
 	modelData->SetMaterial(modelDataDesc.materials);
 	return modelData;
 }
@@ -41,9 +45,19 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 	int indexOffset = 0;
 	for (int i = 0; i < mMaterialData.size(); ++i)
 	{
-		mDescHeap->BindRootDescriptorTable(1, i + 1);
+		mDescHeap->BindRootDescriptorTable(1, i * 3 + 1);
 		graphicsCommandList->DrawIndexedInstanced(mMaterialData[i].vertsNum, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterialData[i].vertsNum;
+	}
+}
+
+void PMXModelData::LoadModelTexture(const std::vector<PMX::Texture>& textures, const std::wstring& modelFilePath)
+{
+	mTextureHandle.resize(textures.size());
+	for (unsigned int i = 0; i < mTextureHandle.size(); ++i)
+	{
+		auto modelTexturePath = modelFilePath.substr(0, modelFilePath.find_last_of('/')+1) + textures[i].texturePath;
+		mTextureHandle[i] = mTextureLoader->Load(modelTexturePath);
 	}
 }
 
@@ -58,6 +72,10 @@ void PMXModelData::SetMaterial(const std::vector<PMX::Material>& materials)
 		mMaterialData[i].ambient = materials[i].ambient;
 		mMaterialData[i].vertsNum = materials[i].vertNum;
 		mMaterialDataBuffer->SetData(&mMaterialData[i], sizeof(PMX::MaterialData), i);
-		mDescHeap->SetConstantBufferView(mMaterialDataBuffer->GetConstantBufferView(i), i + 1);
+		mDescHeap->SetConstantBufferView(mMaterialDataBuffer->GetConstantBufferView(i), i * 3 + 1);
+		auto normalTexture = TextureManager::GetInstance().GetTexture(mTextureHandle[materials[i].textureIndex]);
+		mDescHeap->SetTexture(normalTexture, i*3 + 2);
+		auto sphereTexture = TextureManager::GetInstance().GetTexture(mTextureHandle[materials[i].textureIndex]);
+		mDescHeap->SetTexture(sphereTexture, i * 3 + 3);
 	}
 }

@@ -42,6 +42,11 @@ private:
 	///		最初の4[Byte]にバッファサイズを、続くn[Byte]に文字列データが格納されている
 	std::string ReadTextBuf(FILE *fp);
 
+	/// @fn ReadTextBufWString
+	/// ワイド文字列バッファデータを取得する
+	/// @param[in] fp: ファイルポインタ
+	std::wstring ReadTextBufWString(FILE *fp);
+
 	/// @fn LoadHeader
 	/// ヘッダデータを読み込む
 	/// @param[in] header : PMXのヘッダ

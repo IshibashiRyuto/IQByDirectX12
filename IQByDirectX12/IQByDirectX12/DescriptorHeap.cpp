@@ -57,6 +57,10 @@ void DescriptorHeap::SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC
 
 void DescriptorHeap::SetTexture(std::shared_ptr<Texture> texture, UINT index)
 {
+	if (!texture)
+	{
+		return;
+	}
 	auto srv = texture->GetShaderResourceView();
 	SetShaderResourceView(srv, texture->GetTextureData(), index);
 	texture->SetShaderResourceView(srv);

@@ -42,9 +42,10 @@ public:
 	/// @param[in] filePath : テクスチャのファイルパス
 	/// @retval int :		テクスチャ管理ハンドル
 	int Load(const std::string& filePath);
+	int Load(const std::wstring& filePath);
 private:
 	/*変数宣言*/
-	std::map< std::string, int> mTextureHandleManager;						// 読み込み済みテクスチャのハンドルを管理する
+	std::map< std::wstring, int> mTextureHandleManager;						// 読み込み済みテクスチャのハンドルを管理する
 	ComPtr<ID3D12Device> mDevice;											// ID3D12デバイス
 	TextureManager &mTextureManager;
 
