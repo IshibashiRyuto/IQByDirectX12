@@ -172,25 +172,23 @@ namespace PMX
 				unsigned char display : 1;
 				unsigned char operational : 1;
 				unsigned char ik : 1;
-				unsigned char local : 1;
+				unsigned char padding1 : 1;
+				unsigned char giveLocal : 1;
 				unsigned char giveRotation : 1;
+				unsigned char giveMove : 1;
 				unsigned char axisFixed : 1;
 				unsigned char localAxis : 1;
 				unsigned char physicsPostDeform : 1;
 				unsigned char externalParentDeform : 1;
+				unsigned char padding2 : 2;
 			};
 		};
-		union AccessPoint
-		{
-			float position[3];
-			int boneIndex;
-		};
 
-		struct GiveState
-		{
-			int parentBoneIndex;
-			float grantRate;
-		};
+		Math::Vector3 accessPointPosition;
+		int accessPointBoneIndex;
+		
+		int giveStateParentBoneIndex;
+		float giveStateGrantRate;
 		Math::Vector3 axisVector;
 		Math::Vector3 localXAxis;
 		Math::Vector3 localZAxis;

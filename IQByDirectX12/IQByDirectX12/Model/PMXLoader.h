@@ -86,5 +86,11 @@ private:
 	/// @param[in] fp				: ファイルポインタ
 	void LoadMaterial(std::vector<PMX::Material>& materialData, const PMX::Header& header, FILE* fp);
 
+	/// @fn LoadBone
+	/// ボーン情報を読み込む
+	/// @param[in]	boneData		: ボーンデータ配列
+	/// @param[in]	boneIndexSize	: ボーンインデックスのサイズ
+	/// @param[in]	fp				: ファイルポインタ
+	void LoadBone(std::vector<PMX::Bone> & boneData, size_t boneIndexSize, FILE *fp);
 };
 

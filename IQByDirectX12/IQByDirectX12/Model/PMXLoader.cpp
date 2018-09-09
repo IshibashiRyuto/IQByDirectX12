@@ -72,6 +72,9 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		// マテリアル情報読み込み
 		LoadMaterial(modelDataDesc.materials, modelDataDesc.header, fp);
 
+		// ボーン情報読み込み
+		LoadBone(modelDataDesc.bones, static_cast<size_t>( modelDataDesc.header.pmxDataInfo[static_cast<int>(PMX::DataInfo::boneIndexSize)] ), fp);
+
 		fclose(fp);
 
 		auto modelData = PMXModelData::Create(mDevice, modelDataDesc);
@@ -243,5 +246,76 @@ void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX
 
 		material.materialMemo = ReadTextBufWString(fp);
 		fread(&material.vertNum, sizeof(material.vertNum), 1, fp);
+	}
+}
+
+void PMXLoader::LoadBone(std::vector<PMX::Bone>& boneData, size_t boneIndexSize, FILE * fp)
+{
+	int boneCount;
+	fread(&boneCount, sizeof(boneCount), 1, fp);
+	boneData.resize(boneCount);
+	for (auto& bone : boneData)
+	{
+		bone.name = ReadTextBufWString(fp);
+		bone.nameEng = ReadTextBufWString(fp);
+
+		fread(&bone.position, sizeof(bone.position), 1, fp);
+		fread(&bone.parentBoneIndex, boneIndexSize, 1, fp);
+
+		fread(&bone.deformHierarchy, sizeof(bone.deformHierarchy), 1, fp);
+
+		fread(&bone.boneFlags, sizeof(bone.boneFlags), 1, fp);
+
+		if (bone.accessPointFlag == 0)
+		{
+			fread(&bone.accessPointPosition, sizeof(bone.accessPointPosition), 1, fp);
+		}
+		else
+		{
+			fread(&bone.accessPointBoneIndex, boneIndexSize, 1, fp);
+		}
+
+		if (bone.giveRotation== 1 || bone.giveMove == 1)
+		{
+			fread(&bone.giveStateParentBoneIndex, boneIndexSize, 1, fp);
+			fread(&bone.giveStateGrantRate, sizeof(bone.giveStateGrantRate), 1, fp);
+		}
+
+		if (bone.axisFixed == 1)
+		{
+			fread(&bone.axisVector, sizeof(bone.axisVector), 1, fp);
+		}
+
+		if (bone.localAxis == 1)
+		{
+			fread(&bone.localXAxis, sizeof(bone.localXAxis), 1, fp);
+			fread(&bone.localZAxis, sizeof(bone.localZAxis), 1, fp);
+		}
+
+		if (bone.externalParentDeform == 1)
+		{
+			fread(&bone.externalParentDeformKey, sizeof(bone.externalParentDeformKey), 1, fp);
+		}
+
+		if (bone.ik == 1)
+		{
+			auto& ikData = bone.ikData;
+			fread(&ikData.ikTargetBoneIndex, boneIndexSize, 1, fp);
+			fread(&ikData.ikLoopCount, sizeof(ikData.ikLoopCount), 1, fp);
+			fread(&ikData.ikLoopLimitAngle, sizeof(ikData.ikLoopLimitAngle), 1, fp);
+			fread(&ikData.ikLinkNum, sizeof(ikData.ikLinkNum), 1, fp);
+			ikData.ikLinks.resize(ikData.ikLinkNum);
+			for (auto& ikLink : ikData.ikLinks)
+			{
+				fread(&ikLink.boneIndex, boneIndexSize, 1, fp);
+				fread(&ikLink.rotateLimit, sizeof(ikLink.rotateLimit), 1, fp);
+				if (ikLink.rotateLimit == 1)
+				{
+					fread(&ikLink.lowerLimitAngle, sizeof(ikLink.lowerLimitAngle), 1, fp);
+					fread(&ikLink.upperLimitAngle, sizeof(ikLink.upperLimitAngle), 1, fp);
+				}
+			}
+		}
+		int a = 0;
 	}
 }
