@@ -91,6 +91,20 @@ private:
 	/// @param[in]	boneData		: ボーンデータ配列
 	/// @param[in]	boneIndexSize	: ボーンインデックスのサイズ
 	/// @param[in]	fp				: ファイルポインタ
-	void LoadBone(std::vector<PMX::Bone> & boneData, size_t boneIndexSize, FILE *fp);
+	void LoadBone(std::vector<PMX::BoneData> & boneData, size_t boneIndexSize, FILE *fp);
+
+	/// @fn LoadMorph
+	/// モーフ情報を読み込む
+	/// @param[in] morphData	: モーフデータ配列
+	/// @param[in] header		: PMXファイルヘッダ
+	void LoadMorph(std::vector<PMX::Morph> & morphData, const PMX::Header& header, FILE* fp);
+
+	/// @fn LoadDisplayFrame
+	/// 表示枠を読み込む
+	/// @param[in] displayFrameData	:表示枠データ配列
+	/// @param[in] boneIndexSize	: ボーンインデックスのサイズ
+	/// @param[in] morphIndexSize	: モーフインデックスのサイズ
+	/// @param[in] fp				: ファイルポインタ
+	void LoadDisplayFrame(std::vector<PMX::DisplayFrame> & displayFrameData, size_t boneIndexSize, size_t morphIndexSize, FILE *fp);
 };
 

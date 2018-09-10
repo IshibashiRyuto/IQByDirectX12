@@ -75,6 +75,12 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		// ボーン情報読み込み
 		LoadBone(modelDataDesc.bones, static_cast<size_t>( modelDataDesc.header.pmxDataInfo[static_cast<int>(PMX::DataInfo::boneIndexSize)] ), fp);
 
+		// モーフ情報読み込み
+		LoadMorph(modelDataDesc.morphs, modelDataDesc.header, fp);
+
+		// 表示枠読み込み
+		LoadDisplayFrame(modelDataDesc.displayFrame, static_cast<size_t>(modelDataDesc.header.pmxDataInfo[static_cast<int>(PMX::DataInfo::boneIndexSize)]), static_cast<size_t>(modelDataDesc.header.pmxDataInfo[static_cast<int>(PMX::DataInfo::morphIndexSize)]), fp);
+
 		fclose(fp);
 
 		auto modelData = PMXModelData::Create(mDevice, modelDataDesc);
@@ -249,7 +255,7 @@ void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX
 	}
 }
 
-void PMXLoader::LoadBone(std::vector<PMX::Bone>& boneData, size_t boneIndexSize, FILE * fp)
+void PMXLoader::LoadBone(std::vector<PMX::BoneData>& boneData, size_t boneIndexSize, FILE * fp)
 {
 	int boneCount;
 	fread(&boneCount, sizeof(boneCount), 1, fp);
@@ -316,6 +322,99 @@ void PMXLoader::LoadBone(std::vector<PMX::Bone>& boneData, size_t boneIndexSize,
 				}
 			}
 		}
-		int a = 0;
+	}
+}
+
+void PMXLoader::LoadMorph(std::vector<PMX::Morph>& morphData, const PMX::Header & header, FILE * fp)
+{
+	size_t vertexIndexSize = static_cast<size_t>(header.pmxDataInfo[static_cast<int>(PMX::DataInfo::vertexIndexSize)]);
+	size_t boneIndexSize = static_cast<size_t>(header.pmxDataInfo[static_cast<int>(PMX::DataInfo::boneIndexSize)]);
+	size_t materialIndexSize = static_cast<size_t>(header.pmxDataInfo[static_cast<int>(PMX::DataInfo::materialIndexSize)]);
+	size_t morphIndexSize = static_cast<size_t>(header.pmxDataInfo[static_cast<int>(PMX::DataInfo::morphIndexSize)]);
+	
+	int morphCount;
+	fread(&morphCount, sizeof(morphCount), 1, fp);
+	morphData.resize(morphCount);
+	for (auto& morph : morphData)
+	{
+		morph.name = ReadTextBufWString(fp);
+		morph.nameEng = ReadTextBufWString(fp);
+
+		fread(&morph.controlPanel, sizeof(morph.controlPanel), 1, fp);
+		fread(&morph.morphType, sizeof(morph.morphType), 1, fp);
+
+		fread(&morph.morphDataCount, sizeof(morph.morphDataCount), 1, fp);
+		
+		morph.morphData.resize(morph.morphDataCount);
+		for (auto& morphInfo : morph.morphData)
+		{
+			switch (static_cast<PMX::MorphType>(morph.morphType))
+			{
+			case PMX::MorphType::Groupe:
+				fread(&morphInfo.groupeMorph.morphIndex, morphIndexSize, 1, fp);
+				fread(&morphInfo.groupeMorph.morphRate, sizeof(morphInfo.groupeMorph.morphRate), 1, fp);
+				break;
+			case PMX::MorphType::Vertex:
+				fread(&morphInfo.vertexMorph.vertIndex, vertexIndexSize, 1, fp);
+				fread(&morphInfo.vertexMorph.positionOffset, sizeof(morphInfo.vertexMorph.positionOffset), 1, fp);
+				break;
+			case PMX::MorphType::Bone:
+				fread(&morphInfo.boneMorph.boneIndex, boneIndexSize, 1, fp);
+				fread(&morphInfo.boneMorph.moveOffset, sizeof(morphInfo.boneMorph.moveOffset), 1, fp);
+				fread(&morphInfo.boneMorph.rotation, sizeof(morphInfo.boneMorph.rotation), 1, fp);
+				break;
+			case PMX::MorphType::UV:
+			case PMX::MorphType::AppendUV1:
+			case PMX::MorphType::AppendUV2:
+			case PMX::MorphType::AppendUV3:
+			case PMX::MorphType::AppendUV4:
+				fread(&morphInfo.uvMorph.vertIndex, vertexIndexSize, 1, fp);
+				fread(&morphInfo.uvMorph.uvOffset, sizeof(morphInfo.uvMorph.uvOffset), 1, fp);
+				break;
+			case PMX::MorphType::Material:
+				fread(&morphInfo.materialMorph.materialIndex, materialIndexSize, 1, fp);
+				fread(&morphInfo.materialMorph.offsetCalcType, sizeof(morphInfo.materialMorph.offsetCalcType), 1, fp);
+				fread(&morphInfo.materialMorph.diffuse, sizeof(morphInfo.materialMorph.diffuse), 1, fp);
+				fread(&morphInfo.materialMorph.specular, sizeof(morphInfo.materialMorph.specular), 1, fp);
+				fread(&morphInfo.materialMorph.specularity, sizeof(morphInfo.materialMorph.specularity), 1, fp);
+				fread(&morphInfo.materialMorph.ambient, sizeof(morphInfo.materialMorph.ambient), 1, fp);
+				fread(&morphInfo.materialMorph.edgeColor, sizeof(morphInfo.materialMorph.edgeColor), 1, fp);
+				fread(&morphInfo.materialMorph.edgeSize, sizeof(morphInfo.materialMorph.edgeSize), 1, fp);
+				fread(&morphInfo.materialMorph.textureFactor, sizeof(morphInfo.materialMorph.textureFactor), 1, fp);
+				fread(&morphInfo.materialMorph.sphereTextureFactor, sizeof(morphInfo.materialMorph.sphereTextureFactor), 1, fp);
+				fread(&morphInfo.materialMorph.toonTextureFactor, sizeof(morphInfo.materialMorph.toonTextureFactor), 1, fp);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
+
+void PMXLoader::LoadDisplayFrame(std::vector<PMX::DisplayFrame>& displayFrameData, size_t boneIndexSize, size_t morphIndexSize, FILE * fp)
+{
+	int displayFrameCount;
+	fread(&displayFrameCount, sizeof(displayFrameCount), 1, fp);
+	displayFrameData.resize(displayFrameCount);
+	for (auto& displayFrame : displayFrameData)
+	{
+		displayFrame.name = ReadTextBufWString(fp);
+		displayFrame.nameEng = ReadTextBufWString(fp);
+
+		fread(&displayFrame.specialFrameFlag, sizeof(displayFrame.specialFrameFlag), 1, fp);
+		fread(&displayFrame.frameElementCount, sizeof(displayFrame.frameElementCount), 1, fp);
+		displayFrame.frameElements.resize(displayFrame.frameElementCount);
+		for (auto displayFrameElement : displayFrame.frameElements)
+		{
+			fread(&displayFrameElement.elementType, sizeof(displayFrameElement.elementType), 1, fp);
+			if (displayFrameElement.elementType == 0)
+			{
+				fread(&displayFrameElement.boneIndex, boneIndexSize, 1, fp);
+			}
+			else if (displayFrameElement.elementType == 1)
+			{
+				fread(&displayFrameElement.morphIndex, morphIndexSize, 1, fp);
+			}
+		}
 	}
 }

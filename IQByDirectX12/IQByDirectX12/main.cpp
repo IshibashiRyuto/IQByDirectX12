@@ -29,5 +29,7 @@ int main(void)
 		app->Render();		
 	}
 
+	app->Terminate();
+
 	return 0;
 }

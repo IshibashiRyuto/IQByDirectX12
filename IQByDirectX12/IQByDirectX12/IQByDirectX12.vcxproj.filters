@@ -135,6 +135,9 @@
     <ClCompile Include="Shader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="GraphicsCommandList.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="ConvertString.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsCommandList.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -88,7 +88,6 @@ float4 PSMain(PSInput input) : SV_Target
 
     
     float4 texColor = materialNormalTexture.Sample(smp, input.uv);
-    +materialSphereTexture.Sample(smp, input.uv);
 
     float4 modelColor = (float4(modelAmbientColor, 0.0f) + float4(modelDiffuseColor, alpha));
     modelColor = modelColor * texColor;

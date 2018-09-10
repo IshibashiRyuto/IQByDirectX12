@@ -59,6 +59,9 @@ public:
 	/// •`‰æˆ—
 	void Render();
 
+	/// @fn Terminate
+	/// I—¹ˆ—
+	void Terminate();
 private:
 	/* ’è”’è‹` */
 	const int RENDER_TARGET_NUM = 2;

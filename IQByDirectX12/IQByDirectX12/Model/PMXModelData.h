@@ -154,7 +154,7 @@ namespace PMX
 		std::vector<IKLink> ikLinks;
 	};
 
-	struct Bone
+	struct BoneData
 	{
 		std::wstring name;
 		std::wstring nameEng;
@@ -218,16 +218,16 @@ namespace PMX
 	struct MaterialMorph
 	{
 		int materialIndex;
-		unsigned char offsetCalcType : 1;
+		unsigned char offsetCalcType;
 		float diffuse[4];
 		float specular[3];
-		float specularFactor;
+		float specularity;
 		float ambient[3];
 		float edgeColor[4];
 		float edgeSize;
 		float textureFactor[4];
 		float sphereTextureFactor[4];
-		float ToonTextureFactor[4];
+		float toonTextureFactor[4];
 	};
 
 	struct GroupeMorph
@@ -268,9 +268,9 @@ namespace PMX
 		Material,
 	};
 
-	struct FrameData
+	struct FrameElement
 	{
-		unsigned char dataType;
+		unsigned char elementType;
 		union
 		{
 			int boneIndex;
@@ -283,8 +283,8 @@ namespace PMX
 		std::wstring name;
 		std::wstring nameEng;
 		unsigned char specialFrameFlag;
-		int FrameDataCount;
-		std::vector<FrameData> frameData;
+		int frameElementCount;
+		std::vector<FrameElement> frameElements;
 	};
 
 	struct RigidBody
@@ -339,7 +339,7 @@ namespace PMX
 		std::vector<Index> indexies;
 		std::vector<PMX::Texture> textures;
 		std::vector<Material> materials;
-		std::vector<Bone> bones;
+		std::vector<BoneData> bones;
 		std::vector<Morph> morphs;
 		std::vector<DisplayFrame> displayFrame;
 		std::vector<RigidBody> rigidBodies;

@@ -124,6 +124,7 @@
     <ClCompile Include="DepthBuffer.cpp" />
     <ClCompile Include="DescriptorHeap.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="GraphicsCommandList.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="InstanceBuffer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="DescriptorHeap.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="GraphicsCommandList.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="InstanceBuffer.h" />
     <ClInclude Include="MathConvert.h" />
