@@ -15,6 +15,8 @@ namespace Math
 	struct Vector2;
 	struct Vector3;
 	struct Vector4;
+	struct Matrix4x4;
+	struct Quaternion;
 
 	// 円周率π
 	const float F_PI = 3.14159265f;
@@ -202,6 +204,9 @@ namespace Math
 	/// 4x4行列から3次元の並行移動成分を取得する
 	Vector3 GetMatrixTranslate(const Matrix4x4& mat);
 
+	/// 4x4行列から任意軸回転を行うクォータニオン成分を取得する
+	Quaternion GetMatrixRotation(const Matrix4x4& mat);
+
 	/// 4x4行列の転置行列を取得する
 	Matrix4x4 GetTransposeMatrix(const Matrix4x4& mat);
 
@@ -259,6 +264,7 @@ namespace Math
 		Quaternion();
 		Quaternion(float mw, float mx, float my, float mz);
 		Quaternion(float mx, float my, float mz);
+		Quaternion(const Math::Vector3& vector);
 		Quaternion(const Quaternion& other);
 		Quaternion(Quaternion&& other);
 
@@ -294,7 +300,7 @@ namespace Math
 	/// 任意軸方向回転を行う四元数を作成する
 	Quaternion CreateRotAxisQuaternion(const Vector3& axis, float angle);
 
-	/// XYZ軸回転を行う資源数を作成する
+	/// XYZ軸回転を行う四元数を作成する
 	Quaternion CreateRotXYZQuaternion(const Vector3& rotAngle);
 
 	/// R3ワールド座標系で任意の方向ベクトルを

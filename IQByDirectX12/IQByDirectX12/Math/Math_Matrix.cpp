@@ -260,6 +260,66 @@ Vector3 Math::GetMatrixTranslate(const Matrix4x4& mat)
 	return Vector3(mat(3, 0), mat(3, 1), mat(3, 2));
 }
 
+Quaternion Math::GetMatrixRotation(const Matrix4x4 & mat)
+{
+	auto scale = GetMatrixScale(mat);
+	auto rotMatrix = mat;
+	rotMatrix._11 /= scale.x;
+	rotMatrix._22 /= scale.y;
+	rotMatrix._33 /= scale.z;
+	float x, y, z, w;
+	x =  rotMatrix._11 - rotMatrix._22 - rotMatrix._33 + 1.0f;
+	y = -rotMatrix._11 + rotMatrix._22 - rotMatrix._33 + 1.0f;
+	z = -rotMatrix._11 - rotMatrix._22 + rotMatrix._33 + 1.0f;
+	w =  rotMatrix._11 + rotMatrix._22 + rotMatrix._33 + 1.0f;
+	float mult;
+	float v;
+	if (x >= y && x >= z && x >= w)
+	{
+		v = sqrtf(x) * 0.5f;
+		mult = 0.25f / v;
+
+		x = v;
+		y = (rotMatrix._12 + rotMatrix._21) * mult;
+		z = (rotMatrix._31 + rotMatrix._13) * mult;
+		w = (rotMatrix._23 - rotMatrix._32) * mult;
+	}
+	else if (y >= x && y >= z && y >= w)
+	{
+		v = sqrtf(y) * 0.5f;
+		mult = 0.25f / v;
+
+		x = (rotMatrix._12 + rotMatrix._21) * mult;
+		y = v;
+		z = (rotMatrix._23 + rotMatrix._32) * mult;
+		w = (rotMatrix._31 - rotMatrix._13) * mult;
+	}
+	else if (z >= x && z >= y && z >= w)
+	{
+		v = sqrtf(z) * 0.5f;
+		mult = 0.25f / v;
+
+		x = (rotMatrix._31 + rotMatrix._13) * mult;
+		y = (rotMatrix._23 + rotMatrix._32) * mult;
+		z = v;
+		w = (rotMatrix._12 - rotMatrix._21) * mult;
+	}
+	else if (w >= x && w >= y && w >= z)
+	{
+
+		v = sqrtf(w) * 0.5f;
+		mult = 0.25f / v;
+
+		x = (rotMatrix._23 - rotMatrix._32) * mult;
+		y = (rotMatrix._31 - rotMatrix._13) * mult;
+		z = (rotMatrix._12 - rotMatrix._21) * mult;
+		w = v;
+	}
+
+
+	return Quaternion(w, x, y, z)/Quaternion(w, x, y, z).Norm();
+}
+
 Matrix4x4 Math::GetTransposeMatrix(const Matrix4x4& mat)
 {
 	return Matrix4x4
@@ -432,13 +492,14 @@ Matrix4x4 Math::CreateZRotMatrix(float rad)
 
 Matrix4x4 Math::CreateAxisRotMatrix(const Vector3& axis, float rad)
 {
+	auto nAxis = Normalize(axis);
 	float tCos = cos(rad);
 	float tSin = sin(rad);
 	return Matrix4x4
 	(
-		axis.x * axis.x * (1 - tCos) + tCos, axis.x * axis.y * (1 - tCos) + axis.z * tSin, axis.x * axis.z * (1 - tCos) - axis.y * tSin, 0.0f,
-		axis.x * axis.y * (1 - tCos) - axis.z * tSin, axis.y * axis.y * (1 - tCos) + tCos, axis.y * axis.z * (1 - tCos) + axis.x * tSin, 0.0f,
-		axis.x * axis.z * (1 - tCos) + axis.y * tSin, axis.y * axis.z * (1 - tCos) - axis.x * tSin, axis.z * axis.z * (1 - tCos) + tCos , 0.0f,
+		nAxis.x * nAxis.x * (1 - tCos) + tCos, nAxis.x * nAxis.y * (1 - tCos) + nAxis.z * tSin, nAxis.x * nAxis.z * (1 - tCos) - nAxis.y * tSin, 0.0f,
+		nAxis.x * nAxis.y * (1 - tCos) - nAxis.z * tSin, nAxis.y * nAxis.y * (1 - tCos) + tCos, nAxis.y * nAxis.z * (1 - tCos) + nAxis.x * tSin, 0.0f,
+		nAxis.x * nAxis.z * (1 - tCos) + nAxis.y * tSin, nAxis.y * nAxis.z * (1 - tCos) - nAxis.x * tSin, nAxis.z * nAxis.z * (1 - tCos) + tCos , 0.0f,
 		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }

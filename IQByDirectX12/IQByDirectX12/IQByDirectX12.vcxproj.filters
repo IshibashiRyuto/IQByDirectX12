@@ -230,10 +230,10 @@
     <ClInclude Include="Shader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ConvertString.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GraphicsCommandList.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvertString.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

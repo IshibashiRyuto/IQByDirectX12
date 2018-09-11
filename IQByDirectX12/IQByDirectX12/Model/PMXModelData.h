@@ -2,7 +2,8 @@
 	@file		PMXModelData.h
 	@brief		PMXモデルのデータを格納する
 	@param		History
-	2018/08/28	初版作成
+		2018/08/28	初版作成
+		2018/09/09	頂点データの構造を変更
 */
 #pragma once
 // システムヘッダインクルード

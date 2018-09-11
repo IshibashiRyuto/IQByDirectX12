@@ -4,6 +4,9 @@
 #include <cassert>
 #include "Math.h"
 
+/// @date
+/// 2018/09/11	operator*=‚ÌƒoƒN‚ðC³
+
 using namespace Math;
 
 
@@ -21,7 +24,13 @@ Quaternion::Quaternion(float mw, float mx, float my, float mz)
 }
 
 Quaternion::Quaternion(float mx, float my, float mz)
-	: Quaternion(0.0f, mx, my, mz)
+	: Quaternion(Math::Vector3( mx, my, mz) )
+{
+}
+
+Math::Quaternion::Quaternion(const Math::Vector3 & vector)
+	: w(0.0f)
+	, v(vector)
 {
 }
 
@@ -75,7 +84,7 @@ Quaternion& Quaternion::operator-=(const Quaternion& quat)
 Quaternion& Quaternion::operator*=(const Quaternion& quat)
 {
 	auto mw = this->w * quat.w - Dot(this->v, quat.v);
-	auto mv = this->w * quat.v + quat.w * this->v + Cross(this->v, quat.v);
+	auto mv = this->w * quat.v + quat.w * this->v - Cross(this->v, quat.v);
 	this->w = mw;
 	this->v = mv;
 	return *this;
@@ -223,9 +232,9 @@ Matrix4x4 Math::GetMatrixFromQuat(const Quaternion & quat)
 {
 	return Matrix4x4
 	(
-		(1.0f - 2.0f * quat.y * quat.y - 2.0f * quat.z * quat.z), (2.0f * quat.x*quat.y + 2.0f * quat.w*quat.z), (2.0f * quat.x * quat.z - 2.0f * quat.w*quat.y), 0.0f,
-		(2.0f * quat.x * quat.y - 2.0f * quat.w * quat.z), (1.0f - 2.0f * quat.x*quat.x - 2.0f * quat.z*quat.z), (2.0f * quat.y * quat.z + 2.0f * quat.w*quat.x), 0.0f,
-		(2.0f * quat.x * quat.z + 2.0f * quat.w * quat.y), (2.0f * quat.y * quat.z - 2.0f * quat.w*quat.x), (1.0f - 2.0f * quat.x * quat.x - 2.0f * quat.y*quat.y), 0.0f,
+		(1.0f - 2.0f * quat.y * quat.y - 2.0f * quat.z * quat.z),	(2.0f * quat.x*quat.y + 2.0f * quat.w*quat.z),			(2.0f * quat.x * quat.z - 2.0f * quat.w*quat.y), 0.0f,
+		(2.0f * quat.x * quat.y - 2.0f * quat.w * quat.z),			(1.0f - 2.0f * quat.x*quat.x - 2.0f * quat.z*quat.z),	(2.0f * quat.y * quat.z + 2.0f * quat.w*quat.x), 0.0f,
+		(2.0f * quat.x * quat.z + 2.0f * quat.w * quat.y),			(2.0f * quat.y * quat.z - 2.0f * quat.w*quat.x),		(1.0f - 2.0f * quat.x * quat.x - 2.0f * quat.y*quat.y), 0.0f,
 		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
