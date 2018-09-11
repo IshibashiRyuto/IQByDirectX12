@@ -7,6 +7,7 @@
 #pragma once
 // システムヘッダインクルード
 #include<memory>
+#include <list>
 
 //自作ヘッダインクルード
 #include "../Math/Math.h"

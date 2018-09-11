@@ -62,7 +62,6 @@ public:
 	void SetScale(const Math::Vector3& scale);
 	void SetScale(float scale);
 
-
 	/// @fn Draw
 	/// ƒ‚ƒfƒ‹‚Ì•`‰æˆ—‚ğs‚¤
 	void Draw() const;
