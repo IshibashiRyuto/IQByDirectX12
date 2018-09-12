@@ -145,6 +145,7 @@
     <ClCompile Include="Model\PMDModelData.cpp" />
     <ClCompile Include="Model\PMXLoader.cpp" />
     <ClCompile Include="Model\PMXModelData.cpp" />
+    <ClCompile Include="Pose.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="RootSignature.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Model\PMDModelData.h" />
     <ClInclude Include="Model\PMXLoader.h" />
     <ClInclude Include="Model\PMXModelData.h" />
+    <ClInclude Include="Pose.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="RootSignature.h" />
     <ClInclude Include="Shader.h" />
