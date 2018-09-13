@@ -54,6 +54,14 @@ public:
 	/// p¨ŒvZ‘ÎÛŠO‚É‚È‚é
 	void SetBoneData(const Bone& bone, int boneIndex, int parentBoneIndex = -1);
 
+	/// @fn Lerp
+	/// p¨î•ñ‚ğ•âŠÔ‚·‚é
+	/// @param[in] prePose : time = 0.0 ‚Ìê‡‚Ìp¨
+	/// @param[in] postPose : time = 1.0 ‚Ìê‡‚Ìp¨
+	/// @param[in] time	: •âŠÔŒW”( 0.0 <= time <= 1.0 ‚ÉƒNƒ‰ƒ“ƒv‚³‚ê‚é )
+	/// @retval p¨s—ñŒvZ‘O‚Ìp¨
+	static Pose Lerp(const Pose& prePose, const Pose& postPose, float time);
+
 private:
 	/* ’è”’è‹` */
 	const int ROOT_BONE_INDEX = -1;

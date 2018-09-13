@@ -15,6 +15,7 @@
 // 自作ヘッダインクルード
 #include "ModelData.h"
 #include "../Math/Math.h"
+#include "../Pose.h"
 
 // クラス使用宣言
 class VertexBuffer;

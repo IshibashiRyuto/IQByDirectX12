@@ -49,6 +49,23 @@ void Pose::SetBoneData(const Bone & bone, int boneIndex, int parentBoneIndex)
 	(*mChildBoneList)[parentBoneIndex].push_back(boneIndex);
 }
 
+Pose Pose::Lerp(const Pose & prePose, const Pose & postPose, float time)
+{
+	if (prePose.mChildBoneList != postPose.mChildBoneList)
+	{
+		return Pose();
+	}
+	time = Math::Clamp(time, 0.0f, 1.0f);
+	Pose lerpPose(prePose);
+	for (unsigned int i = 0; i < lerpPose.mBones.size(); ++i)
+	{
+		auto preRot = prePose.mBones[i].GetRotation();
+		auto postRot = postPose.mBones[i].GetRotation();
+		lerpPose.mBones[i].SetRotation(Math::Slerp(preRot,postRot,time));
+	}
+	return lerpPose;
+}
+
 void Pose::CalcBoneMatrix(const Math::Matrix4x4 & mat, const std::list<int>& childBoneList)
 {
 	if (!mChildBoneList)
@@ -64,7 +81,7 @@ void Pose::CalcBoneMatrix(const Math::Matrix4x4 & mat, const std::list<int>& chi
 		}
 		auto& childBone = mBones[childBoneIndex];
 		childBone.Rotate(mat);
-		auto rotMat = mat * childBone.GetBoneMatrix();
+		auto rotMat = childBone.GetBoneMatrix() * mat;
 		CalcBoneMatrix(rotMat, (*mChildBoneList)[childBoneIndex]);
 	}
 }

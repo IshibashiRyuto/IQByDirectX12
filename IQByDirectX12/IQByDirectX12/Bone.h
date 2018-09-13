@@ -28,6 +28,9 @@ public:
 	/// ボーンを回転させる
 	void Rotate(const Math::Matrix4x4& matrix);
 
+	/// ボーンの回転情報を取得する
+	const Math::Quaternion& GetRotation() const;
+
 	/// ボーン回転行列を取得する
 	const Math::Matrix4x4 GetBoneMatrix() const;
 private:
