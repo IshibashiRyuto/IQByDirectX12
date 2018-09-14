@@ -55,7 +55,7 @@ namespace PMX
 		Math::Vector3 position;
 		Math::Vector3 normal;
 		Math::Vector2 uv;
-		std::vector<Math::Vector4> appendUV;
+		Math::Vector4 appendUV[4];
 		WeightDeformType weightDeformType;
 		DeformParam deformParam;
 

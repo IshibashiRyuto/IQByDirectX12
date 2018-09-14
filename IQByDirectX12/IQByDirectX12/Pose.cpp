@@ -95,7 +95,7 @@ void Pose::CalcBoneMatrix(const Math::Matrix4x4 & mat, const std::list<int>& chi
 		}
 		auto& childBone = mBones[childBoneIndex];
 		childBone->Rotate(mat);
-		auto rotMat = childBone->GetBoneMatrix() * mat;
+		auto rotMat = childBone->GetBoneMatrix();
 
 
 		CalcBoneMatrix(rotMat, (*mChildBoneList)[childBoneIndex]);

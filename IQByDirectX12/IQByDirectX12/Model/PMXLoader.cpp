@@ -156,8 +156,10 @@ void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::
 		
 		if (isUseAppendUV)
 		{
-			vertex.appendUV.resize(header.pmxDataInfo[(int)PMX::DataInfo::appendUVCount]);
-			fread((void*)vertex.appendUV.data(), sizeof(vertex.appendUV[0]), vertex.appendUV.size(), fp);
+			for (int i = 0; i < header.pmxDataInfo[(int)PMX::DataInfo::appendUVCount]; ++i)
+			{
+				fread(&vertex.appendUV[i], sizeof(vertex.appendUV[i]), 1, fp);
+			}
 		}
 
 		fread(&vertex.weightDeformType, sizeof(char), 1, fp);
@@ -169,18 +171,26 @@ void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::
 			break;
 
 		case PMX::WeightDeformType::BDEF2:
-			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 2, fp);
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[1], boneIndexSize, 1, fp);
 			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
 			break;
 
 		case PMX::WeightDeformType::BDEF4:
-			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 4, fp);
-			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 4, fp);
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[1], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[2], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[3], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
+			fread(&vertex.deformParam.boneWeight[1], sizeof(vertex.deformParam.boneWeight[1]), 1, fp);
+			fread(&vertex.deformParam.boneWeight[2], sizeof(vertex.deformParam.boneWeight[2]), 1, fp);
+			fread(&vertex.deformParam.boneWeight[3], sizeof(vertex.deformParam.boneWeight[3]), 1, fp);
 			break;
 
 		case PMX::WeightDeformType::SDEF:
-			fread(&vertex.deformParam.boneIndex, boneIndexSize, 2, fp);
-			fread(&vertex.deformParam.boneWeight, sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[1], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
 			fread(&vertex.deformParam.c, sizeof(vertex.deformParam.c), 1, fp);
 			fread(&vertex.deformParam.r0, sizeof(vertex.deformParam.r0), 1, fp);
 			fread(&vertex.deformParam.r1, sizeof(vertex.deformParam.r1), 1, fp);

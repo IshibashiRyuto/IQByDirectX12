@@ -6,6 +6,8 @@
 Bone::Bone(const Math::Vector3 & headPosition)
 	: mOriginHeadPosition(headPosition)
 	, mRotatedHeadPosition(headPosition)
+	, mRotation(Math::CreateRotAxisQuaternion(Math::Vector3(0.0f,1.0f,0.0f), 0.0f))
+	, mRotatedRotation(Math::CreateRotAxisQuaternion(Math::Vector3(0.0f, 1.0f, 0.0f), 0.0f))
 {
 }
 
@@ -36,6 +38,7 @@ void Bone::SetRotation(float rotX, float rotY, float rotZ)
 void Bone::Rotate(const Math::Matrix4x4 & matrix)
 {
 	mRotatedHeadPosition = mOriginHeadPosition * matrix;
+	mRotatedRotation = Math::GetMatrixRotation(matrix) * mRotation;
 }
 
 const Math::Quaternion & Bone::GetRotation() const
@@ -45,5 +48,5 @@ const Math::Quaternion & Bone::GetRotation() const
 
 const Math::Matrix4x4 Bone::GetBoneMatrix() const
 {
-	return Math::CreateTranslateMatrix(-mRotatedHeadPosition) * Math::GetMatrixFromQuat(mRotation) * Math::CreateTranslateMatrix(mRotatedHeadPosition);
+	return Math::CreateTranslateMatrix(-mOriginHeadPosition) * Math::GetMatrixFromQuat(mRotatedRotation) * Math::CreateTranslateMatrix(mRotatedHeadPosition);
 }

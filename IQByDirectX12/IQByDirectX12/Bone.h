@@ -41,6 +41,8 @@ private:
 	Math::Vector3 mOriginHeadPosition;		// ボーン初期ヘッド位置
 	Math::Vector3 mRotatedHeadPosition;		// 回転操作後のボーンヘッド位置
 	Math::Quaternion mRotation;				// ボーンの回転量
+	Math::Quaternion mRotatedRotation;		// 回転操作後のボーン回転量
+	Math::Matrix4x4 mMatrix;
 	/* プライベートメソッド定義 */
 	/// コンストラクタ
 	Bone(const Math::Vector3 & headPosition);

@@ -105,9 +105,11 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 		}
 	}
 
+	// debug
 	auto& a = mPose->GetBones();
-	a[6]->SetRotation(Math::CreateRotAxisQuaternion(Math::Vector3(1.0f, 0.0f, 0.0f), Math::F_PI / 4.0f) );
+	a[6]->SetRotation(Math::CreateRotAxisQuaternion(Math::Vector3(0.0f, 0.0f, 1.0f), Math::F_PI / 12.0f) );
 	mPose->CalcPose();
+	//debugEnd
 
 	std::vector<Math::Matrix4x4> boneMatrixes;
 	auto poseBones = mPose->GetBones();

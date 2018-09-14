@@ -30,6 +30,7 @@ struct VSInput
     float3 position : POSITION0;
     float3 normal : NORMAL;
     float2 uv : TEXCOORD;
+    float4x4 appendUV : APPEND_UV;
 	uint deformType : DEFORM_TYPE;
 	uint4 boneIndex : BONE_INDEX;
 	float4 boneWeight : BONE_WEIGHT;
@@ -52,7 +53,22 @@ VSOutput VSMain(VSInput input)
     VSOutput output;
 
 	uint boneIndex = input.boneIndex.x;
-	float4x4 localBoneMatrix = boneMatrix[6];
+	float4x4 localBoneMatrix = boneMatrix[boneIndex];
+    
+    // BDEF1
+    if(input.deformType == 0)
+    {
+        localBoneMatrix = boneMatrix[boneIndex];
+    }
+    else if(input.deformType == 1)
+    {
+        float bone1Weight = input.boneWeight.x;
+        localBoneMatrix = boneMatrix[input.boneIndex.x] * bone1Weight + boneMatrix[input.boneIndex.y] * (1.0f - bone1Weight);
+    }
+    else if(input.deformType == 2)
+    {
+
+    }
 
     output.position = mul(wvp, mul(input.modelMatrix, mul(localBoneMatrix, float4(input.position, 1.0f))));
     output.origPosition = mul(world, mul(input.modelMatrix, float4(input.position, 1.0f)));
@@ -61,7 +77,16 @@ VSOutput VSMain(VSInput input)
     output.normal = normalize(mul(input.modelMatrix, float4(input.normal, 1.0f)).xyz);
 
     output.uv = input.uv;
-
+    
+    output.color = float4(0.0f, 0.0f, 1.0f, 1.0f);
+    if(input.deformType == 0)
+    {
+        output.color = float4(1.0f, 0.0f, 0.0f, 1.0f);
+    } 
+    else if(input.deformType == 1)
+    {
+        output.color = float4(0.0f, 1.0f, 0.0f, 1.0f);
+    }
 
     return output;
 }
@@ -69,6 +94,7 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
+    //return input.color;
 	float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
     float3 lightSpecularColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
