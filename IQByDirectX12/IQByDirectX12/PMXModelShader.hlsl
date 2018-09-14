@@ -20,11 +20,19 @@ cbuffer material : register(b1)
     float3 ambientColor;
 }
 
+cbuffer boneMatrix : register(b2)
+{
+	float4x4 boneMatrix[256];
+}
+
 struct VSInput
 {
     float3 position : POSITION0;
     float3 normal : NORMAL;
     float2 uv : TEXCOORD;
+	uint deformType : DEFORM_TYPE;
+	uint4 boneIndex : BONE_INDEX;
+	float4 boneWeight : BONE_WEIGHT;
     float4x4 modelMatrix : INSTANCE_MATRIX;
 };
 
@@ -34,6 +42,7 @@ struct VSOutput
     float3 origPosition : POSITION1;
     float3 normal : NORMAL;
     float2 uv : TEXCOORD;
+	float4 color : COLOR;
 };
 
 typedef VSOutput PSInput;
@@ -42,7 +51,10 @@ VSOutput VSMain(VSInput input)
 {
     VSOutput output;
 
-    output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
+	uint boneIndex = input.boneIndex.x;
+	float4x4 localBoneMatrix = boneMatrix[6];
+
+    output.position = mul(wvp, mul(input.modelMatrix, mul(localBoneMatrix, float4(input.position, 1.0f))));
     output.origPosition = mul(world, mul(input.modelMatrix, float4(input.position, 1.0f)));
 
     input.modelMatrix._14_24_34 = float3(0.0f, 0.0f, 0.0f);
@@ -50,13 +62,14 @@ VSOutput VSMain(VSInput input)
 
     output.uv = input.uv;
 
+
     return output;
 }
 
 
 float4 PSMain(PSInput input) : SV_Target
 {
-    float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
+	float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
     float3 lightSpecularColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);

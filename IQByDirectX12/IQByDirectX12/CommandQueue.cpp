@@ -60,7 +60,6 @@ void CommandQueue::ExecuteCommandList(UINT numCommandLists, ID3D12CommandList *c
 void CommandQueue::Signal()
 {
 	mCommandQueue->Signal(mFence.Get(), mFenceValue);
-	//while (mFence->GetCompletedValue() != mFenceValue);
 	if (mFence->GetCompletedValue() < mFenceValue)
 	{
 		mFenceEvent = CreateEvent(nullptr, false, false, nullptr);

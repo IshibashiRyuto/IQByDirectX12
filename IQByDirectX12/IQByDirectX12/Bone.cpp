@@ -13,6 +13,11 @@ Bone::~Bone()
 {
 }
 
+std::shared_ptr<Bone> Bone::Create(const Math::Vector3 & headPosition)
+{
+	return std::shared_ptr<Bone>(new Bone(headPosition));
+}
+
 void Bone::SetRotation(const Math::Quaternion & rotation)
 {
 	mRotation = rotation;

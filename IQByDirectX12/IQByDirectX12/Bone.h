@@ -4,9 +4,11 @@
 	@author Ishibashi Ryuto
 	@date 
 	2018/09/11	初版作成
+	2018/09/14	コンストラクタを隠蔽、shared_ptrを返すCreate関数を作成
 */
 #pragma once
 // システムヘッダインクルード
+#include <memory>
 
 // 自作ヘッダインクルード
 #include "Math/Math.h"
@@ -14,11 +16,12 @@
 class Bone
 {
 public:
-	/// コンストラクタ
-	Bone(const Math::Vector3 & headPosition);
 
 	/// デストラクタ
 	~Bone();
+
+	/// ボーン情報を生成する
+	static std::shared_ptr<Bone> Create(const Math::Vector3 & headPosition);
 
 	/// ボーンの回転を設定する
 	void SetRotation(const Math::Quaternion& rotation);
@@ -34,8 +37,12 @@ public:
 	/// ボーン回転行列を取得する
 	const Math::Matrix4x4 GetBoneMatrix() const;
 private:
+	/* メンバ変数定義 */
 	Math::Vector3 mOriginHeadPosition;		// ボーン初期ヘッド位置
 	Math::Vector3 mRotatedHeadPosition;		// 回転操作後のボーンヘッド位置
 	Math::Quaternion mRotation;				// ボーンの回転量
+	/* プライベートメソッド定義 */
+	/// コンストラクタ
+	Bone(const Math::Vector3 & headPosition);
 };
 

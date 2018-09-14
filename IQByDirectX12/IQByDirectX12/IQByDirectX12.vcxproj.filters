@@ -248,6 +248,9 @@
     <ClInclude Include="Pose.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="PMXModelDataInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="3DPrimitiveShader.hlsl">

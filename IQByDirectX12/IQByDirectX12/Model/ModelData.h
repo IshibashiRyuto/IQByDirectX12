@@ -17,6 +17,7 @@
 
 // クラス使用宣言
 struct InstanceData;
+class Pose;
 
 class ModelData
 {
@@ -43,6 +44,7 @@ protected:
 	std::shared_ptr<VertexBuffer> mVertexBuffer;
 	std::shared_ptr<IndexBuffer> mIndexBuffer;
 	std::shared_ptr<DescriptorHeap> mDescHeap;
+	std::shared_ptr<Pose>			mPose;
 private:
 };
 
