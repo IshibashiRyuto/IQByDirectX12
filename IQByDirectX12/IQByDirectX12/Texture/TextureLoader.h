@@ -16,6 +16,11 @@
 #include "Texture.h"
 #include "TextureManager.h"
 
+/*クラス仕様宣言*/
+class CommandQueue;
+class GraphicsCommandList;
+class Device;
+
 /// @class TextureLoader
 /// @brief テクスチャの読み込みを行うクラス
 /// このクラスはテクスチャデータを読み込み、
@@ -25,9 +30,6 @@
 class TextureLoader
 {
 public:
-	/// コンストラクタ
-	TextureLoader();
-
 	/// デストラクタ
 	~TextureLoader();
 
@@ -35,7 +37,8 @@ public:
 	/// テクスチャローダーを生成する
 	/// @note TextureLoaderクラスはこのメソッドを通じてのみ生成可能
 	/// 実体を直接持つことはできない
-	static std::shared_ptr<TextureLoader> Create(ComPtr<ID3D12Device> device);
+	/// @param[in] device　：デバイス
+	static std::shared_ptr<TextureLoader> Create(std::shared_ptr<Device> device);
 
 	/// @fn Load
 	/// テクスチャをロードし、テクスチャのハンドルを返す
@@ -45,12 +48,19 @@ public:
 	int Load(const std::wstring& filePath);
 private:
 	/*変数宣言*/
-	std::map< std::wstring, int> mTextureHandleManager;						// 読み込み済みテクスチャのハンドルを管理する
-	ComPtr<ID3D12Device> mDevice;											// ID3D12デバイス
-	TextureManager &mTextureManager;
+	std::map< std::wstring, int> mTextureHandleManager;			// 読み込み済みテクスチャのハンドルを管理する
+	std::shared_ptr<Device> mDevice;								// デバイス
+	TextureManager &mTextureManager;							// テクスチャマネージャへの参照
+	std::shared_ptr<GraphicsCommandList> mCommandList;			// コマンドリスト
+	std::shared_ptr<CommandQueue>	mCommandQueue;				// コマンドキュー
 
+	ComPtr<ID3D12Resource> mUpdateBuffer;						// UpdateSubResourceで使用
 
 	/*ローカルメソッド*/
+
+	/// コンストラクタ
+	TextureLoader(std::shared_ptr<Device> device);
+
 
 	/// @fn GetWString
 	/// 文字列をロング文字列に変換する
@@ -63,6 +73,5 @@ private:
 	/// @param[in]	resource ID3D12Resourceのポインタ
 	/// @param[in]	subresource サブリソースデータ
 	void UpdateTextureSubresource(ComPtr<ID3D12Resource> resource, D3D12_SUBRESOURCE_DATA& subresource);
-
 };
 

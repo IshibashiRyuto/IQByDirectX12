@@ -81,14 +81,14 @@ bool Application::Initialize(const Window & window)
 	}
 
 	// コマンドアロケータの生成
-	mCommandAllocator = CommandAllocator::Create(mDevice->GetDevice().Get(), D3D12_COMMAND_LIST_TYPE_DIRECT);
+	mCommandAllocator = CommandAllocator::Create(mDevice, D3D12_COMMAND_LIST_TYPE_DIRECT);
 	if (!mCommandAllocator)
 	{
 		return false;
 	}
 
 	// コマンドキューの生成
-	mCommandQueue = CommandQueue::Create(mDevice->GetDevice());
+	mCommandQueue = CommandQueue::Create(mDevice);
 	if (!mCommandQueue)
 	{
 		return false;
@@ -101,7 +101,7 @@ bool Application::Initialize(const Window & window)
 	}
 
 	// レンダーターゲット生成
-	mRenderTarget = RenderTarget::Create(mDevice->GetDevice(), mSwapChain.Get(), RENDER_TARGET_NUM);
+	mRenderTarget = RenderTarget::Create(mDevice, mSwapChain.Get(), RENDER_TARGET_NUM);
 	if (!mRenderTarget)
 	{
 		return false;
@@ -118,25 +118,7 @@ bool Application::Initialize(const Window & window)
 			return false;
 		}
 	}
-
-	// 静的サンプラの設定
-	{
-		mStaticSamplerDesc = D3D12_STATIC_SAMPLER_DESC();
-		mStaticSamplerDesc.Filter = D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT;
-		mStaticSamplerDesc.AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		mStaticSamplerDesc.AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		mStaticSamplerDesc.AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		mStaticSamplerDesc.MaxLOD = D3D12_FLOAT32_MAX;
-		mStaticSamplerDesc.MinLOD = 0.0f;
-		mStaticSamplerDesc.MipLODBias = 0.0f;
-		mStaticSamplerDesc.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
-		mStaticSamplerDesc.ShaderRegister = 0;
-		mStaticSamplerDesc.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
-		mStaticSamplerDesc.RegisterSpace = 0;
-		mStaticSamplerDesc.MaxAnisotropy = 0;
-		mStaticSamplerDesc.ComparisonFunc = D3D12_COMPARISON_FUNC_LESS;
-	}
-
+	
 	// ルートシグニチャの作成
 	if (!CreateRootSignature())
 	{
@@ -389,7 +371,7 @@ bool Application::CreateCommandList()
 
 void Application::LoadTexture()
 {
-	mTextureLoader = TextureLoader::Create(mDevice->GetDevice());
+	mTextureLoader = TextureLoader::Create(mDevice);
 	mTextureHandle = mTextureLoader->Load("Img/test.png");
 	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
 	mDescriptorHeap->SetTexture(TextureManager::GetInstance().GetTexture(mTextureHandle), 1);
@@ -428,7 +410,7 @@ void Application::SetWVPMatrix()
 
 void Application::LoadPMD()
 {
-	mModelLoader = PMDLoader::Create(mDevice->GetDevice());
+	mModelLoader = PMDLoader::Create(mDevice);
 	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
 	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 
@@ -436,7 +418,7 @@ void Application::LoadPMD()
 
 void Application::LoadPMX()
 {
-	mPMXModelLoader = PMXLoader::Create(mDevice->GetDevice());
+	mPMXModelLoader = PMXLoader::Create(mDevice);
 	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 
@@ -447,7 +429,7 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 

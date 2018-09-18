@@ -144,9 +144,6 @@
     <ClCompile Include="Pose.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -253,9 +250,6 @@
     </ClInclude>
     <ClInclude Include="PMXModelDataInfo.h">
       <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Buffer.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #include "PMDLoader.h"
 
 
-PMDLoader::PMDLoader(ComPtr<ID3D12Device> device)
+PMDLoader::PMDLoader(std::shared_ptr<Device> device)
 	: ModelLoader(device)
 {
 }
@@ -13,7 +13,7 @@ PMDLoader::~PMDLoader()
 	ClearModelData();
 }
 
-std::shared_ptr<PMDLoader> PMDLoader::Create(ComPtr<ID3D12Device> device)
+std::shared_ptr<PMDLoader> PMDLoader::Create(std::shared_ptr<Device> device)
 {
 	auto pmdLoader = std::shared_ptr<PMDLoader>(new PMDLoader(device));
 	pmdLoader->mDevice = device;

@@ -10,9 +10,11 @@
 #include <memory>
 #include <d3d12.h>
 #include <wrl.h>
+#include <string>
 
 // ComPtr使用宣言
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class CommandAllocator
 {
@@ -27,8 +29,9 @@ public:
 	/// 実体を直接持つことはできない。
 	/// @param[in] device			D3D12デバイス
 	/// @param[in] commandListType	コマンドリストの種類
+	/// @param[in] name		: 名前
 	/// @retval 生成成功時:CommandAllocatorのshared_ptr, 生成失敗時: nullptr
-	static std::shared_ptr<CommandAllocator> Create(ComPtr<ID3D12Device> device, D3D12_COMMAND_LIST_TYPE commandListType);
+	static std::shared_ptr<CommandAllocator> Create(std::shared_ptr<Device> device, D3D12_COMMAND_LIST_TYPE commandListType, const std::wstring& name = L"");
 
 	/// @fn Get
 	/// コマンドアロケータのComPtrを取得する

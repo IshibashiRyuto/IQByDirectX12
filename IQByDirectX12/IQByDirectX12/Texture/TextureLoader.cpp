@@ -3,12 +3,16 @@
 #include <iostream>
 #include "TextureLoader.h"
 #include "../WICTextureLoader/WICTextureLoader12.h"
-#include "../CommandAllocator.h"
 #include "../CommandQueue.h"
+#include "../GraphicsCommandList.h"
+#include "../Device.h"
 
-TextureLoader::TextureLoader()
+TextureLoader::TextureLoader(std::shared_ptr<Device> device)
 	: mTextureManager(TextureManager::GetInstance())
+	, mDevice(device)
 {
+	mCommandList = GraphicsCommandList::Create(device, D3D12_COMMAND_LIST_TYPE_DIRECT, L"TextureLoader");
+	mCommandQueue = CommandQueue::Create(device);
 }
 
 
@@ -20,10 +24,9 @@ TextureLoader::~TextureLoader()
 	}
 }
 
-std::shared_ptr<TextureLoader> TextureLoader::Create(ComPtr<ID3D12Device> device)
+std::shared_ptr<TextureLoader> TextureLoader::Create(std::shared_ptr<Device> device)
 {
-	auto textureLoader = std::make_shared<TextureLoader>();
-	textureLoader->mDevice = device;
+	auto textureLoader = std::shared_ptr<TextureLoader>(new TextureLoader(device));
 	return textureLoader;
 }
 
@@ -39,10 +42,10 @@ int TextureLoader::Load(const std::wstring & filePath)
 	if (it == mTextureHandleManager.end() || !mTextureManager.IsExist((*it).second))
 	{
 		ComPtr<ID3D12Resource> resource;
-
+		
 		D3D12_SUBRESOURCE_DATA subResourceData;
 		std::unique_ptr<uint8_t[]> decodedData;
-		auto result = DirectX::LoadWICTextureFromFile(mDevice.Get(),
+		auto result = DirectX::LoadWICTextureFromFile(mDevice->GetDevice().Get(),
 			filePath.data(),
 			&resource,
 			decodedData,
@@ -84,8 +87,6 @@ std::wstring TextureLoader::GetWString(const std::string & str)
 
 void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D12_SUBRESOURCE_DATA & subresource)
 {
-	ComPtr<ID3D12Resource> updateBuffer;
-
 	D3D12_HEAP_PROPERTIES heapProp = {};
 	heapProp.Type = D3D12_HEAP_TYPE_UPLOAD;
 	heapProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
@@ -106,37 +107,28 @@ void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D
 	uploadDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 	uploadDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
 
-	mDevice->CreateCommittedResource(
+	mDevice->GetDevice()->CreateCommittedResource(
 		&heapProp,
 		D3D12_HEAP_FLAG_NONE,
 		&uploadDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
-		IID_PPV_ARGS(&updateBuffer)
+		IID_PPV_ARGS(&mUpdateBuffer)
 	);
 
-	auto commandQueue = CommandQueue::Create(mDevice);
-	auto commandAllocator = CommandAllocator::Create(mDevice, D3D12_COMMAND_LIST_TYPE_DIRECT);
-
-	ComPtr<ID3D12GraphicsCommandList> commandList;
-	auto result = mDevice->CreateCommandList(0,
-		D3D12_COMMAND_LIST_TYPE_DIRECT,
-		commandAllocator->Get().Get(),
-		nullptr,
-		IID_PPV_ARGS(&commandList));
-
-
-	UpdateSubresources(commandList.Get(),
+	UpdateSubresources( mCommandList->GetCommandList().Get(),
 		resource.Get(),
-		updateBuffer.Get(),
+		mUpdateBuffer.Get(),
 		(UINT64)0,
 		(UINT)0,
 		(UINT)1,
 		&subresource);
 
-	commandList->Close();
+	mCommandList->GetCommandList()->Close();
 
-	ID3D12CommandList* commandLists[] = { commandList.Get() };
-	commandQueue->ExecuteCommandList(_countof(commandLists), commandLists);
-	commandQueue->Signal();
+	ID3D12CommandList* commandLists[] = { mCommandList->GetCommandList().Get() };
+	mCommandQueue->ExecuteCommandList(_countof(commandLists), commandLists);
+	mCommandQueue->Signal();
+
+	mCommandList->Reset();
 }

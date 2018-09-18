@@ -2,7 +2,7 @@
 
 
 
-ModelLoader::ModelLoader(ComPtr<ID3D12Device> device)
+ModelLoader::ModelLoader(std::shared_ptr<Device> device)
 	: mDevice(device)
 	, mModelDataManager(ModelDataManager::GetInstance())
 {

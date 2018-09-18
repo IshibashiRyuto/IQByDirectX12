@@ -14,16 +14,17 @@
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
+class Device;
 class TextureLoader;
 
 class PMXLoader : public ModelLoader
 {
 public:
-	PMXLoader(ComPtr<ID3D12Device> device);
+	PMXLoader(std::shared_ptr<Device> device);
 	~PMXLoader();
 
 
-	static std::shared_ptr<PMXLoader> Create(ComPtr<ID3D12Device> device);
+	static std::shared_ptr<PMXLoader> Create(std::shared_ptr<Device> device);
 
 	std::shared_ptr<Model> LoadModel(const std::string& filePath);
 

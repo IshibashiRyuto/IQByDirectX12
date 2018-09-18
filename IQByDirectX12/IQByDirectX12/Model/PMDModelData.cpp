@@ -5,9 +5,10 @@
 #include "../ConstantBuffer.h"
 #include "../InstanceBuffer.h"
 #include "InstancingDataManager.h"
+#include "../Device.h"
 
-PMDModelData::PMDModelData(ComPtr<ID3D12Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
-	: ModelData(VertexBuffer::Create(device, (void*)vertexData.data(), vertexData.size(), sizeof(PMDVertex)), IndexBuffer::Create(device, (void*)indexData.data(), indexData.size(), sizeof(short)), DescriptorHeap::Create(device, 1 + (int)materials.size()) )
+PMDModelData::PMDModelData(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
+	: ModelData(VertexBuffer::Create(device->GetDevice(), (void*)vertexData.data(), vertexData.size(), sizeof(PMDVertex)), IndexBuffer::Create(device->GetDevice(), (void*)indexData.data(), indexData.size(), sizeof(short)), DescriptorHeap::Create(device->GetDevice(), 1 + (int)materials.size()) )
 {
 	SetVertexData(vertexData);
 	SetIndexData(indexData);
@@ -18,7 +19,7 @@ PMDModelData::~PMDModelData()
 {
 }
 
-std::shared_ptr<PMDModelData> PMDModelData::Create(ComPtr<ID3D12Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
+std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
 {
 	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, vertexData, indexData, materials));
 	if (model->mVertexBuffer == nullptr || model->mIndexBuffer == nullptr)
@@ -40,11 +41,11 @@ void PMDModelData::SetIndexData(const std::vector<unsigned short>& indexData)
 	mIndex = indexData;
 }
 
-void PMDModelData::SetMaterialData(ComPtr<ID3D12Device> device, const std::vector<PMDMaterial>& materials)
+void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials)
 {
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
-	mMaterialData = ConstantBuffer::Create(device, sizeof(PMDMaterial), mMaterialCount);
+	mMaterialData = ConstantBuffer::Create(device->GetDevice(), sizeof(PMDMaterial), mMaterialCount);
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
 		mMaterialData->SetData(&mMaterials[i], sizeof(PMDMaterial), i);

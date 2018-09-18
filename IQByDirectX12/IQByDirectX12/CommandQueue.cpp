@@ -1,5 +1,6 @@
 #include <iostream>
 #include "CommandQueue.h"
+#include "Device.h"
 
 
 
@@ -13,7 +14,7 @@ CommandQueue::~CommandQueue()
 {
 }
 
-std::shared_ptr<CommandQueue> CommandQueue::Create(ComPtr<ID3D12Device> device)
+std::shared_ptr<CommandQueue> CommandQueue::Create(std::shared_ptr<Device> device)
 {
 	D3D12_COMMAND_QUEUE_DESC desc = {};
 	desc.NodeMask = 0;
@@ -23,10 +24,10 @@ std::shared_ptr<CommandQueue> CommandQueue::Create(ComPtr<ID3D12Device> device)
 	return Create(device,desc);
 }
 
-std::shared_ptr<CommandQueue> CommandQueue::Create(ComPtr<ID3D12Device> device, const D3D12_COMMAND_QUEUE_DESC & commandQueueDesc)
+std::shared_ptr<CommandQueue> CommandQueue::Create(std::shared_ptr<Device> device, const D3D12_COMMAND_QUEUE_DESC & commandQueueDesc)
 {
 	auto commandQueue = std::shared_ptr<CommandQueue>(new CommandQueue());
-	auto result = device->CreateCommandQueue(&commandQueueDesc, IID_PPV_ARGS(&(commandQueue->mCommandQueue)));
+	auto result = device->GetDevice()->CreateCommandQueue(&commandQueueDesc, IID_PPV_ARGS(&(commandQueue->mCommandQueue)));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG
@@ -35,7 +36,7 @@ std::shared_ptr<CommandQueue> CommandQueue::Create(ComPtr<ID3D12Device> device, 
 		return nullptr;
 	}
 	
-	result = device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&(commandQueue->mFence)));
+	result = device->GetDevice()->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&(commandQueue->mFence)));
 	if (FAILED(result))
 	{
 
@@ -67,6 +68,6 @@ void CommandQueue::Signal()
 		WaitForSingleObject(mFenceEvent, INFINITE);
 		CloseHandle(mFenceEvent);
 	}
-	
+
 	++mFenceValue;
 }

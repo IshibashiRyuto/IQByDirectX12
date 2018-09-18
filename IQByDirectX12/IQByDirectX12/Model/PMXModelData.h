@@ -23,6 +23,7 @@ class VertexBuffer;
 class IndexBuffer;
 class ConstantBuffer;
 class TextureLoader;
+class Device;
 using Microsoft::WRL::ComPtr;
 
 
@@ -30,7 +31,7 @@ using Microsoft::WRL::ComPtr;
 class PMXModelData : public ModelData
 {
 public:
-	PMXModelData(ComPtr<ID3D12Device> device,
+	PMXModelData(std::shared_ptr<Device> device,
 		std::vector<PMX::Vertex> vertexData,
 		std::vector<PMX::Index> indexData,
 		int materialCount,
@@ -45,10 +46,10 @@ public:
 	/// @param[in] vertIndexData: 頂点インデックス情報
 	/// @retval 生成成功: PMXModelDataのスマートポインタ
 	/// @retval 生成失敗時: nullptr
-	static std::shared_ptr<PMXModelData> Create(ComPtr<ID3D12Device> device, 
+	static std::shared_ptr<PMXModelData> Create(std::shared_ptr<Device> device,
 		std::vector<PMX::Vertex> vertexData,
 		std::vector<PMX::Index> indexData);
-	static std::shared_ptr<PMXModelData> Create(ComPtr<ID3D12Device> device, const PMX::ModelDataDesc& modelDataDesc);
+	static std::shared_ptr<PMXModelData> Create(std::shared_ptr<Device> device, const PMX::ModelDataDesc& modelDataDesc);
 
 	/// @fn Draw
 	/// 描画処理

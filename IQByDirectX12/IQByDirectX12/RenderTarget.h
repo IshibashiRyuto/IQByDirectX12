@@ -9,12 +9,14 @@
 /*システムヘッダインクルード*/
 #include <vector>
 #include <memory>
+#include <string>
 #include <d3d12.h>
 #include <dxgi1_4.h>
 #include <wrl.h>
 
 // ComPtr使用宣言
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class RenderTarget
 {
@@ -29,7 +31,7 @@ public:
 	/// @param[in] swapChain:			IDXGIスワップチェイン
 	/// @param[in] renderTargetsNum:	レンダーターゲットの数
 	/// @retval 生成成功時: RenderTargetクラスのshared_ptr, 生成失敗時: nullptr
-	static std::shared_ptr<RenderTarget> Create(ComPtr<ID3D12Device> device, ComPtr<IDXGISwapChain1> swapChain, int renderTargetsNum);
+	static std::shared_ptr<RenderTarget> Create(std::shared_ptr<Device> device, ComPtr<IDXGISwapChain1> swapChain, int renderTargetsNum);
 
 	/// @fn ChangeRenderTarget
 	/// レンダーターゲットを変更する
@@ -58,7 +60,7 @@ private:
 	/* ローカルメソッド */
 	/// コンストラクタ
 	/// @param[in] device ID3D12デバイス
-	RenderTarget(ComPtr<ID3D12Device> device);
+	RenderTarget(std::shared_ptr<Device> device);
 
 };
 

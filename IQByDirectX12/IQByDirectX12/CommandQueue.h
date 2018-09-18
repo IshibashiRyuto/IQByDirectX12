@@ -14,6 +14,7 @@
 
 // ComPtr使用宣言
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class CommandQueue
 {
@@ -25,14 +26,14 @@ public:
 	/// コマンドキューの作成
 	/// @param[in] device デバイスのポインタ
 	/// @retval 生成成功時: CommandQueueのshared_ptr, 生成失敗時: nullptr
-	static std::shared_ptr<CommandQueue> Create(ComPtr<ID3D12Device> device);
+	static std::shared_ptr<CommandQueue> Create(std::shared_ptr<Device> device);
 
 	/// @fn Create
 	/// コマンドキューの作成
 	/// @param[in] device デバイスのポインタ
 	/// @param[in] commandQueueDesc コマンドキューの設定項目
 	/// @retval 生成成功時: CommandQueueのshared_ptr, 生成失敗時: nullptr
-	static std::shared_ptr<CommandQueue> Create(ComPtr<ID3D12Device> device, const D3D12_COMMAND_QUEUE_DESC& commandQueueDesc);
+	static std::shared_ptr<CommandQueue> Create(std::shared_ptr<Device> device, const D3D12_COMMAND_QUEUE_DESC& commandQueueDesc);
 
 	/// @fn Get
 	/// コマンドキューのComポインタを取得する

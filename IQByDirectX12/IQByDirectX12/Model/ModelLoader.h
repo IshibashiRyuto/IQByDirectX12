@@ -17,12 +17,11 @@
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
 class ModelData;
+class Device;
 
 class ModelLoader
 {
 public:
-	/// コンストラクタ
-	ModelLoader(ComPtr<ID3D12Device> mDevice);
 	
 	/// デストラクタ
 	virtual ~ModelLoader();
@@ -37,8 +36,11 @@ public:
 	virtual void ClearModelData() = 0;
 
 protected:
-	ComPtr<ID3D12Device> mDevice;			// Dx12デバイス
+	std::shared_ptr<Device> mDevice;			// Dx12デバイス
 	ModelDataManager& mModelDataManager;	// モデルデータマネージャへの参照
 	std::map<std::string, int> mModelHandleManager;	// モデルハンドルの管理
+													
+	/// コンストラクタ
+	ModelLoader(std::shared_ptr<Device> device);
 };
 

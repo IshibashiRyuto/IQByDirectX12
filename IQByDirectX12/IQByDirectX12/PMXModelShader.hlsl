@@ -104,7 +104,6 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
-    //return input.color;
 	float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
     float3 lightSpecularColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
@@ -142,7 +141,7 @@ float4 PSMain(PSInput input) : SV_Target
     modelColor = modelColor * texColor;
 
 
-    modelColor = modelColor +float4(modelSpecularColor, 1.0f);
+    modelColor = modelColor + float4(modelSpecularColor, 1.0f);
 
     return modelColor;
 }

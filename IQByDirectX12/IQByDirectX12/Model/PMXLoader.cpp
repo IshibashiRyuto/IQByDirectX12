@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-PMXLoader::PMXLoader(ComPtr<ID3D12Device> device)
+PMXLoader::PMXLoader(std::shared_ptr<Device> device)
 	: ModelLoader(device)
 {
 }
@@ -14,7 +14,7 @@ PMXLoader::~PMXLoader()
 {
 }
 
-std::shared_ptr<PMXLoader> PMXLoader::Create(ComPtr<ID3D12Device> device)
+std::shared_ptr<PMXLoader> PMXLoader::Create(std::shared_ptr<Device> device)
 {
 	auto modelLoader = std::shared_ptr<PMXLoader>(new PMXLoader(device));
 	return modelLoader;

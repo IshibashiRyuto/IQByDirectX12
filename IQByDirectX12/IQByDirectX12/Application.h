@@ -99,7 +99,6 @@ private:
 	Math::Matrix4x4 mAffineMatrix;
 
 
-	D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;
 	int mWindowWidth;
 	int mWindowHeight;
 

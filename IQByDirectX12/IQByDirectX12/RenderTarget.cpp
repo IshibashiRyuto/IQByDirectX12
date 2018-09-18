@@ -1,11 +1,12 @@
 #include <iostream>
 #include <d3dx12.h>
+#include "Device.h"
 #include "RenderTarget.h"
 
 
 
-RenderTarget::RenderTarget(ComPtr<ID3D12Device> device)
-	: RENDER_TARGET_VIEW_DESCRIPTOR_SIZE(device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV))
+RenderTarget::RenderTarget(std::shared_ptr<Device> device)
+	: RENDER_TARGET_VIEW_DESCRIPTOR_SIZE(device->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV))
 	, mRenderTargetIndex(0)
 {
 }
@@ -15,7 +16,7 @@ RenderTarget::~RenderTarget()
 {
 }
 
-std::shared_ptr<RenderTarget> RenderTarget::Create(ComPtr<ID3D12Device> device, ComPtr<IDXGISwapChain1> swapChain, int renderTargetsNum)
+std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> device, ComPtr<IDXGISwapChain1> swapChain, int renderTargetsNum)
 {
 	auto renderTarget = std::shared_ptr<RenderTarget>(new RenderTarget(device));
 
@@ -27,7 +28,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(ComPtr<ID3D12Device> device, 
 	
 	// RTVディスクリプタヒープ生成
 	{
-		auto result = device->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&(renderTarget->mRTVDescHeap)));
+		auto result = device->GetDevice()->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&(renderTarget->mRTVDescHeap)));
 		if (FAILED(result))
 		{
 #ifdef _DEBUG
@@ -57,7 +58,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(ComPtr<ID3D12Device> device, 
 #endif
 			return nullptr;
 		}
-		device->CreateRenderTargetView(renderTarget->mRenderTargets[i].Get(), &rtvDesc, descHandle);
+		device->GetDevice()->CreateRenderTargetView(renderTarget->mRenderTargets[i].Get(), &rtvDesc, descHandle);
 		descHandle.Offset(1, renderTarget->RENDER_TARGET_VIEW_DESCRIPTOR_SIZE);
 	}
 

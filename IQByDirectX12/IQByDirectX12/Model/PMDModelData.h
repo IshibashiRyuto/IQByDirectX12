@@ -18,6 +18,7 @@
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
 class ConstantBuffer;
+class Device;
 
 ///	@struct PMDHeader
 /// PMDヘッダ情報
@@ -60,10 +61,10 @@ struct PMDMaterial
 class PMDModelData : public ModelData
 {
 public:
-	PMDModelData(ComPtr<ID3D12Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials);
+	PMDModelData(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials);
 	~PMDModelData();
 	
-	static std::shared_ptr<PMDModelData> Create(ComPtr<ID3D12Device> device,
+	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,
 		const std::vector<PMDVertex>& vertexData,
 		const std::vector<unsigned short>& indexData,
 		const std::vector<PMDMaterial>& materials);
@@ -72,7 +73,7 @@ public:
 
 	void SetIndexData(const std::vector<unsigned short>& indexData);
 
-	void SetMaterialData(ComPtr<ID3D12Device> device, const std::vector<PMDMaterial>& materials);
+	void SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials);
 
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 

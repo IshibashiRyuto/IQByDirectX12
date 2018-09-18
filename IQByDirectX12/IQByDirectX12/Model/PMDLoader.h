@@ -12,7 +12,7 @@ class PMDLoader : public ModelLoader
 public:
 	~PMDLoader();
 
-	static std::shared_ptr<PMDLoader> Create(ComPtr<ID3D12Device> device);
+	static std::shared_ptr<PMDLoader> Create(std::shared_ptr<Device> device);
 
 	/// @fn LoadModel
 	std::shared_ptr<Model> LoadModel(const std::string& filePath);
@@ -22,7 +22,7 @@ public:
 	void ClearModelData();
 
 private:
-	PMDLoader(ComPtr<ID3D12Device> device);
+	PMDLoader(std::shared_ptr<Device> device);
 	PMDLoader(const PMDLoader&);
 	void operator=(const PMDLoader&) {}
 };

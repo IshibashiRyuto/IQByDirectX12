@@ -9,13 +9,14 @@
 #include "../Texture/TextureManager.h"
 #include "../Pose.h"
 #include "../Bone.h"
+#include "../Device.h"
 
-PMXModelData::PMXModelData(ComPtr<ID3D12Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
-	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
-		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device, 1 + materialCount * 3 + 1))
-	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
-	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
+PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
+	: ModelData(VertexBuffer::Create(device->GetDevice(), vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
+		IndexBuffer::Create(device->GetDevice(), indexData.data(), indexData.size(), sizeof(PMX::Index)),
+		DescriptorHeap::Create(device->GetDevice(), 1 + materialCount * 3 + 1))
+	, mMaterialDataBuffer(ConstantBuffer::Create(device->GetDevice(), sizeof(PMX::Material), materialCount))
+	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device->GetDevice(), sizeof(Math::Matrix4x4)*boneCount, 1) )
 	, mTextureLoader(TextureLoader::Create(device))
 {
 }
@@ -24,12 +25,12 @@ PMXModelData::~PMXModelData()
 {
 }
 
-std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData)
+std::shared_ptr<PMXModelData> PMXModelData::Create(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData)
 {
 	return std::shared_ptr<PMXModelData>(new PMXModelData(device, vertexData, indexData, 1, 0));
 }
 
-std::shared_ptr<PMXModelData> PMXModelData::Create(ComPtr<ID3D12Device> device, const PMX::ModelDataDesc & modelDataDesc)
+std::shared_ptr<PMXModelData> PMXModelData::Create(std::shared_ptr<Device> device, const PMX::ModelDataDesc & modelDataDesc)
 {
 	auto modelData = std::shared_ptr<PMXModelData>
 		(
