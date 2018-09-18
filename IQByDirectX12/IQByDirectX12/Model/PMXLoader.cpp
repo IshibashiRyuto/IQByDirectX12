@@ -195,6 +195,16 @@ void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::
 			fread(&vertex.deformParam.r0, sizeof(vertex.deformParam.r0), 1, fp);
 			fread(&vertex.deformParam.r1, sizeof(vertex.deformParam.r1), 1, fp);
 			break;
+		case PMX::WeightDeformType::QDEF:
+			fread(&vertex.deformParam.boneIndex[0], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[1], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[2], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneIndex[3], boneIndexSize, 1, fp);
+			fread(&vertex.deformParam.boneWeight[0], sizeof(vertex.deformParam.boneWeight[0]), 1, fp);
+			fread(&vertex.deformParam.boneWeight[1], sizeof(vertex.deformParam.boneWeight[1]), 1, fp);
+			fread(&vertex.deformParam.boneWeight[2], sizeof(vertex.deformParam.boneWeight[2]), 1, fp);
+			fread(&vertex.deformParam.boneWeight[3], sizeof(vertex.deformParam.boneWeight[3]), 1, fp);
+			break;
 		default:
 #ifdef _DEBUG
 			std::cout << "PMX File Load Error." << std::endl;

@@ -48,6 +48,7 @@ namespace PMX
 		BDEF2,
 		BDEF4,
 		SDEF,
+		QDEF,
 	};
 
 	struct Vertex

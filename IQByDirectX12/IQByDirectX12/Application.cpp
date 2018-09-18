@@ -197,6 +197,7 @@ void Application::Render()
 	zAngle += 0.01f;
 
 	mModelData->Draw();
+	// endDebug
 
 	// コマンドリスト初期化
 	mCommandAllocator->Get()->Reset();
@@ -366,7 +367,7 @@ bool Application::CreatePipelineState()
 
 bool Application::CreateCommandList()
 {
-	auto result = mDevice->GetDevice().Get()->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocator->Get().Get(), mPipelineState.Get(), IID_PPV_ARGS(&mCommandList));
+	auto result = mDevice->GetDevice().Get()->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocator->Get().Get(), nullptr, IID_PPV_ARGS(&mCommandList));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG

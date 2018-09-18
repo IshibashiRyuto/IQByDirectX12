@@ -54,22 +54,32 @@ VSOutput VSMain(VSInput input)
 
 	uint boneIndex = input.boneIndex.x;
 	float4x4 localBoneMatrix = boneMatrix[boneIndex];
-    
-    // BDEF1
-    if(input.deformType == 0)
-    {
-        localBoneMatrix = boneMatrix[boneIndex];
-    }
-    else if(input.deformType == 1)
-    {
-        float bone1Weight = input.boneWeight.x;
-        localBoneMatrix = boneMatrix[input.boneIndex.x] * bone1Weight + boneMatrix[input.boneIndex.y] * (1.0f - bone1Weight);
-    }
-    else if(input.deformType == 2)
-    {
+    float bone1Weight,bone2Weight,bone3Weight,bone4Weight;
 
-    }
 
+    switch (input.deformType)
+    {
+        case 0: // BDEF1
+            localBoneMatrix = boneMatrix[boneIndex];
+            break;
+        case 1: // BDEF2
+            bone1Weight = input.boneWeight.x;
+            localBoneMatrix = boneMatrix[input.boneIndex.x] * bone1Weight + boneMatrix[input.boneIndex.y] * (1.0f - bone1Weight);
+            break;
+        case 2: // BDEF4
+            bone1Weight = input.boneWeight.x;
+            bone2Weight = input.boneWeight.y;
+            bone3Weight = input.boneWeight.z;
+            bone4Weight = input.boneWeight.w;
+            localBoneMatrix = boneMatrix[input.boneIndex.x] * bone1Weight + boneMatrix[input.boneIndex.y] * bone2Weight + boneMatrix[input.boneIndex.z] * bone3Weight + boneMatrix[input.boneIndex.w] * bone4Weight;
+        break;
+        case 3: // SDEF
+            bone1Weight = input.boneWeight.x;
+            localBoneMatrix = boneMatrix[input.boneIndex.x] * bone1Weight + boneMatrix[input.boneIndex.y] * (1.0f - bone1Weight);
+            break;
+        case 4: // QDEF
+            break;
+    }
     output.position = mul(wvp, mul(input.modelMatrix, mul(localBoneMatrix, float4(input.position, 1.0f))));
     output.origPosition = mul(world, mul(input.modelMatrix, float4(input.position, 1.0f)));
 
