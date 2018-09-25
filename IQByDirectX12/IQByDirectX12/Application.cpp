@@ -170,10 +170,14 @@ void Application::Render()
 	//debug
 	static float zAngle = 0.0f;
 	
+	int i = 0;
 	for (auto model : mInstancingTestModels)
 	{
-		model->SetRotation(Math::Vector3(0.0f, zAngle, 0.0f));
-		model->Draw();
+		if (i++ == 5)
+		{
+			model->SetRotation(Math::Vector3(0.0f, zAngle, 0.0f));
+			model->Draw();
+		}
 	}
 
 	zAngle += 0.01f;
@@ -335,8 +339,7 @@ bool Application::CreatePipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	auto device = mDevice->GetDevice().Get();
-	auto result = device->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	auto result = mDevice->GetDevice()->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG
@@ -349,7 +352,7 @@ bool Application::CreatePipelineState()
 
 bool Application::CreateCommandList()
 {
-	auto result = mDevice->GetDevice().Get()->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocator->Get().Get(), nullptr, IID_PPV_ARGS(&mCommandList));
+	auto result = mDevice->GetDevice()->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocator->Get().Get(), nullptr, IID_PPV_ARGS(&mCommandList));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG
@@ -392,7 +395,7 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 10.0f, -15.0f), Math::Vector3(0.0f, 10.0f, 50.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 20.0f, -15.0f), Math::Vector3(0.0f, 0.0f, 10.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		
@@ -429,7 +432,9 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 

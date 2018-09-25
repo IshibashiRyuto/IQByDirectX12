@@ -25,6 +25,9 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{e6164005-70a2-4459-a613-d06ae9541956}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Motion">
+      <UniqueIdentifier>{4d3416d0-24f2-481a-acc6-d5796ea5ac80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -144,6 +147,12 @@
     <ClCompile Include="Pose.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="VMDData.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="VMDLoader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -250,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="PMXModelDataInfo.h">
       <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="VMDData.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="VMDLoader.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

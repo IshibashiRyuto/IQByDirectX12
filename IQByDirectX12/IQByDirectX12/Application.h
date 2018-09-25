@@ -48,34 +48,30 @@ public:
 	Application();
 	~Application();
 
-	/// @fn Initialize
-	/// 初期化処理
-	/// @param window ウィンドウクラス
-	/// @retval 処理が成功したか
-	/// true: 成功, false: 失敗
+	/// @brief		初期化処理
+	/// @param[in]	window ウィンドウクラス
+	/// @retval		true: 初期化正常終了
+	/// @retval		false: 初期化失敗
 	bool Initialize(const Window& window);
 
-	/// @fn Render
-	/// 描画処理
+	/// @brief		描画処理
 	void Render();
 
-	/// @fn Terminate
-	/// 終了処理
+	/// @brief		終了処理
 	void Terminate();
 private:
+
 	/* 定数定義 */
-	const int RENDER_TARGET_NUM = 2;
+	const int RENDER_TARGET_NUM = 2;		//!	レンダーターゲット数
 
 	/* 変数宣言 */
-	ComPtr<IDXGIFactory4>				mFactory;
-	ComPtr<IDXGISwapChain3>				mSwapChain;
-	ComPtr<ID3DBlob>					mVertexShader;
-	ComPtr<ID3DBlob>					mPixelShader;
-	ComPtr<ID3D12PipelineState>			mPipelineState;
-	ComPtr<ID3D12GraphicsCommandList>	mCommandList;
-	std::shared_ptr<Device>				mDevice;
-	std::shared_ptr<CommandAllocator>	mCommandAllocator;
-	std::shared_ptr<CommandQueue>		mCommandQueue;
+	ComPtr<IDXGIFactory4>				mFactory;				//! ファクトリ
+	ComPtr<IDXGISwapChain3>				mSwapChain;				//! スワップチェイン
+	ComPtr<ID3D12PipelineState>			mPipelineState;			//! パイプラインステート
+	ComPtr<ID3D12GraphicsCommandList>	mCommandList;			//! コマンドリスト
+	std::shared_ptr<Device>				mDevice;				//! デバイス
+	std::shared_ptr<CommandAllocator>	mCommandAllocator;		//! コマンドアロケータ
+	std::shared_ptr<CommandQueue>		mCommandQueue;			//! コマンドキュー
 	std::shared_ptr<RenderTarget>		mRenderTarget;
 	std::shared_ptr<RootSignature>		mRootSignature;
 	std::shared_ptr<DepthBuffer>		mDepthBuffer;
