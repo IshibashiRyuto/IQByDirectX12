@@ -185,6 +185,7 @@
     <ClInclude Include="Model\PMXModelData.h" />
     <ClInclude Include="PMXModelDataInfo.h" />
     <ClInclude Include="Pose.h" />
+    <ClInclude Include="RenderState.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="RootSignature.h" />
     <ClInclude Include="Shader.h" />

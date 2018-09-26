@@ -28,6 +28,7 @@
 #include "Model/InstancingDataManager.h"
 #include "RootSignature.h"
 #include "Shader.h"
+#include "VMDLoader.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -161,6 +162,7 @@ bool Application::Initialize(const Window & window)
 	// モデルデータ読込
 	LoadPMD();
 	LoadPMX();
+	LoadMotion();
 
 	return true;
 }
@@ -447,4 +449,10 @@ void Application::LoadPMX()
 			++modelCount;
 		}
 	}
+}
+
+void Application::LoadMotion()
+{
+	auto loader = VMDLoader::Create();
+	loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
 }

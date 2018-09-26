@@ -146,5 +146,8 @@ private:
 	/// @fn LoadPMX
 	/// PMXモデルデータをロードする
 	void LoadPMX();
+
+	/// @brief モーションデータをロードする
+	void LoadMotion();
 };
 

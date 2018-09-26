@@ -266,6 +266,9 @@
     <ClInclude Include="VMDLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="RenderState.h">
+      <Filter>WICTextureLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="3DPrimitiveShader.hlsl">

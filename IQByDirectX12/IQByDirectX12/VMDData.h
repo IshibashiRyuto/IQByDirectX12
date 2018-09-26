@@ -14,6 +14,8 @@
 // 自作ヘッダインクルード
 #include "Math\Math.h"
 
+#pragma pack(1)
+
 namespace VMD
 {
 	struct Header
@@ -34,11 +36,12 @@ namespace VMD
 
 }
 
+#pragma pack()
 
 struct MotionData
 {
 	std::string boneName;
-
+	Math::Quaternion rotatation;
 };
 
 class VMDData

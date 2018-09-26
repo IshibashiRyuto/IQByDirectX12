@@ -250,7 +250,6 @@ namespace Math
 
 	struct Quaternion
 	{
-		float w;
 		union
 		{
 			struct
@@ -260,6 +259,7 @@ namespace Math
 
 			Vector3 v;
 		};
+		float w;
 
 		Quaternion();
 		Quaternion(float mw, float mx, float my, float mz);
