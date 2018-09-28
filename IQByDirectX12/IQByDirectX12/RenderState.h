@@ -17,14 +17,14 @@ enum class AlphaBlendType
 	Mul = 4,		//! 乗算
 };
 
-/// @brief テクスチャのフィルタタイプ
+/// @brief サンプリングする際のサンプリング方法
 enum class TextureFilterType 
 {
 	Nearest = 0,	//! ニアレスト補間
 	Linear = 1,		//! バイリニア補間
 };
 
-/// @brief テクスチャのワープタイプ
+/// @brief UV値が0以下もしくは1以上の場合の扱い方
 enum class TextureWrapType
 {
 	Repeat = 0,		//! 繰り返し
@@ -45,5 +45,6 @@ struct RenderState
 	bool				depthWrite	: 1;	//! 深度バッファへの書き込みを行うか
 	AlphaBlendType		alphaBlend;			//! アルファブレンド
 	CullingType			cullingType;		//! カリングタイプ
-	TextureFilterType	textureFilterType;	//! テクスチャフィルタタイプ
+	TextureFilterType	textureFilterType;	//! サンプリングする際のサンプリング方法
+	TextureWrapType		textureWrapType;	//! UV値が0以下もしくは1以上の場合の扱い方
 };

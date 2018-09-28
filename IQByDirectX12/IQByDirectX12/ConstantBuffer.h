@@ -30,7 +30,7 @@ public:
 	/// @param[in] bufferSize	バッファのサイズ
 	/// @retval 生成成功時: ConstantBufferのshared_ptr
 	/// @retval 生成失敗時: nullptr
-	static std::shared_ptr<ConstantBuffer> Create(const ComPtr<ID3D12Device> device, UINT elementSize, UINT elementCount);
+	static std::shared_ptr<ConstantBuffer> Create(const ComPtr<ID3D12Device> device, UINT elementSize, UINT elementCount = 1);
 
 	/// @fn SetData
 	/// 定数バッファにデータをセットする

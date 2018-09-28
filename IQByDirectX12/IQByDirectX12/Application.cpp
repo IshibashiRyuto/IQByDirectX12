@@ -29,6 +29,7 @@
 #include "RootSignature.h"
 #include "Shader.h"
 #include "VMDLoader.h"
+#include "SwapChain.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -49,18 +50,6 @@ bool Application::Initialize(const Window & window)
 	auto wrc = window.GetWindowRect();
 	mWindowWidth = wrc.right - wrc.left;
 	mWindowHeight = wrc.bottom - wrc.top;
-
-	// DXGIFactoryの生成
-	{
-		auto result = CreateDXGIFactory1(IID_PPV_ARGS(&mFactory));
-		if (FAILED(result))
-		{
-#ifdef _DEBUG
-			std::cout << "Failed Create DXGIFactory." << std::endl;
-#endif
-			return false;
-		}
-	}
 
 #ifdef _DEBUG
 	{
@@ -96,13 +85,14 @@ bool Application::Initialize(const Window & window)
 	}
 
 	// スワップチェイン生成
-	if (!CreateSwapChain(window))
+	mSwapChain = SwapChain::Create(mCommandQueue, window, RENDER_TARGET_NUM);
+	if (!mSwapChain)
 	{
 		return false;
 	}
 
 	// レンダーターゲット生成
-	mRenderTarget = RenderTarget::Create(mDevice, mSwapChain.Get(), RENDER_TARGET_NUM);
+	mRenderTarget = RenderTarget::Create(mDevice, mSwapChain->GetSwapChain(), RENDER_TARGET_NUM);
 	if (!mRenderTarget)
 	{
 		return false;
@@ -169,6 +159,7 @@ bool Application::Initialize(const Window & window)
 
 void Application::Render()
 {
+
 	//debug
 	static float zAngle = 0.0f;
 	
@@ -199,7 +190,7 @@ void Application::Render()
 	mCommandList->RSSetScissorRects(1, &rc);
 
 	// 描画先変更処理
-	int backBufferIndex = mSwapChain->GetCurrentBackBufferIndex();
+	int backBufferIndex = mSwapChain->GetBackBufferIndex();
 	
 	mRenderTarget->ChangeRenderTarget(mCommandList, backBufferIndex);
 
@@ -229,47 +220,11 @@ void Application::Render()
 	mCommandQueue->Signal();
 
 	// 画面スワップ
-	mSwapChain->Present(1, 0);
+	mSwapChain->Swap();
 }
 
 void Application::Terminate()
 {
-}
-
-bool Application::CreateSwapChain(const Window& window)
-{
-	DXGI_SWAP_CHAIN_DESC1 swapChainDesc{};
-
-	auto windowRect = window.GetWindowRect();
-
-	swapChainDesc.Width = windowRect.right - windowRect.left;
-	swapChainDesc.Height = windowRect.bottom - windowRect.top;
-	swapChainDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	swapChainDesc.Stereo = false;
-	swapChainDesc.SampleDesc.Count = 1;
-	swapChainDesc.SampleDesc.Quality = 0;
-	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapChainDesc.BufferCount = RENDER_TARGET_NUM;
-	swapChainDesc.Scaling = DXGI_SCALING_STRETCH;
-	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
-	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
-	swapChainDesc.Flags = 0;
-
-	auto result = mFactory->CreateSwapChainForHwnd(mCommandQueue->GetCommandQueue().Get(),
-		window.GetWindowHandle(),
-		&swapChainDesc,
-		nullptr,
-		nullptr,
-		(IDXGISwapChain1**)(mSwapChain.GetAddressOf()));
-
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Failed Create SwapChain." << std::endl;
-		return false;
-#endif
-	}
-	return true;
 }
 
 bool Application::CreateRootSignature()
@@ -328,15 +283,19 @@ bool Application::CreatePipelineState()
 	gpsDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
 	gpsDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
 	gpsDesc.DepthStencilState.StencilEnable = FALSE;
+
 	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
 	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
 	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
 	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
 	gpsDesc.pRootSignature = mRootSignature->GetRootSignature().Get();
+
 	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
 	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+
 	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+	
 	gpsDesc.NumRenderTargets = 1;
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;

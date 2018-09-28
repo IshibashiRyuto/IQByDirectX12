@@ -8,7 +8,11 @@
 #pragma once
 // システムヘッダインクルード
 #include <memory>
+#include <map>
 #include <d3d12.h>
+
+// 自作ヘッダインクルード
+#include "RenderState.h"
 
 // クラス使用宣言
 class Device;
@@ -29,5 +33,6 @@ public:
 	std::shared_ptr<Sampler> Create(const std::shared_ptr<Device> device);
 private:
 	std::shared_ptr<DescriptorHeap> mSamplerDescriptorHeap;			//! サンプラーを格納するディスクリプタヒープ
+	std::map<TextureFilterType, std::map<TextureWrapType, D3D12_GPU_DESCRIPTOR_HANDLE>> mSampler;
 };
 

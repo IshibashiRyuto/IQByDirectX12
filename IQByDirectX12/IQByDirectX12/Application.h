@@ -8,7 +8,6 @@
 #pragma once
 #include <windows.h>
 #include <d3d12.h>
-#include <dxgi1_4.h>
 #include <vector>
 #include <wrl.h>
 #include <memory>
@@ -32,6 +31,7 @@ class PMXLoader;
 class PMXModelData;
 class Model;
 class Shader;
+class SwapChain;
 
 using Microsoft::WRL::ComPtr;
 
@@ -65,8 +65,7 @@ private:
 	const int RENDER_TARGET_NUM = 2;		//!	レンダーターゲット数
 
 	/* 変数宣言 */
-	ComPtr<IDXGIFactory4>				mFactory;				//! ファクトリ
-	ComPtr<IDXGISwapChain3>				mSwapChain;				//! スワップチェイン
+	std::shared_ptr<SwapChain>			mSwapChain;				//! スワップチェイン
 	ComPtr<ID3D12PipelineState>			mPipelineState;			//! パイプラインステート
 	ComPtr<ID3D12GraphicsCommandList>	mCommandList;			//! コマンドリスト
 	std::shared_ptr<Device>				mDevice;				//! デバイス
@@ -99,11 +98,6 @@ private:
 	int mWindowHeight;
 
 	/* ローカルメソッド定義 */
-
-	/// @fn CreateSwapChain
-	/// スワップチェインを生成する
-	/// @retval true: 生成成功, false: 生成失敗
-	bool CreateSwapChain(const Window& window);
 
 	/// @fn CreateRootSignature
 	/// ルートシグネチャを生成する
