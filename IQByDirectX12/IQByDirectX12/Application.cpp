@@ -29,6 +29,7 @@
 #include "Shader.h"
 #include "VMDLoader.h"
 #include "SwapChain.h"
+#include "Animation.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -161,20 +162,27 @@ void Application::Render()
 
 	//debug
 	static float zAngle = 0.0f;
-	
+	static int t = 0;
+
 	int i = 0;
 	for (auto model : mInstancingTestModels)
 	{
 		if (i++ == 5)
 		{
 			model->SetRotation(Math::Vector3(0.0f, zAngle, 0.0f));
+			mAnimationData->SetPose(t, model->_DebugGetPose());
 			model->Draw();
 		}
 	}
 
 	zAngle += 0.01f;
+	t++;
+	if (t >= 60)
+	{
+		t = 0;
+	}
 
-	mModelData->Draw();
+	//mModelData->Draw();
 	// endDebug
 
 	// コマンドリスト初期化
@@ -412,5 +420,5 @@ void Application::LoadPMX()
 void Application::LoadMotion()
 {
 	auto loader = VMDLoader::Create();
-	auto animationData =loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
+	mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
 }

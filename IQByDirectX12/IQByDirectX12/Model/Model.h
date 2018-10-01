@@ -20,6 +20,7 @@ class ModelDataManager;
 class CommandList;
 /*Debug*/
 class DescriptorHeap;
+class Pose;
 /*DebugEnd*/
 using Microsoft::WRL::ComPtr;
 class InstancingDataManager;
@@ -67,6 +68,8 @@ public:
 	void Draw() const;
 
 	std::shared_ptr<DescriptorHeap> _DebugGetDescHeap();
+
+	std::shared_ptr<Pose> _DebugGetPose();
 
 private:
 	// •Ï”éŒ¾

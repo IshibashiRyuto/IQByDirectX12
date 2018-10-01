@@ -32,6 +32,7 @@ class PMXModelData;
 class Model;
 class Shader;
 class SwapChain;
+class Animation;
 
 using Microsoft::WRL::ComPtr;
 
@@ -86,6 +87,7 @@ private:
 	std::shared_ptr<Model>				mModelData;
 	std::shared_ptr<PMXLoader>			mPMXModelLoader;
 	std::shared_ptr<Model>				mPMXModelData;
+	std::shared_ptr<Animation>			mAnimationData;
 	std::vector<std::shared_ptr<Model>>	mInstancingTestModels;
 
 	Math::Matrix4x4 mWorldMatrix;

@@ -51,6 +51,10 @@ public:
 		std::vector<PMX::Index> indexData);
 	static std::shared_ptr<PMXModelData> Create(std::shared_ptr<Device> device, const PMX::ModelDataDesc& modelDataDesc);
 
+	/// @fn Update
+	/// モデル情報の更新処理
+	void Update();
+
 	/// @fn Draw
 	/// 描画処理
 	/// @param[in]	graphicsCommandList	: コマンドリスト
@@ -83,4 +87,7 @@ private:
 	/// @fn SetBone
 	/// ボーン情報をセットする
 	void SetBone(const std::vector<PMX::BoneData>& bones);
+
+	/// ボーン情報を更新する
+	void UpdatePose();
 };

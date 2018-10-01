@@ -111,9 +111,10 @@ std::wstring PMXLoader::ReadTextBufWString(FILE * fp)
 
 	int bufSize;
 	fread(&bufSize, sizeof(int), 1, fp);
-	text.resize(bufSize);
-	fread((void*)text.data(), sizeof(char) * bufSize, 1, fp);
-
+	bufSize = bufSize / sizeof(wchar_t);
+	text.resize(bufSize + 1);
+	fread((void*)text.data(), sizeof(wchar_t)*bufSize, 1, fp);
+	text[bufSize] = L'\0';
 	return text;
 }
 

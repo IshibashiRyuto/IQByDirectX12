@@ -72,6 +72,13 @@ std::shared_ptr<DescriptorHeap> Model::_DebugGetDescHeap()
 	return modelData->GetDescriptorHeap();
 }
 
+std::shared_ptr<Pose> Model::_DebugGetPose()
+{
+	auto& dataManager = ModelDataManager::GetInstance();
+	auto modelData = dataManager.GetModelData(mModelHandle);
+	return modelData->_DebugGetPose();
+}
+
 
 void Model::CalcModelMatrix()
 {

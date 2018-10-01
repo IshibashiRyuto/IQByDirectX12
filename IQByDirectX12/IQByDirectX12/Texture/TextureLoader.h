@@ -61,13 +61,6 @@ private:
 	/// コンストラクタ
 	TextureLoader(std::shared_ptr<Device> device);
 
-
-	/// @fn GetWString
-	/// 文字列をロング文字列に変換する
-	/// @param[in]	1バイト文字列
-	/// @retval		wstring
-	std::wstring GetWString(const std::string& str);
-
 	/// @fn UpdateTextureSubresource
 	/// テクスチャのサブリソースをアップデートする
 	/// @param[in]	resource ID3D12Resourceのポインタ

@@ -18,6 +18,15 @@ std::shared_ptr<DescriptorHeap> ModelData::GetDescriptorHeap() const
 	return mDescHeap;
 }
 
+std::shared_ptr<Pose> ModelData::_DebugGetPose() const
+{
+	return mPose;
+}
+
+void ModelData::Update()
+{
+}
+
 void ModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instancingData) const
 {
 	mDescHeap->BindGraphicsCommandList(graphicsCommandList);

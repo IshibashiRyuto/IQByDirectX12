@@ -37,6 +37,13 @@ public:
 	/// デスクリプタヒープを取得する
 	std::shared_ptr<DescriptorHeap> GetDescriptorHeap() const;
 
+	/// Debug
+	/// 姿勢情報を取得する
+	std::shared_ptr<Pose> _DebugGetPose() const;
+
+	/// 更新処理
+	virtual void Update();
+
 	/// 描画処理
 	virtual void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
 

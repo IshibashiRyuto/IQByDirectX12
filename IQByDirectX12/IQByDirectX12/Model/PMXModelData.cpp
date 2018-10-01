@@ -42,6 +42,11 @@ std::shared_ptr<PMXModelData> PMXModelData::Create(std::shared_ptr<Device> devic
 	return modelData;
 }
 
+void PMXModelData::Update()
+{
+	UpdatePose();
+}
+
 void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData & instanceData) const
 {
 	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
@@ -122,4 +127,17 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 	}
 	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), sizeof(Math::Matrix4x4) * boneMatrixes.size());
 	mDescHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), 1 + 3 * mMaterialData.size());
+}
+
+void PMXModelData::UpdatePose()
+{
+	std::vector<Math::Matrix4x4> boneMatrixes;
+	auto poseBones = mPose->GetBones();
+
+	boneMatrixes.resize(poseBones.size());
+	for (unsigned int i = 0; i < boneMatrixes.size(); ++i)
+	{
+		boneMatrixes[i] = poseBones[i]->GetBoneMatrix();
+	}
+	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), sizeof(Math::Matrix4x4) * boneMatrixes.size());
 }
