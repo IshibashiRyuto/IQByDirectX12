@@ -215,6 +215,10 @@ Quaternion Math::Slerp(const Quaternion & q1, const Quaternion & q2, float t)
 {
 	t = Clamp(t, 0.0f, 1.0f);
 	float angle = CalcAngleQuatToQuat(q1, q2);
+	if (angle == 0.0f)
+	{
+		return q1;
+	}
 	return Quaternion(q1 * (sinf((1.0f - t) * angle) / sinf(angle)) + q2 * (sinf(t * angle) / sinf(angle)));
 }
 

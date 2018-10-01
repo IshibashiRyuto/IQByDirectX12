@@ -33,8 +33,12 @@ void Animation::SetPose(int frame, std::shared_ptr<Pose> pose)
 		}
 		
 		auto boneIndex = pose->GetBoneIndex(animationData.first);
-		auto preKeyFrameData = animationData.second.lower_bound(frame);
-		auto postKeyFrameData = animationData.second.upper_bound(frame);
+		auto preKeyFrameData = animationData.second.upper_bound(frame);
+		auto postKeyFrameData = preKeyFrameData;
+		if (preKeyFrameData != animationData.second.begin())
+		{
+			preKeyFrameData--;
+		}
 		float t = static_cast<float>(frame - (*preKeyFrameData).first) / static_cast<float>((*postKeyFrameData).first - (*preKeyFrameData).first);
 
 		auto boneRot = Math::Slerp((*preKeyFrameData).second.bone->GetRotation(), (*postKeyFrameData).second.bone->GetRotation(), t);

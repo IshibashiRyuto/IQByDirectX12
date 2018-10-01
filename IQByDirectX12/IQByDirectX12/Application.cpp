@@ -162,7 +162,7 @@ void Application::Render()
 
 	//debug
 	static float zAngle = 0.0f;
-	static int t = 0;
+	static float t = 0;
 
 	int i = 0;
 	for (auto model : mInstancingTestModels)
@@ -170,13 +170,13 @@ void Application::Render()
 		if (i++ == 5)
 		{
 			model->SetRotation(Math::Vector3(0.0f, zAngle, 0.0f));
-			mAnimationData->SetPose(t, model->_DebugGetPose());
+			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
 			model->Draw();
 		}
 	}
 
 	zAngle += 0.01f;
-	t++;
+	t+=0.5f;
 	if (t >= 60)
 	{
 		t = 0;
@@ -420,5 +420,6 @@ void Application::LoadPMX()
 void Application::LoadMotion()
 {
 	auto loader = VMDLoader::Create();
-	mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
+	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
+	mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
 }

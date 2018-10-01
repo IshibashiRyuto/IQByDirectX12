@@ -7,6 +7,7 @@
 #include "VMDData.h"
 #include "Animation.h"
 #include "Bone.h"
+#include "ConvertString.h"
 
 
 VMDLoader::VMDLoader()
@@ -56,20 +57,7 @@ std::shared_ptr<Animation> VMDLoader::Load(const std::string & filePath)
 
 		std::string str(data.boneName);
 
-		// ワイド文字列のバイトサイズを取得
-		auto byteSize = MultiByteToWideChar(CP_ACP,
-			MB_PRECOMPOSED | MB_ERR_INVALID_CHARS,
-			str.data(), -1, nullptr, 0);
-
-		// 変換先の文字列バッファを生成
-		std::wstring wstr;
-		wstr.resize(byteSize);
-
-		byteSize = MultiByteToWideChar(CP_ACP,
-			MB_PRECOMPOSED | MB_ERR_INVALID_CHARS,
-			str.data(), -1, &wstr[0], byteSize);
-
-		boneName = wstr;
+		boneName = ConvertStringToWString(str);
 
 		animationData->AddKeyFrameData(boneName, data.frameNo, keyFrameData);
 	}
