@@ -30,7 +30,7 @@ namespace VMD
 		unsigned int frameNo;				// フレーム番号
 		Math::Vector3 location;				// 位置
 		Math::Quaternion rotation;			// 回転
-		unsigned char interporation[64];	// 補間データ
+		unsigned char interpolation[64];	// 補間データ
 	};
 	
 

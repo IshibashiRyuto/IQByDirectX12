@@ -12,6 +12,7 @@
 
 //クラス使用宣言
 class VMDData;
+class Animation;
 
 
 class VMDLoader
@@ -26,6 +27,8 @@ public:
 
 	/// @brief VMDDataをロードする
 	/// @param[in] filePath	:	ロードするファイルのパス
-	void Load(const std::string& filePath);
+	/// @retval	読み込み成功	: アニメーションのスマートポインタ
+	/// @retval 読み込み失敗	: nullptr
+	std::shared_ptr<Animation> Load(const std::string& filePath);
 };
 

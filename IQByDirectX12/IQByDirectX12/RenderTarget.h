@@ -48,7 +48,7 @@ public:
 	/// @fn ClearRenderTarget
 	void ClearRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList);
 
-private:
+protected:
 	/* ’è”’è‹` */
 	const UINT RENDER_TARGET_VIEW_DESCRIPTOR_SIZE;
 

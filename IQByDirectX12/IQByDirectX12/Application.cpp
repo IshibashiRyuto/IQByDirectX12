@@ -1,7 +1,6 @@
 #include <iostream>
 #include <d3d12.h>
 #include <d3dx12.h>
-#include <dxgi1_4.h>
 #include <DirectXMath.h>
 #include <D3DCompiler.h>
 
@@ -413,5 +412,5 @@ void Application::LoadPMX()
 void Application::LoadMotion()
 {
 	auto loader = VMDLoader::Create();
-	loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
+	auto animationData =loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
 }

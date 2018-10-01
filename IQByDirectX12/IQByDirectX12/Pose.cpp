@@ -11,11 +11,13 @@ Pose::Pose(int boneCount)
 {
 	mBones.resize(boneCount);
 	mChildBoneList = std::make_shared<ChildBoneList>();
+	mBoneNameMap = std::make_shared<BoneNameMap>();
 }
 
 Pose::Pose(const Pose & src)
 {
 	this->mBones = std::vector<std::shared_ptr<Bone>>(src.mBones.begin(), src.mBones.end());
+	this->mBoneNameMap = src.mBoneNameMap;
 	this->mChildBoneList = src.mChildBoneList;
 }
 
@@ -47,7 +49,17 @@ const std::vector<std::shared_ptr<Bone>>& Pose::GetBones()
 	return mBones;
 }
 
-void Pose::SetBoneData(const std::shared_ptr<Bone> bone, int boneIndex, int parentBoneIndex)
+bool Pose::IsFindBoneName(const std::wstring & boneName)
+{
+	return mBoneNameMap->find(boneName) != mBoneNameMap->end();
+}
+
+int Pose::GetBoneIndex(const std::wstring & boneName)
+{
+	return (*mBoneNameMap)[boneName];
+}
+
+void Pose::SetBoneData(const std::wstring& boneName, const std::shared_ptr<Bone> bone, int boneIndex, int parentBoneIndex)
 {
 	if (boneIndex < 0 
 		|| static_cast<unsigned int>(boneIndex) >= mBones.size() 
@@ -57,6 +69,7 @@ void Pose::SetBoneData(const std::shared_ptr<Bone> bone, int boneIndex, int pare
 	}
 	mBones[boneIndex] = bone;
 	(*mChildBoneList)[parentBoneIndex].push_back(boneIndex);
+	(*mBoneNameMap)[boneName] = boneIndex;
 }
 
 std::shared_ptr<Pose> Pose::Lerp(const std::shared_ptr<Pose> prePose, const std::shared_ptr<Pose> postPose, float time)

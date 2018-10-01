@@ -83,6 +83,6 @@ D3D12_CPU_DESCRIPTOR_HANDLE RenderTarget::GetRTVHandle()
 
 void RenderTarget::ClearRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
-	float color[4] = { 0.0f,0.0f,0.0f,0.0f };
+	float color[4] = { 0.0f,0.0f,0.0f,1.0f };
 	commandList->ClearRenderTargetView(GetRTVHandle(), color, 0, nullptr);
 }

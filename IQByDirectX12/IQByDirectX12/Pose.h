@@ -5,6 +5,7 @@
 	@date
 	2018/09/12	初版作成
 	2018/09/14	コンストラクタを隠蔽、shared_ptrを返すCreateメソッドを定義
+	2018/10/01	ボーンの名前とインデックスを対応付け、名前からインデックスを取得できるようにした
 */
 #pragma once
 /* システムヘッダインクルード */
@@ -20,6 +21,7 @@
 class Bone;
 
 typedef std::map< int, std::list<int>> ChildBoneList;
+typedef std::map< std::wstring, int> BoneNameMap;
 
 class Pose
 {
@@ -46,14 +48,30 @@ public:
 	/// @retval ボーン配列の参照
 	const std::vector<std::shared_ptr<Bone>> & GetBones();
 
+	/// @fn IsFindBoneName
+	/// 指定した名前のボーンが存在するかチェックする
+	/// @param[in] ボーン名
+	/// @retval ボーンが存在する	: true
+	/// @retval ボーンが存在しない	: false
+	bool IsFindBoneName(const std::wstring & boneName);
+
+	/// @fn GetBoneIndex
+	/// ボーン名からボーンのインデックスを取得する
+	/// @param[in]	boneName	: ボーン名
+	///	@retval		ボーンのインデックス
+	/// @note		指定したボーンが存在するかを
+	///				IsFindBoneNameで事前にチェックする必要あり
+	int GetBoneIndex(const std::wstring& boneName);
+
 	/// @fn SetBoneData
 	/// ボーン情報を追加する
+	/// @param[in] boneName: ボーン名
 	/// @param[in] bone	:	 ボーン情報
 	/// @param[in] boneIndex : 自身のインデックス
 	/// @param[in] parentBoneIndex : 親のインデックス
 	/// @note すべての親ノードは-1とし、親ノードに接続されていないボーンは
 	/// 姿勢計算対象外になる
-	void SetBoneData(const std::shared_ptr<Bone> bone, int boneIndex, int parentBoneIndex = -1);
+	void SetBoneData(const std::wstring& boneName, const std::shared_ptr<Bone> bone, int boneIndex, int parentBoneIndex = -1);
 
 	/// @fn Lerp
 	/// 姿勢情報を補間する
@@ -70,6 +88,7 @@ private:
 	/* メンバ変数宣言 */
 	std::vector<std::shared_ptr<Bone>> mBones;
 	std::shared_ptr< ChildBoneList > mChildBoneList;
+	std::shared_ptr< BoneNameMap > mBoneNameMap;
 	
 	/* プライベートメソッド定義 */
 

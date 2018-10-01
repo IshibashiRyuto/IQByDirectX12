@@ -98,11 +98,11 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 	{
 		if (bones[i].parentBoneIndex < bones.size())
 		{
-			mPose->SetBoneData(Bone::Create(bones[i].position), i, bones[i].parentBoneIndex);
+			mPose->SetBoneData(bones[i].name, Bone::Create(bones[i].position), i, bones[i].parentBoneIndex);
 		}
 		else
 		{
-			mPose->SetBoneData(Bone::Create(bones[i].position), i);
+			mPose->SetBoneData(bones[i].name, Bone::Create(bones[i].position), i);
 		}
 	}
 
