@@ -28,6 +28,9 @@ public:
 	void SetRotation(const Math::Vector3& rotation);
 	void SetRotation(float rotX, float rotY, float rotZ);
 
+	/// 軸制限の使用設定を行う
+	void SetLimitAxis(bool isUse, const Math::Vector3& axis);
+
 	/// ボーンを回転させる
 	void Rotate(const Math::Matrix4x4& matrix);
 
@@ -43,6 +46,8 @@ private:
 	Math::Quaternion mRotation;				// ボーンの回転量
 	Math::Quaternion mRotatedRotation;		// 回転操作後のボーン回転量
 	Math::Matrix4x4 mMatrix;
+	Math::Vector3	mLimitAxis;				// 制限軸
+	bool			mIsUseLimitAxis;		// 軸制限機能を使用するか
 	/* プライベートメソッド定義 */
 	/// コンストラクタ
 	Bone(const Math::Vector3 & headPosition);

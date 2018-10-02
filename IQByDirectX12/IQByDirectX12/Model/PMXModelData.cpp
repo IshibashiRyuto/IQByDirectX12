@@ -101,21 +101,20 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 	mPose = Pose::Create(bones.size());
 	for (unsigned int i = 0; i < bones.size(); ++i)
 	{
+		auto bone = Bone::Create(bones[i].position);
+		if (bones[i].axisFixed)
+		{
+			bone->SetLimitAxis(true, bones[i].axisVector);
+		}
 		if (bones[i].parentBoneIndex < bones.size())
 		{
-			mPose->SetBoneData(bones[i].name, Bone::Create(bones[i].position), i, bones[i].parentBoneIndex);
+			mPose->SetBoneData(bones[i].name, bone, i, bones[i].parentBoneIndex);
 		}
 		else
 		{
-			mPose->SetBoneData(bones[i].name, Bone::Create(bones[i].position), i);
+			mPose->SetBoneData(bones[i].name, bone, i);
 		}
 	}
-
-	// debug
-	auto& a = mPose->GetBones();
-	a[6]->SetRotation(Math::CreateRotAxisQuaternion(Math::Vector3(0.0f, 0.0f, 1.0f), Math::F_PI / 12.0f) );
-	mPose->CalcPose();
-	//debugEnd
 
 	std::vector<Math::Matrix4x4> boneMatrixes;
 	auto poseBones = mPose->GetBones();

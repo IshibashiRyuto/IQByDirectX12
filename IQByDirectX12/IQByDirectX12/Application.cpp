@@ -175,9 +175,9 @@ void Application::Render()
 		}
 	}
 
-	zAngle += 0.01f;
+	//zAngle += 0.01f;
 	t+=0.5f;
-	if (t >= 60)
+	if (t >= 30)
 	{
 		t = 0;
 	}
@@ -363,7 +363,7 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 20.0f, -15.0f), Math::Vector3(0.0f, 0.0f, 10.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(-10.0f, 15.0f, -10.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		
@@ -420,6 +420,8 @@ void Application::LoadPMX()
 void Application::LoadMotion()
 {
 	auto loader = VMDLoader::Create();
+	//mAnimationData =loader->Load("Resource/Motion/バイバイ.vmd");
+	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
 }
