@@ -7,6 +7,7 @@
 	2018/08/26 行列クラスに機能を追加
 		・LookAt行列の生成
 		・Perspective行列の生成
+	2018/10/03	データ量削減のため4x3行列を追加
 */
 #pragma once
 namespace Math
@@ -16,6 +17,7 @@ namespace Math
 	struct Vector3;
 	struct Vector4;
 	struct Matrix4x4;
+	struct Matrix4x3;
 	struct Quaternion;
 
 	// 円周率π
@@ -246,6 +248,30 @@ namespace Math
 	/// アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する
 	Matrix4x4 CreatePerspectiveMatrix(float Aspect, float nearZ, float farZ, float fov);
 
+
+	/// @struct Matrix4x3
+	/// 4x3行列を表す構造体
+	/// 4次元または3次元ベクトルvと4x3行列Mとの乗算は
+	/// v*Mで演算可能で、Vector3を返す
+	struct Matrix4x3
+	{
+		union
+		{
+			float matrix[4][3];
+
+			struct
+			{
+				float _11, _12, _13;
+				float _21, _22, _23;
+				float _31, _32, _33;
+				float _41, _42, _43;
+			};
+		};
+		
+		Matrix4x3();
+		Matrix4x3(const Matrix4x3& mat);
+		Matrix4x3(const Matrix4x4& mat);
+	};
 	
 
 	struct Quaternion
