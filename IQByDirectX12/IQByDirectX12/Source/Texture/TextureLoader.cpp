@@ -2,7 +2,7 @@
 #include <d3dx12.h>
 #include <iostream>
 #include "TextureLoader.h"
-#include "../WICTextureLoader/WICTextureLoader12.h"
+#include "WICTextureLoader/WICTextureLoader12.h"
 #include "../CommandQueue.h"
 #include "../GraphicsCommandList.h"
 #include "../Device.h"

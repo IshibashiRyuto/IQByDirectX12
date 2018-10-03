@@ -252,9 +252,9 @@ bool Application::CreateRootSignature()
 
 bool Application::ReadShader()
 {
-	mVertexShaderClass = Shader::Create(L"PMXModelShader.hlsl", "VSMain", "vs_5_0");
+	mVertexShaderClass = Shader::Create(L"Resource/Shader/PMXModelShader.hlsl", "VSMain", "vs_5_0");
 
-	mPixelShaderClass = Shader::Create(L"PMXModelShader.hlsl", "PSMain", "ps_5_0");
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/PMXModelShader.hlsl", "PSMain", "ps_5_0");
 
 	return true;
 }

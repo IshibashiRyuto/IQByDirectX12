@@ -18,6 +18,100 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Animation.cpp" />
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Bone.cpp" />
+    <ClCompile Include="Source\CommandAllocator.cpp" />
+    <ClCompile Include="Source\CommandQueue.cpp" />
+    <ClCompile Include="Source\ConstantBuffer.cpp" />
+    <ClCompile Include="Source\ConvertString.cpp" />
+    <ClCompile Include="Source\DepthBuffer.cpp" />
+    <ClCompile Include="Source\DescriptorHeap.cpp" />
+    <ClCompile Include="Source\Device.cpp" />
+    <ClCompile Include="Source\GraphicsCommandList.cpp" />
+    <ClCompile Include="Source\IndexBuffer.cpp" />
+    <ClCompile Include="Source\Input\GamePad.cpp" />
+    <ClCompile Include="Source\Input\Keyboard.cpp" />
+    <ClCompile Include="Source\Input\Mouse.cpp" />
+    <ClCompile Include="Source\InstanceBuffer.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\MathConvert.cpp" />
+    <ClCompile Include="Source\Math\Math_Common.cpp" />
+    <ClCompile Include="Source\Math\Math_Matrix.cpp" />
+    <ClCompile Include="Source\Math\Math_Quaternion.cpp" />
+    <ClCompile Include="Source\Math\Math_Vector2.cpp" />
+    <ClCompile Include="Source\Math\Math_Vector3.cpp" />
+    <ClCompile Include="Source\Math\Math_Vector4.cpp" />
+    <ClCompile Include="Source\Model\InstancingDataManager.cpp" />
+    <ClCompile Include="Source\Model\Model.cpp" />
+    <ClCompile Include="Source\Model\ModelData.cpp" />
+    <ClCompile Include="Source\Model\ModelDataManager.cpp" />
+    <ClCompile Include="Source\Model\ModelLoader.cpp" />
+    <ClCompile Include="Source\Model\PMDLoader.cpp" />
+    <ClCompile Include="Source\Model\PMDModelData.cpp" />
+    <ClCompile Include="Source\Model\PMXLoader.cpp" />
+    <ClCompile Include="Source\Model\PMXModelData.cpp" />
+    <ClCompile Include="Source\Pose.cpp" />
+    <ClCompile Include="Source\RenderTarget.cpp" />
+    <ClCompile Include="Source\RootSignature.cpp" />
+    <ClCompile Include="Source\Sampler.cpp" />
+    <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\SwapChain.cpp" />
+    <ClCompile Include="Source\Texture\Texture.cpp" />
+    <ClCompile Include="Source\Texture\TextureLoader.cpp" />
+    <ClCompile Include="Source\Texture\TextureManager.cpp" />
+    <ClCompile Include="Source\Texture\WICTextureLoader\WICTextureLoader12.cpp" />
+    <ClCompile Include="Source\VertexBuffer.cpp" />
+    <ClCompile Include="Source\VMDData.cpp" />
+    <ClCompile Include="Source\VMDLoader.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Bone.h" />
+    <ClInclude Include="Source\CommandAllocator.h" />
+    <ClInclude Include="Source\CommandQueue.h" />
+    <ClInclude Include="Source\ConstantBuffer.h" />
+    <ClInclude Include="Source\ConvertString.h" />
+    <ClInclude Include="Source\DepthBuffer.h" />
+    <ClInclude Include="Source\DescriptorHeap.h" />
+    <ClInclude Include="Source\Device.h" />
+    <ClInclude Include="Source\GraphicsCommandList.h" />
+    <ClInclude Include="Source\IndexBuffer.h" />
+    <ClInclude Include="Source\Input\GamePad.h" />
+    <ClInclude Include="Source\Input\Keyboard.h" />
+    <ClInclude Include="Source\Input\Mouse.h" />
+    <ClInclude Include="Source\InstanceBuffer.h" />
+    <ClInclude Include="Source\MathConvert.h" />
+    <ClInclude Include="Source\Math\Math.h" />
+    <ClInclude Include="Source\Model\InstancingDataManager.h" />
+    <ClInclude Include="Source\Model\Model.h" />
+    <ClInclude Include="Source\Model\ModelData.h" />
+    <ClInclude Include="Source\Model\ModelDataManager.h" />
+    <ClInclude Include="Source\Model\ModelLoader.h" />
+    <ClInclude Include="Source\Model\PMDLoader.h" />
+    <ClInclude Include="Source\Model\PMDModelData.h" />
+    <ClInclude Include="Source\Model\PMXLoader.h" />
+    <ClInclude Include="Source\Model\PMXModelData.h" />
+    <ClInclude Include="Source\PMXModelDataInfo.h" />
+    <ClInclude Include="Source\Pose.h" />
+    <ClInclude Include="Source\RenderState.h" />
+    <ClInclude Include="Source\RenderTarget.h" />
+    <ClInclude Include="Source\RootSignature.h" />
+    <ClInclude Include="Source\Sampler.h" />
+    <ClInclude Include="Source\Shader.h" />
+    <ClInclude Include="Source\SwapChain.h" />
+    <ClInclude Include="Source\Texture\Texture.h" />
+    <ClInclude Include="Source\Texture\TextureLoader.h" />
+    <ClInclude Include="Source\Texture\TextureManager.h" />
+    <ClInclude Include="Source\Texture\WICTextureLoader\WICTextureLoader12.h" />
+    <ClInclude Include="Source\VertexBuffer.h" />
+    <ClInclude Include="Source\VMDData.h" />
+    <ClInclude Include="Source\VMDLoader.h" />
+    <ClInclude Include="Source\Window.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{994EF503-898C-4942-8B1A-2487F05AA9EF}</ProjectGuid>
@@ -84,7 +178,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)IQByDirectX12\ExternalLibraries</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)IQByDirectX12\Source\ExternalLibraries</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,157 +203,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)IQByDirectX12\ExternalLibraries</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)IQByDirectX12\Source\ExternalLibraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Bone.cpp" />
-    <ClCompile Include="CommandAllocator.cpp" />
-    <ClCompile Include="CommandQueue.cpp" />
-    <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="ConvertString.cpp" />
-    <ClCompile Include="DepthBuffer.cpp" />
-    <ClCompile Include="DescriptorHeap.cpp" />
-    <ClCompile Include="Device.cpp" />
-    <ClCompile Include="GraphicsCommandList.cpp" />
-    <ClCompile Include="IndexBuffer.cpp" />
-    <ClCompile Include="InstanceBuffer.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MathConvert.cpp" />
-    <ClCompile Include="Math\Math_Common.cpp" />
-    <ClCompile Include="Math\Math_Matrix.cpp" />
-    <ClCompile Include="Math\Math_Quaternion.cpp" />
-    <ClCompile Include="Math\Math_Vector2.cpp" />
-    <ClCompile Include="Math\Math_Vector3.cpp" />
-    <ClCompile Include="Math\Math_Vector4.cpp" />
-    <ClCompile Include="Model\InstancingDataManager.cpp" />
-    <ClCompile Include="Model\Model.cpp" />
-    <ClCompile Include="Model\ModelData.cpp" />
-    <ClCompile Include="Model\ModelDataManager.cpp" />
-    <ClCompile Include="Model\ModelLoader.cpp" />
-    <ClCompile Include="Model\PMDLoader.cpp" />
-    <ClCompile Include="Model\PMDModelData.cpp" />
-    <ClCompile Include="Model\PMXLoader.cpp" />
-    <ClCompile Include="Model\PMXModelData.cpp" />
-    <ClCompile Include="Pose.cpp" />
-    <ClCompile Include="RenderTarget.cpp" />
-    <ClCompile Include="RootSignature.cpp" />
-    <ClCompile Include="Sampler.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="SwapChain.cpp" />
-    <ClCompile Include="Texture\Texture.cpp" />
-    <ClCompile Include="Texture\TextureLoader.cpp" />
-    <ClCompile Include="Texture\TextureManager.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
-    <ClCompile Include="VMDData.cpp" />
-    <ClCompile Include="VMDLoader.cpp" />
-    <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Bone.h" />
-    <ClInclude Include="CommandAllocator.h" />
-    <ClInclude Include="CommandQueue.h" />
-    <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="ConvertString.h" />
-    <ClInclude Include="DepthBuffer.h" />
-    <ClInclude Include="DescriptorHeap.h" />
-    <ClInclude Include="Device.h" />
-    <ClInclude Include="GraphicsCommandList.h" />
-    <ClInclude Include="IndexBuffer.h" />
-    <ClInclude Include="InstanceBuffer.h" />
-    <ClInclude Include="MathConvert.h" />
-    <ClInclude Include="Math\Math.h" />
-    <ClInclude Include="Model\InstancingDataManager.h" />
-    <ClInclude Include="Model\Model.h" />
-    <ClInclude Include="Model\ModelData.h" />
-    <ClInclude Include="Model\ModelDataManager.h" />
-    <ClInclude Include="Model\ModelLoader.h" />
-    <ClInclude Include="Model\PMDLoader.h" />
-    <ClInclude Include="Model\PMDModelData.h" />
-    <ClInclude Include="Model\PMXLoader.h" />
-    <ClInclude Include="Model\PMXModelData.h" />
-    <ClInclude Include="PMXModelDataInfo.h" />
-    <ClInclude Include="Pose.h" />
-    <ClInclude Include="RenderState.h" />
-    <ClInclude Include="RenderTarget.h" />
-    <ClInclude Include="RootSignature.h" />
-    <ClInclude Include="Sampler.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="SwapChain.h" />
-    <ClInclude Include="Texture\Texture.h" />
-    <ClInclude Include="Texture\TextureLoader.h" />
-    <ClInclude Include="Texture\TextureManager.h" />
-    <ClInclude Include="VertexBuffer.h" />
-    <ClInclude Include="VMDData.h" />
-    <ClInclude Include="VMDLoader.h" />
-    <ClInclude Include="WICTextureLoader\WICTextureLoader12.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="3DPrimitiveShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="PMDModelShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </FxCompile>
-    <FxCompile Include="PMXModelShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

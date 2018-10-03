@@ -1,299 +1,304 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{2fed6c96-c4d2-44ea-afb9-8647e2b65e59}</UniqueIdentifier>
+    <Filter Include="Source">
+      <UniqueIdentifier>{bfa200a4-6578-484d-afa2-2599499b6de7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WICTextureLoader">
-      <UniqueIdentifier>{26ac1718-16b0-4193-ab21-98134a388f55}</UniqueIdentifier>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{17f94250-8395-42ca-8162-50c3f0ed7481}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Model">
-      <UniqueIdentifier>{18ce2fb1-dc85-42d1-a33f-3b90ca336d03}</UniqueIdentifier>
+    <Filter Include="Source\Math">
+      <UniqueIdentifier>{cc0a8951-a9a5-490e-ad64-057b09eb414e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Texture">
-      <UniqueIdentifier>{e6164005-70a2-4459-a613-d06ae9541956}</UniqueIdentifier>
+    <Filter Include="Source\Texture">
+      <UniqueIdentifier>{b8f60d1b-8954-4f4a-b78f-935c44a4c271}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Motion">
-      <UniqueIdentifier>{4d3416d0-24f2-481a-acc6-d5796ea5ac80}</UniqueIdentifier>
+    <Filter Include="Source\Texture\WICTextureLoader">
+      <UniqueIdentifier>{a530fa36-7667-45e8-9467-350796990db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Model">
+      <UniqueIdentifier>{d3f3359c-2cfd-49fe-b642-10848e4ad3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Animation">
+      <UniqueIdentifier>{2fd1bed0-dd38-4d1d-afe1-0a4a5e0299e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Input\Keyboard.cpp">
+      <Filter>Source\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Input\Mouse.cpp">
+      <Filter>Source\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Input\GamePad.cpp">
+      <Filter>Source\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Device.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Math\Math_Common.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="CommandAllocator.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Math\Math_Matrix.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="CommandQueue.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Math\Math_Quaternion.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="RenderTarget.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Math\Math_Vector2.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="SwapChain.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Math\Math_Vector3.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="DepthBuffer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Math\Math_Vector4.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Model\InstancingDataManager.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math_Common.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="Source\Model\Model.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math_Matrix.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="Source\Model\ModelData.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math_Quaternion.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="Source\Model\ModelDataManager.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math_Vector2.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="Source\Model\ModelLoader.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math_Vector3.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="Source\Model\PMDLoader.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math_Vector4.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="Source\Model\PMDModelData.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="WICTextureLoader\WICTextureLoader12.cpp">
-      <Filter>WICTextureLoader</Filter>
+    <ClCompile Include="Source\Model\PMXLoader.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="DescriptorHeap.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Model\PMXModelData.cpp">
+      <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="ConstantBuffer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Texture\WICTextureLoader\WICTextureLoader12.cpp">
+      <Filter>Source\Texture\WICTextureLoader</Filter>
     </ClCompile>
-    <ClCompile Include="MathConvert.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Texture\Texture.cpp">
+      <Filter>Source\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Model\ModelData.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\Texture\TextureLoader.cpp">
+      <Filter>Source\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Model\PMXModelData.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\Texture\TextureManager.cpp">
+      <Filter>Source\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Model\PMDLoader.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\Application.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Model\PMDModelData.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\Bone.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="IndexBuffer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\CommandAllocator.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Model\PMXLoader.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\CommandQueue.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Model\ModelLoader.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\ConstantBuffer.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Model\InstancingDataManager.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\ConvertString.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Model\Model.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\DepthBuffer.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Model\ModelDataManager.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="Source\DescriptorHeap.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Texture\Texture.cpp">
-      <Filter>Texture</Filter>
+    <ClCompile Include="Source\Device.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Texture\TextureLoader.cpp">
-      <Filter>Texture</Filter>
+    <ClCompile Include="Source\GraphicsCommandList.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Texture\TextureManager.cpp">
-      <Filter>Texture</Filter>
+    <ClCompile Include="Source\IndexBuffer.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="InstanceBuffer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\InstanceBuffer.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="RootSignature.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\MathConvert.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsCommandList.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Pose.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Bone.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\RenderTarget.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Pose.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\RootSignature.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="VMDData.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Sampler.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="VMDLoader.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Shader.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Sampler.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\SwapChain.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\VertexBuffer.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="ConvertString.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\VMDData.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VMDLoader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Input\Keyboard.h">
+      <Filter>Source\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Input\Mouse.h">
+      <Filter>Source\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Device.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Input\GamePad.h">
+      <Filter>Source\Input</Filter>
     </ClInclude>
-    <ClInclude Include="CommandAllocator.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Math\Math.h">
+      <Filter>Source\Math</Filter>
     </ClInclude>
-    <ClInclude Include="CommandQueue.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\InstancingDataManager.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="RenderTarget.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\Model.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="SwapChain.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\ModelData.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="DepthBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\ModelDataManager.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\ModelLoader.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Math.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="Source\Model\PMDLoader.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="WICTextureLoader\WICTextureLoader12.h">
-      <Filter>WICTextureLoader</Filter>
+    <ClInclude Include="Source\Model\PMDModelData.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="DescriptorHeap.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\PMXLoader.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ConstantBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Model\PMXModelData.h">
+      <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="MathConvert.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Texture\WICTextureLoader\WICTextureLoader12.h">
+      <Filter>Source\Texture\WICTextureLoader</Filter>
     </ClInclude>
-    <ClInclude Include="Model\ModelData.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\Texture\Texture.h">
+      <Filter>Source\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Model\PMXModelData.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\Texture\TextureLoader.h">
+      <Filter>Source\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Model\PMDLoader.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\Texture\TextureManager.h">
+      <Filter>Source\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Model\PMDModelData.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\Application.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="IndexBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Bone.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Model\PMXLoader.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\CommandAllocator.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Model\ModelLoader.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\CommandQueue.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Model\InstancingDataManager.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\ConstantBuffer.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Model\Model.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\ConvertString.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Model\ModelDataManager.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\DepthBuffer.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\Texture.h">
-      <Filter>Texture</Filter>
+    <ClInclude Include="Source\DescriptorHeap.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\TextureLoader.h">
-      <Filter>Texture</Filter>
+    <ClInclude Include="Source\Device.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\TextureManager.h">
-      <Filter>Texture</Filter>
+    <ClInclude Include="Source\GraphicsCommandList.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="InstanceBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\IndexBuffer.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="RootSignature.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\InstanceBuffer.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\MathConvert.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsCommandList.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\PMXModelDataInfo.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="ConvertString.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Pose.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Bone.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\RenderState.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Pose.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\RenderTarget.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="PMXModelDataInfo.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="Source\RootSignature.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="VMDData.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Sampler.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="VMDLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\Shader.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="RenderState.h">
-      <Filter>WICTextureLoader</Filter>
+    <ClInclude Include="Source\SwapChain.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Sampler.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\VertexBuffer.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Source\VMDData.h">
+      <Filter>Source</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="3DPrimitiveShader.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="PMDModelShader.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="PMXModelShader.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
+    <ClInclude Include="Source\VMDLoader.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Window.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
