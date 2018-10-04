@@ -80,7 +80,11 @@ VSOutput VSMain(VSInput input)
             break;
     }
 
-    output.position = mul(wvp, mul(input.modelMatrix, mul(localBoneMatrix, float4(input.position, 1.0f))));
+	matrix m = mul(input.modelMatrix, localBoneMatrix);
+	m = mul(wvp, m);
+	output.position = mul(m, float4(input.position, 1.0f));
+
+    //output.position = mul(wvp, mul(input.modelMatrix, mul(localBoneMatrix, float4(input.position, 1.0f))));
     output.origPosition = mul(world, mul(input.modelMatrix, mul( localBoneMatrix ,float4(input.position, 1.0f))));
 
     input.modelMatrix._14_24_34 = float3(0.0f, 0.0f, 0.0f);

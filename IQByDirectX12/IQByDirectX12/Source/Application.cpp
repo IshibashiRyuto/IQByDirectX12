@@ -30,6 +30,7 @@
 #include "VMDLoader.h"
 #include "SwapChain.h"
 #include "Animation.h"
+#include "Input/Keyboard.h"
 
 // ƒ‰ƒCƒuƒ‰ƒŠƒŠƒ“ƒN
 #pragma comment(lib,"d3d12.lib")
@@ -50,6 +51,8 @@ bool Application::Initialize(const Window & window)
 	auto wrc = window.GetWindowRect();
 	mWindowWidth = wrc.right - wrc.left;
 	mWindowHeight = wrc.bottom - wrc.top;
+
+	mKeyboard = Keyboard::Create();
 
 #ifdef _DEBUG
 	{
@@ -161,21 +164,45 @@ void Application::Render()
 {
 
 	//debug
-	static float zAngle = 0.0f;
+	static float yAngle = 0.0f;
+	static float thetaAngle = 0.0f;
 	static float t = 0;
+
+	mKeyboard->UpdateKeyState();
 
 	int i = 0;
 	for (auto model : mInstancingTestModels)
 	{
 		if (i++ == 5)
 		{
-			model->SetRotation(Math::Vector3(0.0f, zAngle, 0.0f));
+			auto yRotQuat = Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), yAngle);
+			auto xzRotAxis = Math::Vector3( yRotQuat * Math::Quaternion(Math::Vector3(1.f, 0.f, 0.f)) * Math::CreateConjugateQuaternion(yRotQuat) );
+			auto xzRotQuat = Math::CreateRotAxisQuaternion(xzRotAxis, thetaAngle);
+			model->SetRotation(xzRotQuat * yRotQuat);
 			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
 			model->Draw();
 		}
 	}
 
-	//zAngle += 0.01f;
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
+	{
+		yAngle -= 0.05f;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
+	{
+		yAngle += 0.05f;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
+	{
+		thetaAngle += 0.05f;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
+	{
+		thetaAngle -= 0.05f;
+	}
+
+
+	//yAngle += 0.01f;
 	t+=0.5f;
 	if (t >= 30)
 	{
@@ -285,7 +312,7 @@ bool Application::CreatePipelineState()
 
 	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
 
-	gpsDesc.DepthStencilState.DepthEnable = TRUE;
+	gpsDesc.DepthStencilState.DepthEnable = true;
 	gpsDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
 	gpsDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
 	gpsDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
@@ -363,7 +390,7 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(-10.0f, 15.0f, -10.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -10.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/2.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		

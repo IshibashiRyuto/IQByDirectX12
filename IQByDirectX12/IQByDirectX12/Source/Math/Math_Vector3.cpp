@@ -32,6 +32,11 @@ Vector3::Vector3(const Vector4& other)
 {
 }
 
+Math::Vector3::Vector3(const Quaternion & other)
+{
+	Vector3(other.v);
+}
+
 Vector3 Vector3::operator-() const
 {
 	return Vector3(-x, -y, -z);

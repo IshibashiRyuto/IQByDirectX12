@@ -88,6 +88,7 @@ namespace Math
 		Vector3(const Vector3& other);
 		Vector3(Vector3&& other);
 		Vector3(const Vector4& other);
+		Vector3(const Quaternion& other);
 		Vector3 operator-() const;
 		Vector3 operator+() const;
 		Vector3& operator=(const Vector3& value);
@@ -271,6 +272,17 @@ namespace Math
 		Matrix4x3();
 		Matrix4x3(const Matrix4x3& mat);
 		Matrix4x3(const Matrix4x4& mat);
+		Matrix4x3(float m11, float m12, float m13,
+			float m21, float m22, float m23,
+			float m31, float m32, float m33,
+			float m41, float m42, float m43);
+
+		float& operator()(unsigned int row, unsigned int col);
+		const float& operator()(unsigned int row, unsigned int col) const;
+
+		Matrix4x3 operator+() const;
+		Matrix4x3 operator-() const;
+		Matrix4x4 operator=(const Matrix4x4& value);
 	};
 	
 

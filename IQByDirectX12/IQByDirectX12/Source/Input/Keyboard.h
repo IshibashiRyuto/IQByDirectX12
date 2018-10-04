@@ -8,6 +8,7 @@
 #pragma once
 // システムヘッダインクルード
 #include <Windows.h>
+#include <memory>
 
 // 列挙型定義
 ///	@brief 仮想キーインデックス
@@ -92,7 +93,7 @@ enum class VirtualKeyIndex
 class Keyboard
 {
 public:
-	Keyboard();
+	/// @brief デストラクタ
 	~Keyboard();
 
 	/// @brief	キー情報を更新する
@@ -100,29 +101,36 @@ public:
 
 	/// @brief	キー情報配列を取得する
 	/// @retval キー256個の情報を持った配列
-	const unsigned char* GetKeyStateAll();
+	const unsigned char* GetKeyStateAll() const;
 
 	/// @brief	キーが押されているか
 	/// @retval	押されている: true
 	/// @retval	押されていない: false
-	bool IsKeyDown(VirtualKeyIndex keyIndex);
+	bool IsKeyDown(VirtualKeyIndex keyIndex) const;
 
 	/// @brief	キーが押された瞬間か
 	/// @retval	押された瞬間である: true
 	/// @retval 押された瞬間でない: false
-	bool IsKeyTrigger(VirtualKeyIndex keyIndex);
+	bool IsKeyTrigger(VirtualKeyIndex keyIndex) const;
 
-	/// @brief	キーが離された瞬間か
-	///	@retval	離された瞬間である: true
-	/// @retval	離された瞬間でない: false
-	bool IsKeyToggle(VirtualKeyIndex keyIndex);
+	/// @brief	キー入力が切り替わった瞬間か
+	///	@retval	切り替わった瞬間である: true
+	/// @retval	切り替わった瞬間でない: false
+	bool IsKeyToggle(VirtualKeyIndex keyIndex) const;
+
+	/// @brief	キーボードクラスを生成する
+	/// @note	インスタンスはこの関数を通じてのみ生成可能
+	static std::shared_ptr<Keyboard> Create();
+
 private:
-	const static int KEY_COUNT = 256;					// キーの数
-	const static unsigned char KEY_CHECK_DOWN = 0x80;	// キーダウンチェック
+	/// @brief コンストラクタ
+	Keyboard();
+
+	static const int KEY_COUNT = 256;					// キーの数
+	static const unsigned char KEY_CHECK_DOWN = 0x80;	// キーダウンチェック
 
 
-
-	unsigned char mKeyState[KEY_COUNT];			// 現在のフレームでのキーステート
-	unsigned char mPreKeyState[KEY_COUNT];		// 直前のフレームでのキーステート
+	unsigned char mKeyState[256];			// 現在のフレームでのキーステート
+	unsigned char mPreKeyState[256];		// 直前のフレームでのキーステート
 };
 

@@ -33,6 +33,7 @@ class Model;
 class Shader;
 class SwapChain;
 class Animation;
+class Keyboard;
 
 using Microsoft::WRL::ComPtr;
 
@@ -89,6 +90,8 @@ private:
 	std::shared_ptr<Model>				mPMXModelData;
 	std::shared_ptr<Animation>			mAnimationData;
 	std::vector<std::shared_ptr<Model>>	mInstancingTestModels;
+
+	std::shared_ptr<Keyboard>			mKeyboard;
 
 	Math::Matrix4x4 mWorldMatrix;
 	Math::Matrix4x4 mViewMatrix;
