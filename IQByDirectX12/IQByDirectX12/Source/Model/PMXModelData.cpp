@@ -51,7 +51,7 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 {
 	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
 	mDescHeap->BindRootDescriptorTable(0, 0);
-	mDescHeap->BindRootDescriptorTable(2, 1 + 3 * mMaterialData.size());
+	mDescHeap->BindRootDescriptorTable(2, 1 + 3 * static_cast<int>(mMaterialData.size()));
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
 	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
 	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());

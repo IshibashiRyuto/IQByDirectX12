@@ -56,6 +56,16 @@ struct PMDMaterial
 	char textureFileName[20];		// テクスチャファイル名
 };
 
+struct PMDMaterialData
+{
+	Math::Vector3 diffuseColor;
+	float alpha;
+	float specularity;
+	Math::Vector3 specularColor;
+	Math::Vector3 ambientColor;
+	int isUseTexture;
+};
+
 #pragma pack()
 
 class PMDModelData : public ModelData

@@ -40,9 +40,6 @@
     <ClCompile Include="Source\Math\Math_Common.cpp">
       <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Math_Matrix.cpp">
-      <Filter>Source\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Math\Math_Quaternion.cpp">
       <Filter>Source\Math</Filter>
     </ClCompile>
@@ -168,6 +165,10 @@
     </ClCompile>
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math\Math_Matrix4x3.cpp" />
+    <ClCompile Include="Source\Math\Math_Matrix4x4.cpp">
+      <Filter>Source\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

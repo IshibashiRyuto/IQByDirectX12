@@ -109,15 +109,25 @@ private:
 	/// @retval ture: 生成成功, false: 生成失敗
 	bool CreateRootSignature();
 
+	/// @fn _DebugCreatePMDRootSignature
+	bool _DebugCreatePMDRootSignature();
+
 	/// @fn ReadShader
 	/// シェーダを読み込む
 	/// @retval true: 読込成功, false: 読込失敗
 	bool ReadShader();
 
+	bool _DebugReadPMDShader();
+
 	/// @fn CreatePipelineState
 	/// パイプラインステートの作成
 	/// @retval ture: 生成成功, false: 生成失敗
 	bool CreatePipelineState();
+
+	/// @fn _DebugCreatePMDPipelineState
+	/// PMD用パイプラインステートの作成
+	/// @retval true: 生成成功, false: 生成失敗
+	bool _DebugCreatePMDPipelineState();
 
 	/// @fn CreateCommandList
 	/// コマンドリストの生成

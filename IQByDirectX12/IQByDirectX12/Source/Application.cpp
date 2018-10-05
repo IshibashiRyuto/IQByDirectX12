@@ -114,19 +114,22 @@ bool Application::Initialize(const Window & window)
 	}
 	
 	// ルートシグニチャの作成
-	if (!CreateRootSignature())
+	//if (!CreateRootSignature())
+	if(!_DebugCreatePMDRootSignature())
 	{
 		return false;
 	}
 
 	// シェーダの読み込み
-	if (!ReadShader())
+	//if (!ReadShader())
+	if(!_DebugReadPMDShader())
 	{
 		return false;
 	}
 	
 	// パイプラインオブジェクトの作成
-	if (!CreatePipelineState())
+	//if (!CreatePipelineState())
+	if(!_DebugCreatePMDPipelineState())
 	{
 		return false;
 	}
@@ -163,53 +166,52 @@ bool Application::Initialize(const Window & window)
 void Application::Render()
 {
 
-	//debug
-	static float yAngle = 0.0f;
-	static float thetaAngle = 0.0f;
+	////debug
 	static float t = 0;
+
+	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f,0.f,0.f));
+	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
 
 	mKeyboard->UpdateKeyState();
 
-	int i = 0;
+	/*int i = 0;
 	for (auto model : mInstancingTestModels)
 	{
 		if (i++ == 5)
 		{
-			auto yRotQuat = Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), yAngle);
-			auto xzRotAxis = Math::Vector3( yRotQuat * Math::Quaternion(Math::Vector3(1.f, 0.f, 0.f)) * Math::CreateConjugateQuaternion(yRotQuat) );
-			auto xzRotQuat = Math::CreateRotAxisQuaternion(xzRotAxis, thetaAngle);
-			model->SetRotation(xzRotQuat * yRotQuat);
+			model->SetRotation(rot);
 			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
 			model->Draw();
 		}
-	}
+	}*/
 
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
 	{
-		yAngle -= 0.05f;
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.05f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
 	{
-		yAngle += 0.05f;
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.05f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
 	{
-		thetaAngle += 0.05f;
+		rot *= Math::CreateRotAxisQuaternion(rotAxis, 0.05f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
 	{
-		thetaAngle -= 0.05f;
+		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.05f);
 	}
 
 
-	//yAngle += 0.01f;
 	t+=0.5f;
 	if (t >= 30)
 	{
 		t = 0;
 	}
-
-	//mModelData->Draw();
+	mModelData->SetPosition(Math::Vector3(0.0f,0.0f,0.0f));
+	//mModelData->SetScale(sin(t / 30.f * Math::F_PI * 2) * 0.1f + 1.0f);
+	mModelData->SetRotation(rot);
+	mModelData->Draw();
 	// endDebug
 
 	// コマンドリスト初期化
@@ -276,12 +278,44 @@ bool Application::CreateRootSignature()
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
 
+bool Application::_DebugCreatePMDRootSignature()
+{
+	mRootSignature = RootSignature::Create();
+	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int materialIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+
+	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+
+	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
+}
+
 
 bool Application::ReadShader()
 {
 	mVertexShaderClass = Shader::Create(L"Resource/Shader/PMXModelShader.hlsl", "VSMain", "vs_5_0");
 
 	mPixelShaderClass = Shader::Create(L"Resource/Shader/PMXModelShader.hlsl", "PSMain", "ps_5_0");
+
+	return (mVertexShaderClass && mPixelShaderClass);
+}
+
+bool Application::_DebugReadPMDShader()
+{
+	mVertexShaderClass = Shader::Create(L"Resource/Shader/PMDModelShader.hlsl", "VSMain", "vs_5_0");
+
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/PMDModelShader.hlsl", "PSMain", "ps_5_0");
+
+
+
+	if (! (mVertexShaderClass && mPixelShaderClass) )
+	{
+
+#ifdef _DEBUG
+		std::cout << "Failed Read Shader." << std::endl;
+#endif
+		return false;
+	}
 
 	return true;
 }
@@ -330,6 +364,58 @@ bool Application::CreatePipelineState()
 
 	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 	
+	gpsDesc.NumRenderTargets = 1;
+	gpsDesc.SampleDesc.Count = 1;
+	gpsDesc.SampleMask = UINT_MAX;
+
+	auto result = mDevice->GetDevice()->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	if (FAILED(result))
+	{
+#ifdef _DEBUG
+		std::cout << "Failed Create PipelineObject." << std::endl;
+#endif
+		return false;
+	}
+	return true;
+}
+
+bool Application::_DebugCreatePMDPipelineState()
+{
+	// 頂点情報定義
+	{
+		mInputLayoutDescs.clear();
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"	, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "NORMAL"		, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"	, 0, DXGI_FORMAT_R32G32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 0, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 1, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 2, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 3, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+	}
+
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
+
+	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
+
+	gpsDesc.DepthStencilState.DepthEnable = true;
+	gpsDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
+	gpsDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
+	gpsDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
+	gpsDesc.DepthStencilState.StencilEnable = FALSE;
+
+	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
+	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
+	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
+	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
+	gpsDesc.pRootSignature = mRootSignature->GetRootSignature().Get();
+
+	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
+	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+
+	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+
 	gpsDesc.NumRenderTargets = 1;
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;

@@ -45,10 +45,17 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 {
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
-	mMaterialData = ConstantBuffer::Create(device->GetDevice(), sizeof(PMDMaterial), mMaterialCount);
+	mMaterialData = ConstantBuffer::Create(device->GetDevice(), sizeof(PMDMaterialData), mMaterialCount);
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
-		mMaterialData->SetData(&mMaterials[i], sizeof(PMDMaterial), i);
+		PMDMaterialData data;
+		data.alpha = materials[i].alpha;
+		data.diffuseColor = materials[i].diffuseColor;
+		data.specularColor = materials[i].specularColor;
+		data.specularity = materials[i].specularity;
+		data.ambientColor = materials[i].ambientColor;
+		data.isUseTexture = (strcmp(materials[i].textureFileName, "") == 0) ? 0 : 1;
+		mMaterialData->SetData(&data, sizeof(PMDMaterialData), i);
 		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i + 1);
 	}
 }

@@ -37,8 +37,9 @@
     <ClCompile Include="Source\InstanceBuffer.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\MathConvert.cpp" />
+    <ClCompile Include="Source\Math\Math_Matrix4x3.cpp" />
     <ClCompile Include="Source\Math\Math_Common.cpp" />
-    <ClCompile Include="Source\Math\Math_Matrix.cpp" />
+    <ClCompile Include="Source\Math\Math_Matrix4x4.cpp" />
     <ClCompile Include="Source\Math\Math_Quaternion.cpp" />
     <ClCompile Include="Source\Math\Math_Vector2.cpp" />
     <ClCompile Include="Source\Math\Math_Vector3.cpp" />

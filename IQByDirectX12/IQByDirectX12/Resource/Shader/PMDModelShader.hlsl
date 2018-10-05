@@ -16,6 +16,7 @@ cbuffer material : register(b1)
 	float specularity;
 	float3 specularColor;
 	float3 ambientColor;
+	uint isUseTexture;
 }
 
 struct VSInput
@@ -81,7 +82,7 @@ float4 PSMain(PSInput input) : SV_Target
 
 	// スペキュラ計算
 	float3 modelSpecularColor = specularColor * attenuation;
-	float spec = saturate(pow(dot(reflect(-light, input.normal), -vray), specularity));
+	float spec = saturate(pow(dot(reflect(-light, input.normal), -vray), 5.0f));
 	modelSpecularColor = modelSpecularColor * spec;
 
 	float4 modelColor = float4(modelAmbientColor, 1.0f) + float4(modelDiffuseColor, alpha) + float4(modelSpecularColor, 1.0f) ;

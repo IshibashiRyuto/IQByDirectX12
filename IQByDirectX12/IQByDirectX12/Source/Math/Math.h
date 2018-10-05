@@ -169,6 +169,7 @@ namespace Math
 
 		Matrix4x4();
 		Matrix4x4(const Matrix4x4& mat);
+		Matrix4x4(const Matrix4x3& mat);
 		Matrix4x4(Matrix4x4&& mat);
 		Matrix4x4(float m11, float m12, float m13, float m14,
 			float m21, float m22, float m23, float m24,
@@ -282,8 +283,27 @@ namespace Math
 
 		Matrix4x3 operator+() const;
 		Matrix4x3 operator-() const;
-		Matrix4x4 operator=(const Matrix4x4& value);
+		Matrix4x3& operator=(const Matrix4x3& value);
+		Matrix4x3& operator+=(const Matrix4x3& value);
+		Matrix4x3& operator-=(const Matrix4x3& value);
+		Matrix4x3& operator*=(const Matrix4x3& value);
+		Matrix4x3& operator*=(float scale);
+		Matrix4x3& operator/=(float scale);
+
+		/// çsóÒéÆåvéZ
+		float Determinant() const;
 	};
+
+	bool operator==(const Matrix4x3& mat1, const Matrix4x3& mat2);
+	bool operator!=(const Matrix4x3& mat1, const Matrix4x3& mat2);
+	Matrix4x3 operator+(const Matrix4x3& mat1, const Matrix4x3& mat2);
+	Matrix4x3 operator-(const Matrix4x3& mat1, const Matrix4x3& mat2);
+	Matrix4x3 operator*(const Matrix4x3& mat1, const Matrix4x3& mat2);
+	Matrix4x3 operator*(const Matrix4x3& mat, float scale);
+	Matrix4x3 operator*(float scale, const Matrix4x3& mat);
+	Vector3 operator*(const Vector3& vec, const Matrix4x3& mat);
+	Vector4 operator*(const Vector4& vec, const Matrix4x3& mat);
+	Matrix4x4 operator/(const Matrix4x3& mat, float scale);
 	
 
 	struct Quaternion

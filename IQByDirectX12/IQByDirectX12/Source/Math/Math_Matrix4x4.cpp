@@ -23,6 +23,14 @@ Matrix4x4::Matrix4x4(const Matrix4x4& mat)
 {
 }
 
+Math::Matrix4x4::Matrix4x4(const Matrix4x3 & mat)
+	: _11(mat._11), _12(mat._12), _13(mat._13), _14(0.f)
+	, _21(mat._21), _22(mat._22), _23(mat._23), _24(0.f)
+	, _31(mat._31), _32(mat._32), _33(mat._33), _34(0.f)
+	, _41(mat._41), _42(mat._42), _43(mat._43), _44(1.f)
+{
+}
+
 Math::Matrix4x4::Matrix4x4(Matrix4x4 && mat)
 {
 	*this = std::move(mat);

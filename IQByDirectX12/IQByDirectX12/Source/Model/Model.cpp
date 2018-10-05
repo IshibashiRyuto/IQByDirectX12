@@ -61,8 +61,7 @@ void Model::SetScale(float scale)
 
 void Model::Draw() const
 {
-	auto instanceMatrix = ConvertMatrix4x4ToXMMATRIX(mModelMatrix);
-	mInstancingDataManager.SetInstanceData(mModelHandle, (void*)&instanceMatrix, sizeof(DirectX::XMMATRIX));
+	mInstancingDataManager.SetInstanceData(mModelHandle, (void*)&mModelMatrix, sizeof(Math::Matrix4x4));
 }
 
 std::shared_ptr<DescriptorHeap> Model::_DebugGetDescHeap()
