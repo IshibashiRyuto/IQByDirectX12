@@ -12,11 +12,11 @@
 #include "../Device.h"
 
 PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
-	: ModelData(VertexBuffer::Create(device->GetDevice(), vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
+	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
 		IndexBuffer::Create(device->GetDevice(), indexData.data(), indexData.size(), sizeof(PMX::Index)),
 		DescriptorHeap::Create(device->GetDevice(), 1 + materialCount * 3 + 1))
-	, mMaterialDataBuffer(ConstantBuffer::Create(device->GetDevice(), sizeof(PMX::Material), materialCount))
-	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device->GetDevice(), sizeof(Math::Matrix4x4)*boneCount, 1) )
+	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
+	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
 	, mTextureLoader(TextureLoader::Create(device))
 {
 }

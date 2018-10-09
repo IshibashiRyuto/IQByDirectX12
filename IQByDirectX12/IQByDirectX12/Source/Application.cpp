@@ -368,7 +368,7 @@ bool Application::CreatePipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	auto result = mDevice->GetDevice()->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG
@@ -420,7 +420,7 @@ bool Application::_DebugCreatePMDPipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	auto result = mDevice->GetDevice()->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	if (FAILED(result))
 	{
 #ifdef _DEBUG
@@ -456,14 +456,12 @@ bool Application::CreateCommandList()
 void Application::LoadTexture()
 {
 	mTextureLoader = TextureLoader::Create(mDevice);
-	mTextureHandle = mTextureLoader->Load("Img/test.png");
 	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
-	mDescriptorHeap->SetTexture(TextureManager::GetInstance().GetTexture(mTextureHandle), 1);
 }
 
 bool Application::CreateConstantBuffer()
 {
-	mConstantBuffer = ConstantBuffer::Create(mDevice->GetDevice(), sizeof(DirectX::XMMATRIX)*4, 1);
+	mConstantBuffer = ConstantBuffer::Create(mDevice, sizeof(DirectX::XMMATRIX)*4, 1);
 	if (mConstantBuffer == nullptr)
 	{
 		return false;
@@ -487,7 +485,7 @@ void Application::SetWVPMatrix()
 		data[3] = ConvertMatrix4x4ToXMMATRIX(mProjectionMatrix);
 
 
-		mConstantBuffer->SetData(data, sizeof(DirectX::XMMATRIX), 0);
+		mConstantBuffer->SetData(data, sizeof(DirectX::XMMATRIX) * 4, 0);
 		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 }

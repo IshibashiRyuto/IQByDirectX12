@@ -36,3 +36,8 @@ void GraphicsCommandList::Reset(ComPtr<ID3D12PipelineState> pipelineState)
 	mCommandAllocator->Get()->Reset();
 	mCommandList->Reset(mCommandAllocator->Get().Get(), pipelineState.Get());
 }
+
+ID3D12GraphicsCommandList * const GraphicsCommandList::operator->()
+{
+	return mCommandList.Get();
+}

@@ -39,6 +39,9 @@ public:
 	/// デバイスを作成したフィーチャーレベルを取得する
 	D3D_FEATURE_LEVEL GetFeatureLevel() const;
 
+	/// @brief デバイスへアクセスするオペレータ
+	ID3D12Device * const operator->();
+
 private:
 	/// コンストラクタ
 	Device();

@@ -63,7 +63,7 @@ private:
 	/// 次のテクスチャハンドルを探索し、更新する
 	void UpdateNextTextureHandle();
 
-	const int DATA_SIGNATURE_SHIFT_NUM = 24;
-	const int TEXTURE_SIGNATURE = 0x10 << DATA_SIGNATURE_SHIFT_NUM;
+	static const int DATA_SIGNATURE_SHIFT_NUM = 24;
+	static const int TEXTURE_SIGNATURE = 0x10 << DATA_SIGNATURE_SHIFT_NUM;
 };
 

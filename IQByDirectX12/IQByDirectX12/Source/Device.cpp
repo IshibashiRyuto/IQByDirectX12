@@ -51,3 +51,8 @@ D3D_FEATURE_LEVEL Device::GetFeatureLevel() const
 {
 	return mFeatureLevel;
 }
+
+ID3D12Device * const Device::operator->()
+{
+	return mDevice.Get();
+}

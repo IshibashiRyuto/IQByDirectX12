@@ -8,7 +8,7 @@
 #include "../Device.h"
 
 PMDModelData::PMDModelData(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
-	: ModelData(VertexBuffer::Create(device->GetDevice(), (void*)vertexData.data(), vertexData.size(), sizeof(PMDVertex)), IndexBuffer::Create(device->GetDevice(), (void*)indexData.data(), indexData.size(), sizeof(short)), DescriptorHeap::Create(device->GetDevice(), 1 + (int)materials.size()) )
+	: ModelData(VertexBuffer::Create(device, (void*)vertexData.data(), vertexData.size(), sizeof(PMDVertex)), IndexBuffer::Create(device->GetDevice(), (void*)indexData.data(), indexData.size(), sizeof(short)), DescriptorHeap::Create(device->GetDevice(), 1 + (int)materials.size()) )
 {
 	SetVertexData(vertexData);
 	SetIndexData(indexData);
@@ -45,7 +45,7 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 {
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
-	mMaterialData = ConstantBuffer::Create(device->GetDevice(), sizeof(PMDMaterialData), mMaterialCount);
+	mMaterialData = ConstantBuffer::Create(device, sizeof(PMDMaterialData), mMaterialCount);
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
 		PMDMaterialData data;

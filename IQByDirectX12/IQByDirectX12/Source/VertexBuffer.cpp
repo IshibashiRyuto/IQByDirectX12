@@ -1,6 +1,7 @@
 #include <d3dx12.h>
 #include <iostream>
 #include "VertexBuffer.h"
+#include "Device.h"
 
 
 
@@ -13,7 +14,7 @@ VertexBuffer::~VertexBuffer()
 {
 }
 
-std::shared_ptr<VertexBuffer> VertexBuffer::Create(ComPtr<ID3D12Device> device, void * pVertexResource, size_t vertexCount, size_t vertexSize)
+std::shared_ptr<VertexBuffer> VertexBuffer::Create(std::shared_ptr<Device> device, void * pVertexResource, size_t vertexCount, size_t vertexSize)
 {
 	auto vertexBuffer = std::shared_ptr<VertexBuffer>(new VertexBuffer());
 	// 頂点バッファリソースの作成
@@ -22,7 +23,7 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Create(ComPtr<ID3D12Device> device, 
 		// リソースステートのGENERIC_READは非推奨。
 		// 詳しい調査をしていないため、今回は仮として使っている。
 		// 後日修正予定
-		auto result = device->CreateCommittedResource(&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+		auto result = (*device)->CreateCommittedResource(&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
 			D3D12_HEAP_FLAG_NONE,
 			&CD3DX12_RESOURCE_DESC::Buffer(vertexSize * vertexCount),
 			D3D12_RESOURCE_STATE_GENERIC_READ,

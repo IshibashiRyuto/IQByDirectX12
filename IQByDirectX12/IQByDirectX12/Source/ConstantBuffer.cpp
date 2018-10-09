@@ -1,6 +1,7 @@
 #include<d3dx12.h>
 #include<iostream>
 #include "ConstantBuffer.h"
+#include "Device.h"
 
 
 
@@ -15,12 +16,12 @@ ConstantBuffer::~ConstantBuffer()
 {
 }
 
-std::shared_ptr<ConstantBuffer> ConstantBuffer::Create(const ComPtr<ID3D12Device> device, UINT elementSize, UINT elementCount)
+std::shared_ptr<ConstantBuffer> ConstantBuffer::Create(std::shared_ptr<Device> device, UINT elementSize, UINT elementCount)
 {
 	auto constantBuffer = std::shared_ptr<ConstantBuffer>(new ConstantBuffer(elementSize, elementCount));
 
 	// 定数バッファリソースの作成
-	if(!constantBuffer->CreateConstantBuffer(device))
+	if(!constantBuffer->CreateConstantBuffer(device->GetDevice()))
 	{
 		return nullptr;
 	}

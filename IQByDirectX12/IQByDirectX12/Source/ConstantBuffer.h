@@ -15,6 +15,7 @@
 
 /*クラス前方宣言*/
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class ConstantBuffer
 {
@@ -26,11 +27,11 @@ public:
 	/// @fn Create
 	/// 定数バッファを作成する
 	/// @note ConstantBufferクラスはこのクラスを用いてのみ生成可能
-	/// @param[in] device ID3D12DeviceのComPtr
+	/// @param[in] device Deviceクラス
 	/// @param[in] bufferSize	バッファのサイズ
 	/// @retval 生成成功時: ConstantBufferのshared_ptr
 	/// @retval 生成失敗時: nullptr
-	static std::shared_ptr<ConstantBuffer> Create(const ComPtr<ID3D12Device> device, UINT elementSize, UINT elementCount = 1);
+	static std::shared_ptr<ConstantBuffer> Create(std::shared_ptr<Device> device, UINT elementSize, UINT elementCount = 1);
 
 	/// @fn SetData
 	/// 定数バッファにデータをセットする

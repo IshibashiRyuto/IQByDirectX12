@@ -17,6 +17,7 @@ using Microsoft::WRL::ComPtr;
 
 /// @brief グラフィックスコマンドリストのラッパークラス
 /// @note	現状、リスト1つに対してアロケータを1つしか用意していないため、
+///		フェンス処理が必要な点に注意
 class GraphicsCommandList
 {
 public:
@@ -36,10 +37,14 @@ public:
 	/// @brief コマンドリストを取得する
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList();
 
+
 	/// @brief コマンドリストをリセットする
 	/// @note 要コマンドクローズ & 実行 & 実行待ち
 	void Reset();
 	void Reset(ComPtr<ID3D12PipelineState> pipelineState);
+
+	/// @brief コマンドリストへのアクセスを行うオペレータオーバーロード
+	ID3D12GraphicsCommandList* const operator->();
 
 private:
 	/*変数宣言*/

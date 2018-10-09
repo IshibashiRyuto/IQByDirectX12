@@ -9,6 +9,7 @@
 #include <wrl.h>
 
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class VertexBuffer
 {
@@ -24,7 +25,7 @@ public:
 	/// @param[in] vertexCount: 頂点数
 	/// @param[in] vertexSize: 1頂点当たりのサイズ(sizeofで取得)
 	/// @retval 生成成功: VertexBufferのshared_ptr, 生成失敗: nullptr
-	static std::shared_ptr<VertexBuffer> Create(ComPtr<ID3D12Device> device, void* pVertexResource, size_t vertexCount, size_t vertexSize);
+	static std::shared_ptr<VertexBuffer> Create(std::shared_ptr<Device> device, void* pVertexResource, size_t vertexCount, size_t vertexSize);
 
 	/// @fn GetVertexBufferView
 	/// 頂点バッファビューの取得
