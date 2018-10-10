@@ -10,6 +10,7 @@
 #include "../Pose.h"
 #include "../Bone.h"
 #include "../Device.h"
+#include <algorithm>
 
 PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
 	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
@@ -72,7 +73,7 @@ void PMXModelData::LoadModelTexture(const std::vector<PMX::Texture>& textures, c
 	mTextureHandle.resize(textures.size());
 	for (unsigned int i = 0; i < mTextureHandle.size(); ++i)
 	{
-		auto modelTexturePath = modelFilePath.substr(0, modelFilePath.find_last_of('/')+1) + textures[i].texturePath;
+		auto modelTexturePath = modelFilePath.substr(0, max( modelFilePath.find_last_of('/')+1, modelFilePath.find_last_of('\\') + 1 ) ) + textures[i].texturePath;
 		mTextureHandle[i] = mTextureLoader->Load(modelTexturePath);
 	}
 }
