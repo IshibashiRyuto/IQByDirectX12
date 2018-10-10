@@ -34,6 +34,7 @@ class Shader;
 class SwapChain;
 class Animation;
 class Keyboard;
+class GraphicsCommandList;
 
 using Microsoft::WRL::ComPtr;
 
@@ -67,29 +68,27 @@ private:
 	const int RENDER_TARGET_NUM = 2;		//!	レンダーターゲット数
 
 	/* 変数宣言 */
-	std::shared_ptr<SwapChain>			mSwapChain;				//! スワップチェイン
-	ComPtr<ID3D12PipelineState>			mPipelineState;			//! パイプラインステート
-	ComPtr<ID3D12GraphicsCommandList>	mCommandList;			//! コマンドリスト
-	std::shared_ptr<Device>				mDevice;				//! デバイス
-	std::shared_ptr<CommandAllocator>	mCommandAllocator;		//! コマンドアロケータ
-	std::shared_ptr<CommandQueue>		mCommandQueue;			//! コマンドキュー
-	std::shared_ptr<RenderTarget>		mRenderTarget;
-	std::shared_ptr<RootSignature>		mRootSignature;
-	std::shared_ptr<DepthBuffer>		mDepthBuffer;
-	std::shared_ptr<VertexBuffer>		mVertexBuffer;
-	std::vector<D3D12_INPUT_ELEMENT_DESC> mInputLayoutDescs;
-	std::shared_ptr<TextureLoader>		mTextureLoader;
-	int									mTextureHandle;
-	std::shared_ptr<DescriptorHeap>		mDescriptorHeap;
-	std::shared_ptr<ConstantBuffer>		mConstantBuffer;
-	std::shared_ptr<Shader>				mPixelShaderClass;
-	std::shared_ptr<Shader>				mVertexShaderClass;
-	std::shared_ptr<PMDLoader>			mModelLoader;
-	std::shared_ptr<Model>				mModelData;
-	std::shared_ptr<PMXLoader>			mPMXModelLoader;
-	std::shared_ptr<Model>				mPMXModelData;
-	std::shared_ptr<Animation>			mAnimationData;
-	std::vector<std::shared_ptr<Model>>	mInstancingTestModels;
+	std::shared_ptr<SwapChain>				mSwapChain;				//! スワップチェイン
+	ComPtr<ID3D12PipelineState>				mPipelineState;			//! パイプラインステート
+	std::shared_ptr<GraphicsCommandList>	mCommandList;			//! コマンドリスト
+	std::shared_ptr<Device>					mDevice;				//! デバイス
+	std::shared_ptr<CommandQueue>			mCommandQueue;			//! コマンドキュー
+	std::shared_ptr<RenderTarget>			mRenderTarget;			//! レンダーターゲット
+	std::shared_ptr<RootSignature>			mRootSignature;			//! ルートシグネチャ
+	std::shared_ptr<DepthBuffer>			mDepthBuffer;			//! 深度バッファ
+	std::vector<D3D12_INPUT_ELEMENT_DESC>	mInputLayoutDescs;
+	std::shared_ptr<TextureLoader>			mTextureLoader;
+	int										mTextureHandle;
+	std::shared_ptr<DescriptorHeap>			mDescriptorHeap;
+	std::shared_ptr<ConstantBuffer>			mConstantBuffer;
+	std::shared_ptr<Shader>					mPixelShaderClass;
+	std::shared_ptr<Shader>					mVertexShaderClass;
+	std::shared_ptr<PMDLoader>				mModelLoader;
+	std::shared_ptr<Model>					mModelData;
+	std::shared_ptr<PMXLoader>				mPMXModelLoader;
+	std::shared_ptr<Model>					mPMXModelData;
+	std::shared_ptr<Animation>				mAnimationData;
+	std::vector<std::shared_ptr<Model>>		mInstancingTestModels;
 
 	std::shared_ptr<Keyboard>			mKeyboard;
 

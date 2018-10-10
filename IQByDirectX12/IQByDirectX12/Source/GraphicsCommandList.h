@@ -38,6 +38,10 @@ public:
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList();
 
 
+	/// @brief コマンドリストをクローズする
+	void Close();
+
+
 	/// @brief コマンドリストをリセットする
 	/// @note 要コマンドクローズ & 実行 & 実行待ち
 	void Reset();

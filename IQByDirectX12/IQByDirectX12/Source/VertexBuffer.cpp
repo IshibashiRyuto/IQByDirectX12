@@ -2,7 +2,7 @@
 #include <iostream>
 #include "VertexBuffer.h"
 #include "Device.h"
-
+#include "Debug\DebugLayer.h"
 
 
 VertexBuffer::VertexBuffer()
@@ -32,9 +32,7 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Create(std::shared_ptr<Device> devic
 
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Vertex Buffer Resource." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Vertex Buffer Resource.");
 			return nullptr;
 		}
 	}

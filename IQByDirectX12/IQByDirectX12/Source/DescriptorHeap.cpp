@@ -1,6 +1,7 @@
 #include <iostream>
 #include "DescriptorHeap.h"
 #include "Texture/Texture.h"
+#include "Debug/DebugLayer.h"
 
 
 DescriptorHeap::DescriptorHeap(ComPtr<ID3D12Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc)
@@ -23,10 +24,7 @@ std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(ComPtr<ID3D12Device> devi
 	
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create Descriptor Heap." << std::endl;
-		return nullptr;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create Descriptor Heap.");
 	}
 
 	return descHeap;

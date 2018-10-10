@@ -2,6 +2,7 @@
 #include <d3dx12.h>
 #include "Device.h"
 #include "RenderTarget.h"
+#include "Debug\DebugLayer.h"
 
 
 
@@ -31,9 +32,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 		auto result = device->GetDevice()->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&(renderTarget->mRTVDescHeap)));
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create RTV Descriptor Heap." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create RTV Descriptor Heap.");
 			return nullptr;
 		}
 	}
@@ -53,9 +52,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 		auto result = swapChain->GetBuffer(i, IID_PPV_ARGS(&(renderTarget->mRenderTargets[i])));
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Render Target." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Render Target.");
 			return nullptr;
 		}
 		device->GetDevice()->CreateRenderTargetView(renderTarget->mRenderTargets[i].Get(), &rtvDesc, descHandle);

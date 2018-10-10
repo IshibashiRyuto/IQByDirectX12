@@ -2,6 +2,7 @@
 #include<iostream>
 #include "ConstantBuffer.h"
 #include "Device.h"
+#include "Debug\DebugLayer.h"
 
 
 
@@ -63,9 +64,7 @@ bool ConstantBuffer::CreateConstantBuffer(const ComPtr<ID3D12Device> device)
 
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create Constant Buffer Resource." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create Constant Buffer Resource.");
 		return false;
 	}
 
@@ -74,9 +73,7 @@ bool ConstantBuffer::CreateConstantBuffer(const ComPtr<ID3D12Device> device)
 	result = mBuffer->Map(0, &range, (void**)&mBufAddress);
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Map by ConstantBuffer." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Map by ConstantBuffer.");
 		return false;
 	}
 

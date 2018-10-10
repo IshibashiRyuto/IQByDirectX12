@@ -30,7 +30,9 @@
 #include "VMDLoader.h"
 #include "SwapChain.h"
 #include "Animation.h"
+#include "GraphicsCommandList.h"
 #include "Input/Keyboard.h"
+#include "Debug/DebugLayer.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -69,13 +71,6 @@ bool Application::Initialize(const Window & window)
 	// デバイスの生成
 	mDevice = Device::Create();
 	if (!mDevice)
-	{
-		return false;
-	}
-
-	// コマンドアロケータの生成
-	mCommandAllocator = CommandAllocator::Create(mDevice, D3D12_COMMAND_LIST_TYPE_DIRECT);
-	if (!mCommandAllocator)
 	{
 		return false;
 	}
@@ -215,42 +210,41 @@ void Application::Render()
 	// endDebug
 
 	// コマンドリスト初期化
-	mCommandAllocator->Get()->Reset();
-	mCommandList->Reset(mCommandAllocator->Get().Get(), mPipelineState.Get());
-	mCommandList->SetGraphicsRootSignature(mRootSignature->GetRootSignature().Get());
+	mCommandList->Reset(mPipelineState);
+	(*mCommandList)->SetGraphicsRootSignature(mRootSignature->GetRootSignature().Get());
 
 	// 描画範囲設定
 	D3D12_VIEWPORT vp = { 0.0f,0.0f, (FLOAT)mWindowWidth, (FLOAT)mWindowHeight, 0.0f,1.0f };
 	D3D12_RECT rc = { 0,0,mWindowWidth, mWindowHeight };
-	mCommandList->RSSetViewports(1, &vp);
-	mCommandList->RSSetScissorRects(1, &rc);
+	(*mCommandList)->RSSetViewports(1, &vp);
+	(*mCommandList)->RSSetScissorRects(1, &rc);
 
 	// 描画先変更処理
 	int backBufferIndex = mSwapChain->GetBackBufferIndex();
 	
-	mRenderTarget->ChangeRenderTarget(mCommandList, backBufferIndex);
+	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), backBufferIndex);
 
 	auto rtvHandle = mRenderTarget->GetRTVHandle();
 	auto dsvHandle = mDepthBuffer->GetDSVHandle();
 	
-	mCommandList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
-	mRenderTarget->ClearRenderTarget(mCommandList);
-	mDepthBuffer->ClearDepthBuffer(mCommandList);
+	mRenderTarget->ClearRenderTarget(mCommandList->GetCommandList());
+	mDepthBuffer->ClearDepthBuffer(mCommandList->GetCommandList());
 
 
 	// ポリゴン描画
-	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	
 	// モデル描画
-	ModelDataManager::GetInstance().Draw(mCommandList);
+	ModelDataManager::GetInstance().Draw(mCommandList->GetCommandList());
 
 	//描画終了処理
-	mRenderTarget->FinishRendering(mCommandList);
+	mRenderTarget->FinishRendering(mCommandList->GetCommandList());
 	mCommandList->Close();
 
 	// 描画コマンド実行
-	ID3D12CommandList* commandLists[] = { mCommandList.Get() };
+	ID3D12CommandList* commandLists[] = { mCommandList->GetCommandList().Get() };
 	mCommandQueue->ExecuteCommandList(_countof(commandLists), commandLists);
 
 	mCommandQueue->Signal();
@@ -310,10 +304,7 @@ bool Application::_DebugReadPMDShader()
 
 	if (! (mVertexShaderClass && mPixelShaderClass) )
 	{
-
-#ifdef _DEBUG
-		std::cout << "Failed Read Shader." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Read Shader.\n");
 		return false;
 	}
 
@@ -371,9 +362,7 @@ bool Application::CreatePipelineState()
 	auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create PipelineObject." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
 		return false;
 	}
 	return true;
@@ -423,9 +412,7 @@ bool Application::_DebugCreatePMDPipelineState()
 	auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create PipelineObject." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
 		return false;
 	}
 	return true;
@@ -433,23 +420,13 @@ bool Application::_DebugCreatePMDPipelineState()
 
 bool Application::CreateCommandList()
 {
-	auto result = mDevice->GetDevice()->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocator->Get().Get(), nullptr, IID_PPV_ARGS(&mCommandList));
-	if (FAILED(result))
+	mCommandList = GraphicsCommandList::Create(mDevice, D3D12_COMMAND_LIST_TYPE_DIRECT, L"DefaultCommandList");
+	if (!mCommandList)
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create CommandList." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create CommandList.\n");
 		return false;
 	}
-
-	result = mCommandList->Close(); 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Failed Close CommandList." << std::endl;
-#endif
-		return false;
-	}
+	mCommandList->Close();
 	return true;
 }
 

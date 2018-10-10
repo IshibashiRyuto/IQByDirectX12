@@ -1,5 +1,6 @@
 #include "Window.h"
 #include <iostream>
+#include "Debug\DebugLayer.h"
 
 
 Window::Window(HINSTANCE hInstance)
@@ -37,9 +38,7 @@ bool Window::_CreateWindowClassEx()
 
 	if (RegisterClassEx(&mWndClass) == 0)
 	{
-#ifdef _DEBUG
-		std::cout << "Failed RegisterClassEx" << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed RegisterClassEx");
 		return false;
 	}
 	return true;
@@ -66,9 +65,7 @@ bool Window::_CreateWindow()
 	// ウィンドウ生成失敗時
 	if (mHWnd == NULL)
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create Window" << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create Window");
 		return false;
 	}
 

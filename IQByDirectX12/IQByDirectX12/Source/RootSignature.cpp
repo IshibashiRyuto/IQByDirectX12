@@ -1,6 +1,7 @@
 #include <iostream>
 #include <d3dx12.h>
 #include "RootSignature.h"
+#include "Debug\DebugLayer.h"
 
 
 RootSignature::RootSignature()
@@ -55,9 +56,7 @@ bool RootSignature::ConstructRootSignature(ComPtr<ID3D12Device> device)
 
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Signature." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Signature.");
 			return false;
 		}
 	}
@@ -67,9 +66,7 @@ bool RootSignature::ConstructRootSignature(ComPtr<ID3D12Device> device)
 		auto result = device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&mRootSignature));
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Root Signature." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Root Signature.");
 			return false;
 		}
 	}

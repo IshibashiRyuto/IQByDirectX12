@@ -1,6 +1,7 @@
 #include <d3dx12.h>
 #include <iostream>
 #include "IndexBuffer.h"
+#include "Debug\DebugLayer.h"
 
 
 
@@ -33,9 +34,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, vo
 
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Index Buffer Resource." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Index Buffer Resource.");
 			return nullptr;
 		}
 	}
@@ -65,9 +64,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, vo
 		}
 		else
 		{
-#ifdef _DEBUG
-			std::cout << "Index Format Unknown." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Index Format Unknown.");
 			return nullptr;
 		}
 		indexBuffer->mIndexBufferView.BufferLocation = indexBuffer->mIndexBuffer->GetGPUVirtualAddress();

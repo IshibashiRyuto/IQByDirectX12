@@ -1,7 +1,7 @@
 #include <iostream>
 #include <d3dx12.h>
 #include "InstanceBuffer.h"
-
+#include "Debug\DebugLayer.h"
 
 
 InstanceBuffer::InstanceBuffer()
@@ -33,9 +33,7 @@ std::shared_ptr<InstanceBuffer> InstanceBuffer::Create(ComPtr<ID3D12Device> devi
 		);
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Vertex Buffer Resource." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Vertex Buffer Resource.");
 			return nullptr;
 		}
 	}

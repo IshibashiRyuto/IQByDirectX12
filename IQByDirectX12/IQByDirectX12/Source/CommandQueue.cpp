@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CommandQueue.h"
 #include "Device.h"
+#include "Debug/DebugLayer.h"
 
 
 
@@ -30,19 +31,14 @@ std::shared_ptr<CommandQueue> CommandQueue::Create(std::shared_ptr<Device> devic
 	auto result = device->GetDevice()->CreateCommandQueue(&commandQueueDesc, IID_PPV_ARGS(&(commandQueue->mCommandQueue)));
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create CommandQueue." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create CommandQueue.");
 		return nullptr;
 	}
 	
 	result = device->GetDevice()->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&(commandQueue->mFence)));
 	if (FAILED(result))
 	{
-
-#ifdef _DEBUG
-		std::cout << "Failed Create CommandQueue Fance." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create CommandQueue Fance.");
 		return nullptr;
 	}
 	return commandQueue;

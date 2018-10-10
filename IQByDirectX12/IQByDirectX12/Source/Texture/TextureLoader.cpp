@@ -7,6 +7,7 @@
 #include "../GraphicsCommandList.h"
 #include "../Device.h"
 #include "../ConvertString.h"
+#include "../Debug/DebugLayer.h"
 
 TextureLoader::TextureLoader(std::shared_ptr<Device> device)
 	: mTextureManager(TextureManager::GetInstance())
@@ -54,9 +55,7 @@ int TextureLoader::Load(const std::wstring & filePath)
 
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Load Texture File \"" << filePath.c_str() << "\".";
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage(L"Failed Load Texture File \"" + filePath + L"\".");
 			return -1;
 		}
 

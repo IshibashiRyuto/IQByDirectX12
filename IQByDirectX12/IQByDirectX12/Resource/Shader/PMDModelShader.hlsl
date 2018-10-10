@@ -55,7 +55,7 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
-	float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
+	float3 light = -normalize(float3(1.0f, -1.0f, 1.0f));
 	float3 lightSpecularColor = float3(1.0f, 1.0f, 1.0f);
 	float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
 	float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);
@@ -70,22 +70,18 @@ float4 PSMain(PSInput input) : SV_Target
 
 	/// アンビエントカラー計算
 	float3 modelAmbientColor = ambientColor * attenuation;
-	modelAmbientColor.x = modelAmbientColor.x * lightAmbientColor.x;
-	modelAmbientColor.y = modelAmbientColor.y * lightAmbientColor.y;
-	modelAmbientColor.z = modelAmbientColor.z * lightAmbientColor.z;
+	modelAmbientColor = modelAmbientColor * lightAmbientColor;
 
 	// ディフューズカラー計算
 	float3 modelDiffuseColor = diffuseColor * brightness;
-	modelDiffuseColor.x = modelDiffuseColor.x * lightDiffuseColor.x;
-	modelDiffuseColor.y = modelDiffuseColor.y * lightDiffuseColor.y;
-	modelDiffuseColor.z = modelDiffuseColor.z * lightDiffuseColor.z;
+	modelDiffuseColor = modelDiffuseColor * lightDiffuseColor;
 
 	// スペキュラ計算
 	float3 modelSpecularColor = specularColor * attenuation;
-	float spec = saturate(pow(dot(reflect(-light, input.normal), -vray), 5.0f));
+	float spec = saturate(pow(dot(reflect(-light, input.normal), -vray), specularity));
 	modelSpecularColor = modelSpecularColor * spec;
 
-	float4 modelColor = float4(modelAmbientColor, 1.0f) + float4(modelDiffuseColor, alpha) + float4(modelSpecularColor, 1.0f) ;
+	float4 modelColor = float4(modelAmbientColor, 0.0f) + float4(modelDiffuseColor, alpha) + float4(modelSpecularColor, 0.0f) ;
 
 	return modelColor;
 }

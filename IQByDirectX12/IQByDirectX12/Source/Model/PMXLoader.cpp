@@ -1,5 +1,6 @@
 #include "PMXLoader.h"
 #include "../ConvertString.h"
+#include "../Debug/DebugLayer.h"
 #include <cstdio>
 #include <iostream>
 
@@ -33,9 +34,8 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		auto err = fopen_s(&fp, filePath.c_str(), "rb");
 		if (err != 0)
 		{
-#ifdef _DEBUG
-			std::cout << "Failed File Open \"" << filePath << std::endl;
-#endif
+			std::string str = "Failed File Open \"" + filePath + "\n";
+			DebugLayer::GetInstance().PrintDebugMessage(str);
 			return nullptr;
 		}
 
@@ -45,9 +45,8 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		fread((void*)fileSignature.data(), SIGNATURE_SIZE, 1, fp);
 		if (fileSignature != FILE_SIGNATURE)
 		{
-#ifdef _DEBUG
-			std::cout << "This file is not PMX. Prease load \".pmx\" file." << std::endl;
-#endif
+			std::string str = "This file is not PMX. Prease load \".pmx\" file.";
+			DebugLayer::GetInstance().PrintDebugMessage(str);
 			fclose(fp);
 			return nullptr;
 		}
@@ -207,11 +206,8 @@ void PMXLoader::LoadVertexData(std::vector<PMX::Vertex>& vertexData, const PMX::
 			fread(&vertex.deformParam.boneWeight[3], sizeof(vertex.deformParam.boneWeight[3]), 1, fp);
 			break;
 		default:
-#ifdef _DEBUG
-			std::cout << "PMX File Load Error." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("PMX File Load Error.\n");
 			return;
-			break;
 		}
 		fread(&vertex.edgeScale, sizeof(vertex.edgeScale), 1, fp);
 	}

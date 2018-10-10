@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Device.h"
+#include "Debug\DebugLayer.h"
 
 
 
@@ -36,9 +37,8 @@ std::shared_ptr<Device> Device::Create()
 			return device;
 		}
 	}
-#ifdef _DEBUG
-	std::cout << "Failed Create Device." << std::endl;
-#endif
+
+	DebugLayer::GetInstance().PrintDebugMessage("Failed Create Device.");
 	return nullptr;
 }
 

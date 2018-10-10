@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CommandAllocator.h"
 #include "Device.h"
+#include "Debug\DebugLayer.h"
 
 
 
@@ -23,9 +24,7 @@ std::shared_ptr<CommandAllocator> CommandAllocator::Create(std::shared_ptr<Devic
 		commandAllocator->mCommandAllocator->SetName(name.c_str());
 		return commandAllocator;
 	}
-#ifdef _DEBUG
-	std::cout << "Failed Create CommandAllocator." << std::endl;
-#endif
+	DebugLayer::GetInstance().PrintDebugMessage("Failed Create CommandAllocator.");
 	return nullptr;
 }
 

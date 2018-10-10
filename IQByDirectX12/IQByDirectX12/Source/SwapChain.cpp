@@ -1,6 +1,7 @@
 #include <iostream>
 #include "SwapChain.h"
 #include "CommandQueue.h"
+#include "Debug\DebugLayer.h"
 
 
 SwapChain::SwapChain()
@@ -50,9 +51,7 @@ bool SwapChain::CreateFactory()
 	auto result = CreateDXGIFactory1(IID_PPV_ARGS(&mFactory));
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create DXGIFactory." << std::endl;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create DXGIFactory.");
 		return false;
 	}
 	return true;
@@ -84,10 +83,7 @@ bool SwapChain::CreateSwapChain(std::shared_ptr<CommandQueue> commandQueue, cons
 		(IDXGISwapChain1**)mSwapChain.GetAddressOf());
 	if (FAILED(result))
 	{
-#ifdef _DEBUG
-		std::cout << "Failed Create SwapChain." << std::endl;
-		return false;
-#endif
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create SwapChain.");
 	}
 
 	return true;

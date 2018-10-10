@@ -1,6 +1,7 @@
 #include <iostream>
 #include <d3dx12.h>
 #include "DepthBuffer.h"
+#include "Debug\DebugLayer.h"
 
 
 
@@ -43,9 +44,7 @@ std::shared_ptr<DepthBuffer> DepthBuffer::Create(ComPtr<ID3D12Device> device, in
 			IID_PPV_ARGS(&(depthBuffer->mDepthBuffer)));
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Depth Buffer." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Depth Buffer.");
 			return nullptr;
 		}
 	}
@@ -61,9 +60,7 @@ std::shared_ptr<DepthBuffer> DepthBuffer::Create(ComPtr<ID3D12Device> device, in
 		auto result = device->CreateDescriptorHeap(&dsvHeapDesc, IID_PPV_ARGS(&(depthBuffer->mDSVDescHeap)));
 		if (FAILED(result))
 		{
-#ifdef _DEBUG
-			std::cout << "Failed Create Depth Stencil View Descriptor Heap." << std::endl;
-#endif
+			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Depth Stencil View Descriptor Heap.");
 			return nullptr;
 		}
 	}
