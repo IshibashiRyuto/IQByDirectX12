@@ -36,7 +36,10 @@ public:
 	/// @fn Get
 	/// コマンドアロケータのComPtrを取得する
 	/// @retval ID3D12CommandAllocatorのComPtr
-	ComPtr<ID3D12CommandAllocator> Get() const;
+	ComPtr<ID3D12CommandAllocator> GetAllocator() const;
+
+	/// コマンドのアロケータを指すオペレータ
+	ID3D12CommandAllocator* const operator->() const;
 
 private:
 	/* 変数宣言 */

@@ -28,7 +28,12 @@ std::shared_ptr<CommandAllocator> CommandAllocator::Create(std::shared_ptr<Devic
 	return nullptr;
 }
 
-ComPtr<ID3D12CommandAllocator> CommandAllocator::Get() const
+ComPtr<ID3D12CommandAllocator> CommandAllocator::GetAllocator() const
 {
 	return mCommandAllocator;
+}
+
+ID3D12CommandAllocator * const CommandAllocator::operator->() const
+{
+	return mCommandAllocator.Get();
 }

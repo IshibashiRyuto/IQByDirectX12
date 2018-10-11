@@ -19,6 +19,7 @@
 using Microsoft::WRL::ComPtr;
 class ConstantBuffer;
 class Device;
+class TextureLoader;
 
 ///	@struct PMDHeader
 /// PMDヘッダ情報
@@ -56,7 +57,7 @@ struct PMDMaterial
 	char textureFileName[20];		// テクスチャファイル名
 };
 
-struct PMDMaterialData
+struct PMDShaderMaterialData
 {
 	Math::Vector3 diffuseColor;
 	float alpha;
@@ -68,32 +69,40 @@ struct PMDMaterialData
 
 #pragma pack()
 
+struct PMDModelInfo
+{
+	std::string modelPath;
+	std::vector<PMDVertex> vertexData;
+	std::vector<unsigned short> indexData;
+	std::vector<PMDMaterial> materials;
+};
+
 class PMDModelData : public ModelData
 {
 public:
-	PMDModelData(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials);
+	PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo);
 	~PMDModelData();
 	
-	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,
-		const std::vector<PMDVertex>& vertexData,
-		const std::vector<unsigned short>& indexData,
-		const std::vector<PMDMaterial>& materials);
+	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo);
 
 	void SetVertexData(const std::vector<PMDVertex>& vertexData);
 
 	void SetIndexData(const std::vector<unsigned short>& indexData);
 
-	void SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials);
+	void SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath);
 
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
-	unsigned int mVertexCount;			// 頂点数
-	std::vector<PMDVertex> mVertex;		// 頂点データ
-	unsigned int mIndexCount;
-	std::vector<unsigned short> mIndex;	// インデックスデータ
-	unsigned int mMaterialCount;
-	std::vector<PMDMaterial> mMaterials;
-	std::shared_ptr<ConstantBuffer> mMaterialData;
+	const int MATERIAL_SHADER_RESOURCE_NUM = 2;
+
+	unsigned int					mVertexCount;	// 頂点数
+	std::vector<PMDVertex>			mVertex;		// 頂点データ
+	unsigned int					mIndexCount;	// 総インデックス数
+	std::vector<unsigned short>		mIndex;			// インデックスデータ
+	unsigned int					mMaterialCount;	// マテリアル数
+	std::vector<PMDMaterial>		mMaterials;		// マテリアルデータ
+	std::shared_ptr<ConstantBuffer> mMaterialData;	// マテリアルデータ用定数バッファ
+	std::shared_ptr<TextureLoader>	mTextureLoader;	// モデルテクスチャローダ
 };
 

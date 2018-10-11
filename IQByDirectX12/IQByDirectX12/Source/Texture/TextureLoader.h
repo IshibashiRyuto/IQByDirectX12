@@ -47,7 +47,7 @@ public:
 	int Load(const std::string& filePath);
 	int Load(const std::wstring& filePath);
 private:
-	/*変数宣言*/
+	/* 変数宣言 */
 	std::map< std::wstring, int> mTextureHandleManager;			// 読み込み済みテクスチャのハンドルを管理する
 	std::shared_ptr<Device> mDevice;								// デバイス
 	TextureManager &mTextureManager;							// テクスチャマネージャへの参照

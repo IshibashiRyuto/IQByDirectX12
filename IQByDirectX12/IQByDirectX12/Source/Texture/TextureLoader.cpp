@@ -15,6 +15,7 @@ TextureLoader::TextureLoader(std::shared_ptr<Device> device)
 {
 	mCommandList = GraphicsCommandList::Create(device, D3D12_COMMAND_LIST_TYPE_DIRECT, L"TextureLoader");
 	mCommandQueue = CommandQueue::Create(device);
+	mCommandList->Close();
 }
 
 
@@ -89,7 +90,7 @@ void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D
 	uploadDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 	uploadDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
 
-	mDevice->GetDevice()->CreateCommittedResource(
+	(*mDevice)->CreateCommittedResource(
 		&heapProp,
 		D3D12_HEAP_FLAG_NONE,
 		&uploadDesc,
@@ -97,6 +98,11 @@ void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D
 		nullptr,
 		IID_PPV_ARGS(&mUpdateBuffer)
 	);
+
+
+	// リソースアップデートコマンドの実行
+	
+	mCommandList->Reset();
 
 	UpdateSubresources( mCommandList->GetCommandList().Get(),
 		resource.Get(),
@@ -106,11 +112,8 @@ void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D
 		(UINT)1,
 		&subresource);
 
-	mCommandList->GetCommandList()->Close();
+	mCommandList->Close();
 
-	ID3D12CommandList* commandLists[] = { mCommandList->GetCommandList().Get() };
-	mCommandQueue->ExecuteCommandList(_countof(commandLists), commandLists);
+	mCommandQueue->ExecuteCommandList(mCommandList);
 	mCommandQueue->Signal();
-
-	mCommandList->Reset();
 }

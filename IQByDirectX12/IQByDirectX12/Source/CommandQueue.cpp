@@ -2,17 +2,20 @@
 #include "CommandQueue.h"
 #include "Device.h"
 #include "Debug/DebugLayer.h"
+#include "GraphicsCommandList.h"
 
 
 
 CommandQueue::CommandQueue()
 	: mCommandQueue(nullptr)
+	, mFenceEvent( CreateEvent(nullptr, false, false, nullptr))
 {
 }
 
 
 CommandQueue::~CommandQueue()
 {
+	CloseHandle(mFenceEvent);
 }
 
 std::shared_ptr<CommandQueue> CommandQueue::Create(std::shared_ptr<Device> device)
@@ -54,16 +57,28 @@ void CommandQueue::ExecuteCommandList(UINT numCommandLists, ID3D12CommandList *c
 	mCommandQueue->ExecuteCommandLists(numCommandLists, ppCommandLists);
 }
 
+void CommandQueue::ExecuteCommandList(const std::shared_ptr<GraphicsCommandList> commandList)
+{
+	ID3D12CommandList* cmdList = commandList->GetCommandList().Get();
+	mCommandQueue->ExecuteCommandLists(1, &cmdList);
+}
+
+void CommandQueue::ExecuteCommandList(const std::vector<std::shared_ptr<GraphicsCommandList>>& commandLists)
+{
+	std::vector<ID3D12CommandList*> commandListsArray;
+	commandListsArray.resize(commandLists.size());
+	for (unsigned int i = 0; i < commandLists.size(); ++i)
+	{
+		commandListsArray[i] = commandLists[i]->GetCommandList().Get();
+	}
+	mCommandQueue->ExecuteCommandLists(commandListsArray.size(), commandListsArray.data());
+}
+
 void CommandQueue::Signal()
 {
 	mCommandQueue->Signal(mFence.Get(), mFenceValue);
-	if (mFence->GetCompletedValue() < mFenceValue)
-	{
-		mFenceEvent = CreateEvent(nullptr, false, false, nullptr);
-		mFence->SetEventOnCompletion(mFenceValue, mFenceEvent);
-		WaitForSingleObject(mFenceEvent, INFINITE);
-		CloseHandle(mFenceEvent);
-	}
-
+	mFence->SetEventOnCompletion(mFenceValue, mFenceEvent);
+	WaitForSingleObject(mFenceEvent, INFINITE);
+	
 	++mFenceValue;
 }

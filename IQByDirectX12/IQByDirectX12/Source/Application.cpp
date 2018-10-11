@@ -432,6 +432,7 @@ bool Application::CreateCommandList()
 
 void Application::LoadTexture()
 {
+	TextureManager::GetInstance().CreateWhiteAndBlackTexture(mDevice);
 	mTextureLoader = TextureLoader::Create(mDevice);
 	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
 }

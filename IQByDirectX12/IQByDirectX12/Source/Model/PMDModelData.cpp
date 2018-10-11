@@ -6,22 +6,27 @@
 #include "../InstanceBuffer.h"
 #include "InstancingDataManager.h"
 #include "../Device.h"
+#include "../Texture//TextureLoader.h"
+#include "../Texture/TextureManager.h"
 
-PMDModelData::PMDModelData(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
-	: ModelData(VertexBuffer::Create(device, (void*)vertexData.data(), vertexData.size(), sizeof(PMDVertex)), IndexBuffer::Create(device->GetDevice(), (void*)indexData.data(), indexData.size(), sizeof(short)), DescriptorHeap::Create(device->GetDevice(), 1 + (int)materials.size()) )
+PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo)
+	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
+		IndexBuffer::Create(device->GetDevice(), (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
+		DescriptorHeap::Create(device->GetDevice(), 1 + (int)modelInfo.materials.size() * 2) )
+	, mTextureLoader(TextureLoader::Create(device))
 {
-	SetVertexData(vertexData);
-	SetIndexData(indexData);
-	SetMaterialData(device,materials);
+	SetVertexData(modelInfo.vertexData);
+	SetIndexData(modelInfo.indexData);
+	SetMaterialData(device, modelInfo.materials, modelInfo.modelPath);
 }
 
 PMDModelData::~PMDModelData()
 {
 }
 
-std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device, const std::vector<PMDVertex>& vertexData, const std::vector<unsigned short>& indexData, const std::vector<PMDMaterial>& materials)
+std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo)
 {
-	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, vertexData, indexData, materials));
+	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo));
 	if (model->mVertexBuffer == nullptr || model->mIndexBuffer == nullptr)
 	{
 		return nullptr;
@@ -41,22 +46,35 @@ void PMDModelData::SetIndexData(const std::vector<unsigned short>& indexData)
 	mIndex = indexData;
 }
 
-void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials)
+void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath)
 {
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
-	mMaterialData = ConstantBuffer::Create(device, sizeof(PMDMaterialData), mMaterialCount);
+	mMaterialData = ConstantBuffer::Create(device, sizeof(PMDShaderMaterialData), mMaterialCount);
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
-		PMDMaterialData data;
+		PMDShaderMaterialData data;
 		data.alpha = materials[i].alpha;
 		data.diffuseColor = materials[i].diffuseColor;
 		data.specularColor = materials[i].specularColor;
 		data.specularity = materials[i].specularity;
 		data.ambientColor = materials[i].ambientColor;
 		data.isUseTexture = (strcmp(materials[i].textureFileName, "") == 0) ? 0 : 1;
-		mMaterialData->SetData(&data, sizeof(PMDMaterialData), i);
-		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i + 1);
+		mMaterialData->SetData(&data, sizeof(PMDShaderMaterialData), i);
+		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i * MATERIAL_SHADER_RESOURCE_NUM + 1);
+		std::shared_ptr<Texture> materialTexture;
+		if (data.isUseTexture == 0)
+		{
+			materialTexture = TextureManager::GetInstance().GetTexture(TextureManager::WHITE_TEXTURE);
+		}
+		else
+		{
+			std::string texturePath(materials[i].textureFileName);
+			texturePath = modelPath.substr(0, max(modelPath.find_last_of('/') + 1, modelPath.find_last_of('\\') + 1)) + texturePath;
+			auto textureHandle = mTextureLoader->Load(texturePath);
+			materialTexture = TextureManager::GetInstance().GetTexture(textureHandle);
+		}
+		mDescHeap->SetTexture(materialTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1 + 1);
 	}
 }
 
@@ -71,7 +89,7 @@ void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const Ins
 	int indexOffset = 0;
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
-		mDescHeap->BindRootDescriptorTable(1, i + 1);
+		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_SHADER_RESOURCE_NUM + 1);
 		commandList->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterials[i].faceVertexCount;
 	}

@@ -11,10 +11,12 @@
 #include <memory>
 #include <d3d12.h>
 #include <wrl.h>
+#include <vector>
 
 // ComPtr使用宣言
 using Microsoft::WRL::ComPtr;
 class Device;
+class GraphicsCommandList;
 
 class CommandQueue
 {
@@ -45,6 +47,14 @@ public:
 	/// @param[in] numCommandLists	:	コマンドリストの個数
 	/// @param[in] ppCommandLists	:	コマンドリスト配列へのポインタ
 	void ExecuteCommandList(UINT numCommandLists, ID3D12CommandList *const *ppCommandLists);
+
+	/// @brief コマンドを実行する
+	/// @param[in] commandList		: コマンドリストクラス
+	void ExecuteCommandList(const std::shared_ptr<GraphicsCommandList> commandList);
+
+	/// @brief コマンドを実行する
+	/// @param[in] commandLists		: コマンドリストクラスの動的配列
+	void ExecuteCommandList(const std::vector<std::shared_ptr<GraphicsCommandList>> & commandLists);
 
 	/// @fn Signal
 	/// コマンドキューの実行を待つ

@@ -13,6 +13,9 @@
 // 自作ヘッダインクルード
 #include "Texture.h"
 
+// クラス使用宣言
+class Device;
+
 class TextureManager
 {
 public:
@@ -50,6 +53,13 @@ public:
 	/// @retval 存在する: true
 	/// @retval 存在しない: false
 	bool IsExist(int handle) const;
+
+
+	/// @brief ヌルテクスチャを作成する
+	void CreateWhiteAndBlackTexture(std::shared_ptr<Device> device);
+
+	static const int WHITE_TEXTURE = -1;
+	static const int BLACK_TEXTURE = -2;
 	
 private:
 	TextureManager();
@@ -62,6 +72,7 @@ private:
 	/// @fn UpdateNowTextureHandle
 	/// 次のテクスチャハンドルを探索し、更新する
 	void UpdateNextTextureHandle();
+
 
 	static const int DATA_SIGNATURE_SHIFT_NUM = 24;
 	static const int TEXTURE_SIGNATURE = 0x10 << DATA_SIGNATURE_SHIFT_NUM;

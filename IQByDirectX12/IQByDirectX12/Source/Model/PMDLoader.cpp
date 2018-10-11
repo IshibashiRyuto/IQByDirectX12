@@ -31,12 +31,11 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 	{
 		// モデル読み込み
 
+		PMDModelInfo modelInfo;
+
 		unsigned int vertexCount;
-		std::vector<PMDVertex> vertex;
 		unsigned int indexCount;
-		std::vector<unsigned short> index;
 		unsigned int materialCount;
-		std::vector<PMDMaterial> materials;
 		PMDHeader pmdHeader;
 
 		// ファイルを開く
@@ -61,28 +60,30 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 			}
 		}
 
+		modelInfo.modelPath = filePath;
+
 		// ヘッダデータ読み込み
 		fread(&pmdHeader, sizeof(pmdHeader), 1, fp);
 
 		// 頂点情報の読み込み
 		fread(&vertexCount, sizeof(int), 1, fp);
-		vertex.resize(vertexCount);
-		fread(vertex.data(), sizeof(PMDVertex), vertex.size(), fp);
+		modelInfo.vertexData.resize(vertexCount);
+		fread(modelInfo.vertexData.data(), sizeof(PMDVertex), vertexCount, fp);
 
 		// 頂点インデックス情報読み込み
 		fread(&indexCount, sizeof(int), 1, fp);
-		index.resize(indexCount);
-		fread(index.data(), sizeof(short), index.size(), fp);
+		modelInfo.indexData.resize(indexCount);
+		fread(modelInfo.indexData.data(), sizeof(short), indexCount, fp);
 
 		// マテリアルパラメータ読み込み
 		fread(&materialCount, sizeof(int), 1, fp);
-		materials.resize(materialCount);
-		fread(materials.data(), sizeof(PMDMaterial), materials.size(), fp);
+		modelInfo.materials.resize(materialCount);
+		fread(modelInfo.materials.data(), sizeof(PMDMaterial), materialCount, fp);
 
 		fclose(fp);
 
 		/// モデルデータの生成、登録
-		auto modelData = PMDModelData::Create(mDevice, vertex, index, materials);
+		auto modelData = PMDModelData::Create(mDevice, modelInfo);
 
 		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
 	}
