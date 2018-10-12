@@ -100,8 +100,8 @@ void TextureManager::CreateWhiteAndBlackTexture(std::shared_ptr<Device> device)
 		nullptr,
 		IID_PPV_ARGS(&blackTexture));
 
-	whiteTexture->WriteToSubresource(0, nullptr, whiteTextureData.data(), 4, 4);
-	blackTexture->WriteToSubresource(0, nullptr, blackTextureData.data(), 4, 4);
+	whiteTexture->WriteToSubresource(0, nullptr, whiteTextureData.data(), 4*4, 4*4*4);
+	blackTexture->WriteToSubresource(0, nullptr, blackTextureData.data(), 4*4, 4*4*4);
 	auto _whiteTexture = Texture::Create(whiteTexture);
 	auto _blackTexture = Texture::Create(blackTexture);
 	

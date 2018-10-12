@@ -54,9 +54,16 @@ int TextureLoader::Load(const std::wstring & filePath)
 			decodedData,
 			subResourceData);
 
+
 		if (FAILED(result))
 		{
-			DebugLayer::GetInstance().PrintDebugMessage(L"Failed Load Texture File \"" + filePath + L"\".");
+			std::wstring str = L"Failed Load Texture File \"" + filePath;
+			if ((*str.rbegin()) == '\0')
+			{
+				(*str.rbegin()) = ' ';
+			}
+			str += L"\".";
+			DebugLayer::GetInstance().PrintDebugMessage(str);
 			return -1;
 		}
 

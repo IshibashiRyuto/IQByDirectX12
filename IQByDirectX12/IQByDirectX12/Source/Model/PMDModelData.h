@@ -65,6 +65,7 @@ struct PMDShaderMaterialData
 	Math::Vector3 specularColor;
 	Math::Vector3 ambientColor;
 	int isUseTexture;
+	int sphereFlag;				// スフィアフラグ ... 0: 加算スフィア, 1: 乗算スフィア
 };
 
 #pragma pack()
@@ -94,7 +95,7 @@ public:
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
-	const int MATERIAL_SHADER_RESOURCE_NUM = 2;
+	static const int MATERIAL_SHADER_RESOURCE_NUM = 4;
 
 	unsigned int					mVertexCount;	// 頂点数
 	std::vector<PMDVertex>			mVertex;		// 頂点データ

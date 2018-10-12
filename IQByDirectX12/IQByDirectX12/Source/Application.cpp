@@ -280,6 +280,8 @@ bool Application::_DebugCreatePMDRootSignature()
 
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 3, 0);
+
 
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
@@ -471,7 +473,13 @@ void Application::SetWVPMatrix()
 void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice);
-	mModelData = mModelLoader->LoadModel("Resource/Model/‰‰¹ƒ~ƒN.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/”Ž—í—ì–²/reimu_G02.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/‰‰¹ƒ~ƒN.pmd");
+	mModelData = mModelLoader->LoadModel("Resource/Model/‰ä“ß”e‹¿v1.0/‰ä“ß”e‹¿v1.pmd");
+	if (!mModelData)
+	{
+		return;
+	}
 	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 
 }

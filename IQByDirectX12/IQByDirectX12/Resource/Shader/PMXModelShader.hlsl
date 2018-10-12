@@ -109,7 +109,7 @@ float4 PSMain(PSInput input) : SV_Target
 
     float3 vray = normalize(input.origPosition - eyePosition);
 	
-    float brightness = dot(input.normal, light);
+    float brightness = saturate ( dot(input.normal, -light) );
     
     float attenuation = 1.0f;
 
@@ -125,7 +125,7 @@ float4 PSMain(PSInput input) : SV_Target
 	// スペキュラ計算
 	float3 reflectRay = normalize(reflect(vray, input.normal));
 	float3 modelSpecularColor = specularColor * materialSphereTexture.Sample(smp, reflectRay.xy * float2(0.5, -0.5) + float2(0.5, 0.5)).rgb;
-    float spec = saturate(pow(dot(reflect(-light, input.normal), -vray), specularity));
+    float spec = saturate(pow(dot(reflect(light, input.normal), -vray), specularity));
     modelSpecularColor = modelSpecularColor * spec;
 
     

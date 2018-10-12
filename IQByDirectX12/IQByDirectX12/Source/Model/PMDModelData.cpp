@@ -12,7 +12,7 @@
 PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo)
 	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
 		IndexBuffer::Create(device->GetDevice(), (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
-		DescriptorHeap::Create(device->GetDevice(), 1 + (int)modelInfo.materials.size() * 2) )
+		DescriptorHeap::Create(device->GetDevice(), 1 + (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
 	, mTextureLoader(TextureLoader::Create(device))
 {
 	SetVertexData(modelInfo.vertexData);
@@ -62,19 +62,57 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 		data.isUseTexture = (strcmp(materials[i].textureFileName, "") == 0) ? 0 : 1;
 		mMaterialData->SetData(&data, sizeof(PMDShaderMaterialData), i);
 		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i * MATERIAL_SHADER_RESOURCE_NUM + 1);
-		std::shared_ptr<Texture> materialTexture;
-		if (data.isUseTexture == 0)
-		{
-			materialTexture = TextureManager::GetInstance().GetTexture(TextureManager::WHITE_TEXTURE);
-		}
-		else
+		std::shared_ptr<Texture> surfaceTexture;
+		std::shared_ptr<Texture> addSphereTexture;
+		std::shared_ptr<Texture> mulSphereTexture;
+		surfaceTexture = TextureManager::GetInstance().GetTexture(TextureManager::WHITE_TEXTURE);
+		addSphereTexture = TextureManager::GetInstance().GetTexture(TextureManager::BLACK_TEXTURE);
+		mulSphereTexture = TextureManager::GetInstance().GetTexture(TextureManager::WHITE_TEXTURE);
+		if (data.isUseTexture != 0)
 		{
 			std::string texturePath(materials[i].textureFileName);
-			texturePath = modelPath.substr(0, max(modelPath.find_last_of('/') + 1, modelPath.find_last_of('\\') + 1)) + texturePath;
-			auto textureHandle = mTextureLoader->Load(texturePath);
-			materialTexture = TextureManager::GetInstance().GetTexture(textureHandle);
+			auto t = texturePath.find('*');
+			if (t == std::string::npos)
+			{
+				texturePath = modelPath.substr(0, max(modelPath.find_last_of('/') + 1, modelPath.find_last_of('\\') + 1)) + texturePath;
+				auto textureHandle = mTextureLoader->Load(texturePath);
+
+
+				if (texturePath.substr(texturePath.rfind('.') + 1, texturePath.size() - 1) == "sph")
+				{
+					mulSphereTexture = TextureManager::GetInstance().GetTexture(textureHandle);
+				}
+				else if (texturePath.substr(texturePath.rfind('.') + 1, texturePath.size() - 1) == "spa")
+				{
+					addSphereTexture = TextureManager::GetInstance().GetTexture(textureHandle);
+				}
+				else
+				{
+					surfaceTexture = TextureManager::GetInstance().GetTexture(textureHandle);
+				}
+			}
+			else
+			{
+				auto surfaceTexturePath = modelPath.substr(0, max(modelPath.find_last_of('/') + 1, modelPath.find_last_of('\\') + 1));
+				auto sphereTexturePath = surfaceTexturePath;
+				surfaceTexturePath += texturePath.substr(0, t - 1);
+				sphereTexturePath += texturePath.substr(t + 1, texturePath.size() - 1);
+				int surfaceTextureHandle = mTextureLoader->Load(surfaceTexturePath);
+				int sphereTextureHandle = mTextureLoader->Load(sphereTexturePath);
+				surfaceTexture = TextureManager::GetInstance().GetTexture(surfaceTextureHandle);
+				if (texturePath.substr(texturePath.rfind('.') + 1, texturePath.size() - 1) == "sph")
+				{
+					addSphereTexture = TextureManager::GetInstance().GetTexture(sphereTextureHandle);
+				}
+				else
+				{
+					mulSphereTexture = TextureManager::GetInstance().GetTexture(sphereTextureHandle);
+				}
+			}
 		}
-		mDescHeap->SetTexture(materialTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1 + 1);
+		mDescHeap->SetTexture(surfaceTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1 + 1);
+		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 2 + 1);
+		mDescHeap->SetTexture(mulSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 3 + 1);
 	}
 }
 
