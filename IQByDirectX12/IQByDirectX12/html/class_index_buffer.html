@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: IndexBuffer クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_index_buffer-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">IndexBuffer クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_index_buffer_8h_source.html">IndexBuffer.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a348889936f378b7942c1e01d83e42866"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#a348889936f378b7942c1e01d83e42866">~IndexBuffer</a> ()</td></tr>
+<tr class="separator:a348889936f378b7942c1e01d83e42866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b2b840535e466020bf5b73fc11eff1b"><td class="memItemLeft" align="right" valign="top">const D3D12_INDEX_BUFFER_VIEW &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#a1b2b840535e466020bf5b73fc11eff1b">GetIndexBufferView</a> ()</td></tr>
+<tr class="separator:a1b2b840535e466020bf5b73fc11eff1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56fc4351097f2c2afcdf64b25a86673c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#a56fc4351097f2c2afcdf64b25a86673c">GetIndexCount</a> ()</td></tr>
+<tr class="separator:a56fc4351097f2c2afcdf64b25a86673c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a0f2c4917bc924ab91ba8466ddb1db670"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#a0f2c4917bc924ab91ba8466ddb1db670">Create</a> (ComPtr&lt; ID3D12Device &gt; device, void *pIndexResource, size_t indexCount, size_t indexSize)</td></tr>
+<tr class="separator:a0f2c4917bc924ab91ba8466ddb1db670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a348889936f378b7942c1e01d83e42866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348889936f378b7942c1e01d83e42866">&#9670;&nbsp;</a></span>~IndexBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IndexBuffer::~IndexBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a0f2c4917bc924ab91ba8466ddb1db670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2c4917bc924ab91ba8466ddb1db670">&#9670;&nbsp;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IndexBuffer::Create </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12Device &gt;&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pIndexResource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>indexCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>indexSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>頂点インデックスバッファの生成 </p><dl class="section note"><dt>覚え書き</dt><dd>IndexBufferクラスはこのメソッドによってのみ生成可能 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>ID3D12Device </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIndexResource</td><td>インデックスリソースのポインタ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indexCount</td><td>インデックスの数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indexSize</td><td>インデックス1つ当たりのサイズ(sizeofで取得) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">生成成功</td><td>VertexBufferのshared_ptr, 生成失敗: nullptr </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b2b840535e466020bf5b73fc11eff1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b2b840535e466020bf5b73fc11eff1b">&#9670;&nbsp;</a></span>GetIndexBufferView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const D3D12_INDEX_BUFFER_VIEW &amp; IndexBuffer::GetIndexBufferView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56fc4351097f2c2afcdf64b25a86673c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56fc4351097f2c2afcdf64b25a86673c">&#9670;&nbsp;</a></span>GetIndexCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int IndexBuffer::GetIndexCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_index_buffer_8h_source.html">IndexBuffer.h</a></li>
+<li>Source/<a class="el" href="_index_buffer_8cpp.html">IndexBuffer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

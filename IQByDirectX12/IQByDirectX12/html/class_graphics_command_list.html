@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: GraphicsCommandList クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_graphics_command_list-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">GraphicsCommandList クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>グラフィックスコマンドリストのラッパークラス  
+ <a href="class_graphics_command_list.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_graphics_command_list_8h_source.html">GraphicsCommandList.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:aaf8ac2a05856c02eb36021561f5c90c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#aaf8ac2a05856c02eb36021561f5c90c5">GraphicsCommandList</a> (std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt; device, D3D12_COMMAND_LIST_TYPE commandListType, const std::wstring &amp;name)</td></tr>
+<tr class="memdesc:aaf8ac2a05856c02eb36021561f5c90c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="#aaf8ac2a05856c02eb36021561f5c90c5">[詳解]</a><br /></td></tr>
+<tr class="separator:aaf8ac2a05856c02eb36021561f5c90c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa115f0c056e3e5f81333852202e5dbaa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#aa115f0c056e3e5f81333852202e5dbaa">~GraphicsCommandList</a> ()</td></tr>
+<tr class="memdesc:aa115f0c056e3e5f81333852202e5dbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="#aa115f0c056e3e5f81333852202e5dbaa">[詳解]</a><br /></td></tr>
+<tr class="separator:aa115f0c056e3e5f81333852202e5dbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b8cbeca32fbf3f2e7df74d87c593bec"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12GraphicsCommandList &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#a5b8cbeca32fbf3f2e7df74d87c593bec">GetCommandList</a> ()</td></tr>
+<tr class="memdesc:a5b8cbeca32fbf3f2e7df74d87c593bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドリストを取得する  <a href="#a5b8cbeca32fbf3f2e7df74d87c593bec">[詳解]</a><br /></td></tr>
+<tr class="separator:a5b8cbeca32fbf3f2e7df74d87c593bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afafd3a85240e8ff36af439de3b8e5f7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#afafd3a85240e8ff36af439de3b8e5f7f">Close</a> ()</td></tr>
+<tr class="memdesc:afafd3a85240e8ff36af439de3b8e5f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドリストをクローズする  <a href="#afafd3a85240e8ff36af439de3b8e5f7f">[詳解]</a><br /></td></tr>
+<tr class="separator:afafd3a85240e8ff36af439de3b8e5f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3054d5fc9a9e6ed2d24567eb54484a8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#a3054d5fc9a9e6ed2d24567eb54484a8f">Reset</a> ()</td></tr>
+<tr class="memdesc:a3054d5fc9a9e6ed2d24567eb54484a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドリストをリセットする  <a href="#a3054d5fc9a9e6ed2d24567eb54484a8f">[詳解]</a><br /></td></tr>
+<tr class="separator:a3054d5fc9a9e6ed2d24567eb54484a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5f24d01a01bc1ffb30ffa9173f85722"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#ae5f24d01a01bc1ffb30ffa9173f85722">Reset</a> (ComPtr&lt; ID3D12PipelineState &gt; pipelineState)</td></tr>
+<tr class="separator:ae5f24d01a01bc1ffb30ffa9173f85722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa62a89b6eeaa4e4fd7bc32d97a2d7ab3"><td class="memItemLeft" align="right" valign="top">ID3D12GraphicsCommandList *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#aa62a89b6eeaa4e4fd7bc32d97a2d7ab3">operator-&gt;</a> ()</td></tr>
+<tr class="memdesc:aa62a89b6eeaa4e4fd7bc32d97a2d7ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドリストへのアクセスを行うオペレータオーバーロード  <a href="#aa62a89b6eeaa4e4fd7bc32d97a2d7ab3">[詳解]</a><br /></td></tr>
+<tr class="separator:aa62a89b6eeaa4e4fd7bc32d97a2d7ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:aaf73581eb764f378b8b1b6d39385c584"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_graphics_command_list.html">GraphicsCommandList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_command_list.html#aaf73581eb764f378b8b1b6d39385c584">Create</a> (std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt; device, D3D12_COMMAND_LIST_TYPE commandListType, const std::wstring &amp;name=<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587">L</a>&quot;&quot;)</td></tr>
+<tr class="memdesc:aaf73581eb764f378b8b1b6d39385c584"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトの生成処理  <a href="#aaf73581eb764f378b8b1b6d39385c584">[詳解]</a><br /></td></tr>
+<tr class="separator:aaf73581eb764f378b8b1b6d39385c584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>グラフィックスコマンドリストのラッパークラス </p>
+<dl class="section note"><dt>覚え書き</dt><dd>現状、リスト1つに対してアロケータを1つしか用意していないため、 フェンス処理が必要な点に注意 </dd></dl>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="aaf8ac2a05856c02eb36021561f5c90c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf8ac2a05856c02eb36021561f5c90c5">&#9670;&nbsp;</a></span>GraphicsCommandList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphicsCommandList::GraphicsCommandList </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt;&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">D3D12_COMMAND_LIST_TYPE&#160;</td>
+          <td class="paramname"><em>commandListType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+
+</div>
+</div>
+<a id="aa115f0c056e3e5f81333852202e5dbaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa115f0c056e3e5f81333852202e5dbaa">&#9670;&nbsp;</a></span>~GraphicsCommandList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphicsCommandList::~GraphicsCommandList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="afafd3a85240e8ff36af439de3b8e5f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afafd3a85240e8ff36af439de3b8e5f7f">&#9670;&nbsp;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphicsCommandList::Close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドリストをクローズする </p>
+
+</div>
+</div>
+<a id="aaf73581eb764f378b8b1b6d39385c584"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf73581eb764f378b8b1b6d39385c584">&#9670;&nbsp;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_graphics_command_list.html">GraphicsCommandList</a> &gt; GraphicsCommandList::Create </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt;&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">D3D12_COMMAND_LIST_TYPE&#160;</td>
+          <td class="paramname"><em>commandListType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>name</em> = <code><a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587">L</a>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>オブジェクトの生成処理 </p>
+<dl class="section note"><dt>覚え書き</dt><dd>GraphicsCommandListクラスはこのメソッドを通じてのみ生成可能 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>: デバイス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">commandListType</td><td>: コマンドリストタイプ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: コマンドリストの名前 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5b8cbeca32fbf3f2e7df74d87c593bec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b8cbeca32fbf3f2e7df74d87c593bec">&#9670;&nbsp;</a></span>GetCommandList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ComPtr&lt; ID3D12GraphicsCommandList &gt; GraphicsCommandList::GetCommandList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドリストを取得する </p>
+
+</div>
+</div>
+<a id="aa62a89b6eeaa4e4fd7bc32d97a2d7ab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa62a89b6eeaa4e4fd7bc32d97a2d7ab3">&#9670;&nbsp;</a></span>operator-&gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ID3D12GraphicsCommandList *const GraphicsCommandList::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドリストへのアクセスを行うオペレータオーバーロード </p>
+
+</div>
+</div>
+<a id="a3054d5fc9a9e6ed2d24567eb54484a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3054d5fc9a9e6ed2d24567eb54484a8f">&#9670;&nbsp;</a></span>Reset() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphicsCommandList::Reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドリストをリセットする </p>
+<dl class="section note"><dt>覚え書き</dt><dd>要コマンドクローズ &amp; 実行 &amp; 実行待ち </dd></dl>
+
+</div>
+</div>
+<a id="ae5f24d01a01bc1ffb30ffa9173f85722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5f24d01a01bc1ffb30ffa9173f85722">&#9670;&nbsp;</a></span>Reset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphicsCommandList::Reset </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12PipelineState &gt;&#160;</td>
+          <td class="paramname"><em>pipelineState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_graphics_command_list_8h_source.html">GraphicsCommandList.h</a></li>
+<li>Source/<a class="el" href="_graphics_command_list_8cpp.html">GraphicsCommandList.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

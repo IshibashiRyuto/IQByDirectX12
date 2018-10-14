@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/RootSignature.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">RootSignature.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_root_signature_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    RootSignature.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    ルートシグネチャ</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    @author Ishibashi Ryuto</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">    @date</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">    2018/09/05  初版作成</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// システムヘッダインクルード</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include&lt;vector&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include&lt;memory&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include&lt;map&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include&lt;d3d12.h&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include&lt;wrl.h&gt;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// 自作ヘッダインクルード</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// クラス使用宣言</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_root_signature.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_root_signature.html">RootSignature</a> </div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_root_signature.html#ac7e523f868fcaa15b6ef1d2d832396a4">RootSignature</a>();</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_root_signature.html#a8007fe3581f6e8dfb5e8d8fc57263000">~RootSignature</a>();</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;RootSignature&gt; <a class="code" href="class_root_signature.html#acaca4730dae83d30cda691cf5aae0768">Create</a>();</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_root_signature.html#a5328c87baea63d762fc0607fb7d44cd4">ConstructRootSignature</a>(ComPtr&lt;ID3D12Device&gt; device);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_root_signature.html#ac02128012fae2aaeebc22d37f900bde9">AddDescriptorRange</a>(<span class="keywordtype">int</span> rootParamIndex, <span class="keyword">const</span> D3D12_DESCRIPTOR_RANGE &amp; descriptorRange);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_root_signature.html#ac02128012fae2aaeebc22d37f900bde9">AddDescriptorRange</a>(<span class="keywordtype">int</span> rootParamIndex,</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        D3D12_DESCRIPTOR_RANGE_TYPE rangeType,</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        UINT numDescriptors,</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        UINT baseShaderRegister);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_root_signature.html#af8af1b06602b6f098515de5504817a6c">AddRootParameter</a>(D3D12_SHADER_VISIBILITY shaderVisibility, D3D12_ROOT_PARAMETER_TYPE paramType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE);</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    ComPtr&lt;ID3D12RootSignature&gt; <a class="code" href="class_root_signature.html#a47dfa1b251b3fe9a5e7d8823bf87a187">GetRootSignature</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    D3D12_STATIC_SAMPLER_DESC mStaticSamplerDesc;           <span class="comment">// 静的サンプラ</span></div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::map&lt;int ,std::vector&lt;D3D12_DESCRIPTOR_RANGE&gt; &gt; mDescriptorRanges;  <span class="comment">// ディスクリプタレンジ</span></div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::vector&lt;D3D12_ROOT_PARAMETER&gt; mRootParameters;      <span class="comment">// ルートパラメータ</span></div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    ComPtr&lt;ID3D12RootSignature&gt; mRootSignature;             <span class="comment">// ルートシグネチャ群</span></div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="ttc" id="class_root_signature_html_acaca4730dae83d30cda691cf5aae0768"><div class="ttname"><a href="class_root_signature.html#acaca4730dae83d30cda691cf5aae0768">RootSignature::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; RootSignature &gt; Create()</div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:33</div></div>
+<div class="ttc" id="class_root_signature_html"><div class="ttname"><a href="class_root_signature.html">RootSignature</a></div><div class="ttdef"><b>Definition:</b> RootSignature.h:21</div></div>
+<div class="ttc" id="class_root_signature_html_af8af1b06602b6f098515de5504817a6c"><div class="ttname"><a href="class_root_signature.html#af8af1b06602b6f098515de5504817a6c">RootSignature::AddRootParameter</a></div><div class="ttdeci">int AddRootParameter(D3D12_SHADER_VISIBILITY shaderVisibility, D3D12_ROOT_PARAMETER_TYPE paramType=D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE)</div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:97</div></div>
+<div class="ttc" id="class_root_signature_html_ac02128012fae2aaeebc22d37f900bde9"><div class="ttname"><a href="class_root_signature.html#ac02128012fae2aaeebc22d37f900bde9">RootSignature::AddDescriptorRange</a></div><div class="ttdeci">void AddDescriptorRange(int rootParamIndex, const D3D12_DESCRIPTOR_RANGE &amp;descriptorRange)</div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:77</div></div>
+<div class="ttc" id="class_root_signature_html_a8007fe3581f6e8dfb5e8d8fc57263000"><div class="ttname"><a href="class_root_signature.html#a8007fe3581f6e8dfb5e8d8fc57263000">RootSignature::~RootSignature</a></div><div class="ttdeci">~RootSignature()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:29</div></div>
+<div class="ttc" id="class_root_signature_html_a47dfa1b251b3fe9a5e7d8823bf87a187"><div class="ttname"><a href="class_root_signature.html#a47dfa1b251b3fe9a5e7d8823bf87a187">RootSignature::GetRootSignature</a></div><div class="ttdeci">ComPtr&lt; ID3D12RootSignature &gt; GetRootSignature() const</div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:106</div></div>
+<div class="ttc" id="class_root_signature_html_a5328c87baea63d762fc0607fb7d44cd4"><div class="ttname"><a href="class_root_signature.html#a5328c87baea63d762fc0607fb7d44cd4">RootSignature::ConstructRootSignature</a></div><div class="ttdeci">bool ConstructRootSignature(ComPtr&lt; ID3D12Device &gt; device)</div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:38</div></div>
+<div class="ttc" id="class_root_signature_html_ac7e523f868fcaa15b6ef1d2d832396a4"><div class="ttname"><a href="class_root_signature.html#ac7e523f868fcaa15b6ef1d2d832396a4">RootSignature::RootSignature</a></div><div class="ttdeci">RootSignature()</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> RootSignature.cpp:7</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

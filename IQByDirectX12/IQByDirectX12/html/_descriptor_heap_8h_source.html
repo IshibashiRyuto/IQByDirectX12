@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/DescriptorHeap.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">DescriptorHeap.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_descriptor_heap_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    DescriptorHeap.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    ディスクリプタヒープ</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*システムヘッダインクルード*/</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*自作ヘッダインクルード*/</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*前方宣言*/</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="class_texture.html">Texture</a>;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_descriptor_heap.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_descriptor_heap.html">DescriptorHeap</a></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_descriptor_heap.html#a784aaaafaa338085c029c29d97f802c0">~DescriptorHeap</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;DescriptorHeap&gt; <a class="code" href="class_descriptor_heap.html#aae33b8a5c2d8e825ba93c14c99a141c8">Create</a>(ComPtr&lt;ID3D12Device&gt; device, <span class="keyword">const</span> D3D12_DESCRIPTOR_HEAP_DESC&amp; desc);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;DescriptorHeap&gt; <a class="code" href="class_descriptor_heap.html#aae33b8a5c2d8e825ba93c14c99a141c8">Create</a>(ComPtr&lt;ID3D12Device&gt; device, UINT numDescriptors);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_descriptor_heap.html#ad95a0a669e09aa11972c2a3a6a880ab4">SetConstantBufferView</a>(<span class="keyword">const</span> D3D12_CONSTANT_BUFFER_VIEW_DESC&amp; constantBufferView, UINT index);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_descriptor_heap.html#ab3cb1e5126b26f903065ac3348aa833e">SetShaderResourceView</a>(<span class="keyword">const</span> D3D12_SHADER_RESOURCE_VIEW_DESC&amp; shaderResourceView, ComPtr&lt;ID3D12Resource&gt; shaderResource, UINT index);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_descriptor_heap.html#ae200d9d61adca929e3549694a2247bd2">SetTexture</a>(std::shared_ptr&lt;Texture&gt; texture, UINT index);</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_descriptor_heap.html#ac3d8cd7c54b652dffec68df29e488f0e">SetUnorderedAccessView</a>(<span class="keyword">const</span> D3D12_UNORDERED_ACCESS_VIEW_DESC&amp; unorderedAccessView, ComPtr&lt;ID3D12Resource&gt; structuredBuffer, UINT index);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_descriptor_heap.html#ad4c58082394b6dedc4f6eaaed9b2da1c">BindGraphicsCommandList</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; commandList);</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_descriptor_heap.html#a8580bf420ca41fd262793680d5676524">BindRootDescriptorTable</a>(<span class="keywordtype">int</span> rootParamIndex, <span class="keywordtype">int</span> descriptorHeapIndex);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/*定数宣言*/</span></div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">const</span> UINT HEAP_STRIDE;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">/*変数定義*/</span></div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    ComPtr&lt;ID3D12Device&gt;            mDevice;            </div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    ComPtr&lt;ID3D12DescriptorHeap&gt;    mDescriptorHeap;    </div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    UINT                            mNumDescriptors;        </div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    ComPtr&lt;ID3D12GraphicsCommandList&gt;   mGraphicsCommandList;   </div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">/*ローカルメソッド*/</span></div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="class_descriptor_heap.html">DescriptorHeap</a>(ComPtr&lt;ID3D12Device&gt; device, <span class="keyword">const</span> D3D12_DESCRIPTOR_HEAP_DESC&amp; heapDesc);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div><div class="ttc" id="class_descriptor_heap_html"><div class="ttname"><a href="class_descriptor_heap.html">DescriptorHeap</a></div><div class="ttdef"><b>Definition:</b> DescriptorHeap.h:17</div></div>
+<div class="ttc" id="class_descriptor_heap_html_ac3d8cd7c54b652dffec68df29e488f0e"><div class="ttname"><a href="class_descriptor_heap.html#ac3d8cd7c54b652dffec68df29e488f0e">DescriptorHeap::SetUnorderedAccessView</a></div><div class="ttdeci">void SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC &amp;unorderedAccessView, ComPtr&lt; ID3D12Resource &gt; structuredBuffer, UINT index)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:67</div></div>
+<div class="ttc" id="class_descriptor_heap_html_ab3cb1e5126b26f903065ac3348aa833e"><div class="ttname"><a href="class_descriptor_heap.html#ab3cb1e5126b26f903065ac3348aa833e">DescriptorHeap::SetShaderResourceView</a></div><div class="ttdeci">void SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC &amp;shaderResourceView, ComPtr&lt; ID3D12Resource &gt; shaderResource, UINT index)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:49</div></div>
+<div class="ttc" id="class_descriptor_heap_html_a8580bf420ca41fd262793680d5676524"><div class="ttname"><a href="class_descriptor_heap.html#a8580bf420ca41fd262793680d5676524">DescriptorHeap::BindRootDescriptorTable</a></div><div class="ttdeci">void BindRootDescriptorTable(int rootParamIndex, int descriptorHeapIndex)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:77</div></div>
+<div class="ttc" id="class_descriptor_heap_html_ae200d9d61adca929e3549694a2247bd2"><div class="ttname"><a href="class_descriptor_heap.html#ae200d9d61adca929e3549694a2247bd2">DescriptorHeap::SetTexture</a></div><div class="ttdeci">void SetTexture(std::shared_ptr&lt; Texture &gt; texture, UINT index)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:56</div></div>
+<div class="ttc" id="class_descriptor_heap_html_ad95a0a669e09aa11972c2a3a6a880ab4"><div class="ttname"><a href="class_descriptor_heap.html#ad95a0a669e09aa11972c2a3a6a880ab4">DescriptorHeap::SetConstantBufferView</a></div><div class="ttdeci">void SetConstantBufferView(const D3D12_CONSTANT_BUFFER_VIEW_DESC &amp;constantBufferView, UINT index)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:42</div></div>
+<div class="ttc" id="class_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.h:19</div></div>
+<div class="ttc" id="class_descriptor_heap_html_a784aaaafaa338085c029c29d97f802c0"><div class="ttname"><a href="class_descriptor_heap.html#a784aaaafaa338085c029c29d97f802c0">DescriptorHeap::~DescriptorHeap</a></div><div class="ttdeci">~DescriptorHeap()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:15</div></div>
+<div class="ttc" id="class_descriptor_heap_html_ad4c58082394b6dedc4f6eaaed9b2da1c"><div class="ttname"><a href="class_descriptor_heap.html#ad4c58082394b6dedc4f6eaaed9b2da1c">DescriptorHeap::BindGraphicsCommandList</a></div><div class="ttdeci">void BindGraphicsCommandList(ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:71</div></div>
+<div class="ttc" id="class_descriptor_heap_html_aae33b8a5c2d8e825ba93c14c99a141c8"><div class="ttname"><a href="class_descriptor_heap.html#aae33b8a5c2d8e825ba93c14c99a141c8">DescriptorHeap::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; DescriptorHeap &gt; Create(ComPtr&lt; ID3D12Device &gt; device, const D3D12_DESCRIPTOR_HEAP_DESC &amp;desc)</div><div class="ttdef"><b>Definition:</b> DescriptorHeap.cpp:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

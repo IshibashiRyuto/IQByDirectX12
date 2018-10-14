@@ -1,0 +1,99 @@
+\hypertarget{class_swap_chain}{}\section{Swap\+Chain クラス}
+\label{class_swap_chain}\index{Swap\+Chain@{Swap\+Chain}}
+
+
+{\ttfamily \#include $<$Swap\+Chain.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_swap_chain_ab1e68cac26bb0b4e97b68b9e4a3086a4}{Swap\+Chain}} ()
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_swap_chain_a58c288346a3fa211fbcc2cec594bfa68}{$\sim$\+Swap\+Chain}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_swap_chain_abd79852ff31daa97e5fd78ae7701bcf8}{Swap}} ()
+\begin{DoxyCompactList}\small\item\em 画面をスワップする \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_swap_chain_a30a3e70cede922d5310b82b758ddd10f}{Get\+Back\+Buffer\+Index}} ()
+\begin{DoxyCompactList}\small\item\em 現在の画面インデックスを取得する \end{DoxyCompactList}\item 
+Com\+Ptr$<$ I\+D\+X\+G\+I\+Swap\+Chain1 $>$ \mbox{\hyperlink{class_swap_chain_a4653a1350dd35b0b9d55ee098b02f82a}{Get\+Swap\+Chain}} () const
+\begin{DoxyCompactList}\small\item\em スワップチェインを取得する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_swap_chain}{Swap\+Chain}} $>$ \mbox{\hyperlink{class_swap_chain_a9a5c8d8da8a81471009df868054c02e3}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_command_queue}{Command\+Queue}} $>$ command\+Queue, const \mbox{\hyperlink{class_window}{Window}} \&window, unsigned int render\+Target\+Num)
+\begin{DoxyCompactList}\small\item\em インスタンスを生成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_swap_chain_ab1e68cac26bb0b4e97b68b9e4a3086a4}\label{class_swap_chain_ab1e68cac26bb0b4e97b68b9e4a3086a4}} 
+\index{Swap\+Chain@{Swap\+Chain}!Swap\+Chain@{Swap\+Chain}}
+\index{Swap\+Chain@{Swap\+Chain}!Swap\+Chain@{Swap\+Chain}}
+\subsubsection{\texorpdfstring{Swap\+Chain()}{SwapChain()}}
+{\footnotesize\ttfamily Swap\+Chain\+::\+Swap\+Chain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_swap_chain_a58c288346a3fa211fbcc2cec594bfa68}\label{class_swap_chain_a58c288346a3fa211fbcc2cec594bfa68}} 
+\index{Swap\+Chain@{Swap\+Chain}!````~Swap\+Chain@{$\sim$\+Swap\+Chain}}
+\index{````~Swap\+Chain@{$\sim$\+Swap\+Chain}!Swap\+Chain@{Swap\+Chain}}
+\subsubsection{\texorpdfstring{$\sim$\+Swap\+Chain()}{~SwapChain()}}
+{\footnotesize\ttfamily Swap\+Chain\+::$\sim$\+Swap\+Chain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_swap_chain_a9a5c8d8da8a81471009df868054c02e3}\label{class_swap_chain_a9a5c8d8da8a81471009df868054c02e3}} 
+\index{Swap\+Chain@{Swap\+Chain}!Create@{Create}}
+\index{Create@{Create}!Swap\+Chain@{Swap\+Chain}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_swap_chain}{Swap\+Chain}} $>$ Swap\+Chain\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_command_queue}{Command\+Queue}} $>$}]{command\+Queue,  }\item[{const \mbox{\hyperlink{class_window}{Window}} \&}]{window,  }\item[{unsigned int}]{render\+Target\+Num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+インスタンスを生成する 
+
+\begin{DoxyNote}{覚え書き}
+このクラスのインスタンスはこのメソッドを通じてのみ生成可能 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_swap_chain_a30a3e70cede922d5310b82b758ddd10f}\label{class_swap_chain_a30a3e70cede922d5310b82b758ddd10f}} 
+\index{Swap\+Chain@{Swap\+Chain}!Get\+Back\+Buffer\+Index@{Get\+Back\+Buffer\+Index}}
+\index{Get\+Back\+Buffer\+Index@{Get\+Back\+Buffer\+Index}!Swap\+Chain@{Swap\+Chain}}
+\subsubsection{\texorpdfstring{Get\+Back\+Buffer\+Index()}{GetBackBufferIndex()}}
+{\footnotesize\ttfamily unsigned int Swap\+Chain\+::\+Get\+Back\+Buffer\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+現在の画面インデックスを取得する 
+
+\mbox{\Hypertarget{class_swap_chain_a4653a1350dd35b0b9d55ee098b02f82a}\label{class_swap_chain_a4653a1350dd35b0b9d55ee098b02f82a}} 
+\index{Swap\+Chain@{Swap\+Chain}!Get\+Swap\+Chain@{Get\+Swap\+Chain}}
+\index{Get\+Swap\+Chain@{Get\+Swap\+Chain}!Swap\+Chain@{Swap\+Chain}}
+\subsubsection{\texorpdfstring{Get\+Swap\+Chain()}{GetSwapChain()}}
+{\footnotesize\ttfamily Com\+Ptr$<$ I\+D\+X\+G\+I\+Swap\+Chain1 $>$ Swap\+Chain\+::\+Get\+Swap\+Chain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+スワップチェインを取得する 
+
+\mbox{\Hypertarget{class_swap_chain_abd79852ff31daa97e5fd78ae7701bcf8}\label{class_swap_chain_abd79852ff31daa97e5fd78ae7701bcf8}} 
+\index{Swap\+Chain@{Swap\+Chain}!Swap@{Swap}}
+\index{Swap@{Swap}!Swap\+Chain@{Swap\+Chain}}
+\subsubsection{\texorpdfstring{Swap()}{Swap()}}
+{\footnotesize\ttfamily void Swap\+Chain\+::\+Swap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+画面をスワップする 
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_swap_chain_8h}{Swap\+Chain.\+h}}\item 
+Source/\mbox{\hyperlink{_swap_chain_8cpp}{Swap\+Chain.\+cpp}}\end{DoxyCompactItemize}

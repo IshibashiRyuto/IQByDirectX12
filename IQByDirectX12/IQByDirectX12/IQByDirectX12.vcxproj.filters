@@ -171,7 +171,9 @@
       <Filter>Source\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\PipelineStateObject.cpp" />
-    <ClCompile Include="Source\Debug\DebugLayer.cpp" />
+    <ClCompile Include="Source\Debug\DebugLayer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -304,6 +306,8 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\PipelineStateObject.h" />
-    <ClInclude Include="Source\Debug\DebugLayer.h" />
+    <ClInclude Include="Source\Debug\DebugLayer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

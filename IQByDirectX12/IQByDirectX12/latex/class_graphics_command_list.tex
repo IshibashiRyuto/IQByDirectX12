@@ -1,0 +1,144 @@
+\hypertarget{class_graphics_command_list}{}\section{Graphics\+Command\+List クラス}
+\label{class_graphics_command_list}\index{Graphics\+Command\+List@{Graphics\+Command\+List}}
+
+
+グラフィックスコマンドリストのラッパークラス  
+
+
+
+
+{\ttfamily \#include $<$Graphics\+Command\+List.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graphics_command_list_aaf8ac2a05856c02eb36021561f5c90c5}{Graphics\+Command\+List}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, D3\+D12\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+T\+Y\+PE command\+List\+Type, const std\+::wstring \&name)
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graphics_command_list_aa115f0c056e3e5f81333852202e5dbaa}{$\sim$\+Graphics\+Command\+List}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ \mbox{\hyperlink{class_graphics_command_list_a5b8cbeca32fbf3f2e7df74d87c593bec}{Get\+Command\+List}} ()
+\begin{DoxyCompactList}\small\item\em コマンドリストを取得する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graphics_command_list_afafd3a85240e8ff36af439de3b8e5f7f}{Close}} ()
+\begin{DoxyCompactList}\small\item\em コマンドリストをクローズする \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graphics_command_list_a3054d5fc9a9e6ed2d24567eb54484a8f}{Reset}} ()
+\begin{DoxyCompactList}\small\item\em コマンドリストをリセットする \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graphics_command_list_ae5f24d01a01bc1ffb30ffa9173f85722}{Reset}} (Com\+Ptr$<$ I\+D3\+D12\+Pipeline\+State $>$ pipeline\+State)
+\item 
+I\+D3\+D12\+Graphics\+Command\+List $\ast$const \mbox{\hyperlink{class_graphics_command_list_aa62a89b6eeaa4e4fd7bc32d97a2d7ab3}{operator-\/$>$}} ()
+\begin{DoxyCompactList}\small\item\em コマンドリストへのアクセスを行うオペレータオーバーロード \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_graphics_command_list}{Graphics\+Command\+List}} $>$ \mbox{\hyperlink{class_graphics_command_list_aaf73581eb764f378b8b1b6d39385c584}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, D3\+D12\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+T\+Y\+PE command\+List\+Type, const std\+::wstring \&name=\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587}{L}}\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em オブジェクトの生成処理 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{詳解}
+グラフィックスコマンドリストのラッパークラス 
+
+\begin{DoxyNote}{覚え書き}
+現状、リスト1つに対してアロケータを1つしか用意していないため、 フェンス処理が必要な点に注意 
+\end{DoxyNote}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_graphics_command_list_aaf8ac2a05856c02eb36021561f5c90c5}\label{class_graphics_command_list_aaf8ac2a05856c02eb36021561f5c90c5}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{Graphics\+Command\+List()}{GraphicsCommandList()}}
+{\footnotesize\ttfamily Graphics\+Command\+List\+::\+Graphics\+Command\+List (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{D3\+D12\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+T\+Y\+PE}]{command\+List\+Type,  }\item[{const std\+::wstring \&}]{name }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_graphics_command_list_aa115f0c056e3e5f81333852202e5dbaa}\label{class_graphics_command_list_aa115f0c056e3e5f81333852202e5dbaa}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!````~Graphics\+Command\+List@{$\sim$\+Graphics\+Command\+List}}
+\index{````~Graphics\+Command\+List@{$\sim$\+Graphics\+Command\+List}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{$\sim$\+Graphics\+Command\+List()}{~GraphicsCommandList()}}
+{\footnotesize\ttfamily Graphics\+Command\+List\+::$\sim$\+Graphics\+Command\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_graphics_command_list_afafd3a85240e8ff36af439de3b8e5f7f}\label{class_graphics_command_list_afafd3a85240e8ff36af439de3b8e5f7f}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Close@{Close}}
+\index{Close@{Close}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void Graphics\+Command\+List\+::\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コマンドリストをクローズする 
+
+\mbox{\Hypertarget{class_graphics_command_list_aaf73581eb764f378b8b1b6d39385c584}\label{class_graphics_command_list_aaf73581eb764f378b8b1b6d39385c584}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Create@{Create}}
+\index{Create@{Create}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_graphics_command_list}{Graphics\+Command\+List}} $>$ Graphics\+Command\+List\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{D3\+D12\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+T\+Y\+PE}]{command\+List\+Type,  }\item[{const std\+::wstring \&}]{name = {\ttfamily \mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587}{L}}\char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+オブジェクトの生成処理 
+
+\begin{DoxyNote}{覚え書き}
+Graphics\+Command\+Listクラスはこのメソッドを通じてのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & \+: デバイス \\
+\hline
+\mbox{\tt in}  & {\em command\+List\+Type} & \+: コマンドリストタイプ \\
+\hline
+\mbox{\tt in}  & {\em name} & \+: コマンドリストの名前 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graphics_command_list_a5b8cbeca32fbf3f2e7df74d87c593bec}\label{class_graphics_command_list_a5b8cbeca32fbf3f2e7df74d87c593bec}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Get\+Command\+List@{Get\+Command\+List}}
+\index{Get\+Command\+List@{Get\+Command\+List}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{Get\+Command\+List()}{GetCommandList()}}
+{\footnotesize\ttfamily Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ Graphics\+Command\+List\+::\+Get\+Command\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コマンドリストを取得する 
+
+\mbox{\Hypertarget{class_graphics_command_list_aa62a89b6eeaa4e4fd7bc32d97a2d7ab3}\label{class_graphics_command_list_aa62a89b6eeaa4e4fd7bc32d97a2d7ab3}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily I\+D3\+D12\+Graphics\+Command\+List $\ast$const Graphics\+Command\+List\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コマンドリストへのアクセスを行うオペレータオーバーロード 
+
+\mbox{\Hypertarget{class_graphics_command_list_a3054d5fc9a9e6ed2d24567eb54484a8f}\label{class_graphics_command_list_a3054d5fc9a9e6ed2d24567eb54484a8f}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Reset@{Reset}}
+\index{Reset@{Reset}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Graphics\+Command\+List\+::\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コマンドリストをリセットする 
+
+\begin{DoxyNote}{覚え書き}
+要コマンドクローズ \& 実行 \& 実行待ち 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_graphics_command_list_ae5f24d01a01bc1ffb30ffa9173f85722}\label{class_graphics_command_list_ae5f24d01a01bc1ffb30ffa9173f85722}} 
+\index{Graphics\+Command\+List@{Graphics\+Command\+List}!Reset@{Reset}}
+\index{Reset@{Reset}!Graphics\+Command\+List@{Graphics\+Command\+List}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Graphics\+Command\+List\+::\+Reset (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Pipeline\+State $>$}]{pipeline\+State }\end{DoxyParamCaption})}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_graphics_command_list_8h}{Graphics\+Command\+List.\+h}}\item 
+Source/\mbox{\hyperlink{_graphics_command_list_8cpp}{Graphics\+Command\+List.\+cpp}}\end{DoxyCompactItemize}

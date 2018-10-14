@@ -1,0 +1,147 @@
+\hypertarget{class_render_target}{}\section{Render\+Target クラス}
+\label{class_render_target}\index{Render\+Target@{Render\+Target}}
+
+
+{\ttfamily \#include $<$Render\+Target.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_render_target_a5c8ef0f2c9e46ed80e5e3ce6e5567b8b}{$\sim$\+Render\+Target}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_render_target_a49d0110b24e7a80b5c61838776d8be3d}{Change\+Render\+Target}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ command\+List, int target\+Index)
+\item 
+void \mbox{\hyperlink{class_render_target_a182c92e3d7cb77dba1485b4471bd22c8}{Finish\+Rendering}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ command\+List)
+\item 
+D3\+D12\+\_\+\+C\+P\+U\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+H\+A\+N\+D\+LE \mbox{\hyperlink{class_render_target_a170c383af63b5919a45965d719db1acb}{Get\+R\+T\+V\+Handle}} ()
+\item 
+void \mbox{\hyperlink{class_render_target_aa3d82758fcf16a3546289a813f42c654}{Clear\+Render\+Target}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ command\+List)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_render_target}{Render\+Target}} $>$ \mbox{\hyperlink{class_render_target_a3867ed895640f96c911ad7da3cd3e1d0}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, Com\+Ptr$<$ I\+D\+X\+G\+I\+Swap\+Chain1 $>$ swap\+Chain, int render\+Targets\+Num)
+\end{DoxyCompactItemize}
+\subsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_render_target_a31a30a9219f3ddaf6597247088b65fb6}{Render\+Target}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device)
+\end{DoxyCompactItemize}
+\subsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+const U\+I\+NT \mbox{\hyperlink{class_render_target_a921f80927651efee5c3385b99cd5d33f}{R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE}}
+\item 
+std\+::vector$<$ Com\+Ptr$<$ I\+D3\+D12\+Resource $>$ $>$ \mbox{\hyperlink{class_render_target_a4069877a023a2802622246f09786d525}{m\+Render\+Targets}}
+\item 
+Com\+Ptr$<$ I\+D3\+D12\+Descriptor\+Heap $>$ \mbox{\hyperlink{class_render_target_a4879247e09bc36ae9fa522ee2ffb5235}{m\+R\+T\+V\+Desc\+Heap}}
+\item 
+int \mbox{\hyperlink{class_render_target_a1bcf37524ecb561b92e355dca767130d}{m\+Render\+Target\+Index}}
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_render_target_a5c8ef0f2c9e46ed80e5e3ce6e5567b8b}\label{class_render_target_a5c8ef0f2c9e46ed80e5e3ce6e5567b8b}} 
+\index{Render\+Target@{Render\+Target}!````~Render\+Target@{$\sim$\+Render\+Target}}
+\index{````~Render\+Target@{$\sim$\+Render\+Target}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{$\sim$\+Render\+Target()}{~RenderTarget()}}
+{\footnotesize\ttfamily Render\+Target\+::$\sim$\+Render\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+\mbox{\Hypertarget{class_render_target_a31a30a9219f3ddaf6597247088b65fb6}\label{class_render_target_a31a30a9219f3ddaf6597247088b65fb6}} 
+\index{Render\+Target@{Render\+Target}!Render\+Target@{Render\+Target}}
+\index{Render\+Target@{Render\+Target}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{Render\+Target()}{RenderTarget()}}
+{\footnotesize\ttfamily Render\+Target\+::\+Render\+Target (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+コンストラクタ 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & I\+D3\+D12デバイス \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_render_target_a49d0110b24e7a80b5c61838776d8be3d}\label{class_render_target_a49d0110b24e7a80b5c61838776d8be3d}} 
+\index{Render\+Target@{Render\+Target}!Change\+Render\+Target@{Change\+Render\+Target}}
+\index{Change\+Render\+Target@{Change\+Render\+Target}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{Change\+Render\+Target()}{ChangeRenderTarget()}}
+{\footnotesize\ttfamily Render\+Target\+::\+Change\+Render\+Target (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{command\+List,  }\item[{int}]{target\+Index }\end{DoxyParamCaption})}
+
+レンダーターゲットを変更する \mbox{\Hypertarget{class_render_target_aa3d82758fcf16a3546289a813f42c654}\label{class_render_target_aa3d82758fcf16a3546289a813f42c654}} 
+\index{Render\+Target@{Render\+Target}!Clear\+Render\+Target@{Clear\+Render\+Target}}
+\index{Clear\+Render\+Target@{Clear\+Render\+Target}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{Clear\+Render\+Target()}{ClearRenderTarget()}}
+{\footnotesize\ttfamily void Render\+Target\+::\+Clear\+Render\+Target (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{command\+List }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_render_target_a3867ed895640f96c911ad7da3cd3e1d0}\label{class_render_target_a3867ed895640f96c911ad7da3cd3e1d0}} 
+\index{Render\+Target@{Render\+Target}!Create@{Create}}
+\index{Create@{Create}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Render\+Target\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{Com\+Ptr$<$ I\+D\+X\+G\+I\+Swap\+Chain1 $>$}]{swap\+Chain,  }\item[{int}]{render\+Targets\+Num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+レンダーターゲットを生成し、管理する\+Render\+Targetクラスを返す \begin{DoxyNote}{覚え書き}
+Render\+Targetクラスはこのメソッドでのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & I\+D3\+D12デバイス \\
+\hline
+\mbox{\tt in}  & {\em swap\+Chain} & I\+D\+X\+G\+Iスワップチェイン \\
+\hline
+\mbox{\tt in}  & {\em render\+Targets\+Num} & レンダーターゲットの数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功時} & Render\+Targetクラスのshared\+\_\+ptr, 生成失敗時\+: nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_render_target_a182c92e3d7cb77dba1485b4471bd22c8}\label{class_render_target_a182c92e3d7cb77dba1485b4471bd22c8}} 
+\index{Render\+Target@{Render\+Target}!Finish\+Rendering@{Finish\+Rendering}}
+\index{Finish\+Rendering@{Finish\+Rendering}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{Finish\+Rendering()}{FinishRendering()}}
+{\footnotesize\ttfamily Render\+Target\+::\+Finish\+Rendering (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{command\+List }\end{DoxyParamCaption})}
+
+描画処理を終了する \mbox{\Hypertarget{class_render_target_a170c383af63b5919a45965d719db1acb}\label{class_render_target_a170c383af63b5919a45965d719db1acb}} 
+\index{Render\+Target@{Render\+Target}!Get\+R\+T\+V\+Handle@{Get\+R\+T\+V\+Handle}}
+\index{Get\+R\+T\+V\+Handle@{Get\+R\+T\+V\+Handle}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{Get\+R\+T\+V\+Handle()}{GetRTVHandle()}}
+{\footnotesize\ttfamily Render\+Target\+::\+Get\+R\+T\+V\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+レンダーターゲットビューのハンドルを取得する 
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{class_render_target_a1bcf37524ecb561b92e355dca767130d}\label{class_render_target_a1bcf37524ecb561b92e355dca767130d}} 
+\index{Render\+Target@{Render\+Target}!m\+Render\+Target\+Index@{m\+Render\+Target\+Index}}
+\index{m\+Render\+Target\+Index@{m\+Render\+Target\+Index}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{m\+Render\+Target\+Index}{mRenderTargetIndex}}
+{\footnotesize\ttfamily int Render\+Target\+::m\+Render\+Target\+Index\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_render_target_a4069877a023a2802622246f09786d525}\label{class_render_target_a4069877a023a2802622246f09786d525}} 
+\index{Render\+Target@{Render\+Target}!m\+Render\+Targets@{m\+Render\+Targets}}
+\index{m\+Render\+Targets@{m\+Render\+Targets}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{m\+Render\+Targets}{mRenderTargets}}
+{\footnotesize\ttfamily std\+::vector$<$Com\+Ptr$<$I\+D3\+D12\+Resource$>$ $>$ Render\+Target\+::m\+Render\+Targets\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_render_target_a4879247e09bc36ae9fa522ee2ffb5235}\label{class_render_target_a4879247e09bc36ae9fa522ee2ffb5235}} 
+\index{Render\+Target@{Render\+Target}!m\+R\+T\+V\+Desc\+Heap@{m\+R\+T\+V\+Desc\+Heap}}
+\index{m\+R\+T\+V\+Desc\+Heap@{m\+R\+T\+V\+Desc\+Heap}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{m\+R\+T\+V\+Desc\+Heap}{mRTVDescHeap}}
+{\footnotesize\ttfamily Com\+Ptr$<$I\+D3\+D12\+Descriptor\+Heap$>$ Render\+Target\+::m\+R\+T\+V\+Desc\+Heap\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_render_target_a921f80927651efee5c3385b99cd5d33f}\label{class_render_target_a921f80927651efee5c3385b99cd5d33f}} 
+\index{Render\+Target@{Render\+Target}!R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE@{R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE}}
+\index{R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE@{R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE}!Render\+Target@{Render\+Target}}
+\subsubsection{\texorpdfstring{R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE}{RENDER\_TARGET\_VIEW\_DESCRIPTOR\_SIZE}}
+{\footnotesize\ttfamily const U\+I\+NT Render\+Target\+::\+R\+E\+N\+D\+E\+R\+\_\+\+T\+A\+R\+G\+E\+T\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_render_target_8h}{Render\+Target.\+h}}\item 
+Source/\mbox{\hyperlink{_render_target_8cpp}{Render\+Target.\+cpp}}\end{DoxyCompactItemize}

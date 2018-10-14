@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/GraphicsCommandList.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GraphicsCommandList.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_graphics_command_list_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*システムヘッダインクルード*/</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*クラス使用宣言*/</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_command_allocator.html">CommandAllocator</a>;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="class_device.html">Device</a>;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_graphics_command_list.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_graphics_command_list.html">GraphicsCommandList</a></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_graphics_command_list.html#aaf8ac2a05856c02eb36021561f5c90c5">GraphicsCommandList</a>(std::shared_ptr&lt;Device&gt; device, D3D12_COMMAND_LIST_TYPE commandListType, <span class="keyword">const</span> std::wstring &amp; name);</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_graphics_command_list.html#aa115f0c056e3e5f81333852202e5dbaa">~GraphicsCommandList</a>();</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;GraphicsCommandList&gt; <a class="code" href="class_graphics_command_list.html#aaf73581eb764f378b8b1b6d39385c584">Create</a>(std::shared_ptr&lt;Device&gt; device, D3D12_COMMAND_LIST_TYPE commandListType, <span class="keyword">const</span> std::wstring&amp; name = <a class="code" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587">L</a><span class="stringliteral">&quot;&quot;</span>);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ComPtr&lt;ID3D12GraphicsCommandList&gt; <a class="code" href="class_graphics_command_list.html#a5b8cbeca32fbf3f2e7df74d87c593bec">GetCommandList</a>();</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_graphics_command_list.html#afafd3a85240e8ff36af439de3b8e5f7f">Close</a>();</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_graphics_command_list.html#a3054d5fc9a9e6ed2d24567eb54484a8f">Reset</a>();</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_graphics_command_list.html#a3054d5fc9a9e6ed2d24567eb54484a8f">Reset</a>(ComPtr&lt;ID3D12PipelineState&gt; pipelineState);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    ID3D12GraphicsCommandList* <span class="keyword">const</span> <a class="code" href="class_graphics_command_list.html#aa62a89b6eeaa4e4fd7bc32d97a2d7ab3">operator-&gt;</a>();</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">/*変数宣言*/</span></div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    ComPtr&lt;ID3D12GraphicsCommandList&gt; mCommandList;         <span class="comment">// コマンドリストの実体へのポインタ</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::shared_ptr&lt;CommandAllocator&gt; mCommandAllocator;    <span class="comment">// コマンドアロケータ</span></div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="ttc" id="class_graphics_command_list_html_aaf8ac2a05856c02eb36021561f5c90c5"><div class="ttname"><a href="class_graphics_command_list.html#aaf8ac2a05856c02eb36021561f5c90c5">GraphicsCommandList::GraphicsCommandList</a></div><div class="ttdeci">GraphicsCommandList(std::shared_ptr&lt; Device &gt; device, D3D12_COMMAND_LIST_TYPE commandListType, const std::wstring &amp;name)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:7</div></div>
+<div class="ttc" id="class_graphics_command_list_html_a3054d5fc9a9e6ed2d24567eb54484a8f"><div class="ttname"><a href="class_graphics_command_list.html#a3054d5fc9a9e6ed2d24567eb54484a8f">GraphicsCommandList::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdoc">コマンドリストをリセットする </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:33</div></div>
+<div class="ttc" id="_keyboard_8h_html_a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587"><div class="ttname"><a href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587">VirtualKeyIndex::L</a></div></div>
+<div class="ttc" id="class_graphics_command_list_html_aa62a89b6eeaa4e4fd7bc32d97a2d7ab3"><div class="ttname"><a href="class_graphics_command_list.html#aa62a89b6eeaa4e4fd7bc32d97a2d7ab3">GraphicsCommandList::operator-&gt;</a></div><div class="ttdeci">ID3D12GraphicsCommandList *const operator-&gt;()</div><div class="ttdoc">コマンドリストへのアクセスを行うオペレータオーバーロード </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:45</div></div>
+<div class="ttc" id="class_graphics_command_list_html_a5b8cbeca32fbf3f2e7df74d87c593bec"><div class="ttname"><a href="class_graphics_command_list.html#a5b8cbeca32fbf3f2e7df74d87c593bec">GraphicsCommandList::GetCommandList</a></div><div class="ttdeci">ComPtr&lt; ID3D12GraphicsCommandList &gt; GetCommandList()</div><div class="ttdoc">コマンドリストを取得する </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:23</div></div>
+<div class="ttc" id="class_device_html"><div class="ttname"><a href="class_device.html">Device</a></div><div class="ttdef"><b>Definition:</b> Device.h:20</div></div>
+<div class="ttc" id="class_graphics_command_list_html_aa115f0c056e3e5f81333852202e5dbaa"><div class="ttname"><a href="class_graphics_command_list.html#aa115f0c056e3e5f81333852202e5dbaa">GraphicsCommandList::~GraphicsCommandList</a></div><div class="ttdeci">~GraphicsCommandList()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:14</div></div>
+<div class="ttc" id="class_graphics_command_list_html_aaf73581eb764f378b8b1b6d39385c584"><div class="ttname"><a href="class_graphics_command_list.html#aaf73581eb764f378b8b1b6d39385c584">GraphicsCommandList::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; GraphicsCommandList &gt; Create(std::shared_ptr&lt; Device &gt; device, D3D12_COMMAND_LIST_TYPE commandListType, const std::wstring &amp;name=L&quot;&quot;)</div><div class="ttdoc">オブジェクトの生成処理 </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:18</div></div>
+<div class="ttc" id="class_command_allocator_html"><div class="ttname"><a href="class_command_allocator.html">CommandAllocator</a></div><div class="ttdef"><b>Definition:</b> CommandAllocator.h:19</div></div>
+<div class="ttc" id="class_graphics_command_list_html_afafd3a85240e8ff36af439de3b8e5f7f"><div class="ttname"><a href="class_graphics_command_list.html#afafd3a85240e8ff36af439de3b8e5f7f">GraphicsCommandList::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdoc">コマンドリストをクローズする </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.cpp:28</div></div>
+<div class="ttc" id="class_graphics_command_list_html"><div class="ttname"><a href="class_graphics_command_list.html">GraphicsCommandList</a></div><div class="ttdoc">グラフィックスコマンドリストのラッパークラス </div><div class="ttdef"><b>Definition:</b> GraphicsCommandList.h:21</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

@@ -1,0 +1,207 @@
+\hypertarget{struct_p_m_x_1_1_material}{}\section{P\+MX\+:\+:Material 構造体}
+\label{struct_p_m_x_1_1_material}\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+
+
+{\ttfamily \#include $<$P\+M\+X\+Model\+Data\+Info.\+h$>$}
+
+\subsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::wstring \mbox{\hyperlink{struct_p_m_x_1_1_material_a95a1dfd00960dd80778caf5d2f3eddc0}{name}}
+\item 
+std\+::wstring \mbox{\hyperlink{struct_p_m_x_1_1_material_a2d9de596a0fa124e7b155c18cd775c2b}{name\+Eng}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Math\+::\+Vector4}} \mbox{\hyperlink{struct_p_m_x_1_1_material_a089a21730222266130038d9fb2d98c9d}{diffuse}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_material_a7e3c35c7fe9da122bc451bd9fb480a9a}{specular}}
+\item 
+float \mbox{\hyperlink{struct_p_m_x_1_1_material_a32ca1ee309004a7e67ac78ffb5899fe1}{specular\+Factor}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_material_af0973e6d02e71ba78424601cce5d21ca}{ambient}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a41a056f85d0e360682e7337d1a70bfeb}{drawFlags}}\\
+\>struct \{\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_aaebe2e7507a126f16574611d62622d28}{doubleSideDraw}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a83ee6715ed692ed2639d2559d8575385}{groundShadow}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a677248cef605732b8e0ead2991b92a71}{selfShadowMapDraw}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_abeed3521dc7f5b8a95a206ed18041779}{selfShadow}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a82b29e2b8e5e4ddcbd33ab841114976a}{edgeDraw}}: 1\\
+\>\} \\
+\}; \\
+
+\end{tabbing}\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Math\+::\+Vector4}} \mbox{\hyperlink{struct_p_m_x_1_1_material_a0a38dda2f8f4c8e3300440f8994d1f04}{edge\+Color}}
+\item 
+float \mbox{\hyperlink{struct_p_m_x_1_1_material_a6c2455fd8c8d9fb1119f6414403d3bfc}{edge\+Size}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_material_a63445e73472c6ce7d27124fcde258d0c}{texture\+Index}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_material_a471ce9387638006631f51ad5e99266c6}{sphere\+Texture\+Index}}
+\item 
+unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a692ac4dc28f8464a47514956ef2ef823}{sphere\+Mode}}
+\item 
+unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a40219016cd5c53b5fbc0971082356541}{share\+Toon\+Flag}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_material_a473e078fff9dbb1b254e7ca46d54e3b5}{shareToonTexture}}\\
+\>int \mbox{\hyperlink{struct_p_m_x_1_1_material_a6cba97d8eeef2018bd9df399700a89ed}{toonTextureIndex}}\\
+\}; \\
+
+\end{tabbing}\item 
+std\+::wstring \mbox{\hyperlink{struct_p_m_x_1_1_material_a0487fa545abd565782b278aedfe0af4a}{material\+Memo}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_material_aebb484136d9fb16d40ad119c78bc71d4}{vert\+Num}}
+\end{DoxyCompactItemize}
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_ab1d556aa6dc492a23a011abe8c806391}\label{struct_p_m_x_1_1_material_ab1d556aa6dc492a23a011abe8c806391}} 
+\subsubsection{\texorpdfstring{"@13}{@13}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_af7b0a5fd7b27796a27b059a0561a3de2}\label{struct_p_m_x_1_1_material_af7b0a5fd7b27796a27b059a0561a3de2}} 
+\subsubsection{\texorpdfstring{"@15}{@15}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_af0973e6d02e71ba78424601cce5d21ca}\label{struct_p_m_x_1_1_material_af0973e6d02e71ba78424601cce5d21ca}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!ambient@{ambient}}
+\index{ambient@{ambient}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{ambient}{ambient}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Material\+::ambient}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a089a21730222266130038d9fb2d98c9d}\label{struct_p_m_x_1_1_material_a089a21730222266130038d9fb2d98c9d}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!diffuse@{diffuse}}
+\index{diffuse@{diffuse}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{diffuse}{diffuse}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Math\+::\+Vector4}} P\+M\+X\+::\+Material\+::diffuse}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_aaebe2e7507a126f16574611d62622d28}\label{struct_p_m_x_1_1_material_aaebe2e7507a126f16574611d62622d28}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!double\+Side\+Draw@{double\+Side\+Draw}}
+\index{double\+Side\+Draw@{double\+Side\+Draw}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{double\+Side\+Draw}{doubleSideDraw}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::double\+Side\+Draw}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a41a056f85d0e360682e7337d1a70bfeb}\label{struct_p_m_x_1_1_material_a41a056f85d0e360682e7337d1a70bfeb}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!draw\+Flags@{draw\+Flags}}
+\index{draw\+Flags@{draw\+Flags}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{draw\+Flags}{drawFlags}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::draw\+Flags}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a0a38dda2f8f4c8e3300440f8994d1f04}\label{struct_p_m_x_1_1_material_a0a38dda2f8f4c8e3300440f8994d1f04}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!edge\+Color@{edge\+Color}}
+\index{edge\+Color@{edge\+Color}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{edge\+Color}{edgeColor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Math\+::\+Vector4}} P\+M\+X\+::\+Material\+::edge\+Color}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a82b29e2b8e5e4ddcbd33ab841114976a}\label{struct_p_m_x_1_1_material_a82b29e2b8e5e4ddcbd33ab841114976a}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!edge\+Draw@{edge\+Draw}}
+\index{edge\+Draw@{edge\+Draw}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{edge\+Draw}{edgeDraw}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::edge\+Draw}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a6c2455fd8c8d9fb1119f6414403d3bfc}\label{struct_p_m_x_1_1_material_a6c2455fd8c8d9fb1119f6414403d3bfc}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!edge\+Size@{edge\+Size}}
+\index{edge\+Size@{edge\+Size}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{edge\+Size}{edgeSize}}
+{\footnotesize\ttfamily float P\+M\+X\+::\+Material\+::edge\+Size}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a83ee6715ed692ed2639d2559d8575385}\label{struct_p_m_x_1_1_material_a83ee6715ed692ed2639d2559d8575385}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!ground\+Shadow@{ground\+Shadow}}
+\index{ground\+Shadow@{ground\+Shadow}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{ground\+Shadow}{groundShadow}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::ground\+Shadow}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a0487fa545abd565782b278aedfe0af4a}\label{struct_p_m_x_1_1_material_a0487fa545abd565782b278aedfe0af4a}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!material\+Memo@{material\+Memo}}
+\index{material\+Memo@{material\+Memo}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{material\+Memo}{materialMemo}}
+{\footnotesize\ttfamily std\+::wstring P\+M\+X\+::\+Material\+::material\+Memo}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a95a1dfd00960dd80778caf5d2f3eddc0}\label{struct_p_m_x_1_1_material_a95a1dfd00960dd80778caf5d2f3eddc0}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!name@{name}}
+\index{name@{name}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::wstring P\+M\+X\+::\+Material\+::name}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a2d9de596a0fa124e7b155c18cd775c2b}\label{struct_p_m_x_1_1_material_a2d9de596a0fa124e7b155c18cd775c2b}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!name\+Eng@{name\+Eng}}
+\index{name\+Eng@{name\+Eng}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{name\+Eng}{nameEng}}
+{\footnotesize\ttfamily std\+::wstring P\+M\+X\+::\+Material\+::name\+Eng}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_abeed3521dc7f5b8a95a206ed18041779}\label{struct_p_m_x_1_1_material_abeed3521dc7f5b8a95a206ed18041779}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!self\+Shadow@{self\+Shadow}}
+\index{self\+Shadow@{self\+Shadow}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{self\+Shadow}{selfShadow}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::self\+Shadow}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a677248cef605732b8e0ead2991b92a71}\label{struct_p_m_x_1_1_material_a677248cef605732b8e0ead2991b92a71}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!self\+Shadow\+Map\+Draw@{self\+Shadow\+Map\+Draw}}
+\index{self\+Shadow\+Map\+Draw@{self\+Shadow\+Map\+Draw}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{self\+Shadow\+Map\+Draw}{selfShadowMapDraw}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::self\+Shadow\+Map\+Draw}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a40219016cd5c53b5fbc0971082356541}\label{struct_p_m_x_1_1_material_a40219016cd5c53b5fbc0971082356541}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!share\+Toon\+Flag@{share\+Toon\+Flag}}
+\index{share\+Toon\+Flag@{share\+Toon\+Flag}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{share\+Toon\+Flag}{shareToonFlag}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::share\+Toon\+Flag}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a473e078fff9dbb1b254e7ca46d54e3b5}\label{struct_p_m_x_1_1_material_a473e078fff9dbb1b254e7ca46d54e3b5}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!share\+Toon\+Texture@{share\+Toon\+Texture}}
+\index{share\+Toon\+Texture@{share\+Toon\+Texture}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{share\+Toon\+Texture}{shareToonTexture}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::share\+Toon\+Texture}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a7e3c35c7fe9da122bc451bd9fb480a9a}\label{struct_p_m_x_1_1_material_a7e3c35c7fe9da122bc451bd9fb480a9a}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!specular@{specular}}
+\index{specular@{specular}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{specular}{specular}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Material\+::specular}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a32ca1ee309004a7e67ac78ffb5899fe1}\label{struct_p_m_x_1_1_material_a32ca1ee309004a7e67ac78ffb5899fe1}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!specular\+Factor@{specular\+Factor}}
+\index{specular\+Factor@{specular\+Factor}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{specular\+Factor}{specularFactor}}
+{\footnotesize\ttfamily float P\+M\+X\+::\+Material\+::specular\+Factor}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a692ac4dc28f8464a47514956ef2ef823}\label{struct_p_m_x_1_1_material_a692ac4dc28f8464a47514956ef2ef823}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!sphere\+Mode@{sphere\+Mode}}
+\index{sphere\+Mode@{sphere\+Mode}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{sphere\+Mode}{sphereMode}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Material\+::sphere\+Mode}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a471ce9387638006631f51ad5e99266c6}\label{struct_p_m_x_1_1_material_a471ce9387638006631f51ad5e99266c6}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!sphere\+Texture\+Index@{sphere\+Texture\+Index}}
+\index{sphere\+Texture\+Index@{sphere\+Texture\+Index}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{sphere\+Texture\+Index}{sphereTextureIndex}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Material\+::sphere\+Texture\+Index}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a63445e73472c6ce7d27124fcde258d0c}\label{struct_p_m_x_1_1_material_a63445e73472c6ce7d27124fcde258d0c}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!texture\+Index@{texture\+Index}}
+\index{texture\+Index@{texture\+Index}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{texture\+Index}{textureIndex}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Material\+::texture\+Index}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_a6cba97d8eeef2018bd9df399700a89ed}\label{struct_p_m_x_1_1_material_a6cba97d8eeef2018bd9df399700a89ed}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!toon\+Texture\+Index@{toon\+Texture\+Index}}
+\index{toon\+Texture\+Index@{toon\+Texture\+Index}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{toon\+Texture\+Index}{toonTextureIndex}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Material\+::toon\+Texture\+Index}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_material_aebb484136d9fb16d40ad119c78bc71d4}\label{struct_p_m_x_1_1_material_aebb484136d9fb16d40ad119c78bc71d4}} 
+\index{P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}!vert\+Num@{vert\+Num}}
+\index{vert\+Num@{vert\+Num}!P\+M\+X\+::\+Material@{P\+M\+X\+::\+Material}}
+\subsubsection{\texorpdfstring{vert\+Num}{vertNum}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Material\+::vert\+Num}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_p_m_x_model_data_info_8h}{P\+M\+X\+Model\+Data\+Info.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: RenderState 構造体</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="struct_render_state-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">RenderState 構造体</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>レンダーステートを集約した構造体  
+ <a href="struct_render_state.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_render_state_8h_source.html">RenderState.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:aa61ce61f3ea1393a390282c4812107bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html#aa61ce61f3ea1393a390282c4812107bd">depthTest</a>: 1</td></tr>
+<tr class="separator:aa61ce61f3ea1393a390282c4812107bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa654d20df8b2f3405136082098b0397c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html#aa654d20df8b2f3405136082098b0397c">depthWrite</a>: 1</td></tr>
+<tr class="memdesc:aa654d20df8b2f3405136082098b0397c"><td class="mdescLeft">&#160;</td><td class="mdescRight">深度テストを行うか  <a href="#aa654d20df8b2f3405136082098b0397c">[詳解]</a><br /></td></tr>
+<tr class="separator:aa654d20df8b2f3405136082098b0397c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e18c4c10e6b76dedef6d8ffd519a7ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036">AlphaBlendType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html#a7e18c4c10e6b76dedef6d8ffd519a7ca">alphaBlend</a></td></tr>
+<tr class="memdesc:a7e18c4c10e6b76dedef6d8ffd519a7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">深度バッファへの書き込みを行うか  <a href="#a7e18c4c10e6b76dedef6d8ffd519a7ca">[詳解]</a><br /></td></tr>
+<tr class="separator:a7e18c4c10e6b76dedef6d8ffd519a7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a951326c32d1319d5a7dd328db45ee2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75">CullingType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html#a2a951326c32d1319d5a7dd328db45ee2">cullingType</a></td></tr>
+<tr class="memdesc:a2a951326c32d1319d5a7dd328db45ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">アルファブレンド  <a href="#a2a951326c32d1319d5a7dd328db45ee2">[詳解]</a><br /></td></tr>
+<tr class="separator:a2a951326c32d1319d5a7dd328db45ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22610d4664d4b8bc5481a75d782d5aef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3">TextureFilterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html#a22610d4664d4b8bc5481a75d782d5aef">textureFilterType</a></td></tr>
+<tr class="memdesc:a22610d4664d4b8bc5481a75d782d5aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">カリングタイプ  <a href="#a22610d4664d4b8bc5481a75d782d5aef">[詳解]</a><br /></td></tr>
+<tr class="separator:a22610d4664d4b8bc5481a75d782d5aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05e12034f4c324a83aa53d0da9be5ed3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2b">TextureWrapType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html#a05e12034f4c324a83aa53d0da9be5ed3">textureWrapType</a></td></tr>
+<tr class="memdesc:a05e12034f4c324a83aa53d0da9be5ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">サンプリングする際のサンプリング方法  <a href="#a05e12034f4c324a83aa53d0da9be5ed3">[詳解]</a><br /></td></tr>
+<tr class="separator:a05e12034f4c324a83aa53d0da9be5ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>レンダーステートを集約した構造体 </p>
+</div><h2 class="groupheader">メンバ詳解</h2>
+<a id="a7e18c4c10e6b76dedef6d8ffd519a7ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e18c4c10e6b76dedef6d8ffd519a7ca">&#9670;&nbsp;</a></span>alphaBlend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036">AlphaBlendType</a> RenderState::alphaBlend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>深度バッファへの書き込みを行うか </p>
+
+</div>
+</div>
+<a id="a2a951326c32d1319d5a7dd328db45ee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a951326c32d1319d5a7dd328db45ee2">&#9670;&nbsp;</a></span>cullingType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75">CullingType</a> RenderState::cullingType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>アルファブレンド </p>
+
+</div>
+</div>
+<a id="aa61ce61f3ea1393a390282c4812107bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61ce61f3ea1393a390282c4812107bd">&#9670;&nbsp;</a></span>depthTest</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RenderState::depthTest</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa654d20df8b2f3405136082098b0397c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa654d20df8b2f3405136082098b0397c">&#9670;&nbsp;</a></span>depthWrite</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RenderState::depthWrite</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>深度テストを行うか </p>
+
+</div>
+</div>
+<a id="a22610d4664d4b8bc5481a75d782d5aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22610d4664d4b8bc5481a75d782d5aef">&#9670;&nbsp;</a></span>textureFilterType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3">TextureFilterType</a> RenderState::textureFilterType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>カリングタイプ </p>
+
+</div>
+</div>
+<a id="a05e12034f4c324a83aa53d0da9be5ed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05e12034f4c324a83aa53d0da9be5ed3">&#9670;&nbsp;</a></span>textureWrapType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2b">TextureWrapType</a> RenderState::textureWrapType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>サンプリングする際のサンプリング方法 </p>
+
+</div>
+</div>
+<hr/>この構造体詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_render_state_8h_source.html">RenderState.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

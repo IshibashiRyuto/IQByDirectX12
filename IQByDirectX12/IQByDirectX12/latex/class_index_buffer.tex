@@ -1,0 +1,75 @@
+\hypertarget{class_index_buffer}{}\section{Index\+Buffer クラス}
+\label{class_index_buffer}\index{Index\+Buffer@{Index\+Buffer}}
+
+
+{\ttfamily \#include $<$Index\+Buffer.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_index_buffer_a348889936f378b7942c1e01d83e42866}{$\sim$\+Index\+Buffer}} ()
+\item 
+const D3\+D12\+\_\+\+I\+N\+D\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW \& \mbox{\hyperlink{class_index_buffer_a1b2b840535e466020bf5b73fc11eff1b}{Get\+Index\+Buffer\+View}} ()
+\item 
+unsigned int \mbox{\hyperlink{class_index_buffer_a56fc4351097f2c2afcdf64b25a86673c}{Get\+Index\+Count}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_index_buffer}{Index\+Buffer}} $>$ \mbox{\hyperlink{class_index_buffer_a0f2c4917bc924ab91ba8466ddb1db670}{Create}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device, void $\ast$p\+Index\+Resource, size\+\_\+t index\+Count, size\+\_\+t index\+Size)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_index_buffer_a348889936f378b7942c1e01d83e42866}\label{class_index_buffer_a348889936f378b7942c1e01d83e42866}} 
+\index{Index\+Buffer@{Index\+Buffer}!````~Index\+Buffer@{$\sim$\+Index\+Buffer}}
+\index{````~Index\+Buffer@{$\sim$\+Index\+Buffer}!Index\+Buffer@{Index\+Buffer}}
+\subsubsection{\texorpdfstring{$\sim$\+Index\+Buffer()}{~IndexBuffer()}}
+{\footnotesize\ttfamily Index\+Buffer\+::$\sim$\+Index\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_index_buffer_a0f2c4917bc924ab91ba8466ddb1db670}\label{class_index_buffer_a0f2c4917bc924ab91ba8466ddb1db670}} 
+\index{Index\+Buffer@{Index\+Buffer}!Create@{Create}}
+\index{Create@{Create}!Index\+Buffer@{Index\+Buffer}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Index\+Buffer\+::\+Create (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device,  }\item[{void $\ast$}]{p\+Index\+Resource,  }\item[{size\+\_\+t}]{index\+Count,  }\item[{size\+\_\+t}]{index\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+頂点インデックスバッファの生成 \begin{DoxyNote}{覚え書き}
+Index\+Bufferクラスはこのメソッドによってのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & I\+D3\+D12\+Device \\
+\hline
+\mbox{\tt in}  & {\em p\+Index\+Resource} & インデックスリソースのポインタ \\
+\hline
+\mbox{\tt in}  & {\em index\+Count} & インデックスの数 \\
+\hline
+\mbox{\tt in}  & {\em index\+Size} & インデックス1つ当たりのサイズ(sizeofで取得) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功} & Vertex\+Bufferのshared\+\_\+ptr, 生成失敗\+: nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_index_buffer_a1b2b840535e466020bf5b73fc11eff1b}\label{class_index_buffer_a1b2b840535e466020bf5b73fc11eff1b}} 
+\index{Index\+Buffer@{Index\+Buffer}!Get\+Index\+Buffer\+View@{Get\+Index\+Buffer\+View}}
+\index{Get\+Index\+Buffer\+View@{Get\+Index\+Buffer\+View}!Index\+Buffer@{Index\+Buffer}}
+\subsubsection{\texorpdfstring{Get\+Index\+Buffer\+View()}{GetIndexBufferView()}}
+{\footnotesize\ttfamily const D3\+D12\+\_\+\+I\+N\+D\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW \& Index\+Buffer\+::\+Get\+Index\+Buffer\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_index_buffer_a56fc4351097f2c2afcdf64b25a86673c}\label{class_index_buffer_a56fc4351097f2c2afcdf64b25a86673c}} 
+\index{Index\+Buffer@{Index\+Buffer}!Get\+Index\+Count@{Get\+Index\+Count}}
+\index{Get\+Index\+Count@{Get\+Index\+Count}!Index\+Buffer@{Index\+Buffer}}
+\subsubsection{\texorpdfstring{Get\+Index\+Count()}{GetIndexCount()}}
+{\footnotesize\ttfamily unsigned int Index\+Buffer\+::\+Get\+Index\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_index_buffer_8h}{Index\+Buffer.\+h}}\item 
+Source/\mbox{\hyperlink{_index_buffer_8cpp}{Index\+Buffer.\+cpp}}\end{DoxyCompactItemize}

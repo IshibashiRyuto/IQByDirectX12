@@ -1,0 +1,137 @@
+\hypertarget{class_keyboard}{}\section{Keyboard クラス}
+\label{class_keyboard}\index{Keyboard@{Keyboard}}
+
+
+{\ttfamily \#include $<$Keyboard.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_keyboard_af6a99ec66c8c722a45b967bf79167038}{$\sim$\+Keyboard}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_keyboard_a521e2533e12aa4841c8c56c4c3dfccfc}{Update\+Key\+State}} ()
+\begin{DoxyCompactList}\small\item\em キー情報を更新する \end{DoxyCompactList}\item 
+const unsigned char $\ast$ \mbox{\hyperlink{class_keyboard_a630b88caceef0ad8962446079fa858e1}{Get\+Key\+State\+All}} () const
+\begin{DoxyCompactList}\small\item\em キー情報配列を取得する \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_keyboard_ac9ac80ee73aa0b90d86ae7fba53906bd}{Is\+Key\+Down}} (\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93}{Virtual\+Key\+Index}} key\+Index) const
+\begin{DoxyCompactList}\small\item\em キーが押されているか \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_keyboard_ad50dbd6947878292c3b5f22c07b5b613}{Is\+Key\+Trigger}} (\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93}{Virtual\+Key\+Index}} key\+Index) const
+\begin{DoxyCompactList}\small\item\em キーが押された瞬間か \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_keyboard_af305159262c399f1f4ca48590153d5a8}{Is\+Key\+Toggle}} (\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93}{Virtual\+Key\+Index}} key\+Index) const
+\begin{DoxyCompactList}\small\item\em キー入力が切り替わった瞬間か \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_keyboard}{Keyboard}} $>$ \mbox{\hyperlink{class_keyboard_a7bb0cd030164213f2a858522aad4d7e6}{Create}} ()
+\begin{DoxyCompactList}\small\item\em キーボードクラスを生成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_keyboard_af6a99ec66c8c722a45b967bf79167038}\label{class_keyboard_af6a99ec66c8c722a45b967bf79167038}} 
+\index{Keyboard@{Keyboard}!````~Keyboard@{$\sim$\+Keyboard}}
+\index{````~Keyboard@{$\sim$\+Keyboard}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{$\sim$\+Keyboard()}{~Keyboard()}}
+{\footnotesize\ttfamily Keyboard\+::$\sim$\+Keyboard (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_keyboard_a7bb0cd030164213f2a858522aad4d7e6}\label{class_keyboard_a7bb0cd030164213f2a858522aad4d7e6}} 
+\index{Keyboard@{Keyboard}!Create@{Create}}
+\index{Create@{Create}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_keyboard}{Keyboard}} $>$ Keyboard\+::\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+キーボードクラスを生成する 
+
+\begin{DoxyNote}{覚え書き}
+インスタンスはこの関数を通じてのみ生成可能 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_keyboard_a630b88caceef0ad8962446079fa858e1}\label{class_keyboard_a630b88caceef0ad8962446079fa858e1}} 
+\index{Keyboard@{Keyboard}!Get\+Key\+State\+All@{Get\+Key\+State\+All}}
+\index{Get\+Key\+State\+All@{Get\+Key\+State\+All}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{Get\+Key\+State\+All()}{GetKeyStateAll()}}
+{\footnotesize\ttfamily const unsigned char $\ast$ Keyboard\+::\+Get\+Key\+State\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+キー情報配列を取得する 
+
+
+\begin{DoxyRetVals}{戻り値}
+{\em キー256個の情報を持った配列} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_keyboard_ac9ac80ee73aa0b90d86ae7fba53906bd}\label{class_keyboard_ac9ac80ee73aa0b90d86ae7fba53906bd}} 
+\index{Keyboard@{Keyboard}!Is\+Key\+Down@{Is\+Key\+Down}}
+\index{Is\+Key\+Down@{Is\+Key\+Down}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{Is\+Key\+Down()}{IsKeyDown()}}
+{\footnotesize\ttfamily bool Keyboard\+::\+Is\+Key\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93}{Virtual\+Key\+Index}}}]{key\+Index }\end{DoxyParamCaption}) const}
+
+
+
+キーが押されているか 
+
+
+\begin{DoxyRetVals}{戻り値}
+{\em 押されている} & true \\
+\hline
+{\em 押されていない} & false \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_keyboard_af305159262c399f1f4ca48590153d5a8}\label{class_keyboard_af305159262c399f1f4ca48590153d5a8}} 
+\index{Keyboard@{Keyboard}!Is\+Key\+Toggle@{Is\+Key\+Toggle}}
+\index{Is\+Key\+Toggle@{Is\+Key\+Toggle}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{Is\+Key\+Toggle()}{IsKeyToggle()}}
+{\footnotesize\ttfamily bool Keyboard\+::\+Is\+Key\+Toggle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93}{Virtual\+Key\+Index}}}]{key\+Index }\end{DoxyParamCaption}) const}
+
+
+
+キー入力が切り替わった瞬間か 
+
+
+\begin{DoxyRetVals}{戻り値}
+{\em 切り替わった瞬間である} & true \\
+\hline
+{\em 切り替わった瞬間でない} & false \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_keyboard_ad50dbd6947878292c3b5f22c07b5b613}\label{class_keyboard_ad50dbd6947878292c3b5f22c07b5b613}} 
+\index{Keyboard@{Keyboard}!Is\+Key\+Trigger@{Is\+Key\+Trigger}}
+\index{Is\+Key\+Trigger@{Is\+Key\+Trigger}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{Is\+Key\+Trigger()}{IsKeyTrigger()}}
+{\footnotesize\ttfamily bool Keyboard\+::\+Is\+Key\+Trigger (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93}{Virtual\+Key\+Index}}}]{key\+Index }\end{DoxyParamCaption}) const}
+
+
+
+キーが押された瞬間か 
+
+
+\begin{DoxyRetVals}{戻り値}
+{\em 押された瞬間である} & true \\
+\hline
+{\em 押された瞬間でない} & false \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_keyboard_a521e2533e12aa4841c8c56c4c3dfccfc}\label{class_keyboard_a521e2533e12aa4841c8c56c4c3dfccfc}} 
+\index{Keyboard@{Keyboard}!Update\+Key\+State@{Update\+Key\+State}}
+\index{Update\+Key\+State@{Update\+Key\+State}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{Update\+Key\+State()}{UpdateKeyState()}}
+{\footnotesize\ttfamily void Keyboard\+::\+Update\+Key\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+キー情報を更新する 
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Input/\mbox{\hyperlink{_keyboard_8h}{Keyboard.\+h}}\item 
+Source/\+Input/\mbox{\hyperlink{_keyboard_8cpp}{Keyboard.\+cpp}}\end{DoxyCompactItemize}

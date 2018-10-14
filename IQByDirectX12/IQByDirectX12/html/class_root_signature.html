@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: RootSignature クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_root_signature-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">RootSignature クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_root_signature_8h_source.html">RootSignature.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ac7e523f868fcaa15b6ef1d2d832396a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#ac7e523f868fcaa15b6ef1d2d832396a4">RootSignature</a> ()</td></tr>
+<tr class="memdesc:ac7e523f868fcaa15b6ef1d2d832396a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="#ac7e523f868fcaa15b6ef1d2d832396a4">[詳解]</a><br /></td></tr>
+<tr class="separator:ac7e523f868fcaa15b6ef1d2d832396a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8007fe3581f6e8dfb5e8d8fc57263000"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#a8007fe3581f6e8dfb5e8d8fc57263000">~RootSignature</a> ()</td></tr>
+<tr class="memdesc:a8007fe3581f6e8dfb5e8d8fc57263000"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="#a8007fe3581f6e8dfb5e8d8fc57263000">[詳解]</a><br /></td></tr>
+<tr class="separator:a8007fe3581f6e8dfb5e8d8fc57263000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5328c87baea63d762fc0607fb7d44cd4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#a5328c87baea63d762fc0607fb7d44cd4">ConstructRootSignature</a> (ComPtr&lt; ID3D12Device &gt; device)</td></tr>
+<tr class="separator:a5328c87baea63d762fc0607fb7d44cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac02128012fae2aaeebc22d37f900bde9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#ac02128012fae2aaeebc22d37f900bde9">AddDescriptorRange</a> (int rootParamIndex, const D3D12_DESCRIPTOR_RANGE &amp;descriptorRange)</td></tr>
+<tr class="separator:ac02128012fae2aaeebc22d37f900bde9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3faa5b981dae80b1a248ef1acbe50368"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#a3faa5b981dae80b1a248ef1acbe50368">AddDescriptorRange</a> (int rootParamIndex, D3D12_DESCRIPTOR_RANGE_TYPE rangeType, UINT numDescriptors, UINT baseShaderRegister)</td></tr>
+<tr class="separator:a3faa5b981dae80b1a248ef1acbe50368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8af1b06602b6f098515de5504817a6c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#af8af1b06602b6f098515de5504817a6c">AddRootParameter</a> (D3D12_SHADER_VISIBILITY shaderVisibility, D3D12_ROOT_PARAMETER_TYPE paramType=D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE)</td></tr>
+<tr class="separator:af8af1b06602b6f098515de5504817a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47dfa1b251b3fe9a5e7d8823bf87a187"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12RootSignature &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#a47dfa1b251b3fe9a5e7d8823bf87a187">GetRootSignature</a> () const</td></tr>
+<tr class="separator:a47dfa1b251b3fe9a5e7d8823bf87a187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:acaca4730dae83d30cda691cf5aae0768"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_root_signature.html">RootSignature</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_root_signature.html#acaca4730dae83d30cda691cf5aae0768">Create</a> ()</td></tr>
+<tr class="separator:acaca4730dae83d30cda691cf5aae0768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ac7e523f868fcaa15b6ef1d2d832396a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e523f868fcaa15b6ef1d2d832396a4">&#9670;&nbsp;</a></span>RootSignature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RootSignature::RootSignature </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+
+</div>
+</div>
+<a id="a8007fe3581f6e8dfb5e8d8fc57263000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8007fe3581f6e8dfb5e8d8fc57263000">&#9670;&nbsp;</a></span>~RootSignature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RootSignature::~RootSignature </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="ac02128012fae2aaeebc22d37f900bde9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac02128012fae2aaeebc22d37f900bde9">&#9670;&nbsp;</a></span>AddDescriptorRange() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RootSignature::AddDescriptorRange </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rootParamIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const D3D12_DESCRIPTOR_RANGE &amp;&#160;</td>
+          <td class="paramname"><em>descriptorRange</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3faa5b981dae80b1a248ef1acbe50368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3faa5b981dae80b1a248ef1acbe50368">&#9670;&nbsp;</a></span>AddDescriptorRange() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RootSignature::AddDescriptorRange </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rootParamIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">D3D12_DESCRIPTOR_RANGE_TYPE&#160;</td>
+          <td class="paramname"><em>rangeType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>numDescriptors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>baseShaderRegister</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rootParamIndex</td><td>: 追加対象ルートパラメータのインデックス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rangeType</td><td>: ディスクリプタの種類 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">descriptorNum</td><td>: 読み取る出スクリプタの数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">baseShaderRegister</td><td>: シェーダレジスタの開始番号 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af8af1b06602b6f098515de5504817a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8af1b06602b6f098515de5504817a6c">&#9670;&nbsp;</a></span>AddRootParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RootSignature::AddRootParameter </td>
+          <td>(</td>
+          <td class="paramtype">D3D12_SHADER_VISIBILITY&#160;</td>
+          <td class="paramname"><em>shaderVisibility</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">D3D12_ROOT_PARAMETER_TYPE&#160;</td>
+          <td class="paramname"><em>paramType</em> = <code>D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ルートパラメータを追加する </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">parameterType</td><td>: パラメータタイプ(デフォルトでD3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shaderVisibility</td><td>: シェーダ可視性( </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>覚え書き</dt><dd>このメソッドはあくまでルートパラメータを「追加」するだけで、 具体的な設定は行いません。 具体的なディスクリプタレンジはAddDescriptorRangeを使って追加してください </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">ルートパラメータ番号</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5328c87baea63d762fc0607fb7d44cd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5328c87baea63d762fc0607fb7d44cd4">&#9670;&nbsp;</a></span>ConstructRootSignature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RootSignature::ConstructRootSignature </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12Device &gt;&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>現在の設定項目でルートシグネチャを構築する </p><dl class="section note"><dt>覚え書き</dt><dd>呼び出す度にRootSignatureを構築するため、重め。 基本的には1回だけ呼び出せばいいようにしてください </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>: D3D12デバイス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">構築成功</td><td>: true </td></tr>
+    <tr><td class="paramname">構築失敗</td><td>: false </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acaca4730dae83d30cda691cf5aae0768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaca4730dae83d30cda691cf5aae0768">&#9670;&nbsp;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RootSignature::Create </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ルートシグネチャを生成する </p><dl class="section note"><dt>覚え書き</dt><dd>RootSignatureクラスの実体はこのメソッドでのみ生成可能 </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">生成成功</td><td>: RootSignatureのポインタ </td></tr>
+    <tr><td class="paramname">生成失敗</td><td>: nullptr </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a47dfa1b251b3fe9a5e7d8823bf87a187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47dfa1b251b3fe9a5e7d8823bf87a187">&#9670;&nbsp;</a></span>GetRootSignature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RootSignature::GetRootSignature </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ルートシグネチャを取得する </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_root_signature_8h_source.html">RootSignature.h</a></li>
+<li>Source/<a class="el" href="_root_signature_8cpp.html">RootSignature.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

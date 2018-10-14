@@ -1,0 +1,84 @@
+\hypertarget{class_p_m_x_loader}{}\section{P\+M\+X\+Loader クラス}
+\label{class_p_m_x_loader}\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+
+
+{\ttfamily \#include $<$P\+M\+X\+Loader.\+h$>$}
+
+P\+M\+X\+Loader の継承関係図\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_m_x_loader}
+\end{center}
+\end{figure}
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_m_x_loader_aa8e1053ae62f8c36518ed0605a19ebd8}{P\+M\+X\+Loader}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device)
+\item 
+\mbox{\hyperlink{class_p_m_x_loader_a35af7321f1d7cddb974da619eeea46cd}{$\sim$\+P\+M\+X\+Loader}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model}{Model}} $>$ \mbox{\hyperlink{class_p_m_x_loader_aee4e81ab65eeec5c9772ed5a8de6c5fa}{Load\+Model}} (const std\+::string \&file\+Path)
+\item 
+void \mbox{\hyperlink{class_p_m_x_loader_a1c4f3f379e18d6978b7684ab9d901952}{Clear\+Model\+Data}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_x_loader}{P\+M\+X\+Loader}} $>$ \mbox{\hyperlink{class_p_m_x_loader_afc9fa9ff6b5010857102ed82fd441f1b}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device)
+\end{DoxyCompactItemize}
+\subsection*{その他の継承メンバ}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_p_m_x_loader_aa8e1053ae62f8c36518ed0605a19ebd8}\label{class_p_m_x_loader_aa8e1053ae62f8c36518ed0605a19ebd8}} 
+\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}!P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}!P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+\subsubsection{\texorpdfstring{P\+M\+X\+Loader()}{PMXLoader()}}
+{\footnotesize\ttfamily P\+M\+X\+Loader\+::\+P\+M\+X\+Loader (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_p_m_x_loader_a35af7321f1d7cddb974da619eeea46cd}\label{class_p_m_x_loader_a35af7321f1d7cddb974da619eeea46cd}} 
+\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}!````~P\+M\+X\+Loader@{$\sim$\+P\+M\+X\+Loader}}
+\index{````~P\+M\+X\+Loader@{$\sim$\+P\+M\+X\+Loader}!P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+\subsubsection{\texorpdfstring{$\sim$\+P\+M\+X\+Loader()}{~PMXLoader()}}
+{\footnotesize\ttfamily P\+M\+X\+Loader\+::$\sim$\+P\+M\+X\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_p_m_x_loader_a1c4f3f379e18d6978b7684ab9d901952}\label{class_p_m_x_loader_a1c4f3f379e18d6978b7684ab9d901952}} 
+\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}!Clear\+Model\+Data@{Clear\+Model\+Data}}
+\index{Clear\+Model\+Data@{Clear\+Model\+Data}!P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+\subsubsection{\texorpdfstring{Clear\+Model\+Data()}{ClearModelData()}}
+{\footnotesize\ttfamily void P\+M\+X\+Loader\+::\+Clear\+Model\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+読み込んだモデル情報を削除する 
+
+\mbox{\hyperlink{class_model_loader_a6662edd78b17eeead09e822e19fc1799}{Model\+Loader}}を実装しています。
+
+\mbox{\Hypertarget{class_p_m_x_loader_afc9fa9ff6b5010857102ed82fd441f1b}\label{class_p_m_x_loader_afc9fa9ff6b5010857102ed82fd441f1b}} 
+\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}!Create@{Create}}
+\index{Create@{Create}!P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_x_loader}{P\+M\+X\+Loader}} $>$ P\+M\+X\+Loader\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_p_m_x_loader_aee4e81ab65eeec5c9772ed5a8de6c5fa}\label{class_p_m_x_loader_aee4e81ab65eeec5c9772ed5a8de6c5fa}} 
+\index{P\+M\+X\+Loader@{P\+M\+X\+Loader}!Load\+Model@{Load\+Model}}
+\index{Load\+Model@{Load\+Model}!P\+M\+X\+Loader@{P\+M\+X\+Loader}}
+\subsubsection{\texorpdfstring{Load\+Model()}{LoadModel()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model}{Model}} $>$ P\+M\+X\+Loader\+::\+Load\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+モデルをロードする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em file\+Path} & \+: ファイルパス \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{class_model_loader_a8e2157daa8d364c36fd26922f04adcb0}{Model\+Loader}}を実装しています。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_p_m_x_loader_8h}{P\+M\+X\+Loader.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_p_m_x_loader_8cpp}{P\+M\+X\+Loader.\+cpp}}\end{DoxyCompactItemize}

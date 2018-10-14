@@ -1,0 +1,84 @@
+\hypertarget{class_shader}{}\section{Shader クラス}
+\label{class_shader}\index{Shader@{Shader}}
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_shader_aff01df87e8a102f270b5b135a295e59d}{$\sim$\+Shader}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+const D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+B\+Y\+T\+E\+C\+O\+DE \& \mbox{\hyperlink{class_shader_a96c9bed91ff649b8e8e3616298a5b9fd}{Get\+Shader\+Byte\+Code}} () const
+\item 
+void \mbox{\hyperlink{class_shader_ae290b5ecab7217ee98491263adab5247}{Load\+Shader}} (const std\+::wstring \&file\+Path, const std\+::string \&entry\+Point, const std\+::string \&compile\+Target)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_shader}{Shader}} $>$ \mbox{\hyperlink{class_shader_a2f0d0fc9c902917fb0f8d726fa4f49f3}{Create}} (const std\+::wstring \&file\+Path, const std\+::string \&entry\+Point, const std\+::string \&target)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_shader_aff01df87e8a102f270b5b135a295e59d}\label{class_shader_aff01df87e8a102f270b5b135a295e59d}} 
+\index{Shader@{Shader}!````~Shader@{$\sim$\+Shader}}
+\index{````~Shader@{$\sim$\+Shader}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{$\sim$\+Shader()}{~Shader()}}
+{\footnotesize\ttfamily Shader\+::$\sim$\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_shader_a2f0d0fc9c902917fb0f8d726fa4f49f3}\label{class_shader_a2f0d0fc9c902917fb0f8d726fa4f49f3}} 
+\index{Shader@{Shader}!Create@{Create}}
+\index{Create@{Create}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Shader\+::\+Create (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+Path,  }\item[{const std\+::string \&}]{entry\+Point,  }\item[{const std\+::string \&}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+シェーダクラスを生成する \begin{DoxyNote}{覚え書き}
+Shaderクラスはこのメソッドを通じてのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em file\+Path} & \+: シェーダファイルパス \\
+\hline
+\mbox{\tt in}  & {\em entry\+Point} & \+: シェーダエントリポイント \\
+\hline
+\mbox{\tt in}  & {\em target} & \+: ターゲット \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功} & \+: Shaderのポインタ \\
+\hline
+{\em 生成失敗} & \+: nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_shader_a96c9bed91ff649b8e8e3616298a5b9fd}\label{class_shader_a96c9bed91ff649b8e8e3616298a5b9fd}} 
+\index{Shader@{Shader}!Get\+Shader\+Byte\+Code@{Get\+Shader\+Byte\+Code}}
+\index{Get\+Shader\+Byte\+Code@{Get\+Shader\+Byte\+Code}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{Get\+Shader\+Byte\+Code()}{GetShaderByteCode()}}
+{\footnotesize\ttfamily Shader\+::\+Get\+Shader\+Byte\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+シェーダコードを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em シェーダバイトコード} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_shader_ae290b5ecab7217ee98491263adab5247}\label{class_shader_ae290b5ecab7217ee98491263adab5247}} 
+\index{Shader@{Shader}!Load\+Shader@{Load\+Shader}}
+\index{Load\+Shader@{Load\+Shader}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{Load\+Shader()}{LoadShader()}}
+{\footnotesize\ttfamily Shader\+::\+Load\+Shader (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+Path,  }\item[{const std\+::string \&}]{entry\+Point,  }\item[{const std\+::string \&}]{compile\+Target }\end{DoxyParamCaption})}
+
+シェーダをロードする 
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_shader_8h}{Shader.\+h}}\item 
+Source/\mbox{\hyperlink{_shader_8cpp}{Shader.\+cpp}}\end{DoxyCompactItemize}

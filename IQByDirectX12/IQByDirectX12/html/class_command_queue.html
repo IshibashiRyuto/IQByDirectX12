@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: CommandQueue クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_command_queue-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CommandQueue クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_command_queue_8h_source.html">CommandQueue.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a80d86eb1a3b1dd57ea84bde88fd295ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#a80d86eb1a3b1dd57ea84bde88fd295ee">CommandQueue</a> ()</td></tr>
+<tr class="separator:a80d86eb1a3b1dd57ea84bde88fd295ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4575d426ec483ab4778da0650c0556bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#a4575d426ec483ab4778da0650c0556bb">~CommandQueue</a> ()</td></tr>
+<tr class="separator:a4575d426ec483ab4778da0650c0556bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17963d2efd7d03c7310e606246994c23"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12CommandQueue &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#a17963d2efd7d03c7310e606246994c23">GetCommandQueue</a> () const</td></tr>
+<tr class="separator:a17963d2efd7d03c7310e606246994c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6fd0cec1c28bd609a98a9f4255c57d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#ad6fd0cec1c28bd609a98a9f4255c57d7">ExecuteCommandList</a> (UINT numCommandLists, ID3D12CommandList *const *ppCommandLists)</td></tr>
+<tr class="separator:ad6fd0cec1c28bd609a98a9f4255c57d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d6d762d71e0ac15ea0d06f2d90f104"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#ae6d6d762d71e0ac15ea0d06f2d90f104">ExecuteCommandList</a> (const std::shared_ptr&lt; <a class="el" href="class_graphics_command_list.html">GraphicsCommandList</a> &gt; commandList)</td></tr>
+<tr class="memdesc:ae6d6d762d71e0ac15ea0d06f2d90f104"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドを実行する  <a href="#ae6d6d762d71e0ac15ea0d06f2d90f104">[詳解]</a><br /></td></tr>
+<tr class="separator:ae6d6d762d71e0ac15ea0d06f2d90f104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb09588cdee46fb51ab930b37dde17a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#a4eb09588cdee46fb51ab930b37dde17a">ExecuteCommandList</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_graphics_command_list.html">GraphicsCommandList</a> &gt;&gt; &amp;commandLists)</td></tr>
+<tr class="memdesc:a4eb09588cdee46fb51ab930b37dde17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドを実行する  <a href="#a4eb09588cdee46fb51ab930b37dde17a">[詳解]</a><br /></td></tr>
+<tr class="separator:a4eb09588cdee46fb51ab930b37dde17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c6cf1b8ebba43239e9a1119e942294a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#a9c6cf1b8ebba43239e9a1119e942294a">Signal</a> ()</td></tr>
+<tr class="separator:a9c6cf1b8ebba43239e9a1119e942294a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:ad8d289f42aa38adfb872d956e678363b"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_command_queue.html">CommandQueue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#ad8d289f42aa38adfb872d956e678363b">Create</a> (std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt; device)</td></tr>
+<tr class="separator:ad8d289f42aa38adfb872d956e678363b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0498f9a8f823972c11de356a5cdd09cf"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_command_queue.html">CommandQueue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_queue.html#a0498f9a8f823972c11de356a5cdd09cf">Create</a> (std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt; device, const D3D12_COMMAND_QUEUE_DESC &amp;commandQueueDesc)</td></tr>
+<tr class="separator:a0498f9a8f823972c11de356a5cdd09cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a80d86eb1a3b1dd57ea84bde88fd295ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d86eb1a3b1dd57ea84bde88fd295ee">&#9670;&nbsp;</a></span>CommandQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CommandQueue::CommandQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4575d426ec483ab4778da0650c0556bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4575d426ec483ab4778da0650c0556bb">&#9670;&nbsp;</a></span>~CommandQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CommandQueue::~CommandQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="ad8d289f42aa38adfb872d956e678363b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d289f42aa38adfb872d956e678363b">&#9670;&nbsp;</a></span>Create() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_command_queue.html">CommandQueue</a> &gt; CommandQueue::Create </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt;&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0498f9a8f823972c11de356a5cdd09cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0498f9a8f823972c11de356a5cdd09cf">&#9670;&nbsp;</a></span>Create() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_command_queue.html">CommandQueue</a> &gt; CommandQueue::Create </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt;&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const D3D12_COMMAND_QUEUE_DESC &amp;&#160;</td>
+          <td class="paramname"><em>commandQueueDesc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6fd0cec1c28bd609a98a9f4255c57d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6fd0cec1c28bd609a98a9f4255c57d7">&#9670;&nbsp;</a></span>ExecuteCommandList() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandQueue::ExecuteCommandList </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>numCommandLists</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ID3D12CommandList *const *&#160;</td>
+          <td class="paramname"><em>ppCommandLists</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6d6d762d71e0ac15ea0d06f2d90f104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6d6d762d71e0ac15ea0d06f2d90f104">&#9670;&nbsp;</a></span>ExecuteCommandList() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandQueue::ExecuteCommandList </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="class_graphics_command_list.html">GraphicsCommandList</a> &gt;&#160;</td>
+          <td class="paramname"><em>commandList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドを実行する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">commandList</td><td>: コマンドリストクラス </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4eb09588cdee46fb51ab930b37dde17a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb09588cdee46fb51ab930b37dde17a">&#9670;&nbsp;</a></span>ExecuteCommandList() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandQueue::ExecuteCommandList </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_graphics_command_list.html">GraphicsCommandList</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>commandLists</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドを実行する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">commandLists</td><td>: コマンドリストクラスの動的配列 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a17963d2efd7d03c7310e606246994c23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17963d2efd7d03c7310e606246994c23">&#9670;&nbsp;</a></span>GetCommandQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ComPtr&lt; ID3D12CommandQueue &gt; CommandQueue::GetCommandQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c6cf1b8ebba43239e9a1119e942294a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c6cf1b8ebba43239e9a1119e942294a">&#9670;&nbsp;</a></span>Signal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CommandQueue::Signal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>コマンドキューの実行を待つ </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_command_queue_8h_source.html">CommandQueue.h</a></li>
+<li>Source/<a class="el" href="_command_queue_8cpp.html">CommandQueue.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

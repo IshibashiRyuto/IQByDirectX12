@@ -1,0 +1,132 @@
+\hypertarget{class_instancing_data_manager}{}\section{Instancing\+Data\+Manager クラス}
+\label{class_instancing_data_manager}\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+
+
+{\ttfamily \#include $<$Instancing\+Data\+Manager.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_instancing_data_manager_a9c92fc5fec3ab4f5e45c7fbec43077b3}{$\sim$\+Instancing\+Data\+Manager}} ()
+\item 
+void \mbox{\hyperlink{class_instancing_data_manager_abb3c9344caa705ab9898af4f0728a020}{Set\+Device}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device)
+\item 
+void \mbox{\hyperlink{class_instancing_data_manager_a1f2a99ea178b9ba80e2dc3772f16d347}{Set\+Instance\+Data}} (int handle, void $\ast$data, size\+\_\+t size)
+\item 
+void \mbox{\hyperlink{class_instancing_data_manager_acce3b27d340bdd273b6634f97f5a8ab3}{Reset\+Max\+Instance\+Count}} (int handle, size\+\_\+t instance\+Data\+Size, int max\+Instance\+Count=1)
+\item 
+void \mbox{\hyperlink{class_instancing_data_manager_afc81462cef5a960eae978e6e56d22c98}{Reset\+Instance\+Data}} (int handle)
+\item 
+void \mbox{\hyperlink{class_instancing_data_manager_aaf44f22cf99babd3bdd782d8e534124d}{Reset\+Instance\+Data\+All}} ()
+\item 
+const std\+::map$<$ int, \mbox{\hyperlink{struct_instance_data}{Instance\+Data}} $>$ \& \mbox{\hyperlink{class_instancing_data_manager_a3753bcd17c77cfccf3d758522009b56e}{Get\+Instance\+Data\+All}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_instancing_data_manager}{Instancing\+Data\+Manager}} \& \mbox{\hyperlink{class_instancing_data_manager_a6e901cdd290e8bb84cef9692bb8a3db8}{Get\+Instance}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_instancing_data_manager_a9c92fc5fec3ab4f5e45c7fbec43077b3}\label{class_instancing_data_manager_a9c92fc5fec3ab4f5e45c7fbec43077b3}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!````~Instancing\+Data\+Manager@{$\sim$\+Instancing\+Data\+Manager}}
+\index{````~Instancing\+Data\+Manager@{$\sim$\+Instancing\+Data\+Manager}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$\+Instancing\+Data\+Manager()}{~InstancingDataManager()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::$\sim$\+Instancing\+Data\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_instancing_data_manager_a6e901cdd290e8bb84cef9692bb8a3db8}\label{class_instancing_data_manager_a6e901cdd290e8bb84cef9692bb8a3db8}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Get\+Instance@{Get\+Instance}}
+\index{Get\+Instance@{Get\+Instance}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Instance()}{GetInstance()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+シングルトンインスタンスを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em const} & \mbox{\hyperlink{class_instancing_data_manager}{Instancing\+Data\+Manager}}\& \+: Instancing\+Data\+Managerクラスの参照 \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_instancing_data_manager_a3753bcd17c77cfccf3d758522009b56e}\label{class_instancing_data_manager_a3753bcd17c77cfccf3d758522009b56e}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Get\+Instance\+Data\+All@{Get\+Instance\+Data\+All}}
+\index{Get\+Instance\+Data\+All@{Get\+Instance\+Data\+All}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Instance\+Data\+All()}{GetInstanceDataAll()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Get\+Instance\+Data\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+登録されているインスタンスデータすべてを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em インスタンスデータとハンドルのマップ} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_instancing_data_manager_afc81462cef5a960eae978e6e56d22c98}\label{class_instancing_data_manager_afc81462cef5a960eae978e6e56d22c98}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Reset\+Instance\+Data@{Reset\+Instance\+Data}}
+\index{Reset\+Instance\+Data@{Reset\+Instance\+Data}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Reset\+Instance\+Data()}{ResetInstanceData()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Reset\+Instance\+Data (\begin{DoxyParamCaption}\item[{int}]{handle }\end{DoxyParamCaption})}
+
+インスタンスデータをリセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & \+: リセット対象のハンドル \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_instancing_data_manager_aaf44f22cf99babd3bdd782d8e534124d}\label{class_instancing_data_manager_aaf44f22cf99babd3bdd782d8e534124d}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Reset\+Instance\+Data\+All@{Reset\+Instance\+Data\+All}}
+\index{Reset\+Instance\+Data\+All@{Reset\+Instance\+Data\+All}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Reset\+Instance\+Data\+All()}{ResetInstanceDataAll()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Reset\+Instance\+Data\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+登録されているインスタンスデータすべてをリセットする \mbox{\Hypertarget{class_instancing_data_manager_acce3b27d340bdd273b6634f97f5a8ab3}\label{class_instancing_data_manager_acce3b27d340bdd273b6634f97f5a8ab3}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Reset\+Max\+Instance\+Count@{Reset\+Max\+Instance\+Count}}
+\index{Reset\+Max\+Instance\+Count@{Reset\+Max\+Instance\+Count}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Reset\+Max\+Instance\+Count()}{ResetMaxInstanceCount()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Reset\+Max\+Instance\+Count (\begin{DoxyParamCaption}\item[{int}]{handle,  }\item[{size\+\_\+t}]{instance\+Data\+Size,  }\item[{int}]{max\+Instance\+Count = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+指定したハンドルの最大インスタンス数を修正する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & \+: 修正対象のハンドル \\
+\hline
+\mbox{\tt in}  & {\em instance\+Data\+Size} & \+: インスタンスデータ1つあたりのサイズ \\
+\hline
+\mbox{\tt in}  & {\em max\+Instance\+Count} & \+: 最大インスタンス数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{覚え書き}
+描画中に呼び出した場合、データを削除するため注意 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_instancing_data_manager_abb3c9344caa705ab9898af4f0728a020}\label{class_instancing_data_manager_abb3c9344caa705ab9898af4f0728a020}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Set\+Device@{Set\+Device}}
+\index{Set\+Device@{Set\+Device}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Set\+Device()}{SetDevice()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Set\+Device (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device }\end{DoxyParamCaption})}
+
+デバイスをセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & \+: I\+D3\+D12デバイス \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_instancing_data_manager_a1f2a99ea178b9ba80e2dc3772f16d347}\label{class_instancing_data_manager_a1f2a99ea178b9ba80e2dc3772f16d347}} 
+\index{Instancing\+Data\+Manager@{Instancing\+Data\+Manager}!Set\+Instance\+Data@{Set\+Instance\+Data}}
+\index{Set\+Instance\+Data@{Set\+Instance\+Data}!Instancing\+Data\+Manager@{Instancing\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Set\+Instance\+Data()}{SetInstanceData()}}
+{\footnotesize\ttfamily Instancing\+Data\+Manager\+::\+Set\+Instance\+Data (\begin{DoxyParamCaption}\item[{int}]{handle,  }\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+インスタンシング用のデータをセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & \+: インスタンシング対象のハンドル \\
+\hline
+\mbox{\tt in}  & {\em data} & \+: データのポインタ \\
+\hline
+\mbox{\tt in}  & {\em size} & \+: データのサイズ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{覚え書き}
+インスタンシング登録していない場合、データの登録を行わない。 
+\end{DoxyNote}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_instancing_data_manager_8h}{Instancing\+Data\+Manager.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_instancing_data_manager_8cpp}{Instancing\+Data\+Manager.\+cpp}}\end{DoxyCompactItemize}

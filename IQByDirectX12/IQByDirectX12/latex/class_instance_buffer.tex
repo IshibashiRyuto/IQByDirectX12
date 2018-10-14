@@ -1,0 +1,86 @@
+\hypertarget{class_instance_buffer}{}\section{Instance\+Buffer クラス}
+\label{class_instance_buffer}\index{Instance\+Buffer@{Instance\+Buffer}}
+
+
+{\ttfamily \#include $<$Instance\+Buffer.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_instance_buffer_a58ffffaa829536d4b8784b9dcfc44d7c}{Instance\+Buffer}} ()
+\item 
+\mbox{\hyperlink{class_instance_buffer_a8ccc5533de5518e9a71d90ee0f08c6d3}{$\sim$\+Instance\+Buffer}} ()
+\item 
+const D3\+D12\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW \& \mbox{\hyperlink{class_instance_buffer_a5491ee0720bd874c6b5c2bf677ee2416}{Get\+Vertex\+Buffer\+View}} () const
+\item 
+void \mbox{\hyperlink{class_instance_buffer_af234a261c027598ba29298c48c315a3c}{Set\+Instance\+Data}} (void $\ast$p\+Instance\+Data, int instance\+Data\+Index)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_instance_buffer}{Instance\+Buffer}} $>$ \mbox{\hyperlink{class_instance_buffer_acf5d0dd11793b224d2a10fa86876aac8}{Create}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device, size\+\_\+t instance\+Data\+Size, int max\+Instance\+Count)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_instance_buffer_a58ffffaa829536d4b8784b9dcfc44d7c}\label{class_instance_buffer_a58ffffaa829536d4b8784b9dcfc44d7c}} 
+\index{Instance\+Buffer@{Instance\+Buffer}!Instance\+Buffer@{Instance\+Buffer}}
+\index{Instance\+Buffer@{Instance\+Buffer}!Instance\+Buffer@{Instance\+Buffer}}
+\subsubsection{\texorpdfstring{Instance\+Buffer()}{InstanceBuffer()}}
+{\footnotesize\ttfamily Instance\+Buffer\+::\+Instance\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_instance_buffer_a8ccc5533de5518e9a71d90ee0f08c6d3}\label{class_instance_buffer_a8ccc5533de5518e9a71d90ee0f08c6d3}} 
+\index{Instance\+Buffer@{Instance\+Buffer}!````~Instance\+Buffer@{$\sim$\+Instance\+Buffer}}
+\index{````~Instance\+Buffer@{$\sim$\+Instance\+Buffer}!Instance\+Buffer@{Instance\+Buffer}}
+\subsubsection{\texorpdfstring{$\sim$\+Instance\+Buffer()}{~InstanceBuffer()}}
+{\footnotesize\ttfamily Instance\+Buffer\+::$\sim$\+Instance\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_instance_buffer_acf5d0dd11793b224d2a10fa86876aac8}\label{class_instance_buffer_acf5d0dd11793b224d2a10fa86876aac8}} 
+\index{Instance\+Buffer@{Instance\+Buffer}!Create@{Create}}
+\index{Create@{Create}!Instance\+Buffer@{Instance\+Buffer}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Instance\+Buffer\+::\+Create (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device,  }\item[{size\+\_\+t}]{instance\+Data\+Size,  }\item[{int}]{max\+Instance\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+インスタンスバッファを作成する \begin{DoxyNote}{覚え書き}
+Instance\+Bufferクラスはこのメソッドを通じてのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & \+: I\+D3\+D12デバイス \\
+\hline
+\mbox{\tt in}  & {\em instance\+Data\+Size} & \+: インスタンスデータのサイズ \\
+\hline
+\mbox{\tt in}  & {\em max\+Instance\+Count} & \+: 最大インスタンス数 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_instance_buffer_a5491ee0720bd874c6b5c2bf677ee2416}\label{class_instance_buffer_a5491ee0720bd874c6b5c2bf677ee2416}} 
+\index{Instance\+Buffer@{Instance\+Buffer}!Get\+Vertex\+Buffer\+View@{Get\+Vertex\+Buffer\+View}}
+\index{Get\+Vertex\+Buffer\+View@{Get\+Vertex\+Buffer\+View}!Instance\+Buffer@{Instance\+Buffer}}
+\subsubsection{\texorpdfstring{Get\+Vertex\+Buffer\+View()}{GetVertexBufferView()}}
+{\footnotesize\ttfamily Instance\+Buffer\+::\+Get\+Vertex\+Buffer\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+頂点バッファビューの取得  D3\+D12\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW 頂点バッファビューへの参照 \mbox{\Hypertarget{class_instance_buffer_af234a261c027598ba29298c48c315a3c}\label{class_instance_buffer_af234a261c027598ba29298c48c315a3c}} 
+\index{Instance\+Buffer@{Instance\+Buffer}!Set\+Instance\+Data@{Set\+Instance\+Data}}
+\index{Set\+Instance\+Data@{Set\+Instance\+Data}!Instance\+Buffer@{Instance\+Buffer}}
+\subsubsection{\texorpdfstring{Set\+Instance\+Data()}{SetInstanceData()}}
+{\footnotesize\ttfamily Instance\+Buffer\+::\+Set\+Instance\+Data (\begin{DoxyParamCaption}\item[{void $\ast$}]{p\+Instance\+Data,  }\item[{int}]{instance\+Data\+Index }\end{DoxyParamCaption})}
+
+インスタンスデータをセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em p\+Instance\+Data} & \+: インスタンスデータへのポインタ \\
+\hline
+\mbox{\tt in}  & {\em instance\+Data\+Index} & \+: 何番目のインスタンスデータをセットするか \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{覚え書き}
+インスタンスデータのサイズはインスタンスバッファ生成時のものを参照 あとから変更することは不可能 
+\end{DoxyNote}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_instance_buffer_8h}{Instance\+Buffer.\+h}}\item 
+Source/\mbox{\hyperlink{_instance_buffer_8cpp}{Instance\+Buffer.\+cpp}}\end{DoxyCompactItemize}

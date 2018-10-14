@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: DepthBuffer クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_depth_buffer-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">DepthBuffer クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_depth_buffer_8h_source.html">DepthBuffer.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a9d04ef2a88a2414d476f4fc27a25a7a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_depth_buffer.html#a9d04ef2a88a2414d476f4fc27a25a7a8">~DepthBuffer</a> ()</td></tr>
+<tr class="memdesc:a9d04ef2a88a2414d476f4fc27a25a7a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="#a9d04ef2a88a2414d476f4fc27a25a7a8">[詳解]</a><br /></td></tr>
+<tr class="separator:a9d04ef2a88a2414d476f4fc27a25a7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc91e9fea6125161ebbc5215f783374d"><td class="memItemLeft" align="right" valign="top">D3D12_CPU_DESCRIPTOR_HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_depth_buffer.html#abc91e9fea6125161ebbc5215f783374d">GetDSVHandle</a> ()</td></tr>
+<tr class="separator:abc91e9fea6125161ebbc5215f783374d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a673f6120808ac749fe900b21b6361bce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_depth_buffer.html#a673f6120808ac749fe900b21b6361bce">ClearDepthBuffer</a> (ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</td></tr>
+<tr class="separator:a673f6120808ac749fe900b21b6361bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a1c465b15498fc12a41662562cde74b83"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_depth_buffer.html">DepthBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_depth_buffer.html#a1c465b15498fc12a41662562cde74b83">Create</a> (ComPtr&lt; ID3D12Device &gt; device, int windowWidth, int windowHeight)</td></tr>
+<tr class="separator:a1c465b15498fc12a41662562cde74b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a9d04ef2a88a2414d476f4fc27a25a7a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d04ef2a88a2414d476f4fc27a25a7a8">&#9670;&nbsp;</a></span>~DepthBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DepthBuffer::~DepthBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a673f6120808ac749fe900b21b6361bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a673f6120808ac749fe900b21b6361bce">&#9670;&nbsp;</a></span>ClearDepthBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DepthBuffer::ClearDepthBuffer </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12GraphicsCommandList &gt;&#160;</td>
+          <td class="paramname"><em>commandList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c465b15498fc12a41662562cde74b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c465b15498fc12a41662562cde74b83">&#9670;&nbsp;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DepthBuffer::Create </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12Device &gt;&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>windowWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>windowHeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>デプスバッファとDSVを管理するクラスを生成する </p><dl class="section note"><dt>覚え書き</dt><dd>DepthBufferクラスはこのメソッドでのみ生成可能 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>ID3D12デバイス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">windowWidth</td><td>ウィンドウ幅 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">windowHeight</td><td>ウィンドウ高さ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abc91e9fea6125161ebbc5215f783374d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc91e9fea6125161ebbc5215f783374d">&#9670;&nbsp;</a></span>GetDSVHandle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3D12_CPU_DESCRIPTOR_HANDLE DepthBuffer::GetDSVHandle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_depth_buffer_8h_source.html">DepthBuffer.h</a></li>
+<li>Source/<a class="el" href="_depth_buffer_8cpp.html">DepthBuffer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

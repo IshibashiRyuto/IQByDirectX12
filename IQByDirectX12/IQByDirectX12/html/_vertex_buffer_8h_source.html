@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/VertexBuffer.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">VertexBuffer.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_vertex_buffer_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    VertexBuffer.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    頂点バッファクラス</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// システムヘッダインクルード</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_device.html">Device</a>;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_vertex_buffer.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_vertex_buffer.html">VertexBuffer</a></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_vertex_buffer.html#a5216726fdd43b2ae8e1439e347717fdd">~VertexBuffer</a>();</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;VertexBuffer&gt; <a class="code" href="class_vertex_buffer.html#a29dc2a0375049af708962af8db2ba2fd">Create</a>(std::shared_ptr&lt;Device&gt; device, <span class="keywordtype">void</span>* pVertexResource, <span class="keywordtype">size_t</span> vertexCount, <span class="keywordtype">size_t</span> vertexSize);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> D3D12_VERTEX_BUFFER_VIEW&amp; <a class="code" href="class_vertex_buffer.html#abd6e75355e6ab6a85a2c79780467c12c">GetVertexBufferView</a>();</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_vertex_buffer.html#adb25d82a47ad82d5b69a75ac111401b8">VertexBuffer</a>();</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_vertex_buffer.html#a5e6393d302e2e7b1ed0c8477298793f3">   38</a></span>&#160;    <a class="code" href="class_vertex_buffer.html#a5e6393d302e2e7b1ed0c8477298793f3">VertexBuffer</a>(<span class="keyword">const</span> <a class="code" href="class_vertex_buffer.html">VertexBuffer</a>&amp;) {}</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_vertex_buffer.html#aadda88c933f0e44a84402af9cc6e0dda">   40</a></span>&#160;    ComPtr&lt;ID3D12Resource&gt; <a class="code" href="class_vertex_buffer.html#aadda88c933f0e44a84402af9cc6e0dda">mVertexBuffer</a>;           <span class="comment">// 頂点バッファリソース</span></div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_vertex_buffer.html#a42f71aacaf7c1da89bcb729e3f6cf091">   41</a></span>&#160;    D3D12_VERTEX_BUFFER_VIEW <a class="code" href="class_vertex_buffer.html#a42f71aacaf7c1da89bcb729e3f6cf091">mVertexBufferView</a>;     <span class="comment">// 頂点バッファビュー</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div><div class="ttc" id="class_vertex_buffer_html"><div class="ttname"><a href="class_vertex_buffer.html">VertexBuffer</a></div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:14</div></div>
+<div class="ttc" id="class_device_html"><div class="ttname"><a href="class_device.html">Device</a></div><div class="ttdef"><b>Definition:</b> Device.h:20</div></div>
+<div class="ttc" id="class_vertex_buffer_html_abd6e75355e6ab6a85a2c79780467c12c"><div class="ttname"><a href="class_vertex_buffer.html#abd6e75355e6ab6a85a2c79780467c12c">VertexBuffer::GetVertexBufferView</a></div><div class="ttdeci">const D3D12_VERTEX_BUFFER_VIEW &amp; GetVertexBufferView()</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:57</div></div>
+<div class="ttc" id="class_vertex_buffer_html_a5e6393d302e2e7b1ed0c8477298793f3"><div class="ttname"><a href="class_vertex_buffer.html#a5e6393d302e2e7b1ed0c8477298793f3">VertexBuffer::VertexBuffer</a></div><div class="ttdeci">VertexBuffer(const VertexBuffer &amp;)</div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:38</div></div>
+<div class="ttc" id="class_vertex_buffer_html_a5216726fdd43b2ae8e1439e347717fdd"><div class="ttname"><a href="class_vertex_buffer.html#a5216726fdd43b2ae8e1439e347717fdd">VertexBuffer::~VertexBuffer</a></div><div class="ttdeci">~VertexBuffer()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:13</div></div>
+<div class="ttc" id="class_vertex_buffer_html_aadda88c933f0e44a84402af9cc6e0dda"><div class="ttname"><a href="class_vertex_buffer.html#aadda88c933f0e44a84402af9cc6e0dda">VertexBuffer::mVertexBuffer</a></div><div class="ttdeci">ComPtr&lt; ID3D12Resource &gt; mVertexBuffer</div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:40</div></div>
+<div class="ttc" id="class_vertex_buffer_html_a29dc2a0375049af708962af8db2ba2fd"><div class="ttname"><a href="class_vertex_buffer.html#a29dc2a0375049af708962af8db2ba2fd">VertexBuffer::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; VertexBuffer &gt; Create(std::shared_ptr&lt; Device &gt; device, void *pVertexResource, size_t vertexCount, size_t vertexSize)</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:17</div></div>
+<div class="ttc" id="class_vertex_buffer_html_a42f71aacaf7c1da89bcb729e3f6cf091"><div class="ttname"><a href="class_vertex_buffer.html#a42f71aacaf7c1da89bcb729e3f6cf091">VertexBuffer::mVertexBufferView</a></div><div class="ttdeci">D3D12_VERTEX_BUFFER_VIEW mVertexBufferView</div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:41</div></div>
+<div class="ttc" id="class_vertex_buffer_html_adb25d82a47ad82d5b69a75ac111401b8"><div class="ttname"><a href="class_vertex_buffer.html#adb25d82a47ad82d5b69a75ac111401b8">VertexBuffer::VertexBuffer</a></div><div class="ttdeci">VertexBuffer()</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

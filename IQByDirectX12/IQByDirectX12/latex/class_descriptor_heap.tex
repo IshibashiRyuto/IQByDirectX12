@@ -1,0 +1,125 @@
+\hypertarget{class_descriptor_heap}{}\section{Descriptor\+Heap クラス}
+\label{class_descriptor_heap}\index{Descriptor\+Heap@{Descriptor\+Heap}}
+
+
+{\ttfamily \#include $<$Descriptor\+Heap.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_descriptor_heap_a784aaaafaa338085c029c29d97f802c0}{$\sim$\+Descriptor\+Heap}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_descriptor_heap_ad95a0a669e09aa11972c2a3a6a880ab4}{Set\+Constant\+Buffer\+View}} (const D3\+D12\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&constant\+Buffer\+View, U\+I\+NT index)
+\item 
+void \mbox{\hyperlink{class_descriptor_heap_ab3cb1e5126b26f903065ac3348aa833e}{Set\+Shader\+Resource\+View}} (const D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&shader\+Resource\+View, Com\+Ptr$<$ I\+D3\+D12\+Resource $>$ shader\+Resource, U\+I\+NT index)
+\item 
+void \mbox{\hyperlink{class_descriptor_heap_ae200d9d61adca929e3549694a2247bd2}{Set\+Texture}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_texture}{Texture}} $>$ texture, U\+I\+NT index)
+\item 
+void \mbox{\hyperlink{class_descriptor_heap_ac3d8cd7c54b652dffec68df29e488f0e}{Set\+Unordered\+Access\+View}} (const D3\+D12\+\_\+\+U\+N\+O\+R\+D\+E\+R\+E\+D\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&unordered\+Access\+View, Com\+Ptr$<$ I\+D3\+D12\+Resource $>$ structured\+Buffer, U\+I\+NT index)
+\item 
+void \mbox{\hyperlink{class_descriptor_heap_ad4c58082394b6dedc4f6eaaed9b2da1c}{Bind\+Graphics\+Command\+List}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ command\+List)
+\item 
+void \mbox{\hyperlink{class_descriptor_heap_a8580bf420ca41fd262793680d5676524}{Bind\+Root\+Descriptor\+Table}} (int root\+Param\+Index, int descriptor\+Heap\+Index)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ \mbox{\hyperlink{class_descriptor_heap_aae33b8a5c2d8e825ba93c14c99a141c8}{Create}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device, const D3\+D12\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+H\+E\+A\+P\+\_\+\+D\+E\+SC \&desc)
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ \mbox{\hyperlink{class_descriptor_heap_adb1b77c9b8ccc63e0f500c43dd3b2d3a}{Create}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device, U\+I\+NT num\+Descriptors)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_descriptor_heap_a784aaaafaa338085c029c29d97f802c0}\label{class_descriptor_heap_a784aaaafaa338085c029c29d97f802c0}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!````~Descriptor\+Heap@{$\sim$\+Descriptor\+Heap}}
+\index{````~Descriptor\+Heap@{$\sim$\+Descriptor\+Heap}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{$\sim$\+Descriptor\+Heap()}{~DescriptorHeap()}}
+{\footnotesize\ttfamily Descriptor\+Heap\+::$\sim$\+Descriptor\+Heap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_descriptor_heap_ad4c58082394b6dedc4f6eaaed9b2da1c}\label{class_descriptor_heap_ad4c58082394b6dedc4f6eaaed9b2da1c}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Bind\+Graphics\+Command\+List@{Bind\+Graphics\+Command\+List}}
+\index{Bind\+Graphics\+Command\+List@{Bind\+Graphics\+Command\+List}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Bind\+Graphics\+Command\+List()}{BindGraphicsCommandList()}}
+{\footnotesize\ttfamily Descriptor\+Heap\+::\+Bind\+Graphics\+Command\+List (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{command\+List }\end{DoxyParamCaption})}
+
+デスクリプタヒープをコマンドリストにバインドする \mbox{\Hypertarget{class_descriptor_heap_a8580bf420ca41fd262793680d5676524}\label{class_descriptor_heap_a8580bf420ca41fd262793680d5676524}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Bind\+Root\+Descriptor\+Table@{Bind\+Root\+Descriptor\+Table}}
+\index{Bind\+Root\+Descriptor\+Table@{Bind\+Root\+Descriptor\+Table}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Bind\+Root\+Descriptor\+Table()}{BindRootDescriptorTable()}}
+{\footnotesize\ttfamily void Descriptor\+Heap\+::\+Bind\+Root\+Descriptor\+Table (\begin{DoxyParamCaption}\item[{int}]{root\+Param\+Index,  }\item[{int}]{descriptor\+Heap\+Index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_descriptor_heap_aae33b8a5c2d8e825ba93c14c99a141c8}\label{class_descriptor_heap_aae33b8a5c2d8e825ba93c14c99a141c8}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Create@{Create}}
+\index{Create@{Create}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ Descriptor\+Heap\+::\+Create (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device,  }\item[{const D3\+D12\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+H\+E\+A\+P\+\_\+\+D\+E\+SC \&}]{desc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_descriptor_heap_adb1b77c9b8ccc63e0f500c43dd3b2d3a}\label{class_descriptor_heap_adb1b77c9b8ccc63e0f500c43dd3b2d3a}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Create@{Create}}
+\index{Create@{Create}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ Descriptor\+Heap\+::\+Create (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device,  }\item[{U\+I\+NT}]{num\+Descriptors }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_descriptor_heap_ad95a0a669e09aa11972c2a3a6a880ab4}\label{class_descriptor_heap_ad95a0a669e09aa11972c2a3a6a880ab4}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Set\+Constant\+Buffer\+View@{Set\+Constant\+Buffer\+View}}
+\index{Set\+Constant\+Buffer\+View@{Set\+Constant\+Buffer\+View}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Set\+Constant\+Buffer\+View()}{SetConstantBufferView()}}
+{\footnotesize\ttfamily Descriptor\+Heap\+::\+Set\+Constant\+Buffer\+View (\begin{DoxyParamCaption}\item[{const D3\+D12\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&}]{constant\+Buffer\+View,  }\item[{U\+I\+NT}]{index }\end{DoxyParamCaption})}
+
+コンスタントバッファビューをセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em constant\+Buffer\+View} & コンスタントバッファビュー \\
+\hline
+\mbox{\tt in}  & {\em constant\+Buffer} & コンスタントバッファ \\
+\hline
+\mbox{\tt in}  & {\em index} & ヒープのインデックス \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_descriptor_heap_ab3cb1e5126b26f903065ac3348aa833e}\label{class_descriptor_heap_ab3cb1e5126b26f903065ac3348aa833e}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Set\+Shader\+Resource\+View@{Set\+Shader\+Resource\+View}}
+\index{Set\+Shader\+Resource\+View@{Set\+Shader\+Resource\+View}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Set\+Shader\+Resource\+View()}{SetShaderResourceView()}}
+{\footnotesize\ttfamily Descriptor\+Heap\+::\+Set\+Shader\+Resource\+View (\begin{DoxyParamCaption}\item[{const D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&}]{shader\+Resource\+View,  }\item[{Com\+Ptr$<$ I\+D3\+D12\+Resource $>$}]{shader\+Resource,  }\item[{U\+I\+NT}]{index }\end{DoxyParamCaption})}
+
+シェーダリソースビューをセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em shader\+Resource\+View} & シェーダリソースビュー \\
+\hline
+\mbox{\tt in}  & {\em shader\+Resource} & シェーダリソース \\
+\hline
+\mbox{\tt in}  & {\em index} & ヒープのインデックス \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_descriptor_heap_ae200d9d61adca929e3549694a2247bd2}\label{class_descriptor_heap_ae200d9d61adca929e3549694a2247bd2}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Set\+Texture@{Set\+Texture}}
+\index{Set\+Texture@{Set\+Texture}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Set\+Texture()}{SetTexture()}}
+{\footnotesize\ttfamily Descriptor\+Heap\+::\+Set\+Texture (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_texture}{Texture}} $>$}]{texture,  }\item[{U\+I\+NT}]{index }\end{DoxyParamCaption})}
+
+テクスチャ情報をセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em texture} & テクスチャ \\
+\hline
+\mbox{\tt in}  & {\em index} & ヒープのインデックス \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_descriptor_heap_ac3d8cd7c54b652dffec68df29e488f0e}\label{class_descriptor_heap_ac3d8cd7c54b652dffec68df29e488f0e}} 
+\index{Descriptor\+Heap@{Descriptor\+Heap}!Set\+Unordered\+Access\+View@{Set\+Unordered\+Access\+View}}
+\index{Set\+Unordered\+Access\+View@{Set\+Unordered\+Access\+View}!Descriptor\+Heap@{Descriptor\+Heap}}
+\subsubsection{\texorpdfstring{Set\+Unordered\+Access\+View()}{SetUnorderedAccessView()}}
+{\footnotesize\ttfamily void Descriptor\+Heap\+::\+Set\+Unordered\+Access\+View (\begin{DoxyParamCaption}\item[{const D3\+D12\+\_\+\+U\+N\+O\+R\+D\+E\+R\+E\+D\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&}]{unordered\+Access\+View,  }\item[{Com\+Ptr$<$ I\+D3\+D12\+Resource $>$}]{structured\+Buffer,  }\item[{U\+I\+NT}]{index }\end{DoxyParamCaption})}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_descriptor_heap_8h}{Descriptor\+Heap.\+h}}\item 
+Source/\mbox{\hyperlink{_descriptor_heap_8cpp}{Descriptor\+Heap.\+cpp}}\end{DoxyCompactItemize}

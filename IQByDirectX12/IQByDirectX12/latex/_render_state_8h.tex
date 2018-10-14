@@ -1,0 +1,127 @@
+\hypertarget{_render_state_8h}{}\section{Source/\+Render\+State.h ファイル}
+\label{_render_state_8h}\index{Source/\+Render\+State.\+h@{Source/\+Render\+State.\+h}}
+\subsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_render_state}{Render\+State}}
+\begin{DoxyCompactList}\small\item\em レンダーステートを集約した構造体 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036}{Alpha\+Blend\+Type}} \{ \newline
+\mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036abad6a5dd8c28e6b14f8e986615e3dc98}{Alpha\+Blend\+Type\+::\+Opacity}} = 0, 
+\mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036a09ac609fcdb514c9adca34e7f97b4ac4}{Alpha\+Blend\+Type\+::\+Blend}} = 1, 
+\mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036aec211f7c20af43e742bf2570c3cb84f9}{Alpha\+Blend\+Type\+::\+Add}} = 2, 
+\mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036ae80155eceb940c89e2de63ad05868db2}{Alpha\+Blend\+Type\+::\+Sub}} = 3, 
+\newline
+\mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036a62b6d55816cf737bfc6f42e60df1a3f2}{Alpha\+Blend\+Type\+::\+Mul}} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em アルファブレンドオプション \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{_render_state_8h_a21d270ce58807e6b815650a47f4beba3}{Texture\+Filter\+Type}} \{ \mbox{\hyperlink{_render_state_8h_a21d270ce58807e6b815650a47f4beba3a60494f02d440f316319dd0fad40ad007}{Texture\+Filter\+Type\+::\+Nearest}} = 0, 
+\mbox{\hyperlink{_render_state_8h_a21d270ce58807e6b815650a47f4beba3a32a843da6ea40ab3b17a3421ccdf671b}{Texture\+Filter\+Type\+::\+Linear}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em サンプリングする際のサンプリング方法 \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2b}{Texture\+Wrap\+Type}} \{ \mbox{\hyperlink{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2ba7020426cfb0a204051be4b3053d2acc8}{Texture\+Wrap\+Type\+::\+Repeat}} = 0, 
+\mbox{\hyperlink{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2ba08825280e3f8137556325061ba67ff8c}{Texture\+Wrap\+Type\+::\+Clamp}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em U\+V値が0以下もしくは1以上の場合の扱い方 \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75}{Culling\+Type}} \{ \mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75a0368fd254dbe9394d6fd52630cf72485}{Culling\+Type\+::\+Frond}} = 0, 
+\mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75a0557fa923dcee4d0f86b1409f5c2167f}{Culling\+Type\+::\+Back}} = 1, 
+\mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75ad909d38d705ce75386dd86e611a82f5b}{Culling\+Type\+::\+Double}} = 2
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{列挙型詳解}
+\mbox{\Hypertarget{_render_state_8h_a9700cc765f1d439500b41d8411f32036}\label{_render_state_8h_a9700cc765f1d439500b41d8411f32036}} 
+\index{Render\+State.\+h@{Render\+State.\+h}!Alpha\+Blend\+Type@{Alpha\+Blend\+Type}}
+\index{Alpha\+Blend\+Type@{Alpha\+Blend\+Type}!Render\+State.\+h@{Render\+State.\+h}}
+\subsubsection{\texorpdfstring{Alpha\+Blend\+Type}{AlphaBlendType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036}{Alpha\+Blend\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+アルファブレンドオプション 
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Opacity@{Opacity}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Opacity@{Opacity}}}\mbox{\Hypertarget{_render_state_8h_a9700cc765f1d439500b41d8411f32036abad6a5dd8c28e6b14f8e986615e3dc98}\label{_render_state_8h_a9700cc765f1d439500b41d8411f32036abad6a5dd8c28e6b14f8e986615e3dc98}} 
+Opacity&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Blend@{Blend}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Blend@{Blend}}}\mbox{\Hypertarget{_render_state_8h_a9700cc765f1d439500b41d8411f32036a09ac609fcdb514c9adca34e7f97b4ac4}\label{_render_state_8h_a9700cc765f1d439500b41d8411f32036a09ac609fcdb514c9adca34e7f97b4ac4}} 
+Blend&不透明 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Add@{Add}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Add@{Add}}}\mbox{\Hypertarget{_render_state_8h_a9700cc765f1d439500b41d8411f32036aec211f7c20af43e742bf2570c3cb84f9}\label{_render_state_8h_a9700cc765f1d439500b41d8411f32036aec211f7c20af43e742bf2570c3cb84f9}} 
+Add&透明 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sub@{Sub}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Sub@{Sub}}}\mbox{\Hypertarget{_render_state_8h_a9700cc765f1d439500b41d8411f32036ae80155eceb940c89e2de63ad05868db2}\label{_render_state_8h_a9700cc765f1d439500b41d8411f32036ae80155eceb940c89e2de63ad05868db2}} 
+Sub&加算 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mul@{Mul}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Mul@{Mul}}}\mbox{\Hypertarget{_render_state_8h_a9700cc765f1d439500b41d8411f32036a62b6d55816cf737bfc6f42e60df1a3f2}\label{_render_state_8h_a9700cc765f1d439500b41d8411f32036a62b6d55816cf737bfc6f42e60df1a3f2}} 
+Mul&減算 \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_render_state_8h_a09f66f004d665fd114424afb2fb42c75}\label{_render_state_8h_a09f66f004d665fd114424afb2fb42c75}} 
+\index{Render\+State.\+h@{Render\+State.\+h}!Culling\+Type@{Culling\+Type}}
+\index{Culling\+Type@{Culling\+Type}!Render\+State.\+h@{Render\+State.\+h}}
+\subsubsection{\texorpdfstring{Culling\+Type}{CullingType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75}{Culling\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Frond@{Frond}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Frond@{Frond}}}\mbox{\Hypertarget{_render_state_8h_a09f66f004d665fd114424afb2fb42c75a0368fd254dbe9394d6fd52630cf72485}\label{_render_state_8h_a09f66f004d665fd114424afb2fb42c75a0368fd254dbe9394d6fd52630cf72485}} 
+Frond&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Back@{Back}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Back@{Back}}}\mbox{\Hypertarget{_render_state_8h_a09f66f004d665fd114424afb2fb42c75a0557fa923dcee4d0f86b1409f5c2167f}\label{_render_state_8h_a09f66f004d665fd114424afb2fb42c75a0557fa923dcee4d0f86b1409f5c2167f}} 
+Back&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Double@{Double}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Double@{Double}}}\mbox{\Hypertarget{_render_state_8h_a09f66f004d665fd114424afb2fb42c75ad909d38d705ce75386dd86e611a82f5b}\label{_render_state_8h_a09f66f004d665fd114424afb2fb42c75ad909d38d705ce75386dd86e611a82f5b}} 
+Double&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_render_state_8h_a21d270ce58807e6b815650a47f4beba3}\label{_render_state_8h_a21d270ce58807e6b815650a47f4beba3}} 
+\index{Render\+State.\+h@{Render\+State.\+h}!Texture\+Filter\+Type@{Texture\+Filter\+Type}}
+\index{Texture\+Filter\+Type@{Texture\+Filter\+Type}!Render\+State.\+h@{Render\+State.\+h}}
+\subsubsection{\texorpdfstring{Texture\+Filter\+Type}{TextureFilterType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_render_state_8h_a21d270ce58807e6b815650a47f4beba3}{Texture\+Filter\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+サンプリングする際のサンプリング方法 
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Nearest@{Nearest}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Nearest@{Nearest}}}\mbox{\Hypertarget{_render_state_8h_a21d270ce58807e6b815650a47f4beba3a60494f02d440f316319dd0fad40ad007}\label{_render_state_8h_a21d270ce58807e6b815650a47f4beba3a60494f02d440f316319dd0fad40ad007}} 
+Nearest&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Linear@{Linear}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Linear@{Linear}}}\mbox{\Hypertarget{_render_state_8h_a21d270ce58807e6b815650a47f4beba3a32a843da6ea40ab3b17a3421ccdf671b}\label{_render_state_8h_a21d270ce58807e6b815650a47f4beba3a32a843da6ea40ab3b17a3421ccdf671b}} 
+Linear&ニアレスト補間 \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2b}\label{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2b}} 
+\index{Render\+State.\+h@{Render\+State.\+h}!Texture\+Wrap\+Type@{Texture\+Wrap\+Type}}
+\index{Texture\+Wrap\+Type@{Texture\+Wrap\+Type}!Render\+State.\+h@{Render\+State.\+h}}
+\subsubsection{\texorpdfstring{Texture\+Wrap\+Type}{TextureWrapType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2b}{Texture\+Wrap\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+U\+V値が0以下もしくは1以上の場合の扱い方 
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Repeat@{Repeat}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Repeat@{Repeat}}}\mbox{\Hypertarget{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2ba7020426cfb0a204051be4b3053d2acc8}\label{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2ba7020426cfb0a204051be4b3053d2acc8}} 
+Repeat&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Clamp@{Clamp}!Render\+State.\+h@{Render\+State.\+h}}\index{Render\+State.\+h@{Render\+State.\+h}!Clamp@{Clamp}}}\mbox{\Hypertarget{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2ba08825280e3f8137556325061ba67ff8c}\label{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2ba08825280e3f8137556325061ba67ff8c}} 
+Clamp&繰り返し \\
+\hline
+
+\end{DoxyEnumFields}

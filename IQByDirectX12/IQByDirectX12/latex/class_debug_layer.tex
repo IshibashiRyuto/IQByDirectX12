@@ -1,0 +1,70 @@
+\hypertarget{class_debug_layer}{}\section{Debug\+Layer クラス}
+\label{class_debug_layer}\index{Debug\+Layer@{Debug\+Layer}}
+
+
+{\ttfamily \#include $<$Debug\+Layer.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_debug_layer_ae7d923632d5bcb7144a353a058d8c399}{Print\+Debug\+Message}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em デバッグメッセージを出力する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_debug_layer_a44dbc3cf9a953753fb1ebcc1e1452ec2}{Print\+Debug\+Message}} (const std\+::wstring \&message)
+\item 
+void \mbox{\hyperlink{class_debug_layer_a8f3febbe9d2b0a3fcfeb4318516ec534}{Set\+Output\+Destination}} (\mbox{\hyperlink{_debug_layer_8h_a30a5879c4955b5fe9920db6bab79f721}{Output\+Destination}} output\+Destination)
+\begin{DoxyCompactList}\small\item\em デバッグメッセージの出力先を設定する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_debug_layer}{Debug\+Layer}} \& \mbox{\hyperlink{class_debug_layer_a49a25b68bbb3dba02c94ecb6e28a49fd}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em シングルトンインスタンスを取得する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_debug_layer_a49a25b68bbb3dba02c94ecb6e28a49fd}\label{class_debug_layer_a49a25b68bbb3dba02c94ecb6e28a49fd}} 
+\index{Debug\+Layer@{Debug\+Layer}!Get\+Instance@{Get\+Instance}}
+\index{Get\+Instance@{Get\+Instance}!Debug\+Layer@{Debug\+Layer}}
+\subsubsection{\texorpdfstring{Get\+Instance()}{GetInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_debug_layer}{Debug\+Layer}}\& Debug\+Layer\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+シングルトンインスタンスを取得する 
+
+\mbox{\Hypertarget{class_debug_layer_ae7d923632d5bcb7144a353a058d8c399}\label{class_debug_layer_ae7d923632d5bcb7144a353a058d8c399}} 
+\index{Debug\+Layer@{Debug\+Layer}!Print\+Debug\+Message@{Print\+Debug\+Message}}
+\index{Print\+Debug\+Message@{Print\+Debug\+Message}!Debug\+Layer@{Debug\+Layer}}
+\subsubsection{\texorpdfstring{Print\+Debug\+Message()}{PrintDebugMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Debug\+Layer\+::\+Print\+Debug\+Message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})}
+
+
+
+デバッグメッセージを出力する 
+
+\mbox{\Hypertarget{class_debug_layer_a44dbc3cf9a953753fb1ebcc1e1452ec2}\label{class_debug_layer_a44dbc3cf9a953753fb1ebcc1e1452ec2}} 
+\index{Debug\+Layer@{Debug\+Layer}!Print\+Debug\+Message@{Print\+Debug\+Message}}
+\index{Print\+Debug\+Message@{Print\+Debug\+Message}!Debug\+Layer@{Debug\+Layer}}
+\subsubsection{\texorpdfstring{Print\+Debug\+Message()}{PrintDebugMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Debug\+Layer\+::\+Print\+Debug\+Message (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_debug_layer_a8f3febbe9d2b0a3fcfeb4318516ec534}\label{class_debug_layer_a8f3febbe9d2b0a3fcfeb4318516ec534}} 
+\index{Debug\+Layer@{Debug\+Layer}!Set\+Output\+Destination@{Set\+Output\+Destination}}
+\index{Set\+Output\+Destination@{Set\+Output\+Destination}!Debug\+Layer@{Debug\+Layer}}
+\subsubsection{\texorpdfstring{Set\+Output\+Destination()}{SetOutputDestination()}}
+{\footnotesize\ttfamily void Debug\+Layer\+::\+Set\+Output\+Destination (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_debug_layer_8h_a30a5879c4955b5fe9920db6bab79f721}{Output\+Destination}}}]{output\+Destination }\end{DoxyParamCaption})}
+
+
+
+デバッグメッセージの出力先を設定する 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em Output\+Destination} & \\
+\hline
+\end{DoxyParams}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Debug/\mbox{\hyperlink{_debug_layer_8h}{Debug\+Layer.\+h}}\item 
+Source/\+Debug/\mbox{\hyperlink{_debug_layer_8cpp}{Debug\+Layer.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/RenderState.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#enum-members">列挙型</a>  </div>
+  <div class="headertitle">
+<div class="title">RenderState.h ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="_render_state_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_state.html">RenderState</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">レンダーステートを集約した構造体  <a href="struct_render_state.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:a9700cc765f1d439500b41d8411f32036"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036">AlphaBlendType</a> { <br />
+&#160;&#160;<a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036abad6a5dd8c28e6b14f8e986615e3dc98">AlphaBlendType::Opacity</a> = 0, 
+<a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036a09ac609fcdb514c9adca34e7f97b4ac4">AlphaBlendType::Blend</a> = 1, 
+<a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036aec211f7c20af43e742bf2570c3cb84f9">AlphaBlendType::Add</a> = 2, 
+<a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036ae80155eceb940c89e2de63ad05868db2">AlphaBlendType::Sub</a> = 3, 
+<br />
+&#160;&#160;<a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036a62b6d55816cf737bfc6f42e60df1a3f2">AlphaBlendType::Mul</a> = 4
+<br />
+ }</td></tr>
+<tr class="memdesc:a9700cc765f1d439500b41d8411f32036"><td class="mdescLeft">&#160;</td><td class="mdescRight">アルファブレンドオプション  <a href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036">[詳解]</a><br /></td></tr>
+<tr class="separator:a9700cc765f1d439500b41d8411f32036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d270ce58807e6b815650a47f4beba3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3">TextureFilterType</a> { <a class="el" href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3a60494f02d440f316319dd0fad40ad007">TextureFilterType::Nearest</a> = 0, 
+<a class="el" href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3a32a843da6ea40ab3b17a3421ccdf671b">TextureFilterType::Linear</a> = 1
+ }</td></tr>
+<tr class="memdesc:a21d270ce58807e6b815650a47f4beba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">サンプリングする際のサンプリング方法  <a href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3">[詳解]</a><br /></td></tr>
+<tr class="separator:a21d270ce58807e6b815650a47f4beba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da0419d34309c6fd35bd55dcc01de2b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2b">TextureWrapType</a> { <a class="el" href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2ba7020426cfb0a204051be4b3053d2acc8">TextureWrapType::Repeat</a> = 0, 
+<a class="el" href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2ba08825280e3f8137556325061ba67ff8c">TextureWrapType::Clamp</a> = 1
+ }</td></tr>
+<tr class="memdesc:a7da0419d34309c6fd35bd55dcc01de2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">UV値が0以下もしくは1以上の場合の扱い方  <a href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2b">[詳解]</a><br /></td></tr>
+<tr class="separator:a7da0419d34309c6fd35bd55dcc01de2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09f66f004d665fd114424afb2fb42c75"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75">CullingType</a> { <a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75a0368fd254dbe9394d6fd52630cf72485">CullingType::Frond</a> = 0, 
+<a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75a0557fa923dcee4d0f86b1409f5c2167f">CullingType::Back</a> = 1, 
+<a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75ad909d38d705ce75386dd86e611a82f5b">CullingType::Double</a> = 2
+ }</td></tr>
+<tr class="separator:a09f66f004d665fd114424afb2fb42c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">列挙型詳解</h2>
+<a id="a9700cc765f1d439500b41d8411f32036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9700cc765f1d439500b41d8411f32036">&#9670;&nbsp;</a></span>AlphaBlendType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_render_state_8h.html#a9700cc765f1d439500b41d8411f32036">AlphaBlendType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>アルファブレンドオプション </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a9700cc765f1d439500b41d8411f32036abad6a5dd8c28e6b14f8e986615e3dc98"></a>Opacity&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9700cc765f1d439500b41d8411f32036a09ac609fcdb514c9adca34e7f97b4ac4"></a>Blend&#160;</td><td class="fielddoc"><p>不透明 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9700cc765f1d439500b41d8411f32036aec211f7c20af43e742bf2570c3cb84f9"></a>Add&#160;</td><td class="fielddoc"><p>透明 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9700cc765f1d439500b41d8411f32036ae80155eceb940c89e2de63ad05868db2"></a>Sub&#160;</td><td class="fielddoc"><p>加算 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9700cc765f1d439500b41d8411f32036a62b6d55816cf737bfc6f42e60df1a3f2"></a>Mul&#160;</td><td class="fielddoc"><p>減算 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a09f66f004d665fd114424afb2fb42c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09f66f004d665fd114424afb2fb42c75">&#9670;&nbsp;</a></span>CullingType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_render_state_8h.html#a09f66f004d665fd114424afb2fb42c75">CullingType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a09f66f004d665fd114424afb2fb42c75a0368fd254dbe9394d6fd52630cf72485"></a>Frond&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a09f66f004d665fd114424afb2fb42c75a0557fa923dcee4d0f86b1409f5c2167f"></a>Back&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a09f66f004d665fd114424afb2fb42c75ad909d38d705ce75386dd86e611a82f5b"></a>Double&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a21d270ce58807e6b815650a47f4beba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d270ce58807e6b815650a47f4beba3">&#9670;&nbsp;</a></span>TextureFilterType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_render_state_8h.html#a21d270ce58807e6b815650a47f4beba3">TextureFilterType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>サンプリングする際のサンプリング方法 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a21d270ce58807e6b815650a47f4beba3a60494f02d440f316319dd0fad40ad007"></a>Nearest&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a21d270ce58807e6b815650a47f4beba3a32a843da6ea40ab3b17a3421ccdf671b"></a>Linear&#160;</td><td class="fielddoc"><p>ニアレスト補間 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a7da0419d34309c6fd35bd55dcc01de2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7da0419d34309c6fd35bd55dcc01de2b">&#9670;&nbsp;</a></span>TextureWrapType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_render_state_8h.html#a7da0419d34309c6fd35bd55dcc01de2b">TextureWrapType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UV値が0以下もしくは1以上の場合の扱い方 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a7da0419d34309c6fd35bd55dcc01de2ba7020426cfb0a204051be4b3053d2acc8"></a>Repeat&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7da0419d34309c6fd35bd55dcc01de2ba08825280e3f8137556325061ba67ff8c"></a>Clamp&#160;</td><td class="fielddoc"><p>繰り返し </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

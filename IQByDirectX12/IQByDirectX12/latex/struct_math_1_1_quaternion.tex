@@ -1,0 +1,211 @@
+\hypertarget{struct_math_1_1_quaternion}{}\section{Math\+:\+:Quaternion 構造体}
+\label{struct_math_1_1_quaternion}\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+
+
+{\ttfamily \#include $<$Math.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion_abcc01358aada56ea5f0db4da18aaf77d}{Quaternion}} ()
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion_a36beaf9a73a54a368217dde43aa81cb0}{Quaternion}} (float mw, float mx, float my, float mz)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion_abe837b2cab65532540a3f8ca9a171c71}{Quaternion}} (float mx, float my, float mz)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion_aee457d8f04d226335213714897d752dd}{Quaternion}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&vector)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion_acae9b6b6548813cbcbd1f5b641e4f064}{Quaternion}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&other)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion_a68ab22588ee547c1b03c58f717b5f838}{Quaternion}} (\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&\&other)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{struct_math_1_1_quaternion_aa22c281886948b07c70b35e0de42dc39}{operator+}} () const
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{struct_math_1_1_quaternion_aff7a0a5aeea4a3fe860cb90a649e389c}{operator-\/}} () const
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_acb64d4da834f6bc8f2cdcbd5525c05d4}{operator=}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_a089bf5e8aa4d7441b364f2b7f34a64ac}{operator+=}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_af1884a86f9d7d61197a2fb8a704bc58f}{operator-\/=}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_ab259c5d0a79c9fcb816b2167f8dc32dd}{operator$\ast$=}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_a138f8b4c70cf0280ad19072c675201ab}{operator$\ast$=}} (float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_a04a144dcc8a5401104fd88248b13e84a}{operator/=}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& \mbox{\hyperlink{struct_math_1_1_quaternion_a2157dd9798f538ebd2463cd962c11a64}{operator/=}} (float scale)
+\item 
+float \mbox{\hyperlink{struct_math_1_1_quaternion_a1cd5a9d8be7f9b85c4eb7ba661238a09}{Norm}} () const
+\item 
+float \mbox{\hyperlink{struct_math_1_1_quaternion_a8f147b15819df35d4448c9765adc4eb8}{Norm\+Square}} () const
+\end{DoxyCompactItemize}
+\subsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_quaternion_ad482a0bc0b3759696ce73af10ae4ce62}{x}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_quaternion_affec7ef4764711e8df983d5439494050}{y}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_quaternion_af5df1935c0d63acfd4fc4e65ae0e30d2}{z}}\\
+\>\} \\
+\>\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{struct_math_1_1_quaternion_a628a90b817e19edde055fc4745e25f5c}{v}}\\
+\}; \\
+
+\end{tabbing}\item 
+float \mbox{\hyperlink{struct_math_1_1_quaternion_a9736171bbae3bee22f12d23f3fefb682}{w}}
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{struct_math_1_1_quaternion_abcc01358aada56ea5f0db4da18aaf77d}\label{struct_math_1_1_quaternion_abcc01358aada56ea5f0db4da18aaf77d}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a36beaf9a73a54a368217dde43aa81cb0}\label{struct_math_1_1_quaternion_a36beaf9a73a54a368217dde43aa81cb0}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}\item[{float}]{mw,  }\item[{float}]{mx,  }\item[{float}]{my,  }\item[{float}]{mz }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_abe837b2cab65532540a3f8ca9a171c71}\label{struct_math_1_1_quaternion_abe837b2cab65532540a3f8ca9a171c71}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}\item[{float}]{mx,  }\item[{float}]{my,  }\item[{float}]{mz }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_aee457d8f04d226335213714897d752dd}\label{struct_math_1_1_quaternion_aee457d8f04d226335213714897d752dd}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily Math\+::\+Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{vector }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_acae9b6b6548813cbcbd1f5b641e4f064}\label{struct_math_1_1_quaternion_acae9b6b6548813cbcbd1f5b641e4f064}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{other }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a68ab22588ee547c1b03c58f717b5f838}\label{struct_math_1_1_quaternion_a68ab22588ee547c1b03c58f717b5f838}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&\&}]{other }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a1cd5a9d8be7f9b85c4eb7ba661238a09}\label{struct_math_1_1_quaternion_a1cd5a9d8be7f9b85c4eb7ba661238a09}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Norm@{Norm}}
+\index{Norm@{Norm}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Norm()}{Norm()}}
+{\footnotesize\ttfamily float Math\+::\+Quaternion\+::\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a8f147b15819df35d4448c9765adc4eb8}\label{struct_math_1_1_quaternion_a8f147b15819df35d4448c9765adc4eb8}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!Norm\+Square@{Norm\+Square}}
+\index{Norm\+Square@{Norm\+Square}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{Norm\+Square()}{NormSquare()}}
+{\footnotesize\ttfamily float Math\+::\+Quaternion\+::\+Norm\+Square (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_ab259c5d0a79c9fcb816b2167f8dc32dd}\label{struct_math_1_1_quaternion_ab259c5d0a79c9fcb816b2167f8dc32dd}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Quaternion\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a138f8b4c70cf0280ad19072c675201ab}\label{struct_math_1_1_quaternion_a138f8b4c70cf0280ad19072c675201ab}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Math\+::\+Quaternion\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_aa22c281886948b07c70b35e0de42dc39}\label{struct_math_1_1_quaternion_aa22c281886948b07c70b35e0de42dc39}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator+@{operator+}}
+\index{operator+@{operator+}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Quaternion\+::operator+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a089bf5e8aa4d7441b364f2b7f34a64ac}\label{struct_math_1_1_quaternion_a089bf5e8aa4d7441b364f2b7f34a64ac}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Quaternion\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_aff7a0a5aeea4a3fe860cb90a649e389c}\label{struct_math_1_1_quaternion_aff7a0a5aeea4a3fe860cb90a649e389c}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Quaternion\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_af1884a86f9d7d61197a2fb8a704bc58f}\label{struct_math_1_1_quaternion_af1884a86f9d7d61197a2fb8a704bc58f}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Quaternion\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a04a144dcc8a5401104fd88248b13e84a}\label{struct_math_1_1_quaternion_a04a144dcc8a5401104fd88248b13e84a}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Math\+::\+Quaternion\+::operator/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a2157dd9798f538ebd2463cd962c11a64}\label{struct_math_1_1_quaternion_a2157dd9798f538ebd2463cd962c11a64}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Math\+::\+Quaternion\+::operator/= (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_acb64d4da834f6bc8f2cdcbd5525c05d4}\label{struct_math_1_1_quaternion_acb64d4da834f6bc8f2cdcbd5525c05d4}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \& Quaternion\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a09449d4fc06ef23c17f363910edf0c5a}\label{struct_math_1_1_quaternion_a09449d4fc06ef23c17f363910edf0c5a}} 
+\subsubsection{\texorpdfstring{"@9}{@9}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a628a90b817e19edde055fc4745e25f5c}\label{struct_math_1_1_quaternion_a628a90b817e19edde055fc4745e25f5c}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!v@{v}}
+\index{v@{v}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::\+Quaternion\+::v}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_a9736171bbae3bee22f12d23f3fefb682}\label{struct_math_1_1_quaternion_a9736171bbae3bee22f12d23f3fefb682}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!w@{w}}
+\index{w@{w}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily float Math\+::\+Quaternion\+::w}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_ad482a0bc0b3759696ce73af10ae4ce62}\label{struct_math_1_1_quaternion_ad482a0bc0b3759696ce73af10ae4ce62}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!x@{x}}
+\index{x@{x}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily float Math\+::\+Quaternion\+::x}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_affec7ef4764711e8df983d5439494050}\label{struct_math_1_1_quaternion_affec7ef4764711e8df983d5439494050}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!y@{y}}
+\index{y@{y}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily float Math\+::\+Quaternion\+::y}
+
+\mbox{\Hypertarget{struct_math_1_1_quaternion_af5df1935c0d63acfd4fc4e65ae0e30d2}\label{struct_math_1_1_quaternion_af5df1935c0d63acfd4fc4e65ae0e30d2}} 
+\index{Math\+::\+Quaternion@{Math\+::\+Quaternion}!z@{z}}
+\index{z@{z}!Math\+::\+Quaternion@{Math\+::\+Quaternion}}
+\subsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily float Math\+::\+Quaternion\+::z}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Math/\mbox{\hyperlink{_math_8h}{Math.\+h}}\item 
+Source/\+Math/\mbox{\hyperlink{_math___quaternion_8cpp}{Math\+\_\+\+Quaternion.\+cpp}}\end{DoxyCompactItemize}

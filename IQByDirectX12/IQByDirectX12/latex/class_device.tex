@@ -1,0 +1,85 @@
+\hypertarget{class_device}{}\section{Device クラス}
+\label{class_device}\index{Device@{Device}}
+
+
+{\ttfamily \#include $<$Device.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_device_a9dabc419c8d8df3a686c33ce042bc99a}{$\sim$\+Device}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+Com\+Ptr$<$ I\+D3\+D12\+Device $>$ \mbox{\hyperlink{class_device_a254f5a196d646fa7ef108fbe2d7ce8d6}{Get\+Device}} () const
+\item 
+D3\+D\+\_\+\+F\+E\+A\+T\+U\+R\+E\+\_\+\+L\+E\+V\+EL \mbox{\hyperlink{class_device_af4104295c9c70394b50426f745988d21}{Get\+Feature\+Level}} () const
+\item 
+I\+D3\+D12\+Device $\ast$const \mbox{\hyperlink{class_device_a9cdad6c4f4eae466f20b80cf6f9934d9}{operator-\/$>$}} ()
+\begin{DoxyCompactList}\small\item\em デバイスへアクセスするオペレータ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ \mbox{\hyperlink{class_device_a170367ef9b9851afbc42d004ceba713c}{Create}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_device_a9dabc419c8d8df3a686c33ce042bc99a}\label{class_device_a9dabc419c8d8df3a686c33ce042bc99a}} 
+\index{Device@{Device}!````~Device@{$\sim$\+Device}}
+\index{````~Device@{$\sim$\+Device}!Device@{Device}}
+\subsubsection{\texorpdfstring{$\sim$\+Device()}{~Device()}}
+{\footnotesize\ttfamily Device\+::$\sim$\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_device_a170367ef9b9851afbc42d004ceba713c}\label{class_device_a170367ef9b9851afbc42d004ceba713c}} 
+\index{Device@{Device}!Create@{Create}}
+\index{Create@{Create}!Device@{Device}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Device\+::\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+デバイスを作成する \begin{DoxyNote}{覚え書き}
+デバイスはこのメソッドで生成する。\+Deviceの実体をそのまま持つことはできない。 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{戻り値}
+{\em デバイス作成成功時\+:\+Deviceのスマートポインタ,デバイス作成失敗時\+:nullptr} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_device_a254f5a196d646fa7ef108fbe2d7ce8d6}\label{class_device_a254f5a196d646fa7ef108fbe2d7ce8d6}} 
+\index{Device@{Device}!Get\+Device@{Get\+Device}}
+\index{Get\+Device@{Get\+Device}!Device@{Device}}
+\subsubsection{\texorpdfstring{Get\+Device()}{GetDevice()}}
+{\footnotesize\ttfamily Device\+::\+Get\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+デバイスの\+Com\+Ptrを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em Com\+Ptr(\+I\+D3\+D12\+Device)} & デバイスの\+Com\+Ptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_device_af4104295c9c70394b50426f745988d21}\label{class_device_af4104295c9c70394b50426f745988d21}} 
+\index{Device@{Device}!Get\+Feature\+Level@{Get\+Feature\+Level}}
+\index{Get\+Feature\+Level@{Get\+Feature\+Level}!Device@{Device}}
+\subsubsection{\texorpdfstring{Get\+Feature\+Level()}{GetFeatureLevel()}}
+{\footnotesize\ttfamily Device\+::\+Get\+Feature\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+デバイスを作成したフィーチャーレベルを取得する \mbox{\Hypertarget{class_device_a9cdad6c4f4eae466f20b80cf6f9934d9}\label{class_device_a9cdad6c4f4eae466f20b80cf6f9934d9}} 
+\index{Device@{Device}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!Device@{Device}}
+\subsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily I\+D3\+D12\+Device $\ast$const Device\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デバイスへアクセスするオペレータ 
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_device_8h}{Device.\+h}}\item 
+Source/\mbox{\hyperlink{_device_8cpp}{Device.\+cpp}}\end{DoxyCompactItemize}

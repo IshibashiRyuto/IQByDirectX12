@@ -1,0 +1,83 @@
+\hypertarget{namespace_direct_x}{}\section{DirectX 名前空間}
+\label{namespace_direct_x}\index{DirectX@{DirectX}}
+\subsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2a}{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS}} \{ \newline
+\mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa31db232209a0c414f3c5dd3f36fad240}{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+D\+E\+F\+A\+U\+LT}} = 0, 
+\mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa19253126a33109ad1e9ca15710a48a71}{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+O\+R\+C\+E\+\_\+\+S\+R\+GB}} = 0x1, 
+\mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aaa411d70404895e65f12c2e6f4216636c}{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+S\+R\+GB}} = 0x2, 
+\mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa84a4f743184a5fb4df457fe60fafc52a}{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+A\+U\+T\+O\+G\+EN}} = 0x4, 
+\newline
+\mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aaf71b74a0a22ed2bbf9cfe2e005b32ac2}{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+R\+E\+S\+E\+R\+VE}} = 0x8
+ \}
+\end{DoxyCompactItemize}
+\subsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl \mbox{\hyperlink{namespace_direct_x_a8f576b66bd7c5e3642f7b9dac0755504}{Load\+W\+I\+C\+Texture\+From\+Memory}} (\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$d3d\+Device, \+\_\+\+In\+\_\+reads\+\_\+bytes\+\_\+(wic\+Data\+Size) const uint8\+\_\+t $\ast$wic\+Data, size\+\_\+t wic\+Data\+Size, \+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$texture, std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&decoded\+Data, D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&subresource, size\+\_\+t maxsize=0)
+\item 
+H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl \mbox{\hyperlink{namespace_direct_x_a0b17693fe5dbc2fd7a45394d0723cb8b}{Load\+W\+I\+C\+Texture\+From\+File}} (\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$d3d\+Device, \+\_\+\+In\+\_\+z\+\_\+ const wchar\+\_\+t $\ast$sz\+File\+Name, \+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$texture, std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&decoded\+Data, D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&subresource, size\+\_\+t maxsize=0)
+\item 
+H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl \mbox{\hyperlink{namespace_direct_x_a0578d4a2b59a0e7cccada5b0337d7abe}{Load\+W\+I\+C\+Texture\+From\+Memory\+Ex}} (\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$d3d\+Device, \+\_\+\+In\+\_\+reads\+\_\+bytes\+\_\+(wic\+Data\+Size) const uint8\+\_\+t $\ast$wic\+Data, size\+\_\+t wic\+Data\+Size, size\+\_\+t maxsize, D3\+D12\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+F\+L\+A\+GS res\+Flags, unsigned int load\+Flags, \+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$texture, std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&decoded\+Data, D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&subresource)
+\item 
+H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl \mbox{\hyperlink{namespace_direct_x_a0a225c0e4dd4c907211fe54ca6ae1765}{Load\+W\+I\+C\+Texture\+From\+File\+Ex}} (\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$d3d\+Device, \+\_\+\+In\+\_\+z\+\_\+ const wchar\+\_\+t $\ast$sz\+File\+Name, size\+\_\+t maxsize, D3\+D12\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+F\+L\+A\+GS res\+Flags, unsigned int load\+Flags, \+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$texture, std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&decoded\+Data, D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&subresource)
+\end{DoxyCompactItemize}
+
+
+\subsection{列挙型詳解}
+\mbox{\Hypertarget{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2a}\label{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2a}} 
+\index{DirectX@{DirectX}!W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS}}
+\index{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS}!DirectX@{DirectX}}
+\subsubsection{\texorpdfstring{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS}{WIC\_LOADER\_FLAGS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2a}{Direct\+X\+::\+W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+L\+A\+GS}}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+D\+E\+F\+A\+U\+LT@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+D\+E\+F\+A\+U\+LT}!DirectX@{DirectX}}\index{DirectX@{DirectX}!W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+D\+E\+F\+A\+U\+LT@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+D\+E\+F\+A\+U\+LT}}}\mbox{\Hypertarget{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa31db232209a0c414f3c5dd3f36fad240}\label{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa31db232209a0c414f3c5dd3f36fad240}} 
+W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+D\+E\+F\+A\+U\+LT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+O\+R\+C\+E\+\_\+\+S\+R\+GB@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+O\+R\+C\+E\+\_\+\+S\+R\+GB}!DirectX@{DirectX}}\index{DirectX@{DirectX}!W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+O\+R\+C\+E\+\_\+\+S\+R\+GB@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+O\+R\+C\+E\+\_\+\+S\+R\+GB}}}\mbox{\Hypertarget{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa19253126a33109ad1e9ca15710a48a71}\label{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa19253126a33109ad1e9ca15710a48a71}} 
+W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+F\+O\+R\+C\+E\+\_\+\+S\+R\+GB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+S\+R\+GB@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+S\+R\+GB}!DirectX@{DirectX}}\index{DirectX@{DirectX}!W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+S\+R\+GB@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+S\+R\+GB}}}\mbox{\Hypertarget{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aaa411d70404895e65f12c2e6f4216636c}\label{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aaa411d70404895e65f12c2e6f4216636c}} 
+W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+S\+R\+GB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+A\+U\+T\+O\+G\+EN@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+A\+U\+T\+O\+G\+EN}!DirectX@{DirectX}}\index{DirectX@{DirectX}!W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+A\+U\+T\+O\+G\+EN@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+A\+U\+T\+O\+G\+EN}}}\mbox{\Hypertarget{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa84a4f743184a5fb4df457fe60fafc52a}\label{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aa84a4f743184a5fb4df457fe60fafc52a}} 
+W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+A\+U\+T\+O\+G\+EN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+R\+E\+S\+E\+R\+VE@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+R\+E\+S\+E\+R\+VE}!DirectX@{DirectX}}\index{DirectX@{DirectX}!W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+R\+E\+S\+E\+R\+VE@{W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+R\+E\+S\+E\+R\+VE}}}\mbox{\Hypertarget{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aaf71b74a0a22ed2bbf9cfe2e005b32ac2}\label{namespace_direct_x_ad1ef6b84995b08da5a29130bd8cc5c2aaf71b74a0a22ed2bbf9cfe2e005b32ac2}} 
+W\+I\+C\+\_\+\+L\+O\+A\+D\+E\+R\+\_\+\+M\+I\+P\+\_\+\+R\+E\+S\+E\+R\+VE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{namespace_direct_x_a0b17693fe5dbc2fd7a45394d0723cb8b}\label{namespace_direct_x_a0b17693fe5dbc2fd7a45394d0723cb8b}} 
+\index{DirectX@{DirectX}!Load\+W\+I\+C\+Texture\+From\+File@{Load\+W\+I\+C\+Texture\+From\+File}}
+\index{Load\+W\+I\+C\+Texture\+From\+File@{Load\+W\+I\+C\+Texture\+From\+File}!DirectX@{DirectX}}
+\subsubsection{\texorpdfstring{Load\+W\+I\+C\+Texture\+From\+File()}{LoadWICTextureFromFile()}}
+{\footnotesize\ttfamily H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl Direct\+X\+::\+Load\+W\+I\+C\+Texture\+From\+File (\begin{DoxyParamCaption}\item[{\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$}]{d3d\+Device,  }\item[{\+\_\+\+In\+\_\+z\+\_\+ const wchar\+\_\+t $\ast$}]{sz\+File\+Name,  }\item[{\+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$}]{texture,  }\item[{std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&}]{decoded\+Data,  }\item[{D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&}]{subresource,  }\item[{size\+\_\+t}]{maxsize = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_direct_x_a0a225c0e4dd4c907211fe54ca6ae1765}\label{namespace_direct_x_a0a225c0e4dd4c907211fe54ca6ae1765}} 
+\index{DirectX@{DirectX}!Load\+W\+I\+C\+Texture\+From\+File\+Ex@{Load\+W\+I\+C\+Texture\+From\+File\+Ex}}
+\index{Load\+W\+I\+C\+Texture\+From\+File\+Ex@{Load\+W\+I\+C\+Texture\+From\+File\+Ex}!DirectX@{DirectX}}
+\subsubsection{\texorpdfstring{Load\+W\+I\+C\+Texture\+From\+File\+Ex()}{LoadWICTextureFromFileEx()}}
+{\footnotesize\ttfamily H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl Direct\+X\+::\+Load\+W\+I\+C\+Texture\+From\+File\+Ex (\begin{DoxyParamCaption}\item[{\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$}]{d3d\+Device,  }\item[{\+\_\+\+In\+\_\+z\+\_\+ const wchar\+\_\+t $\ast$}]{sz\+File\+Name,  }\item[{size\+\_\+t}]{maxsize,  }\item[{D3\+D12\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+F\+L\+A\+GS}]{res\+Flags,  }\item[{unsigned int}]{load\+Flags,  }\item[{\+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$}]{texture,  }\item[{std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&}]{decoded\+Data,  }\item[{D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&}]{subresource }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_direct_x_a8f576b66bd7c5e3642f7b9dac0755504}\label{namespace_direct_x_a8f576b66bd7c5e3642f7b9dac0755504}} 
+\index{DirectX@{DirectX}!Load\+W\+I\+C\+Texture\+From\+Memory@{Load\+W\+I\+C\+Texture\+From\+Memory}}
+\index{Load\+W\+I\+C\+Texture\+From\+Memory@{Load\+W\+I\+C\+Texture\+From\+Memory}!DirectX@{DirectX}}
+\subsubsection{\texorpdfstring{Load\+W\+I\+C\+Texture\+From\+Memory()}{LoadWICTextureFromMemory()}}
+{\footnotesize\ttfamily H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl Direct\+X\+::\+Load\+W\+I\+C\+Texture\+From\+Memory (\begin{DoxyParamCaption}\item[{\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$}]{d3d\+Device,  }\item[{\+\_\+\+In\+\_\+reads\+\_\+bytes\+\_\+(wic\+Data\+Size) const uint8\+\_\+t $\ast$}]{wic\+Data,  }\item[{size\+\_\+t}]{wic\+Data\+Size,  }\item[{\+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$}]{texture,  }\item[{std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&}]{decoded\+Data,  }\item[{D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&}]{subresource,  }\item[{size\+\_\+t}]{maxsize = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_direct_x_a0578d4a2b59a0e7cccada5b0337d7abe}\label{namespace_direct_x_a0578d4a2b59a0e7cccada5b0337d7abe}} 
+\index{DirectX@{DirectX}!Load\+W\+I\+C\+Texture\+From\+Memory\+Ex@{Load\+W\+I\+C\+Texture\+From\+Memory\+Ex}}
+\index{Load\+W\+I\+C\+Texture\+From\+Memory\+Ex@{Load\+W\+I\+C\+Texture\+From\+Memory\+Ex}!DirectX@{DirectX}}
+\subsubsection{\texorpdfstring{Load\+W\+I\+C\+Texture\+From\+Memory\+Ex()}{LoadWICTextureFromMemoryEx()}}
+{\footnotesize\ttfamily H\+R\+E\+S\+U\+LT \+\_\+\+\_\+cdecl Direct\+X\+::\+Load\+W\+I\+C\+Texture\+From\+Memory\+Ex (\begin{DoxyParamCaption}\item[{\+\_\+\+In\+\_\+ I\+D3\+D12\+Device $\ast$}]{d3d\+Device,  }\item[{\+\_\+\+In\+\_\+reads\+\_\+bytes\+\_\+(wic\+Data\+Size) const uint8\+\_\+t $\ast$}]{wic\+Data,  }\item[{size\+\_\+t}]{wic\+Data\+Size,  }\item[{size\+\_\+t}]{maxsize,  }\item[{D3\+D12\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+F\+L\+A\+GS}]{res\+Flags,  }\item[{unsigned int}]{load\+Flags,  }\item[{\+\_\+\+Outptr\+\_\+ I\+D3\+D12\+Resource $\ast$$\ast$}]{texture,  }\item[{std\+::unique\+\_\+ptr$<$ uint8\+\_\+t\mbox{[}$\,$\mbox{]}$>$ \&}]{decoded\+Data,  }\item[{D3\+D12\+\_\+\+S\+U\+B\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+D\+A\+TA \&}]{subresource }\end{DoxyParamCaption})}
+

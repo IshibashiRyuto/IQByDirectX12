@@ -1,0 +1,165 @@
+\hypertarget{class_model_data}{}\section{Model\+Data クラス}
+\label{class_model_data}\index{Model\+Data@{Model\+Data}}
+
+
+{\ttfamily \#include $<$Model\+Data.\+h$>$}
+
+Model\+Data の継承関係図\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model_data}
+\end{center}
+\end{figure}
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_model_data_a020b20ee652b493d6400f153cce4d391}{Model\+Data}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ vertex\+Buffer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_index_buffer}{Index\+Buffer}} $>$ index\+Buffer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ descriptor\+Heap)
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_model_data_a8888ea03c5d27446f2f7f93f6fe6cd42}{$\sim$\+Model\+Data}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ \mbox{\hyperlink{class_model_data_a4c76f184b373d682cd94a21440730ac0}{Get\+Vertex\+Buffer}} () const
+\begin{DoxyCompactList}\small\item\em 頂点バッファを取得する \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_index_buffer}{Index\+Buffer}} $>$ \mbox{\hyperlink{class_model_data_a4b0d36d5d77479dc7d08977aded2bc94}{Get\+Index\+Buffer}} () const
+\begin{DoxyCompactList}\small\item\em インデックスバッファを取得する \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ \mbox{\hyperlink{class_model_data_a7b30fc0bbceb348a615241b4fd333515}{Get\+Descriptor\+Heap}} () const
+\begin{DoxyCompactList}\small\item\em デスクリプタヒープを取得する \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_pose}{Pose}} $>$ \mbox{\hyperlink{class_model_data_a7c43dc81e963e445250c2ae8aceae9d0}{\+\_\+\+Debug\+Get\+Pose}} () const
+\item 
+virtual void \mbox{\hyperlink{class_model_data_a67a18789221798611c63fd18edb3a9fc}{Update}} ()
+\begin{DoxyCompactList}\small\item\em 更新処理 \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_model_data_a774032c8dac7355ad2657c83cf0d1e21}{Draw}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ graphics\+Command\+List, const \mbox{\hyperlink{struct_instance_data}{Instance\+Data}} \&instance\+Data) const
+\begin{DoxyCompactList}\small\item\em 描画処理 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ \mbox{\hyperlink{class_model_data_a5aa8473c9a0c82fcf9358e58a46d2ee0}{m\+Vertex\+Buffer}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_index_buffer}{Index\+Buffer}} $>$ \mbox{\hyperlink{class_model_data_a62f3a9436dd4933a240ebb59a03f84bb}{m\+Index\+Buffer}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ \mbox{\hyperlink{class_model_data_aba1b9420b9caed0552c28bffd0914225}{m\+Desc\+Heap}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_pose}{Pose}} $>$ \mbox{\hyperlink{class_model_data_a5136f7dc8b351f859681f6222d8c41c1}{m\+Pose}}
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_model_data_a020b20ee652b493d6400f153cce4d391}\label{class_model_data_a020b20ee652b493d6400f153cce4d391}} 
+\index{Model\+Data@{Model\+Data}!Model\+Data@{Model\+Data}}
+\index{Model\+Data@{Model\+Data}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{Model\+Data()}{ModelData()}}
+{\footnotesize\ttfamily Model\+Data\+::\+Model\+Data (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$}]{vertex\+Buffer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_index_buffer}{Index\+Buffer}} $>$}]{index\+Buffer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$}]{descriptor\+Heap }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_model_data_a8888ea03c5d27446f2f7f93f6fe6cd42}\label{class_model_data_a8888ea03c5d27446f2f7f93f6fe6cd42}} 
+\index{Model\+Data@{Model\+Data}!````~Model\+Data@{$\sim$\+Model\+Data}}
+\index{````~Model\+Data@{$\sim$\+Model\+Data}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{$\sim$\+Model\+Data()}{~ModelData()}}
+{\footnotesize\ttfamily Model\+Data\+::$\sim$\+Model\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_model_data_a7c43dc81e963e445250c2ae8aceae9d0}\label{class_model_data_a7c43dc81e963e445250c2ae8aceae9d0}} 
+\index{Model\+Data@{Model\+Data}!\+\_\+\+Debug\+Get\+Pose@{\+\_\+\+Debug\+Get\+Pose}}
+\index{\+\_\+\+Debug\+Get\+Pose@{\+\_\+\+Debug\+Get\+Pose}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{\+\_\+\+Debug\+Get\+Pose()}{\_DebugGetPose()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_pose}{Pose}} $>$ Model\+Data\+::\+\_\+\+Debug\+Get\+Pose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Debug 姿勢情報を取得する \mbox{\Hypertarget{class_model_data_a774032c8dac7355ad2657c83cf0d1e21}\label{class_model_data_a774032c8dac7355ad2657c83cf0d1e21}} 
+\index{Model\+Data@{Model\+Data}!Draw@{Draw}}
+\index{Draw@{Draw}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Model\+Data\+::\+Draw (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{graphics\+Command\+List,  }\item[{const \mbox{\hyperlink{struct_instance_data}{Instance\+Data}} \&}]{instance\+Data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+描画処理 
+
+
+
+\mbox{\hyperlink{class_p_m_d_model_data_ae811d49854ae659f20ac9be60a5fb146}{P\+M\+D\+Model\+Data}}, \mbox{\hyperlink{class_p_m_x_model_data_aa88713736e3c337cabb23127c03be3c2}{P\+M\+X\+Model\+Data}}で再実装されています。
+
+\mbox{\Hypertarget{class_model_data_a7b30fc0bbceb348a615241b4fd333515}\label{class_model_data_a7b30fc0bbceb348a615241b4fd333515}} 
+\index{Model\+Data@{Model\+Data}!Get\+Descriptor\+Heap@{Get\+Descriptor\+Heap}}
+\index{Get\+Descriptor\+Heap@{Get\+Descriptor\+Heap}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{Get\+Descriptor\+Heap()}{GetDescriptorHeap()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ Model\+Data\+::\+Get\+Descriptor\+Heap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+デスクリプタヒープを取得する 
+
+\mbox{\Hypertarget{class_model_data_a4b0d36d5d77479dc7d08977aded2bc94}\label{class_model_data_a4b0d36d5d77479dc7d08977aded2bc94}} 
+\index{Model\+Data@{Model\+Data}!Get\+Index\+Buffer@{Get\+Index\+Buffer}}
+\index{Get\+Index\+Buffer@{Get\+Index\+Buffer}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{Get\+Index\+Buffer()}{GetIndexBuffer()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_index_buffer}{Index\+Buffer}} $>$ Model\+Data\+::\+Get\+Index\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+インデックスバッファを取得する 
+
+\mbox{\Hypertarget{class_model_data_a4c76f184b373d682cd94a21440730ac0}\label{class_model_data_a4c76f184b373d682cd94a21440730ac0}} 
+\index{Model\+Data@{Model\+Data}!Get\+Vertex\+Buffer@{Get\+Vertex\+Buffer}}
+\index{Get\+Vertex\+Buffer@{Get\+Vertex\+Buffer}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{Get\+Vertex\+Buffer()}{GetVertexBuffer()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ Model\+Data\+::\+Get\+Vertex\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+頂点バッファを取得する 
+
+\mbox{\Hypertarget{class_model_data_a67a18789221798611c63fd18edb3a9fc}\label{class_model_data_a67a18789221798611c63fd18edb3a9fc}} 
+\index{Model\+Data@{Model\+Data}!Update@{Update}}
+\index{Update@{Update}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Model\+Data\+::\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+更新処理 
+
+
+
+\mbox{\hyperlink{class_p_m_x_model_data_a4c692007e0b890ee0bfd0f2bbbe0b97f}{P\+M\+X\+Model\+Data}}で再実装されています。
+
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{class_model_data_aba1b9420b9caed0552c28bffd0914225}\label{class_model_data_aba1b9420b9caed0552c28bffd0914225}} 
+\index{Model\+Data@{Model\+Data}!m\+Desc\+Heap@{m\+Desc\+Heap}}
+\index{m\+Desc\+Heap@{m\+Desc\+Heap}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{m\+Desc\+Heap}{mDescHeap}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}}$>$ Model\+Data\+::m\+Desc\+Heap\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_model_data_a62f3a9436dd4933a240ebb59a03f84bb}\label{class_model_data_a62f3a9436dd4933a240ebb59a03f84bb}} 
+\index{Model\+Data@{Model\+Data}!m\+Index\+Buffer@{m\+Index\+Buffer}}
+\index{m\+Index\+Buffer@{m\+Index\+Buffer}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{m\+Index\+Buffer}{mIndexBuffer}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_index_buffer}{Index\+Buffer}}$>$ Model\+Data\+::m\+Index\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_model_data_a5136f7dc8b351f859681f6222d8c41c1}\label{class_model_data_a5136f7dc8b351f859681f6222d8c41c1}} 
+\index{Model\+Data@{Model\+Data}!m\+Pose@{m\+Pose}}
+\index{m\+Pose@{m\+Pose}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{m\+Pose}{mPose}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_pose}{Pose}}$>$ Model\+Data\+::m\+Pose\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_model_data_a5aa8473c9a0c82fcf9358e58a46d2ee0}\label{class_model_data_a5aa8473c9a0c82fcf9358e58a46d2ee0}} 
+\index{Model\+Data@{Model\+Data}!m\+Vertex\+Buffer@{m\+Vertex\+Buffer}}
+\index{m\+Vertex\+Buffer@{m\+Vertex\+Buffer}!Model\+Data@{Model\+Data}}
+\subsubsection{\texorpdfstring{m\+Vertex\+Buffer}{mVertexBuffer}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}}$>$ Model\+Data\+::m\+Vertex\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_model_data_8h}{Model\+Data.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_model_data_8cpp}{Model\+Data.\+cpp}}\end{DoxyCompactItemize}

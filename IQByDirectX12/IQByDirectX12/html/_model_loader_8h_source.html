@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/Model/ModelLoader.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_4d2cd150aff3df625ebb7431566b7a26.html">Model</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ModelLoader.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_model_loader_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    ModelLoader</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    モデルローダーのベース</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// システムヘッダインクルード</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// 自作ヘッダインクルード</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_model_data_manager_8h.html">ModelDataManager.h</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_model_8h.html">Model.h</a>&quot;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// クラス使用宣言</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_model_data.html">ModelData</a>;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span><a class="code" href="class_device.html">Device</a>;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_model_loader.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_model_loader.html">ModelLoader</a></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_model_loader.html#a4015291af96be2ea657577bdf4fb29f4">~ModelLoader</a>();</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> std::shared_ptr&lt;Model&gt; <a class="code" href="class_model_loader.html#a8e2157daa8d364c36fd26922f04adcb0">LoadModel</a>(<span class="keyword">const</span> std::string&amp; filePath) = 0;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_model_loader.html#a6662edd78b17eeead09e822e19fc1799">ClearModelData</a>() = 0;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_model_loader.html#a2e5b33970d8a71e5851e3b51b7980fa8">   39</a></span>&#160;    std::shared_ptr&lt;Device&gt; <a class="code" href="class_model_loader.html#a2e5b33970d8a71e5851e3b51b7980fa8">mDevice</a>;            <span class="comment">// Dx12デバイス</span></div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_model_loader.html#a5877a5f2d2ec8db87cdcbf0a87c8587b">   40</a></span>&#160;    <a class="code" href="class_model_data_manager.html">ModelDataManager</a>&amp; <a class="code" href="class_model_loader.html#a5877a5f2d2ec8db87cdcbf0a87c8587b">mModelDataManager</a>;    <span class="comment">// モデルデータマネージャへの参照</span></div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_model_loader.html#a8d1002a30494635ec76972f3354f1ba9">   41</a></span>&#160;    std::map&lt;std::string, int&gt; <a class="code" href="class_model_loader.html#a8d1002a30494635ec76972f3354f1ba9">mModelHandleManager</a>; <span class="comment">// モデルハンドルの管理</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                                    </div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_model_loader.html#a0e7c5aa28d4772857b1bab0a9ca7428f">ModelLoader</a>(std::shared_ptr&lt;Device&gt; device);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="ttc" id="_model_8h_html"><div class="ttname"><a href="_model_8h.html">Model.h</a></div></div>
+<div class="ttc" id="class_model_loader_html_a5877a5f2d2ec8db87cdcbf0a87c8587b"><div class="ttname"><a href="class_model_loader.html#a5877a5f2d2ec8db87cdcbf0a87c8587b">ModelLoader::mModelDataManager</a></div><div class="ttdeci">ModelDataManager &amp; mModelDataManager</div><div class="ttdef"><b>Definition:</b> ModelLoader.h:40</div></div>
+<div class="ttc" id="class_model_data_manager_html"><div class="ttname"><a href="class_model_data_manager.html">ModelDataManager</a></div><div class="ttdef"><b>Definition:</b> ModelDataManager.h:19</div></div>
+<div class="ttc" id="class_model_loader_html_a0e7c5aa28d4772857b1bab0a9ca7428f"><div class="ttname"><a href="class_model_loader.html#a0e7c5aa28d4772857b1bab0a9ca7428f">ModelLoader::ModelLoader</a></div><div class="ttdeci">ModelLoader(std::shared_ptr&lt; Device &gt; device)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> ModelLoader.cpp:5</div></div>
+<div class="ttc" id="class_device_html"><div class="ttname"><a href="class_device.html">Device</a></div><div class="ttdef"><b>Definition:</b> Device.h:20</div></div>
+<div class="ttc" id="class_model_loader_html_a8d1002a30494635ec76972f3354f1ba9"><div class="ttname"><a href="class_model_loader.html#a8d1002a30494635ec76972f3354f1ba9">ModelLoader::mModelHandleManager</a></div><div class="ttdeci">std::map&lt; std::string, int &gt; mModelHandleManager</div><div class="ttdef"><b>Definition:</b> ModelLoader.h:41</div></div>
+<div class="ttc" id="_model_data_manager_8h_html"><div class="ttname"><a href="_model_data_manager_8h.html">ModelDataManager.h</a></div></div>
+<div class="ttc" id="class_model_loader_html_a8e2157daa8d364c36fd26922f04adcb0"><div class="ttname"><a href="class_model_loader.html#a8e2157daa8d364c36fd26922f04adcb0">ModelLoader::LoadModel</a></div><div class="ttdeci">virtual std::shared_ptr&lt; Model &gt; LoadModel(const std::string &amp;filePath)=0</div></div>
+<div class="ttc" id="class_model_loader_html_a6662edd78b17eeead09e822e19fc1799"><div class="ttname"><a href="class_model_loader.html#a6662edd78b17eeead09e822e19fc1799">ModelLoader::ClearModelData</a></div><div class="ttdeci">virtual void ClearModelData()=0</div></div>
+<div class="ttc" id="class_model_loader_html_a2e5b33970d8a71e5851e3b51b7980fa8"><div class="ttname"><a href="class_model_loader.html#a2e5b33970d8a71e5851e3b51b7980fa8">ModelLoader::mDevice</a></div><div class="ttdeci">std::shared_ptr&lt; Device &gt; mDevice</div><div class="ttdef"><b>Definition:</b> ModelLoader.h:39</div></div>
+<div class="ttc" id="class_model_loader_html"><div class="ttname"><a href="class_model_loader.html">ModelLoader</a></div><div class="ttdef"><b>Definition:</b> ModelLoader.h:22</div></div>
+<div class="ttc" id="class_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> ModelData.h:22</div></div>
+<div class="ttc" id="class_model_loader_html_a4015291af96be2ea657577bdf4fb29f4"><div class="ttname"><a href="class_model_loader.html#a4015291af96be2ea657577bdf4fb29f4">ModelLoader::~ModelLoader</a></div><div class="ttdeci">virtual ~ModelLoader()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> ModelLoader.cpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

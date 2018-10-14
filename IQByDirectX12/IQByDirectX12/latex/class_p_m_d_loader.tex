@@ -1,0 +1,76 @@
+\hypertarget{class_p_m_d_loader}{}\section{P\+M\+D\+Loader クラス}
+\label{class_p_m_d_loader}\index{P\+M\+D\+Loader@{P\+M\+D\+Loader}}
+
+
+{\ttfamily \#include $<$P\+M\+D\+Loader.\+h$>$}
+
+P\+M\+D\+Loader の継承関係図\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_m_d_loader}
+\end{center}
+\end{figure}
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_m_d_loader_a9a784c2a2700ee01b6c1e8139a876fa1}{$\sim$\+P\+M\+D\+Loader}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model}{Model}} $>$ \mbox{\hyperlink{class_p_m_d_loader_ae1da98c6236a58940ec521521e5c8288}{Load\+Model}} (const std\+::string \&file\+Path)
+\item 
+void \mbox{\hyperlink{class_p_m_d_loader_abdb6e537aef759341dfc62cd1038539c}{Clear\+Model\+Data}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_d_loader}{P\+M\+D\+Loader}} $>$ \mbox{\hyperlink{class_p_m_d_loader_a82a5b173f9f2e05662174452cfde5578}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device)
+\end{DoxyCompactItemize}
+\subsection*{その他の継承メンバ}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_p_m_d_loader_a9a784c2a2700ee01b6c1e8139a876fa1}\label{class_p_m_d_loader_a9a784c2a2700ee01b6c1e8139a876fa1}} 
+\index{P\+M\+D\+Loader@{P\+M\+D\+Loader}!````~P\+M\+D\+Loader@{$\sim$\+P\+M\+D\+Loader}}
+\index{````~P\+M\+D\+Loader@{$\sim$\+P\+M\+D\+Loader}!P\+M\+D\+Loader@{P\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{$\sim$\+P\+M\+D\+Loader()}{~PMDLoader()}}
+{\footnotesize\ttfamily P\+M\+D\+Loader\+::$\sim$\+P\+M\+D\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_p_m_d_loader_abdb6e537aef759341dfc62cd1038539c}\label{class_p_m_d_loader_abdb6e537aef759341dfc62cd1038539c}} 
+\index{P\+M\+D\+Loader@{P\+M\+D\+Loader}!Clear\+Model\+Data@{Clear\+Model\+Data}}
+\index{Clear\+Model\+Data@{Clear\+Model\+Data}!P\+M\+D\+Loader@{P\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{Clear\+Model\+Data()}{ClearModelData()}}
+{\footnotesize\ttfamily P\+M\+D\+Loader\+::\+Clear\+Model\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+読み込んだモデル情報を削除する 
+
+\mbox{\hyperlink{class_model_loader_a6662edd78b17eeead09e822e19fc1799}{Model\+Loader}}を実装しています。
+
+\mbox{\Hypertarget{class_p_m_d_loader_a82a5b173f9f2e05662174452cfde5578}\label{class_p_m_d_loader_a82a5b173f9f2e05662174452cfde5578}} 
+\index{P\+M\+D\+Loader@{P\+M\+D\+Loader}!Create@{Create}}
+\index{Create@{Create}!P\+M\+D\+Loader@{P\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_d_loader}{P\+M\+D\+Loader}} $>$ P\+M\+D\+Loader\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_p_m_d_loader_ae1da98c6236a58940ec521521e5c8288}\label{class_p_m_d_loader_ae1da98c6236a58940ec521521e5c8288}} 
+\index{P\+M\+D\+Loader@{P\+M\+D\+Loader}!Load\+Model@{Load\+Model}}
+\index{Load\+Model@{Load\+Model}!P\+M\+D\+Loader@{P\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{Load\+Model()}{LoadModel()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model}{Model}} $>$ P\+M\+D\+Loader\+::\+Load\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+モデルをロードする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em file\+Path} & \+: ファイルパス \\
+\hline
+\end{DoxyParams}
+モデルデータの生成、登録 
+
+\mbox{\hyperlink{class_model_loader_a8e2157daa8d364c36fd26922f04adcb0}{Model\+Loader}}を実装しています。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_p_m_d_loader_8h}{P\+M\+D\+Loader.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_p_m_d_loader_8cpp}{P\+M\+D\+Loader.\+cpp}}\end{DoxyCompactItemize}

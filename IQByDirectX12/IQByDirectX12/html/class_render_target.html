@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: RenderTarget クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="class_render_target-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">RenderTarget クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_render_target_8h_source.html">RenderTarget.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a5c8ef0f2c9e46ed80e5e3ce6e5567b8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a5c8ef0f2c9e46ed80e5e3ce6e5567b8b">~RenderTarget</a> ()</td></tr>
+<tr class="memdesc:a5c8ef0f2c9e46ed80e5e3ce6e5567b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="#a5c8ef0f2c9e46ed80e5e3ce6e5567b8b">[詳解]</a><br /></td></tr>
+<tr class="separator:a5c8ef0f2c9e46ed80e5e3ce6e5567b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d0110b24e7a80b5c61838776d8be3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a49d0110b24e7a80b5c61838776d8be3d">ChangeRenderTarget</a> (ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList, int targetIndex)</td></tr>
+<tr class="separator:a49d0110b24e7a80b5c61838776d8be3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182c92e3d7cb77dba1485b4471bd22c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a182c92e3d7cb77dba1485b4471bd22c8">FinishRendering</a> (ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</td></tr>
+<tr class="separator:a182c92e3d7cb77dba1485b4471bd22c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170c383af63b5919a45965d719db1acb"><td class="memItemLeft" align="right" valign="top">D3D12_CPU_DESCRIPTOR_HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a170c383af63b5919a45965d719db1acb">GetRTVHandle</a> ()</td></tr>
+<tr class="separator:a170c383af63b5919a45965d719db1acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3d82758fcf16a3546289a813f42c654"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#aa3d82758fcf16a3546289a813f42c654">ClearRenderTarget</a> (ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</td></tr>
+<tr class="separator:aa3d82758fcf16a3546289a813f42c654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a3867ed895640f96c911ad7da3cd3e1d0"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_render_target.html">RenderTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a3867ed895640f96c911ad7da3cd3e1d0">Create</a> (std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt; device, ComPtr&lt; IDXGISwapChain1 &gt; swapChain, int renderTargetsNum)</td></tr>
+<tr class="separator:a3867ed895640f96c911ad7da3cd3e1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a31a30a9219f3ddaf6597247088b65fb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a31a30a9219f3ddaf6597247088b65fb6">RenderTarget</a> (std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt; device)</td></tr>
+<tr class="separator:a31a30a9219f3ddaf6597247088b65fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:a921f80927651efee5c3385b99cd5d33f"><td class="memItemLeft" align="right" valign="top">const UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a921f80927651efee5c3385b99cd5d33f">RENDER_TARGET_VIEW_DESCRIPTOR_SIZE</a></td></tr>
+<tr class="separator:a921f80927651efee5c3385b99cd5d33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4069877a023a2802622246f09786d525"><td class="memItemLeft" align="right" valign="top">std::vector&lt; ComPtr&lt; ID3D12Resource &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a4069877a023a2802622246f09786d525">mRenderTargets</a></td></tr>
+<tr class="separator:a4069877a023a2802622246f09786d525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4879247e09bc36ae9fa522ee2ffb5235"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12DescriptorHeap &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a4879247e09bc36ae9fa522ee2ffb5235">mRTVDescHeap</a></td></tr>
+<tr class="separator:a4879247e09bc36ae9fa522ee2ffb5235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bcf37524ecb561b92e355dca767130d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target.html#a1bcf37524ecb561b92e355dca767130d">mRenderTargetIndex</a></td></tr>
+<tr class="separator:a1bcf37524ecb561b92e355dca767130d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a5c8ef0f2c9e46ed80e5e3ce6e5567b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c8ef0f2c9e46ed80e5e3ce6e5567b8b">&#9670;&nbsp;</a></span>~RenderTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderTarget::~RenderTarget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<a id="a31a30a9219f3ddaf6597247088b65fb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31a30a9219f3ddaf6597247088b65fb6">&#9670;&nbsp;</a></span>RenderTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderTarget::RenderTarget </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt;&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>コンストラクタ </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>ID3D12デバイス </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a49d0110b24e7a80b5c61838776d8be3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49d0110b24e7a80b5c61838776d8be3d">&#9670;&nbsp;</a></span>ChangeRenderTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderTarget::ChangeRenderTarget </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12GraphicsCommandList &gt;&#160;</td>
+          <td class="paramname"><em>commandList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>レンダーターゲットを変更する </p>
+
+</div>
+</div>
+<a id="aa3d82758fcf16a3546289a813f42c654"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d82758fcf16a3546289a813f42c654">&#9670;&nbsp;</a></span>ClearRenderTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderTarget::ClearRenderTarget </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12GraphicsCommandList &gt;&#160;</td>
+          <td class="paramname"><em>commandList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3867ed895640f96c911ad7da3cd3e1d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3867ed895640f96c911ad7da3cd3e1d0">&#9670;&nbsp;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderTarget::Create </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_device.html">Device</a> &gt;&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ComPtr&lt; IDXGISwapChain1 &gt;&#160;</td>
+          <td class="paramname"><em>swapChain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>renderTargetsNum</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>レンダーターゲットを生成し、管理するRenderTargetクラスを返す </p><dl class="section note"><dt>覚え書き</dt><dd>RenderTargetクラスはこのメソッドでのみ生成可能 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>ID3D12デバイス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">swapChain</td><td>IDXGIスワップチェイン </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">renderTargetsNum</td><td>レンダーターゲットの数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">生成成功時</td><td>RenderTargetクラスのshared_ptr, 生成失敗時: nullptr </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a182c92e3d7cb77dba1485b4471bd22c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a182c92e3d7cb77dba1485b4471bd22c8">&#9670;&nbsp;</a></span>FinishRendering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderTarget::FinishRendering </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12GraphicsCommandList &gt;&#160;</td>
+          <td class="paramname"><em>commandList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>描画処理を終了する </p>
+
+</div>
+</div>
+<a id="a170c383af63b5919a45965d719db1acb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170c383af63b5919a45965d719db1acb">&#9670;&nbsp;</a></span>GetRTVHandle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderTarget::GetRTVHandle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>レンダーターゲットビューのハンドルを取得する </p>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="a1bcf37524ecb561b92e355dca767130d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bcf37524ecb561b92e355dca767130d">&#9670;&nbsp;</a></span>mRenderTargetIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RenderTarget::mRenderTargetIndex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4069877a023a2802622246f09786d525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4069877a023a2802622246f09786d525">&#9670;&nbsp;</a></span>mRenderTargets</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;ComPtr&lt;ID3D12Resource&gt; &gt; RenderTarget::mRenderTargets</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4879247e09bc36ae9fa522ee2ffb5235"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4879247e09bc36ae9fa522ee2ffb5235">&#9670;&nbsp;</a></span>mRTVDescHeap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ComPtr&lt;ID3D12DescriptorHeap&gt; RenderTarget::mRTVDescHeap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a921f80927651efee5c3385b99cd5d33f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a921f80927651efee5c3385b99cd5d33f">&#9670;&nbsp;</a></span>RENDER_TARGET_VIEW_DESCRIPTOR_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const UINT RenderTarget::RENDER_TARGET_VIEW_DESCRIPTOR_SIZE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/<a class="el" href="_render_target_8h_source.html">RenderTarget.h</a></li>
+<li>Source/<a class="el" href="_render_target_8cpp.html">RenderTarget.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

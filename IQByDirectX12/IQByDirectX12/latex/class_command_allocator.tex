@@ -1,0 +1,81 @@
+\hypertarget{class_command_allocator}{}\section{Command\+Allocator クラス}
+\label{class_command_allocator}\index{Command\+Allocator@{Command\+Allocator}}
+
+
+{\ttfamily \#include $<$Command\+Allocator.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_command_allocator_a2c03013b9d9a5147b6d505803252ea7a}{$\sim$\+Command\+Allocator}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+Com\+Ptr$<$ I\+D3\+D12\+Command\+Allocator $>$ \mbox{\hyperlink{class_command_allocator_a630e54ed6b94bab739c9457e0440a917}{Get\+Allocator}} () const
+\item 
+I\+D3\+D12\+Command\+Allocator $\ast$const \mbox{\hyperlink{class_command_allocator_a3041e5f33f14ac83dd2bea366c416cdb}{operator-\/$>$}} () const
+\begin{DoxyCompactList}\small\item\em コマンドのアロケータを指すオペレータ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_command_allocator}{Command\+Allocator}} $>$ \mbox{\hyperlink{class_command_allocator_af7c1081a0fc5d36b36f6c99e3fbe8128}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, D3\+D12\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+T\+Y\+PE command\+List\+Type, const std\+::wstring \&name=\mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587}{L}}\char`\"{}\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_command_allocator_a2c03013b9d9a5147b6d505803252ea7a}\label{class_command_allocator_a2c03013b9d9a5147b6d505803252ea7a}} 
+\index{Command\+Allocator@{Command\+Allocator}!````~Command\+Allocator@{$\sim$\+Command\+Allocator}}
+\index{````~Command\+Allocator@{$\sim$\+Command\+Allocator}!Command\+Allocator@{Command\+Allocator}}
+\subsubsection{\texorpdfstring{$\sim$\+Command\+Allocator()}{~CommandAllocator()}}
+{\footnotesize\ttfamily Command\+Allocator\+::$\sim$\+Command\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_command_allocator_af7c1081a0fc5d36b36f6c99e3fbe8128}\label{class_command_allocator_af7c1081a0fc5d36b36f6c99e3fbe8128}} 
+\index{Command\+Allocator@{Command\+Allocator}!Create@{Create}}
+\index{Create@{Create}!Command\+Allocator@{Command\+Allocator}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Command\+Allocator\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{D3\+D12\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+T\+Y\+PE}]{command\+List\+Type,  }\item[{const std\+::wstring \&}]{name = {\ttfamily \mbox{\hyperlink{_keyboard_8h_a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587}{L}}\char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+コマンドアロケータを生成する \begin{DoxyNote}{覚え書き}
+Command\+Allocatorクラスはこのメソッドを通じてのみ生成可能 実体を直接持つことはできない。 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & D3\+D12デバイス \\
+\hline
+\mbox{\tt in}  & {\em command\+List\+Type} & コマンドリストの種類 \\
+\hline
+\mbox{\tt in}  & {\em name} & \+: 名前 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功時\+:\+Command\+Allocatorのshared\+\_\+ptr,生成失敗時} & nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_command_allocator_a630e54ed6b94bab739c9457e0440a917}\label{class_command_allocator_a630e54ed6b94bab739c9457e0440a917}} 
+\index{Command\+Allocator@{Command\+Allocator}!Get\+Allocator@{Get\+Allocator}}
+\index{Get\+Allocator@{Get\+Allocator}!Command\+Allocator@{Command\+Allocator}}
+\subsubsection{\texorpdfstring{Get\+Allocator()}{GetAllocator()}}
+{\footnotesize\ttfamily Com\+Ptr$<$ I\+D3\+D12\+Command\+Allocator $>$ Command\+Allocator\+::\+Get\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_command_allocator_a3041e5f33f14ac83dd2bea366c416cdb}\label{class_command_allocator_a3041e5f33f14ac83dd2bea366c416cdb}} 
+\index{Command\+Allocator@{Command\+Allocator}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!Command\+Allocator@{Command\+Allocator}}
+\subsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily I\+D3\+D12\+Command\+Allocator $\ast$const Command\+Allocator\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+コマンドのアロケータを指すオペレータ 
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_command_allocator_8h}{Command\+Allocator.\+h}}\item 
+Source/\mbox{\hyperlink{_command_allocator_8cpp}{Command\+Allocator.\+cpp}}\end{DoxyCompactItemize}

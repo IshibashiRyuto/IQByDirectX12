@@ -1,0 +1,253 @@
+\hypertarget{struct_p_m_x_1_1_bone_data}{}\section{P\+MX\+:\+:Bone\+Data 構造体}
+\label{struct_p_m_x_1_1_bone_data}\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+
+
+{\ttfamily \#include $<$P\+M\+X\+Model\+Data\+Info.\+h$>$}
+
+\subsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::wstring \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_ac9b306bf896f65f8b5b4ff406cefb36a}{name}}
+\item 
+std\+::wstring \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a3cee0d841e897681e289e2b1296ad6a9}{name\+Eng}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a91c78c4e24df41ec33647615f418c642}{position}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a6e579865a44525fd2895fcd27b43713a}{parent\+Bone\+Index}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a8c68883126da8c494401bf534a5b0fbf}{deform\+Hierarchy}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>short \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_afad4f170afccdb54d16e076ecb7bd6fa}{boneFlags}}\\
+\>struct \{\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a42564b5cad5e256b626c57eb48675e0f}{accessPointFlag}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a3cfa69d4ac03c7476ae4559161df0d8f}{rotatable}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a1d6b4c0726c86e1ebc0099fb28b64328}{movable}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a1293bb734c9e2e08f982fb9b274ec9f3}{display}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a378a67ef1ec7e17b08dac9ec97d44806}{operational}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_ac0edf599b7cd52c4d687e2f3c8a7b693}{ik}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_acdfb8797194ff199336ed541d9183e30}{padding1}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a235200bc71e598f3e8f98f08fc031008}{giveLocal}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_aea7b93c33710b793aada74cbc3a69106}{giveRotation}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a650c02798ac35c067296d86438be6175}{giveMove}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a693a2055e095583e9e573845f4094970}{axisFixed}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_ab58bc30c733c444a04d28df700124438}{localAxis}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a04d6dbb72f8be398cb857ff6bd1024e1}{physicsPostDeform}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_afbb20d21baab577ef134cc623a7da34f}{externalParentDeform}}: 1\\
+\>\>unsigned char \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_abb6c53fa5a0c8057551532f595d8c367}{padding2}}: 2\\
+\>\} \\
+\}; \\
+
+\end{tabbing}\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a587fcec455aec1e00128c1f0fafcbb1c}{access\+Point\+Position}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a0bc309efca317aae5bca1cff35985013}{access\+Point\+Bone\+Index}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a2b226de6cb0e5af7f0f5ab21a587f38d}{give\+State\+Parent\+Bone\+Index}}
+\item 
+float \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a5d4de4bd0bc40b19d1f3c52e67222259}{give\+State\+Grant\+Rate}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a739f41a18242d2edbd73bc2c07fb03ad}{axis\+Vector}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_ac8bb12b7f072bbcca9ba3e32509b2ec0}{local\+X\+Axis}}
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a6207a9096eefe208eb9f73b136796c13}{local\+Z\+Axis}}
+\item 
+int \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_ae25e41102c94106d38e9d52e39db4a94}{external\+Parent\+Deform\+Key}}
+\item 
+\mbox{\hyperlink{struct_p_m_x_1_1_i_k_data}{I\+K\+Data}} \mbox{\hyperlink{struct_p_m_x_1_1_bone_data_a5c05d33f5ea06ad831bba4a2a02d4ebe}{ik\+Data}}
+\end{DoxyCompactItemize}
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_aaf3c987bf1566241f5af887a40a4bb34}\label{struct_p_m_x_1_1_bone_data_aaf3c987bf1566241f5af887a40a4bb34}} 
+\subsubsection{\texorpdfstring{"@19}{@19}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a0bc309efca317aae5bca1cff35985013}\label{struct_p_m_x_1_1_bone_data_a0bc309efca317aae5bca1cff35985013}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!access\+Point\+Bone\+Index@{access\+Point\+Bone\+Index}}
+\index{access\+Point\+Bone\+Index@{access\+Point\+Bone\+Index}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{access\+Point\+Bone\+Index}{accessPointBoneIndex}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Bone\+Data\+::access\+Point\+Bone\+Index}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a42564b5cad5e256b626c57eb48675e0f}\label{struct_p_m_x_1_1_bone_data_a42564b5cad5e256b626c57eb48675e0f}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!access\+Point\+Flag@{access\+Point\+Flag}}
+\index{access\+Point\+Flag@{access\+Point\+Flag}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{access\+Point\+Flag}{accessPointFlag}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::access\+Point\+Flag}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a587fcec455aec1e00128c1f0fafcbb1c}\label{struct_p_m_x_1_1_bone_data_a587fcec455aec1e00128c1f0fafcbb1c}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!access\+Point\+Position@{access\+Point\+Position}}
+\index{access\+Point\+Position@{access\+Point\+Position}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{access\+Point\+Position}{accessPointPosition}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Bone\+Data\+::access\+Point\+Position}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a693a2055e095583e9e573845f4094970}\label{struct_p_m_x_1_1_bone_data_a693a2055e095583e9e573845f4094970}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!axis\+Fixed@{axis\+Fixed}}
+\index{axis\+Fixed@{axis\+Fixed}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{axis\+Fixed}{axisFixed}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::axis\+Fixed}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a739f41a18242d2edbd73bc2c07fb03ad}\label{struct_p_m_x_1_1_bone_data_a739f41a18242d2edbd73bc2c07fb03ad}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!axis\+Vector@{axis\+Vector}}
+\index{axis\+Vector@{axis\+Vector}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{axis\+Vector}{axisVector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Bone\+Data\+::axis\+Vector}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_afad4f170afccdb54d16e076ecb7bd6fa}\label{struct_p_m_x_1_1_bone_data_afad4f170afccdb54d16e076ecb7bd6fa}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!bone\+Flags@{bone\+Flags}}
+\index{bone\+Flags@{bone\+Flags}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{bone\+Flags}{boneFlags}}
+{\footnotesize\ttfamily short P\+M\+X\+::\+Bone\+Data\+::bone\+Flags}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a8c68883126da8c494401bf534a5b0fbf}\label{struct_p_m_x_1_1_bone_data_a8c68883126da8c494401bf534a5b0fbf}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!deform\+Hierarchy@{deform\+Hierarchy}}
+\index{deform\+Hierarchy@{deform\+Hierarchy}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{deform\+Hierarchy}{deformHierarchy}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Bone\+Data\+::deform\+Hierarchy}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a1293bb734c9e2e08f982fb9b274ec9f3}\label{struct_p_m_x_1_1_bone_data_a1293bb734c9e2e08f982fb9b274ec9f3}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!display@{display}}
+\index{display@{display}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{display}{display}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::display}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_afbb20d21baab577ef134cc623a7da34f}\label{struct_p_m_x_1_1_bone_data_afbb20d21baab577ef134cc623a7da34f}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!external\+Parent\+Deform@{external\+Parent\+Deform}}
+\index{external\+Parent\+Deform@{external\+Parent\+Deform}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{external\+Parent\+Deform}{externalParentDeform}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::external\+Parent\+Deform}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_ae25e41102c94106d38e9d52e39db4a94}\label{struct_p_m_x_1_1_bone_data_ae25e41102c94106d38e9d52e39db4a94}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!external\+Parent\+Deform\+Key@{external\+Parent\+Deform\+Key}}
+\index{external\+Parent\+Deform\+Key@{external\+Parent\+Deform\+Key}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{external\+Parent\+Deform\+Key}{externalParentDeformKey}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Bone\+Data\+::external\+Parent\+Deform\+Key}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a235200bc71e598f3e8f98f08fc031008}\label{struct_p_m_x_1_1_bone_data_a235200bc71e598f3e8f98f08fc031008}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!give\+Local@{give\+Local}}
+\index{give\+Local@{give\+Local}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{give\+Local}{giveLocal}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::give\+Local}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a650c02798ac35c067296d86438be6175}\label{struct_p_m_x_1_1_bone_data_a650c02798ac35c067296d86438be6175}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!give\+Move@{give\+Move}}
+\index{give\+Move@{give\+Move}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{give\+Move}{giveMove}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::give\+Move}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_aea7b93c33710b793aada74cbc3a69106}\label{struct_p_m_x_1_1_bone_data_aea7b93c33710b793aada74cbc3a69106}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!give\+Rotation@{give\+Rotation}}
+\index{give\+Rotation@{give\+Rotation}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{give\+Rotation}{giveRotation}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::give\+Rotation}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a5d4de4bd0bc40b19d1f3c52e67222259}\label{struct_p_m_x_1_1_bone_data_a5d4de4bd0bc40b19d1f3c52e67222259}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!give\+State\+Grant\+Rate@{give\+State\+Grant\+Rate}}
+\index{give\+State\+Grant\+Rate@{give\+State\+Grant\+Rate}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{give\+State\+Grant\+Rate}{giveStateGrantRate}}
+{\footnotesize\ttfamily float P\+M\+X\+::\+Bone\+Data\+::give\+State\+Grant\+Rate}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a2b226de6cb0e5af7f0f5ab21a587f38d}\label{struct_p_m_x_1_1_bone_data_a2b226de6cb0e5af7f0f5ab21a587f38d}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!give\+State\+Parent\+Bone\+Index@{give\+State\+Parent\+Bone\+Index}}
+\index{give\+State\+Parent\+Bone\+Index@{give\+State\+Parent\+Bone\+Index}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{give\+State\+Parent\+Bone\+Index}{giveStateParentBoneIndex}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Bone\+Data\+::give\+State\+Parent\+Bone\+Index}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_ac0edf599b7cd52c4d687e2f3c8a7b693}\label{struct_p_m_x_1_1_bone_data_ac0edf599b7cd52c4d687e2f3c8a7b693}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!ik@{ik}}
+\index{ik@{ik}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{ik}{ik}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::ik}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a5c05d33f5ea06ad831bba4a2a02d4ebe}\label{struct_p_m_x_1_1_bone_data_a5c05d33f5ea06ad831bba4a2a02d4ebe}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!ik\+Data@{ik\+Data}}
+\index{ik\+Data@{ik\+Data}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{ik\+Data}{ikData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_p_m_x_1_1_i_k_data}{I\+K\+Data}} P\+M\+X\+::\+Bone\+Data\+::ik\+Data}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_ab58bc30c733c444a04d28df700124438}\label{struct_p_m_x_1_1_bone_data_ab58bc30c733c444a04d28df700124438}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!local\+Axis@{local\+Axis}}
+\index{local\+Axis@{local\+Axis}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{local\+Axis}{localAxis}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::local\+Axis}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_ac8bb12b7f072bbcca9ba3e32509b2ec0}\label{struct_p_m_x_1_1_bone_data_ac8bb12b7f072bbcca9ba3e32509b2ec0}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!local\+X\+Axis@{local\+X\+Axis}}
+\index{local\+X\+Axis@{local\+X\+Axis}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{local\+X\+Axis}{localXAxis}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Bone\+Data\+::local\+X\+Axis}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a6207a9096eefe208eb9f73b136796c13}\label{struct_p_m_x_1_1_bone_data_a6207a9096eefe208eb9f73b136796c13}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!local\+Z\+Axis@{local\+Z\+Axis}}
+\index{local\+Z\+Axis@{local\+Z\+Axis}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{local\+Z\+Axis}{localZAxis}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Bone\+Data\+::local\+Z\+Axis}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a1d6b4c0726c86e1ebc0099fb28b64328}\label{struct_p_m_x_1_1_bone_data_a1d6b4c0726c86e1ebc0099fb28b64328}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!movable@{movable}}
+\index{movable@{movable}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{movable}{movable}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::movable}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_ac9b306bf896f65f8b5b4ff406cefb36a}\label{struct_p_m_x_1_1_bone_data_ac9b306bf896f65f8b5b4ff406cefb36a}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!name@{name}}
+\index{name@{name}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::wstring P\+M\+X\+::\+Bone\+Data\+::name}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a3cee0d841e897681e289e2b1296ad6a9}\label{struct_p_m_x_1_1_bone_data_a3cee0d841e897681e289e2b1296ad6a9}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!name\+Eng@{name\+Eng}}
+\index{name\+Eng@{name\+Eng}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{name\+Eng}{nameEng}}
+{\footnotesize\ttfamily std\+::wstring P\+M\+X\+::\+Bone\+Data\+::name\+Eng}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a378a67ef1ec7e17b08dac9ec97d44806}\label{struct_p_m_x_1_1_bone_data_a378a67ef1ec7e17b08dac9ec97d44806}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!operational@{operational}}
+\index{operational@{operational}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{operational}{operational}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::operational}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_acdfb8797194ff199336ed541d9183e30}\label{struct_p_m_x_1_1_bone_data_acdfb8797194ff199336ed541d9183e30}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!padding1@{padding1}}
+\index{padding1@{padding1}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{padding1}{padding1}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::padding1}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_abb6c53fa5a0c8057551532f595d8c367}\label{struct_p_m_x_1_1_bone_data_abb6c53fa5a0c8057551532f595d8c367}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!padding2@{padding2}}
+\index{padding2@{padding2}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{padding2}{padding2}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::padding2}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a6e579865a44525fd2895fcd27b43713a}\label{struct_p_m_x_1_1_bone_data_a6e579865a44525fd2895fcd27b43713a}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!parent\+Bone\+Index@{parent\+Bone\+Index}}
+\index{parent\+Bone\+Index@{parent\+Bone\+Index}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{parent\+Bone\+Index}{parentBoneIndex}}
+{\footnotesize\ttfamily int P\+M\+X\+::\+Bone\+Data\+::parent\+Bone\+Index}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a04d6dbb72f8be398cb857ff6bd1024e1}\label{struct_p_m_x_1_1_bone_data_a04d6dbb72f8be398cb857ff6bd1024e1}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!physics\+Post\+Deform@{physics\+Post\+Deform}}
+\index{physics\+Post\+Deform@{physics\+Post\+Deform}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{physics\+Post\+Deform}{physicsPostDeform}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::physics\+Post\+Deform}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a91c78c4e24df41ec33647615f418c642}\label{struct_p_m_x_1_1_bone_data_a91c78c4e24df41ec33647615f418c642}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!position@{position}}
+\index{position@{position}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} P\+M\+X\+::\+Bone\+Data\+::position}
+
+\mbox{\Hypertarget{struct_p_m_x_1_1_bone_data_a3cfa69d4ac03c7476ae4559161df0d8f}\label{struct_p_m_x_1_1_bone_data_a3cfa69d4ac03c7476ae4559161df0d8f}} 
+\index{P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}!rotatable@{rotatable}}
+\index{rotatable@{rotatable}!P\+M\+X\+::\+Bone\+Data@{P\+M\+X\+::\+Bone\+Data}}
+\subsubsection{\texorpdfstring{rotatable}{rotatable}}
+{\footnotesize\ttfamily unsigned char P\+M\+X\+::\+Bone\+Data\+::rotatable}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_p_m_x_model_data_info_8h}{P\+M\+X\+Model\+Data\+Info.\+h}}\end{DoxyCompactItemize}

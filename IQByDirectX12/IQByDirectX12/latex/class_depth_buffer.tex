@@ -1,0 +1,72 @@
+\hypertarget{class_depth_buffer}{}\section{Depth\+Buffer クラス}
+\label{class_depth_buffer}\index{Depth\+Buffer@{Depth\+Buffer}}
+
+
+{\ttfamily \#include $<$Depth\+Buffer.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_depth_buffer_a9d04ef2a88a2414d476f4fc27a25a7a8}{$\sim$\+Depth\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+D3\+D12\+\_\+\+C\+P\+U\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+H\+A\+N\+D\+LE \mbox{\hyperlink{class_depth_buffer_abc91e9fea6125161ebbc5215f783374d}{Get\+D\+S\+V\+Handle}} ()
+\item 
+void \mbox{\hyperlink{class_depth_buffer_a673f6120808ac749fe900b21b6361bce}{Clear\+Depth\+Buffer}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ command\+List)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_depth_buffer}{Depth\+Buffer}} $>$ \mbox{\hyperlink{class_depth_buffer_a1c465b15498fc12a41662562cde74b83}{Create}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device, int window\+Width, int window\+Height)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_depth_buffer_a9d04ef2a88a2414d476f4fc27a25a7a8}\label{class_depth_buffer_a9d04ef2a88a2414d476f4fc27a25a7a8}} 
+\index{Depth\+Buffer@{Depth\+Buffer}!````~Depth\+Buffer@{$\sim$\+Depth\+Buffer}}
+\index{````~Depth\+Buffer@{$\sim$\+Depth\+Buffer}!Depth\+Buffer@{Depth\+Buffer}}
+\subsubsection{\texorpdfstring{$\sim$\+Depth\+Buffer()}{~DepthBuffer()}}
+{\footnotesize\ttfamily Depth\+Buffer\+::$\sim$\+Depth\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_depth_buffer_a673f6120808ac749fe900b21b6361bce}\label{class_depth_buffer_a673f6120808ac749fe900b21b6361bce}} 
+\index{Depth\+Buffer@{Depth\+Buffer}!Clear\+Depth\+Buffer@{Clear\+Depth\+Buffer}}
+\index{Clear\+Depth\+Buffer@{Clear\+Depth\+Buffer}!Depth\+Buffer@{Depth\+Buffer}}
+\subsubsection{\texorpdfstring{Clear\+Depth\+Buffer()}{ClearDepthBuffer()}}
+{\footnotesize\ttfamily void Depth\+Buffer\+::\+Clear\+Depth\+Buffer (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{command\+List }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_depth_buffer_a1c465b15498fc12a41662562cde74b83}\label{class_depth_buffer_a1c465b15498fc12a41662562cde74b83}} 
+\index{Depth\+Buffer@{Depth\+Buffer}!Create@{Create}}
+\index{Create@{Create}!Depth\+Buffer@{Depth\+Buffer}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Depth\+Buffer\+::\+Create (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device,  }\item[{int}]{window\+Width,  }\item[{int}]{window\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+デプスバッファと\+D\+S\+Vを管理するクラスを生成する \begin{DoxyNote}{覚え書き}
+Depth\+Bufferクラスはこのメソッドでのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & I\+D3\+D12デバイス \\
+\hline
+\mbox{\tt in}  & {\em window\+Width} & ウィンドウ幅 \\
+\hline
+\mbox{\tt in}  & {\em window\+Height} & ウィンドウ高さ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depth_buffer_abc91e9fea6125161ebbc5215f783374d}\label{class_depth_buffer_abc91e9fea6125161ebbc5215f783374d}} 
+\index{Depth\+Buffer@{Depth\+Buffer}!Get\+D\+S\+V\+Handle@{Get\+D\+S\+V\+Handle}}
+\index{Get\+D\+S\+V\+Handle@{Get\+D\+S\+V\+Handle}!Depth\+Buffer@{Depth\+Buffer}}
+\subsubsection{\texorpdfstring{Get\+D\+S\+V\+Handle()}{GetDSVHandle()}}
+{\footnotesize\ttfamily D3\+D12\+\_\+\+C\+P\+U\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+H\+A\+N\+D\+LE Depth\+Buffer\+::\+Get\+D\+S\+V\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_depth_buffer_8h}{Depth\+Buffer.\+h}}\item 
+Source/\mbox{\hyperlink{_depth_buffer_8cpp}{Depth\+Buffer.\+cpp}}\end{DoxyCompactItemize}

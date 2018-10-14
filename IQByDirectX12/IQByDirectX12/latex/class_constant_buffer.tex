@@ -1,0 +1,98 @@
+\hypertarget{class_constant_buffer}{}\section{Constant\+Buffer クラス}
+\label{class_constant_buffer}\index{Constant\+Buffer@{Constant\+Buffer}}
+
+
+{\ttfamily \#include $<$Constant\+Buffer.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_constant_buffer_aef84d67313575f7aa41745e2fe198067}{$\sim$\+Constant\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_constant_buffer_a9debafccb5dad5e7a79402448024ba1d}{Set\+Data}} (const void $\ast$data, U\+I\+NT element\+Size, U\+I\+NT element\+Index=0)
+\item 
+const D3\+D12\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \& \mbox{\hyperlink{class_constant_buffer_ae601501c3200a0bad0907d20811dde9e}{Get\+Constant\+Buffer\+View}} (U\+I\+NT element\+Index=0)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_constant_buffer}{Constant\+Buffer}} $>$ \mbox{\hyperlink{class_constant_buffer_a00a3476e6f88e7d2526a3305a3b2856c}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, U\+I\+NT element\+Size, U\+I\+NT element\+Count=1)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_constant_buffer_aef84d67313575f7aa41745e2fe198067}\label{class_constant_buffer_aef84d67313575f7aa41745e2fe198067}} 
+\index{Constant\+Buffer@{Constant\+Buffer}!````~Constant\+Buffer@{$\sim$\+Constant\+Buffer}}
+\index{````~Constant\+Buffer@{$\sim$\+Constant\+Buffer}!Constant\+Buffer@{Constant\+Buffer}}
+\subsubsection{\texorpdfstring{$\sim$\+Constant\+Buffer()}{~ConstantBuffer()}}
+{\footnotesize\ttfamily Constant\+Buffer\+::$\sim$\+Constant\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_constant_buffer_a00a3476e6f88e7d2526a3305a3b2856c}\label{class_constant_buffer_a00a3476e6f88e7d2526a3305a3b2856c}} 
+\index{Constant\+Buffer@{Constant\+Buffer}!Create@{Create}}
+\index{Create@{Create}!Constant\+Buffer@{Constant\+Buffer}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Constant\+Buffer\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{U\+I\+NT}]{element\+Size,  }\item[{U\+I\+NT}]{element\+Count = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+定数バッファを作成する \begin{DoxyNote}{覚え書き}
+Constant\+Bufferクラスはこのクラスを用いてのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & Deviceクラス \\
+\hline
+\mbox{\tt in}  & {\em buffer\+Size} & バッファのサイズ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功時} & Constant\+Bufferのshared\+\_\+ptr \\
+\hline
+{\em 生成失敗時} & nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_constant_buffer_ae601501c3200a0bad0907d20811dde9e}\label{class_constant_buffer_ae601501c3200a0bad0907d20811dde9e}} 
+\index{Constant\+Buffer@{Constant\+Buffer}!Get\+Constant\+Buffer\+View@{Get\+Constant\+Buffer\+View}}
+\index{Get\+Constant\+Buffer\+View@{Get\+Constant\+Buffer\+View}!Constant\+Buffer@{Constant\+Buffer}}
+\subsubsection{\texorpdfstring{Get\+Constant\+Buffer\+View()}{GetConstantBufferView()}}
+{\footnotesize\ttfamily Constant\+Buffer\+::\+Get\+Constant\+Buffer\+View (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{element\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+コンスタントバッファビューを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em コンスタントバッファビュー} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_constant_buffer_a9debafccb5dad5e7a79402448024ba1d}\label{class_constant_buffer_a9debafccb5dad5e7a79402448024ba1d}} 
+\index{Constant\+Buffer@{Constant\+Buffer}!Set\+Data@{Set\+Data}}
+\index{Set\+Data@{Set\+Data}!Constant\+Buffer@{Constant\+Buffer}}
+\subsubsection{\texorpdfstring{Set\+Data()}{SetData()}}
+{\footnotesize\ttfamily Constant\+Buffer\+::\+Set\+Data (\begin{DoxyParamCaption}\item[{const void $\ast$}]{data,  }\item[{U\+I\+NT}]{element\+Size,  }\item[{U\+I\+NT}]{element\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+定数バッファにデータをセットする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em data} & データのポインタ \\
+\hline
+\mbox{\tt in}  & {\em element\+Size} & データサイズ \\
+\hline
+\mbox{\tt in}  & {\em element\+Num} & 何番目の要素を更新するか \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em データサイズよりバッファサイズが大きい場合} & true \\
+\hline
+{\em データサイズよりバッファサイズが小さい場合} & false \\
+\hline
+\end{DoxyRetVals}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_constant_buffer_8h}{Constant\+Buffer.\+h}}\item 
+Source/\mbox{\hyperlink{_constant_buffer_8cpp}{Constant\+Buffer.\+cpp}}\end{DoxyCompactItemize}

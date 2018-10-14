@@ -84,7 +84,7 @@ float4 PSMain(PSInput input) : SV_Target
 	float spec = saturate(pow(dot(reflect(light, input.normal), -vray), specularity));
 	modelSpecularColor = modelSpecularColor * spec;
 
-	float4 texColor = saturate( surfaceTexture.Sample(smp, input.uv) * mulSphereTexture.Sample(smp, input.uv) + addSphereTexture.Sample(smp,input.uv) );
+	float4 texColor = saturate( surfaceTexture.Sample(smp, input.uv) * mulSphereTexture.Sample(smp, input.normal.xy) + addSphereTexture.Sample(smp,input.normal.xy) );
 	
 	float4 modelColor = float4(modelDiffuseColor, alpha) +float4(modelAmbientColor, 0.0f);
 	modelColor = (modelColor) +float4(modelSpecularColor, 0.0f);

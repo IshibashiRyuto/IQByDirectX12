@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/Model/ModelDataManager.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_4d2cd150aff3df625ebb7431566b7a26.html">Model</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ModelDataManager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_model_data_manager_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    ModelDataManager.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    モデルデータ管理クラス</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    @author Ishibashi Ryuto</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">    @date</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">    2018/09/03  初版作成</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// システムヘッダインクルード</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// 自作ヘッダインクルード</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_model_data_8h.html">ModelData.h</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// クラス使用宣言</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_instancing_data_manager.html">InstancingDataManager</a>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_model_data_manager.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_model_data_manager.html">ModelDataManager</a></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_model_data_manager.html#ad8a24b96d273af9e717e7cc4b68cf399">~ModelDataManager</a>();</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_model_data_manager.html#aee0cb9bcad096186bd2902620d1ac780">   27</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_model_data_manager.html">ModelDataManager</a>&amp; <a class="code" href="class_model_data_manager.html#aee0cb9bcad096186bd2902620d1ac780">GetInstance</a>()</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_model_data_manager.html">ModelDataManager</a> inst;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> inst;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_model_data_manager.html#a20b9312e019c39c633d6429e1209d1b7">Regist</a>(std::shared_ptr&lt;ModelData&gt; modelData);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_data_manager.html#aaa1dc0669900e8dc8186ae075133ba24">Erase</a>(<span class="keywordtype">int</span> handle);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::shared_ptr&lt;ModelData&gt; <a class="code" href="class_model_data_manager.html#a5f823590ae9c9eac222a7b107d14634b">GetModelData</a>(<span class="keywordtype">int</span> handle) <span class="keyword">const</span>;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_model_data_manager.html#a69c14318f17547e1145b714a613732bc">IsExist</a>(<span class="keywordtype">int</span> handle) <span class="keyword">const</span>;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_data_manager.html#a9c2d9c3a70323f7d486fb42de162d303">Draw</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; graphicsCommandList);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_model_data_manager.html">ModelDataManager</a>();</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_model_data_manager.html">ModelDataManager</a>(<span class="keyword">const</span> <a class="code" href="class_model_data_manager.html">ModelDataManager</a>&amp;);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="class_model_data_manager.html">ModelDataManager</a> &amp;){}</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">/* 定数定義 */</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> DATA_SIGNATURE_SHIFT_NUM = 24;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> MODEL_DATA_SIGNATURE = 0x11 &lt;&lt; DATA_SIGNATURE_SHIFT_NUM;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">/* 変数宣言 */</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::map&lt;int, std::shared_ptr&lt;ModelData&gt;&gt; mData;        <span class="comment">// 管理データ</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">int</span> mNextHandle;                                    <span class="comment">// 次に使用するテクスチャハンドル</span></div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="class_instancing_data_manager.html">InstancingDataManager</a>&amp; mInstancingDataManager;      <span class="comment">// インスタンシング用データ管理クラスへの参照</span></div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/* ローカルメソッド宣言 */</span></div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> UpdateNextHandle();</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="ttc" id="class_model_data_manager_html_aaa1dc0669900e8dc8186ae075133ba24"><div class="ttname"><a href="class_model_data_manager.html#aaa1dc0669900e8dc8186ae075133ba24">ModelDataManager::Erase</a></div><div class="ttdeci">void Erase(int handle)</div><div class="ttdef"><b>Definition:</b> ModelDataManager.cpp:44</div></div>
+<div class="ttc" id="class_model_data_manager_html"><div class="ttname"><a href="class_model_data_manager.html">ModelDataManager</a></div><div class="ttdef"><b>Definition:</b> ModelDataManager.h:19</div></div>
+<div class="ttc" id="class_model_data_manager_html_a69c14318f17547e1145b714a613732bc"><div class="ttname"><a href="class_model_data_manager.html#a69c14318f17547e1145b714a613732bc">ModelDataManager::IsExist</a></div><div class="ttdeci">bool IsExist(int handle) const</div><div class="ttdef"><b>Definition:</b> ModelDataManager.cpp:63</div></div>
+<div class="ttc" id="class_model_data_manager_html_aee0cb9bcad096186bd2902620d1ac780"><div class="ttname"><a href="class_model_data_manager.html#aee0cb9bcad096186bd2902620d1ac780">ModelDataManager::GetInstance</a></div><div class="ttdeci">static ModelDataManager &amp; GetInstance()</div><div class="ttdef"><b>Definition:</b> ModelDataManager.h:27</div></div>
+<div class="ttc" id="class_instancing_data_manager_html"><div class="ttname"><a href="class_instancing_data_manager.html">InstancingDataManager</a></div><div class="ttdef"><b>Definition:</b> InstancingDataManager.h:30</div></div>
+<div class="ttc" id="class_model_data_manager_html_ad8a24b96d273af9e717e7cc4b68cf399"><div class="ttname"><a href="class_model_data_manager.html#ad8a24b96d273af9e717e7cc4b68cf399">ModelDataManager::~ModelDataManager</a></div><div class="ttdeci">~ModelDataManager()</div><div class="ttdef"><b>Definition:</b> ModelDataManager.cpp:31</div></div>
+<div class="ttc" id="class_model_data_manager_html_a20b9312e019c39c633d6429e1209d1b7"><div class="ttname"><a href="class_model_data_manager.html#a20b9312e019c39c633d6429e1209d1b7">ModelDataManager::Regist</a></div><div class="ttdeci">int Regist(std::shared_ptr&lt; ModelData &gt; modelData)</div><div class="ttdef"><b>Definition:</b> ModelDataManager.cpp:35</div></div>
+<div class="ttc" id="class_model_data_manager_html_a9c2d9c3a70323f7d486fb42de162d303"><div class="ttname"><a href="class_model_data_manager.html#a9c2d9c3a70323f7d486fb42de162d303">ModelDataManager::Draw</a></div><div class="ttdeci">void Draw(ComPtr&lt; ID3D12GraphicsCommandList &gt; graphicsCommandList)</div><div class="ttdef"><b>Definition:</b> ModelDataManager.cpp:7</div></div>
+<div class="ttc" id="_model_data_8h_html"><div class="ttname"><a href="_model_data_8h.html">ModelData.h</a></div></div>
+<div class="ttc" id="class_model_data_manager_html_a5f823590ae9c9eac222a7b107d14634b"><div class="ttname"><a href="class_model_data_manager.html#a5f823590ae9c9eac222a7b107d14634b">ModelDataManager::GetModelData</a></div><div class="ttdeci">std::shared_ptr&lt; ModelData &gt; GetModelData(int handle) const</div><div class="ttdef"><b>Definition:</b> ModelDataManager.cpp:54</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

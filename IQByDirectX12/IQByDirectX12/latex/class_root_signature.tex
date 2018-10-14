@@ -1,0 +1,147 @@
+\hypertarget{class_root_signature}{}\section{Root\+Signature クラス}
+\label{class_root_signature}\index{Root\+Signature@{Root\+Signature}}
+
+
+{\ttfamily \#include $<$Root\+Signature.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_root_signature_ac7e523f868fcaa15b6ef1d2d832396a4}{Root\+Signature}} ()
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_root_signature_a8007fe3581f6e8dfb5e8d8fc57263000}{$\sim$\+Root\+Signature}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_root_signature_a5328c87baea63d762fc0607fb7d44cd4}{Construct\+Root\+Signature}} (Com\+Ptr$<$ I\+D3\+D12\+Device $>$ device)
+\item 
+void \mbox{\hyperlink{class_root_signature_ac02128012fae2aaeebc22d37f900bde9}{Add\+Descriptor\+Range}} (int root\+Param\+Index, const D3\+D12\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+R\+A\+N\+GE \&descriptor\+Range)
+\item 
+void \mbox{\hyperlink{class_root_signature_a3faa5b981dae80b1a248ef1acbe50368}{Add\+Descriptor\+Range}} (int root\+Param\+Index, D3\+D12\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+R\+A\+N\+G\+E\+\_\+\+T\+Y\+PE range\+Type, U\+I\+NT num\+Descriptors, U\+I\+NT base\+Shader\+Register)
+\item 
+int \mbox{\hyperlink{class_root_signature_af8af1b06602b6f098515de5504817a6c}{Add\+Root\+Parameter}} (D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+TY shader\+Visibility, D3\+D12\+\_\+\+R\+O\+O\+T\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+\_\+\+T\+Y\+PE param\+Type=D3\+D12\+\_\+\+R\+O\+O\+T\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+T\+A\+B\+LE)
+\item 
+Com\+Ptr$<$ I\+D3\+D12\+Root\+Signature $>$ \mbox{\hyperlink{class_root_signature_a47dfa1b251b3fe9a5e7d8823bf87a187}{Get\+Root\+Signature}} () const
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_root_signature}{Root\+Signature}} $>$ \mbox{\hyperlink{class_root_signature_acaca4730dae83d30cda691cf5aae0768}{Create}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_root_signature_ac7e523f868fcaa15b6ef1d2d832396a4}\label{class_root_signature_ac7e523f868fcaa15b6ef1d2d832396a4}} 
+\index{Root\+Signature@{Root\+Signature}!Root\+Signature@{Root\+Signature}}
+\index{Root\+Signature@{Root\+Signature}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Root\+Signature()}{RootSignature()}}
+{\footnotesize\ttfamily Root\+Signature\+::\+Root\+Signature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_root_signature_a8007fe3581f6e8dfb5e8d8fc57263000}\label{class_root_signature_a8007fe3581f6e8dfb5e8d8fc57263000}} 
+\index{Root\+Signature@{Root\+Signature}!````~Root\+Signature@{$\sim$\+Root\+Signature}}
+\index{````~Root\+Signature@{$\sim$\+Root\+Signature}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{$\sim$\+Root\+Signature()}{~RootSignature()}}
+{\footnotesize\ttfamily Root\+Signature\+::$\sim$\+Root\+Signature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_root_signature_ac02128012fae2aaeebc22d37f900bde9}\label{class_root_signature_ac02128012fae2aaeebc22d37f900bde9}} 
+\index{Root\+Signature@{Root\+Signature}!Add\+Descriptor\+Range@{Add\+Descriptor\+Range}}
+\index{Add\+Descriptor\+Range@{Add\+Descriptor\+Range}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Add\+Descriptor\+Range()}{AddDescriptorRange()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Root\+Signature\+::\+Add\+Descriptor\+Range (\begin{DoxyParamCaption}\item[{int}]{root\+Param\+Index,  }\item[{const D3\+D12\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+R\+A\+N\+GE \&}]{descriptor\+Range }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_root_signature_a3faa5b981dae80b1a248ef1acbe50368}\label{class_root_signature_a3faa5b981dae80b1a248ef1acbe50368}} 
+\index{Root\+Signature@{Root\+Signature}!Add\+Descriptor\+Range@{Add\+Descriptor\+Range}}
+\index{Add\+Descriptor\+Range@{Add\+Descriptor\+Range}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Add\+Descriptor\+Range()}{AddDescriptorRange()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Root\+Signature\+::\+Add\+Descriptor\+Range (\begin{DoxyParamCaption}\item[{int}]{root\+Param\+Index,  }\item[{D3\+D12\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+R\+A\+N\+G\+E\+\_\+\+T\+Y\+PE}]{range\+Type,  }\item[{U\+I\+NT}]{num\+Descriptors,  }\item[{U\+I\+NT}]{base\+Shader\+Register }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em root\+Param\+Index} & \+: 追加対象ルートパラメータのインデックス \\
+\hline
+\mbox{\tt in}  & {\em range\+Type} & \+: ディスクリプタの種類 \\
+\hline
+\mbox{\tt in}  & {\em descriptor\+Num} & \+: 読み取る出スクリプタの数 \\
+\hline
+\mbox{\tt in}  & {\em base\+Shader\+Register} & \+: シェーダレジスタの開始番号 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_root_signature_af8af1b06602b6f098515de5504817a6c}\label{class_root_signature_af8af1b06602b6f098515de5504817a6c}} 
+\index{Root\+Signature@{Root\+Signature}!Add\+Root\+Parameter@{Add\+Root\+Parameter}}
+\index{Add\+Root\+Parameter@{Add\+Root\+Parameter}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Add\+Root\+Parameter()}{AddRootParameter()}}
+{\footnotesize\ttfamily Root\+Signature\+::\+Add\+Root\+Parameter (\begin{DoxyParamCaption}\item[{D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+TY}]{shader\+Visibility,  }\item[{D3\+D12\+\_\+\+R\+O\+O\+T\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+\_\+\+T\+Y\+PE}]{param\+Type = {\ttfamily D3D12\+\_\+ROOT\+\_\+PARAMETER\+\_\+TYPE\+\_\+DESCRIPTOR\+\_\+TABLE} }\end{DoxyParamCaption})}
+
+ルートパラメータを追加する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em parameter\+Type} & \+: パラメータタイプ(デフォルトで\+D3\+D12\+\_\+\+R\+O\+O\+T\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+T\+A\+B\+LE) \\
+\hline
+\mbox{\tt in}  & {\em shader\+Visibility} & \+: シェーダ可視性( \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{覚え書き}
+このメソッドはあくまでルートパラメータを「追加」するだけで、 具体的な設定は行いません。 具体的なディスクリプタレンジは\+Add\+Descriptor\+Rangeを使って追加してください 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{戻り値}
+{\em ルートパラメータ番号} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_root_signature_a5328c87baea63d762fc0607fb7d44cd4}\label{class_root_signature_a5328c87baea63d762fc0607fb7d44cd4}} 
+\index{Root\+Signature@{Root\+Signature}!Construct\+Root\+Signature@{Construct\+Root\+Signature}}
+\index{Construct\+Root\+Signature@{Construct\+Root\+Signature}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Construct\+Root\+Signature()}{ConstructRootSignature()}}
+{\footnotesize\ttfamily Root\+Signature\+::\+Construct\+Root\+Signature (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Device $>$}]{device }\end{DoxyParamCaption})}
+
+現在の設定項目でルートシグネチャを構築する \begin{DoxyNote}{覚え書き}
+呼び出す度に\+Root\+Signatureを構築するため、重め。 基本的には1回だけ呼び出せばいいようにしてください 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & \+: D3\+D12デバイス \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 構築成功} & \+: true \\
+\hline
+{\em 構築失敗} & \+: false \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_root_signature_acaca4730dae83d30cda691cf5aae0768}\label{class_root_signature_acaca4730dae83d30cda691cf5aae0768}} 
+\index{Root\+Signature@{Root\+Signature}!Create@{Create}}
+\index{Create@{Create}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Root\+Signature\+::\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+ルートシグネチャを生成する \begin{DoxyNote}{覚え書き}
+Root\+Signatureクラスの実体はこのメソッドでのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功} & \+: Root\+Signatureのポインタ \\
+\hline
+{\em 生成失敗} & \+: nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_root_signature_a47dfa1b251b3fe9a5e7d8823bf87a187}\label{class_root_signature_a47dfa1b251b3fe9a5e7d8823bf87a187}} 
+\index{Root\+Signature@{Root\+Signature}!Get\+Root\+Signature@{Get\+Root\+Signature}}
+\index{Get\+Root\+Signature@{Get\+Root\+Signature}!Root\+Signature@{Root\+Signature}}
+\subsubsection{\texorpdfstring{Get\+Root\+Signature()}{GetRootSignature()}}
+{\footnotesize\ttfamily Root\+Signature\+::\+Get\+Root\+Signature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+ルートシグネチャを取得する 
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_root_signature_8h}{Root\+Signature.\+h}}\item 
+Source/\mbox{\hyperlink{_root_signature_8cpp}{Root\+Signature.\+cpp}}\end{DoxyCompactItemize}

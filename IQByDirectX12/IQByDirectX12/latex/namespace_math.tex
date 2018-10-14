@@ -1,0 +1,871 @@
+\hypertarget{namespace_math}{}\section{Math 名前空間}
+\label{namespace_math}\index{Math@{Math}}
+\subsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}}
+\item 
+struct \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}}
+\item 
+struct \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}}
+\item 
+struct \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}}
+\item 
+struct \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}}
+\item 
+struct \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}}
+\end{DoxyCompactItemize}
+\subsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespace_math_a622cf93fd441b31963159cb086b01ff4}{Is\+Equal}} (float v1, float v2)
+\item 
+bool \mbox{\hyperlink{namespace_math_a298771bf90fda8152d34b6fd004d1c7f}{Is\+Equal}} (double v1, double v2)
+\item 
+bool \mbox{\hyperlink{namespace_math_aa9851c5508417d12ef139ebbe943f6a7}{Is\+Equal}} (float v1, double v2)
+\item 
+bool \mbox{\hyperlink{namespace_math_a5eeb1781896881768b92899090b7d750}{Is\+Equal}} (double v1, float v2)
+\item 
+bool \mbox{\hyperlink{namespace_math_aa85ef15b6a4171111a31bb17db917dd9}{Is\+Zero}} (float value)
+\item 
+bool \mbox{\hyperlink{namespace_math_a50e4a54ad68fe1c946ba6b5c425e47ad}{Is\+Zero}} (double value)
+\item 
+float \mbox{\hyperlink{namespace_math_a63a182d010a122c2bf2332d080682068}{Clamp}} (float value, float min\+Value, float max\+Value)
+\item 
+double \mbox{\hyperlink{namespace_math_a9e59da084cd78b8cd7bc184931280f62}{Clamp}} (double value, double min\+Value, double max\+Value)
+\item 
+bool \mbox{\hyperlink{namespace_math_af4687bc70508587a7473bab655a2b2a9}{operator==}} (const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t2)
+\item 
+bool \mbox{\hyperlink{namespace_math_a248dfe0b65dce8c8f25689145d18fc68}{operator!=}} (const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \mbox{\hyperlink{namespace_math_a62f686c8f0b005ab24cd368fe4ab1b4b}{operator+}} (const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \mbox{\hyperlink{namespace_math_a3c1ebbbebd6020556b1cdd7ebe1ee1a5}{operator-\/}} (const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \mbox{\hyperlink{namespace_math_a9071831f1488bc75d0dff29a52258009}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&value, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \mbox{\hyperlink{namespace_math_ae64567d7ee2881978a228a6ceaeca4f4}{operator$\ast$}} (float scale, const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \mbox{\hyperlink{namespace_math_ac1d2e4f5c5d22414afbcdc056e957318}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&value, float scale)
+\item 
+bool \mbox{\hyperlink{namespace_math_a68e85675a519a429e4e5650bb2613bc0}{operator==}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t2)
+\item 
+bool \mbox{\hyperlink{namespace_math_acd6ae74465b9e93459c15a638efcdb61}{operator!=}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a279c2ff1375f08332e47f665f9d96622}{operator+}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a99d6a8ff14fa83d33520f7f3f717877c}{operator-\/}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a94042de53627e5809c4676b6c5340963}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&value, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a0d1f5fd771b09fb7d2c8e0ebbc182f19}{operator$\ast$}} (float scale, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a47b5ce1ab6c1fd8b4163dbe17fc2c8bc}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&value, float scale)
+\item 
+float \mbox{\hyperlink{namespace_math_a1b728d3fd626ed55895d4b59575e071a}{Dot}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&v2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a3e7d67884adf533a55598952787420b2}{Cross}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&v2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_ad4369be47f3ec66cce0862bc66966e96}{Normalize}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&vec)
+\item 
+float \mbox{\hyperlink{namespace_math_ac1dbf09b73e7c8d4144887c802c66fdc}{Calc\+Angle\+Vec\+To\+Vec}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&v2)
+\begin{DoxyCompactList}\small\item\em 2つのベクトル間角度を計算する \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespace_math_a63e6345cc66935721e93c8c65978eb7e}{operator==}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t2)
+\item 
+bool \mbox{\hyperlink{namespace_math_a363043a928db204744bfb86367be979d}{operator!=}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_a62a5770bc56d8813435b7530021278b5}{operator+}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_ae164bf95185127aeb0d140f15718e10a}{operator-\/}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t1, const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&t2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_a2c882069472ade27f2265b16041baf76}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&value, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_a3dd17b1db67faf64ebabe1e113d40af4}{operator$\ast$}} (float scale, const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_a22a570ffffa9a4508274b38d5f26da25}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&value, float scale)
+\item 
+bool \mbox{\hyperlink{namespace_math_a5b40764391fa4cbbc642c330f4299874}{operator==}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat2)
+\item 
+bool \mbox{\hyperlink{namespace_math_af3f64c58fbe9c4788f9697c9a12dfdf7}{operator!=}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a389dadeebac6c85cbab4622add8901a5}{operator+}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a63a0e723e7843e2eb47b2285846df34f}{operator-\/}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a06472d628f45d93a8bdb7cdcb0b1be8d}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_adddddb021bc36b35e73f09ed99fa11c5}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a7239dba8d71c3d6209d9fd502fd1e2ad}{operator$\ast$}} (float scale, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_aa7973248d0183ea280fef5097eb6ef3f}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&vec, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_a4d7db6c4bdacba08e4a5488fe9643450}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&vec, const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a283dc37f79d3f2d51bb3e494f02a0ad3}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_af3d07a84dd7006820b10c0dcca8d649d}{Get\+Matrix\+Scale}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\begin{DoxyCompactList}\small\item\em 4x4行列から3次元の拡縮成分を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_a362448daab24abbbe2f8aeb947396e45}{Get\+Matrix\+Translate}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\begin{DoxyCompactList}\small\item\em 4x4行列から3次元の並行移動成分を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_af020b3d35d199e53d32895a737e7c02e}{Get\+Matrix\+Rotation}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\begin{DoxyCompactList}\small\item\em 4x4行列から任意軸回転を行うクォータニオン成分を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a4cc0372b98a0dd4833848ee1bf268332}{Get\+Transpose\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\begin{DoxyCompactList}\small\item\em 4x4行列の転置行列を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a1511b5df243ca4ee521026cb9b373efd}{Get\+Invert\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\begin{DoxyCompactList}\small\item\em 4x4行列の逆行列を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_aad7bb8945263031607f8b323d9ae1cd7}{Create\+Ident}} ()
+\begin{DoxyCompactList}\small\item\em 4x4単位行列を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a70c81aec69f6a6b6e586a0d0f5d2ae71}{Create\+Scale\+Matrix}} (float scale)
+\begin{DoxyCompactList}\small\item\em 特定のスケールで拡縮する4x4行列を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_af37fd756ce6f0ed92743c168b170b695}{Create\+Scale\+Matrix}} (float sx, float sy, float sz)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_abb993929e559b690bbb60e9504f3ad95}{Create\+Scale\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a22c654a35f22329b5f0ed96a82d843ca}{Create\+Translate\+Matrix}} (float tx, float ty, float tz)
+\begin{DoxyCompactList}\small\item\em 指定した分だけ平行移動を行う4x4行列を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_ad0007f1238972eb1db1fa2f1a2d3b834}{Create\+Translate\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&movement)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_ac4e4a920c3ea9b1afefe04ed2d4e3b34}{Create\+X\+Rot\+Matrix}} (float rad)
+\begin{DoxyCompactList}\small\item\em X軸中心回転を行う4x4行列を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a82079192513df361d5828e6a8c8754f3}{Create\+Y\+Rot\+Matrix}} (float rad)
+\begin{DoxyCompactList}\small\item\em Y軸中心回転を行う4x4行列を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a359a2e7263fd64b49264e158052107ab}{Create\+Z\+Rot\+Matrix}} (float rad)
+\begin{DoxyCompactList}\small\item\em Z軸中心回転を行う4x4行列を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_ade59dd308fe183bc0c185f8d1c6d7074}{Create\+Axis\+Rot\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&axis, float rad)
+\begin{DoxyCompactList}\small\item\em 任意軸を中止に回転を行う4x4行列を取得する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a33f8e9946f11a9efd4592ff441549a64}{Create\+Look\+At\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&eye, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&target, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&upper)
+\begin{DoxyCompactList}\small\item\em 視点、注視点、上方向ベクトルから\+Look\+At行列を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a902772771ec476f8ba2563babfcd865f}{Create\+Look\+At\+Matrix\+From\+Camera\+Matrix}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&camera\+Matrix)
+\begin{DoxyCompactList}\small\item\em カメラ行列から\+Look\+At行列を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a3a425ade3b937625acd000ced1caa45f}{Create\+Perspective\+Matrix}} (float Aspect, float nearZ, float farZ, float fov)
+\begin{DoxyCompactList}\small\item\em アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespace_math_abf6196400c58b30a5a616aefccff2f14}{operator==}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat2)
+\item 
+bool \mbox{\hyperlink{namespace_math_a4834d702630aaf6717303b4faf834cd2}{operator!=}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \mbox{\hyperlink{namespace_math_a959ebc86863f66d4fb3bc96f3b0ad6be}{operator+}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \mbox{\hyperlink{namespace_math_a0fd0b23a7349545e6b45a09ea4758be4}{operator-\/}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \mbox{\hyperlink{namespace_math_a231015e930e4e65cfeb4d3ed35c5f60b}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat1, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \mbox{\hyperlink{namespace_math_a9c473bb33aae64090197e0d686ad75c3}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \mbox{\hyperlink{namespace_math_ab554e261e8209bde30f33f893c0f2bbb}{operator$\ast$}} (float scale, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \mbox{\hyperlink{namespace_math_abaac4a662eebe65536e53580498f7377}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&vec, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \mbox{\hyperlink{namespace_math_ad610b35195c92a20ff2913aaa5c14f4c}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&vec, const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_a015e4eb983da8ccc218796edddd145ff}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat, float scale)
+\item 
+bool \mbox{\hyperlink{namespace_math_a9180235433724422d304ae5bb9c96654}{operator==}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+bool \mbox{\hyperlink{namespace_math_a2018345b202259554f37833e2ad4f368}{operator!=}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_aa4702dd289093f85efd2ce191d042773}{operator+}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_ae4d4050d108be2ff9bbaacbd613cbf48}{operator-\/}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_adf16f62e56ee18741a93b0db7a555fe2}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a7a53d7e378ecb1c87b7a9fa0745de29f}{operator$\ast$}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a10e62d95a67155ffedb323e468943905}{operator$\ast$}} (float scale, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_aad9dc0788e7f4ff5da49955014221905}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a41131259cf64f7c0ae609d2d0538da66}{operator/}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat, float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_ae7fbde4f45edfa3a988c966f6184fca9}{Create\+Invert\+Quaternion}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\begin{DoxyCompactList}\small\item\em 逆四元数を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a69178ac4c7a158859b5e693397f07048}{Create\+Conjugate\+Quaternion}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\begin{DoxyCompactList}\small\item\em 共役四元数を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a75a9db6fc0b36439d59d46bc89b2f254}{Create\+Rot\+Axis\+Quaternion}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&axis, float angle)
+\begin{DoxyCompactList}\small\item\em 任意軸方向回転を行う四元数を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a50fabf83a1d5a726f448e8085c6ce06f}{Create\+Rot\+X\+Y\+Z\+Quaternion}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&rot\+Angle)
+\begin{DoxyCompactList}\small\item\em X\+Y\+Z軸回転を行う四元数を作成する \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_adc7f7b4f59532bf2b31aebf97743c8a9}{Create\+Rot\+Vec\+To\+Vec}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&dst\+Vec, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&src\+Vec, const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&up=\mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}}(0.\+0f, 1.\+0f, 0.\+0f))
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a2ceb0ab69bdfd0752989983241d1055e}{Lerp}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} q2, float t)
+\item 
+\mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{namespace_math_a718b7874df36cd0c5a220f6404c315f8}{Slerp}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2, float t)
+\begin{DoxyCompactList}\small\item\em 2つのクォータニオンを球面線形補間する \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespace_math_af75856a56466e76f5c6308cc78eab656}{Dot}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\begin{DoxyCompactList}\small\item\em 2つのクォータニオンの内積 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespace_math_a573c0790a83c7b0056ade0534c3c26e5}{Calc\+Angle\+Quat\+To\+Quat}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&q2)
+\begin{DoxyCompactList}\small\item\em 2つのクォータニオン間の角度を求める \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{namespace_math_aac3705a108d796688a41340d99852f2e}{Get\+Matrix\+From\+Quat}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&quat)
+\begin{DoxyCompactList}\small\item\em クォータニオンから回転行列を求める \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{namespace_math_aa0985dc913fcb7d0b29f057d46a0a285}{F\+\_\+\+PI}} = 3.\+14159265f
+\item 
+const double \mbox{\hyperlink{namespace_math_a443fa0e652be63da57292b24faba00da}{D\+\_\+\+PI}} = 3.\+141592653589793
+\end{DoxyCompactItemize}
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{namespace_math_a573c0790a83c7b0056ade0534c3c26e5}\label{namespace_math_a573c0790a83c7b0056ade0534c3c26e5}} 
+\index{Math@{Math}!Calc\+Angle\+Quat\+To\+Quat@{Calc\+Angle\+Quat\+To\+Quat}}
+\index{Calc\+Angle\+Quat\+To\+Quat@{Calc\+Angle\+Quat\+To\+Quat}!Math@{Math}}
+\subsubsection{\texorpdfstring{Calc\+Angle\+Quat\+To\+Quat()}{CalcAngleQuatToQuat()}}
+{\footnotesize\ttfamily float Math\+::\+Calc\+Angle\+Quat\+To\+Quat (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+
+
+2つのクォータニオン間の角度を求める 
+
+\mbox{\Hypertarget{namespace_math_ac1dbf09b73e7c8d4144887c802c66fdc}\label{namespace_math_ac1dbf09b73e7c8d4144887c802c66fdc}} 
+\index{Math@{Math}!Calc\+Angle\+Vec\+To\+Vec@{Calc\+Angle\+Vec\+To\+Vec}}
+\index{Calc\+Angle\+Vec\+To\+Vec@{Calc\+Angle\+Vec\+To\+Vec}!Math@{Math}}
+\subsubsection{\texorpdfstring{Calc\+Angle\+Vec\+To\+Vec()}{CalcAngleVecToVec()}}
+{\footnotesize\ttfamily float Math\+::\+Calc\+Angle\+Vec\+To\+Vec (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{v1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{v2 }\end{DoxyParamCaption})}
+
+
+
+2つのベクトル間角度を計算する 
+
+\mbox{\Hypertarget{namespace_math_a63a182d010a122c2bf2332d080682068}\label{namespace_math_a63a182d010a122c2bf2332d080682068}} 
+\index{Math@{Math}!Clamp@{Clamp}}
+\index{Clamp@{Clamp}!Math@{Math}}
+\subsubsection{\texorpdfstring{Clamp()}{Clamp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float Math\+::\+Clamp (\begin{DoxyParamCaption}\item[{float}]{value,  }\item[{float}]{min\+Value,  }\item[{float}]{max\+Value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a9e59da084cd78b8cd7bc184931280f62}\label{namespace_math_a9e59da084cd78b8cd7bc184931280f62}} 
+\index{Math@{Math}!Clamp@{Clamp}}
+\index{Clamp@{Clamp}!Math@{Math}}
+\subsubsection{\texorpdfstring{Clamp()}{Clamp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Math\+::\+Clamp (\begin{DoxyParamCaption}\item[{double}]{value,  }\item[{double}]{min\+Value,  }\item[{double}]{max\+Value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ade59dd308fe183bc0c185f8d1c6d7074}\label{namespace_math_ade59dd308fe183bc0c185f8d1c6d7074}} 
+\index{Math@{Math}!Create\+Axis\+Rot\+Matrix@{Create\+Axis\+Rot\+Matrix}}
+\index{Create\+Axis\+Rot\+Matrix@{Create\+Axis\+Rot\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Axis\+Rot\+Matrix()}{CreateAxisRotMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Axis\+Rot\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{axis,  }\item[{float}]{rad }\end{DoxyParamCaption})}
+
+
+
+任意軸を中止に回転を行う4x4行列を取得する 
+
+\mbox{\Hypertarget{namespace_math_a69178ac4c7a158859b5e693397f07048}\label{namespace_math_a69178ac4c7a158859b5e693397f07048}} 
+\index{Math@{Math}!Create\+Conjugate\+Quaternion@{Create\+Conjugate\+Quaternion}}
+\index{Create\+Conjugate\+Quaternion@{Create\+Conjugate\+Quaternion}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Conjugate\+Quaternion()}{CreateConjugateQuaternion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Create\+Conjugate\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+
+
+共役四元数を作成する 
+
+\mbox{\Hypertarget{namespace_math_aad7bb8945263031607f8b323d9ae1cd7}\label{namespace_math_aad7bb8945263031607f8b323d9ae1cd7}} 
+\index{Math@{Math}!Create\+Ident@{Create\+Ident}}
+\index{Create\+Ident@{Create\+Ident}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Ident()}{CreateIdent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Ident (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+4x4単位行列を作成する 
+
+\mbox{\Hypertarget{namespace_math_ae7fbde4f45edfa3a988c966f6184fca9}\label{namespace_math_ae7fbde4f45edfa3a988c966f6184fca9}} 
+\index{Math@{Math}!Create\+Invert\+Quaternion@{Create\+Invert\+Quaternion}}
+\index{Create\+Invert\+Quaternion@{Create\+Invert\+Quaternion}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Invert\+Quaternion()}{CreateInvertQuaternion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Create\+Invert\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+
+
+逆四元数を作成する 
+
+\mbox{\Hypertarget{namespace_math_a33f8e9946f11a9efd4592ff441549a64}\label{namespace_math_a33f8e9946f11a9efd4592ff441549a64}} 
+\index{Math@{Math}!Create\+Look\+At\+Matrix@{Create\+Look\+At\+Matrix}}
+\index{Create\+Look\+At\+Matrix@{Create\+Look\+At\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Look\+At\+Matrix()}{CreateLookAtMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Look\+At\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{eye,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{target,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{upper }\end{DoxyParamCaption})}
+
+
+
+視点、注視点、上方向ベクトルから\+Look\+At行列を作成する 
+
+\mbox{\Hypertarget{namespace_math_a902772771ec476f8ba2563babfcd865f}\label{namespace_math_a902772771ec476f8ba2563babfcd865f}} 
+\index{Math@{Math}!Create\+Look\+At\+Matrix\+From\+Camera\+Matrix@{Create\+Look\+At\+Matrix\+From\+Camera\+Matrix}}
+\index{Create\+Look\+At\+Matrix\+From\+Camera\+Matrix@{Create\+Look\+At\+Matrix\+From\+Camera\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Look\+At\+Matrix\+From\+Camera\+Matrix()}{CreateLookAtMatrixFromCameraMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Look\+At\+Matrix\+From\+Camera\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{camera\+Matrix }\end{DoxyParamCaption})}
+
+
+
+カメラ行列から\+Look\+At行列を作成する 
+
+\mbox{\Hypertarget{namespace_math_a3a425ade3b937625acd000ced1caa45f}\label{namespace_math_a3a425ade3b937625acd000ced1caa45f}} 
+\index{Math@{Math}!Create\+Perspective\+Matrix@{Create\+Perspective\+Matrix}}
+\index{Create\+Perspective\+Matrix@{Create\+Perspective\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Perspective\+Matrix()}{CreatePerspectiveMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Perspective\+Matrix (\begin{DoxyParamCaption}\item[{float}]{Aspect,  }\item[{float}]{nearZ,  }\item[{float}]{farZ,  }\item[{float}]{fov }\end{DoxyParamCaption})}
+
+
+
+アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する 
+
+\mbox{\Hypertarget{namespace_math_a75a9db6fc0b36439d59d46bc89b2f254}\label{namespace_math_a75a9db6fc0b36439d59d46bc89b2f254}} 
+\index{Math@{Math}!Create\+Rot\+Axis\+Quaternion@{Create\+Rot\+Axis\+Quaternion}}
+\index{Create\+Rot\+Axis\+Quaternion@{Create\+Rot\+Axis\+Quaternion}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Rot\+Axis\+Quaternion()}{CreateRotAxisQuaternion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Create\+Rot\+Axis\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{axis,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+任意軸方向回転を行う四元数を作成する 
+
+\mbox{\Hypertarget{namespace_math_adc7f7b4f59532bf2b31aebf97743c8a9}\label{namespace_math_adc7f7b4f59532bf2b31aebf97743c8a9}} 
+\index{Math@{Math}!Create\+Rot\+Vec\+To\+Vec@{Create\+Rot\+Vec\+To\+Vec}}
+\index{Create\+Rot\+Vec\+To\+Vec@{Create\+Rot\+Vec\+To\+Vec}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Rot\+Vec\+To\+Vec()}{CreateRotVecToVec()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Create\+Rot\+Vec\+To\+Vec (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{dst\+Vec,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{src\+Vec,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{up = {\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}}(0.0f,1.0f,0.0f)} }\end{DoxyParamCaption})}
+
+R3ワールド座標系で任意の方向ベクトルを 任意の方向ベクトルへ回転させる四元数を作成する \mbox{\Hypertarget{namespace_math_a50fabf83a1d5a726f448e8085c6ce06f}\label{namespace_math_a50fabf83a1d5a726f448e8085c6ce06f}} 
+\index{Math@{Math}!Create\+Rot\+X\+Y\+Z\+Quaternion@{Create\+Rot\+X\+Y\+Z\+Quaternion}}
+\index{Create\+Rot\+X\+Y\+Z\+Quaternion@{Create\+Rot\+X\+Y\+Z\+Quaternion}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Rot\+X\+Y\+Z\+Quaternion()}{CreateRotXYZQuaternion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Create\+Rot\+X\+Y\+Z\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{rot\+Angle }\end{DoxyParamCaption})}
+
+
+
+X\+Y\+Z軸回転を行う四元数を作成する 
+
+\mbox{\Hypertarget{namespace_math_a70c81aec69f6a6b6e586a0d0f5d2ae71}\label{namespace_math_a70c81aec69f6a6b6e586a0d0f5d2ae71}} 
+\index{Math@{Math}!Create\+Scale\+Matrix@{Create\+Scale\+Matrix}}
+\index{Create\+Scale\+Matrix@{Create\+Scale\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Scale\+Matrix()}{CreateScaleMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Scale\+Matrix (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+特定のスケールで拡縮する4x4行列を作成する 
+
+\mbox{\Hypertarget{namespace_math_af37fd756ce6f0ed92743c168b170b695}\label{namespace_math_af37fd756ce6f0ed92743c168b170b695}} 
+\index{Math@{Math}!Create\+Scale\+Matrix@{Create\+Scale\+Matrix}}
+\index{Create\+Scale\+Matrix@{Create\+Scale\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Scale\+Matrix()}{CreateScaleMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Scale\+Matrix (\begin{DoxyParamCaption}\item[{float}]{sx,  }\item[{float}]{sy,  }\item[{float}]{sz }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_abb993929e559b690bbb60e9504f3ad95}\label{namespace_math_abb993929e559b690bbb60e9504f3ad95}} 
+\index{Math@{Math}!Create\+Scale\+Matrix@{Create\+Scale\+Matrix}}
+\index{Create\+Scale\+Matrix@{Create\+Scale\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Scale\+Matrix()}{CreateScaleMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Scale\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a22c654a35f22329b5f0ed96a82d843ca}\label{namespace_math_a22c654a35f22329b5f0ed96a82d843ca}} 
+\index{Math@{Math}!Create\+Translate\+Matrix@{Create\+Translate\+Matrix}}
+\index{Create\+Translate\+Matrix@{Create\+Translate\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Translate\+Matrix()}{CreateTranslateMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Translate\+Matrix (\begin{DoxyParamCaption}\item[{float}]{tx,  }\item[{float}]{ty,  }\item[{float}]{tz }\end{DoxyParamCaption})}
+
+
+
+指定した分だけ平行移動を行う4x4行列を作成する 
+
+\mbox{\Hypertarget{namespace_math_ad0007f1238972eb1db1fa2f1a2d3b834}\label{namespace_math_ad0007f1238972eb1db1fa2f1a2d3b834}} 
+\index{Math@{Math}!Create\+Translate\+Matrix@{Create\+Translate\+Matrix}}
+\index{Create\+Translate\+Matrix@{Create\+Translate\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Translate\+Matrix()}{CreateTranslateMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Translate\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{movement }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ac4e4a920c3ea9b1afefe04ed2d4e3b34}\label{namespace_math_ac4e4a920c3ea9b1afefe04ed2d4e3b34}} 
+\index{Math@{Math}!Create\+X\+Rot\+Matrix@{Create\+X\+Rot\+Matrix}}
+\index{Create\+X\+Rot\+Matrix@{Create\+X\+Rot\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+X\+Rot\+Matrix()}{CreateXRotMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+X\+Rot\+Matrix (\begin{DoxyParamCaption}\item[{float}]{rad }\end{DoxyParamCaption})}
+
+
+
+X軸中心回転を行う4x4行列を取得する 
+
+\mbox{\Hypertarget{namespace_math_a82079192513df361d5828e6a8c8754f3}\label{namespace_math_a82079192513df361d5828e6a8c8754f3}} 
+\index{Math@{Math}!Create\+Y\+Rot\+Matrix@{Create\+Y\+Rot\+Matrix}}
+\index{Create\+Y\+Rot\+Matrix@{Create\+Y\+Rot\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Y\+Rot\+Matrix()}{CreateYRotMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Y\+Rot\+Matrix (\begin{DoxyParamCaption}\item[{float}]{rad }\end{DoxyParamCaption})}
+
+
+
+Y軸中心回転を行う4x4行列を取得する 
+
+\mbox{\Hypertarget{namespace_math_a359a2e7263fd64b49264e158052107ab}\label{namespace_math_a359a2e7263fd64b49264e158052107ab}} 
+\index{Math@{Math}!Create\+Z\+Rot\+Matrix@{Create\+Z\+Rot\+Matrix}}
+\index{Create\+Z\+Rot\+Matrix@{Create\+Z\+Rot\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Create\+Z\+Rot\+Matrix()}{CreateZRotMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Create\+Z\+Rot\+Matrix (\begin{DoxyParamCaption}\item[{float}]{rad }\end{DoxyParamCaption})}
+
+
+
+Z軸中心回転を行う4x4行列を取得する 
+
+\mbox{\Hypertarget{namespace_math_a3e7d67884adf533a55598952787420b2}\label{namespace_math_a3e7d67884adf533a55598952787420b2}} 
+\index{Math@{Math}!Cross@{Cross}}
+\index{Cross@{Cross}!Math@{Math}}
+\subsubsection{\texorpdfstring{Cross()}{Cross()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::\+Cross (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{v1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{v2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a1b728d3fd626ed55895d4b59575e071a}\label{namespace_math_a1b728d3fd626ed55895d4b59575e071a}} 
+\index{Math@{Math}!Dot@{Dot}}
+\index{Dot@{Dot}!Math@{Math}}
+\subsubsection{\texorpdfstring{Dot()}{Dot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float Math\+::\+Dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{v1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{v2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_af75856a56466e76f5c6308cc78eab656}\label{namespace_math_af75856a56466e76f5c6308cc78eab656}} 
+\index{Math@{Math}!Dot@{Dot}}
+\index{Dot@{Dot}!Math@{Math}}
+\subsubsection{\texorpdfstring{Dot()}{Dot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily float Math\+::\+Dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+
+
+2つのクォータニオンの内積 
+
+\mbox{\Hypertarget{namespace_math_a1511b5df243ca4ee521026cb9b373efd}\label{namespace_math_a1511b5df243ca4ee521026cb9b373efd}} 
+\index{Math@{Math}!Get\+Invert\+Matrix@{Get\+Invert\+Matrix}}
+\index{Get\+Invert\+Matrix@{Get\+Invert\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Get\+Invert\+Matrix()}{GetInvertMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Get\+Invert\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+4x4行列の逆行列を取得する 
+
+\mbox{\Hypertarget{namespace_math_aac3705a108d796688a41340d99852f2e}\label{namespace_math_aac3705a108d796688a41340d99852f2e}} 
+\index{Math@{Math}!Get\+Matrix\+From\+Quat@{Get\+Matrix\+From\+Quat}}
+\index{Get\+Matrix\+From\+Quat@{Get\+Matrix\+From\+Quat}!Math@{Math}}
+\subsubsection{\texorpdfstring{Get\+Matrix\+From\+Quat()}{GetMatrixFromQuat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Get\+Matrix\+From\+Quat (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+
+
+クォータニオンから回転行列を求める 
+
+\mbox{\Hypertarget{namespace_math_af020b3d35d199e53d32895a737e7c02e}\label{namespace_math_af020b3d35d199e53d32895a737e7c02e}} 
+\index{Math@{Math}!Get\+Matrix\+Rotation@{Get\+Matrix\+Rotation}}
+\index{Get\+Matrix\+Rotation@{Get\+Matrix\+Rotation}!Math@{Math}}
+\subsubsection{\texorpdfstring{Get\+Matrix\+Rotation()}{GetMatrixRotation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Get\+Matrix\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+4x4行列から任意軸回転を行うクォータニオン成分を取得する 
+
+\mbox{\Hypertarget{namespace_math_af3d07a84dd7006820b10c0dcca8d649d}\label{namespace_math_af3d07a84dd7006820b10c0dcca8d649d}} 
+\index{Math@{Math}!Get\+Matrix\+Scale@{Get\+Matrix\+Scale}}
+\index{Get\+Matrix\+Scale@{Get\+Matrix\+Scale}!Math@{Math}}
+\subsubsection{\texorpdfstring{Get\+Matrix\+Scale()}{GetMatrixScale()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::\+Get\+Matrix\+Scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+4x4行列から3次元の拡縮成分を取得する 
+
+\mbox{\Hypertarget{namespace_math_a362448daab24abbbe2f8aeb947396e45}\label{namespace_math_a362448daab24abbbe2f8aeb947396e45}} 
+\index{Math@{Math}!Get\+Matrix\+Translate@{Get\+Matrix\+Translate}}
+\index{Get\+Matrix\+Translate@{Get\+Matrix\+Translate}!Math@{Math}}
+\subsubsection{\texorpdfstring{Get\+Matrix\+Translate()}{GetMatrixTranslate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::\+Get\+Matrix\+Translate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+4x4行列から3次元の並行移動成分を取得する 
+
+\mbox{\Hypertarget{namespace_math_a4cc0372b98a0dd4833848ee1bf268332}\label{namespace_math_a4cc0372b98a0dd4833848ee1bf268332}} 
+\index{Math@{Math}!Get\+Transpose\+Matrix@{Get\+Transpose\+Matrix}}
+\index{Get\+Transpose\+Matrix@{Get\+Transpose\+Matrix}!Math@{Math}}
+\subsubsection{\texorpdfstring{Get\+Transpose\+Matrix()}{GetTransposeMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::\+Get\+Transpose\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+4x4行列の転置行列を取得する 
+
+\mbox{\Hypertarget{namespace_math_a622cf93fd441b31963159cb086b01ff4}\label{namespace_math_a622cf93fd441b31963159cb086b01ff4}} 
+\index{Math@{Math}!Is\+Equal@{Is\+Equal}}
+\index{Is\+Equal@{Is\+Equal}!Math@{Math}}
+\subsubsection{\texorpdfstring{Is\+Equal()}{IsEqual()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily bool Math\+::\+Is\+Equal (\begin{DoxyParamCaption}\item[{float}]{v1,  }\item[{float}]{v2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a298771bf90fda8152d34b6fd004d1c7f}\label{namespace_math_a298771bf90fda8152d34b6fd004d1c7f}} 
+\index{Math@{Math}!Is\+Equal@{Is\+Equal}}
+\index{Is\+Equal@{Is\+Equal}!Math@{Math}}
+\subsubsection{\texorpdfstring{Is\+Equal()}{IsEqual()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily bool Math\+::\+Is\+Equal (\begin{DoxyParamCaption}\item[{double}]{v1,  }\item[{double}]{v2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_aa9851c5508417d12ef139ebbe943f6a7}\label{namespace_math_aa9851c5508417d12ef139ebbe943f6a7}} 
+\index{Math@{Math}!Is\+Equal@{Is\+Equal}}
+\index{Is\+Equal@{Is\+Equal}!Math@{Math}}
+\subsubsection{\texorpdfstring{Is\+Equal()}{IsEqual()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily bool Math\+::\+Is\+Equal (\begin{DoxyParamCaption}\item[{float}]{v1,  }\item[{double}]{v2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a5eeb1781896881768b92899090b7d750}\label{namespace_math_a5eeb1781896881768b92899090b7d750}} 
+\index{Math@{Math}!Is\+Equal@{Is\+Equal}}
+\index{Is\+Equal@{Is\+Equal}!Math@{Math}}
+\subsubsection{\texorpdfstring{Is\+Equal()}{IsEqual()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily bool Math\+::\+Is\+Equal (\begin{DoxyParamCaption}\item[{double}]{v1,  }\item[{float}]{v2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_aa85ef15b6a4171111a31bb17db917dd9}\label{namespace_math_aa85ef15b6a4171111a31bb17db917dd9}} 
+\index{Math@{Math}!Is\+Zero@{Is\+Zero}}
+\index{Is\+Zero@{Is\+Zero}!Math@{Math}}
+\subsubsection{\texorpdfstring{Is\+Zero()}{IsZero()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Math\+::\+Is\+Zero (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a50e4a54ad68fe1c946ba6b5c425e47ad}\label{namespace_math_a50e4a54ad68fe1c946ba6b5c425e47ad}} 
+\index{Math@{Math}!Is\+Zero@{Is\+Zero}}
+\index{Is\+Zero@{Is\+Zero}!Math@{Math}}
+\subsubsection{\texorpdfstring{Is\+Zero()}{IsZero()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Math\+::\+Is\+Zero (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a2ceb0ab69bdfd0752989983241d1055e}\label{namespace_math_a2ceb0ab69bdfd0752989983241d1055e}} 
+\index{Math@{Math}!Lerp@{Lerp}}
+\index{Lerp@{Lerp}!Math@{Math}}
+\subsubsection{\texorpdfstring{Lerp()}{Lerp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Lerp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}}}]{q2,  }\item[{float}]{t }\end{DoxyParamCaption})}
+
+2つのクォータニオンを線形補間する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}}} & q1 \\
+\hline
+\mbox{\tt in}  & {\em \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}}} & q2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{覚え書き}
+q1からq2にかけて補間を行う。 t=0.\+0fのとき、q1 t = 1.\+0fのとき、q2 ただし、tは　0.0f $<$= t $<$= 1.\+0fとなるようにクランプされる 
+\end{DoxyNote}
+\mbox{\Hypertarget{namespace_math_ad4369be47f3ec66cce0862bc66966e96}\label{namespace_math_ad4369be47f3ec66cce0862bc66966e96}} 
+\index{Math@{Math}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!Math@{Math}}
+\subsubsection{\texorpdfstring{Normalize()}{Normalize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::\+Normalize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{vec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a248dfe0b65dce8c8f25689145d18fc68}\label{namespace_math_a248dfe0b65dce8c8f25689145d18fc68}} 
+\index{Math@{Math}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily bool Math\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_acd6ae74465b9e93459c15a638efcdb61}\label{namespace_math_acd6ae74465b9e93459c15a638efcdb61}} 
+\index{Math@{Math}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily bool Math\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a363043a928db204744bfb86367be979d}\label{namespace_math_a363043a928db204744bfb86367be979d}} 
+\index{Math@{Math}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily bool Math\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_af3f64c58fbe9c4788f9697c9a12dfdf7}\label{namespace_math_af3f64c58fbe9c4788f9697c9a12dfdf7}} 
+\index{Math@{Math}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily bool Math\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a4834d702630aaf6717303b4faf834cd2}\label{namespace_math_a4834d702630aaf6717303b4faf834cd2}} 
+\index{Math@{Math}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily bool Math\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a2018345b202259554f37833e2ad4f368}\label{namespace_math_a2018345b202259554f37833e2ad4f368}} 
+\index{Math@{Math}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily bool Math\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a9071831f1488bc75d0dff29a52258009}\label{namespace_math_a9071831f1488bc75d0dff29a52258009}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{value,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ae64567d7ee2881978a228a6ceaeca4f4}\label{namespace_math_ae64567d7ee2881978a228a6ceaeca4f4}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a94042de53627e5809c4676b6c5340963}\label{namespace_math_a94042de53627e5809c4676b6c5340963}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{value,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a0d1f5fd771b09fb7d2c8e0ebbc182f19}\label{namespace_math_a0d1f5fd771b09fb7d2c8e0ebbc182f19}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a2c882069472ade27f2265b16041baf76}\label{namespace_math_a2c882069472ade27f2265b16041baf76}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [5/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{value,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a3dd17b1db67faf64ebabe1e113d40af4}\label{namespace_math_a3dd17b1db67faf64ebabe1e113d40af4}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [6/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a06472d628f45d93a8bdb7cdcb0b1be8d}\label{namespace_math_a06472d628f45d93a8bdb7cdcb0b1be8d}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [7/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_adddddb021bc36b35e73f09ed99fa11c5}\label{namespace_math_adddddb021bc36b35e73f09ed99fa11c5}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [8/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a7239dba8d71c3d6209d9fd502fd1e2ad}\label{namespace_math_a7239dba8d71c3d6209d9fd502fd1e2ad}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [9/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_aa7973248d0183ea280fef5097eb6ef3f}\label{namespace_math_aa7973248d0183ea280fef5097eb6ef3f}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [10/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{vec,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a4d7db6c4bdacba08e4a5488fe9643450}\label{namespace_math_a4d7db6c4bdacba08e4a5488fe9643450}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [11/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{vec,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a231015e930e4e65cfeb4d3ed35c5f60b}\label{namespace_math_a231015e930e4e65cfeb4d3ed35c5f60b}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [12/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a9c473bb33aae64090197e0d686ad75c3}\label{namespace_math_a9c473bb33aae64090197e0d686ad75c3}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [13/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ab554e261e8209bde30f33f893c0f2bbb}\label{namespace_math_ab554e261e8209bde30f33f893c0f2bbb}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [14/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_abaac4a662eebe65536e53580498f7377}\label{namespace_math_abaac4a662eebe65536e53580498f7377}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [15/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{vec,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ad610b35195c92a20ff2913aaa5c14f4c}\label{namespace_math_ad610b35195c92a20ff2913aaa5c14f4c}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [16/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{vec,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_adf16f62e56ee18741a93b0db7a555fe2}\label{namespace_math_adf16f62e56ee18741a93b0db7a555fe2}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [17/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a7a53d7e378ecb1c87b7a9fa0745de29f}\label{namespace_math_a7a53d7e378ecb1c87b7a9fa0745de29f}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [18/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a10e62d95a67155ffedb323e468943905}\label{namespace_math_a10e62d95a67155ffedb323e468943905}} 
+\index{Math@{Math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [19/19]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a62f686c8f0b005ab24cd368fe4ab1b4b}\label{namespace_math_a62f686c8f0b005ab24cd368fe4ab1b4b}} 
+\index{Math@{Math}!operator+@{operator+}}
+\index{operator+@{operator+}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} Math\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a279c2ff1375f08332e47f665f9d96622}\label{namespace_math_a279c2ff1375f08332e47f665f9d96622}} 
+\index{Math@{Math}!operator+@{operator+}}
+\index{operator+@{operator+}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a62a5770bc56d8813435b7530021278b5}\label{namespace_math_a62a5770bc56d8813435b7530021278b5}} 
+\index{Math@{Math}!operator+@{operator+}}
+\index{operator+@{operator+}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a389dadeebac6c85cbab4622add8901a5}\label{namespace_math_a389dadeebac6c85cbab4622add8901a5}} 
+\index{Math@{Math}!operator+@{operator+}}
+\index{operator+@{operator+}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a959ebc86863f66d4fb3bc96f3b0ad6be}\label{namespace_math_a959ebc86863f66d4fb3bc96f3b0ad6be}} 
+\index{Math@{Math}!operator+@{operator+}}
+\index{operator+@{operator+}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} Math\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_aa4702dd289093f85efd2ce191d042773}\label{namespace_math_aa4702dd289093f85efd2ce191d042773}} 
+\index{Math@{Math}!operator+@{operator+}}
+\index{operator+@{operator+}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a3c1ebbbebd6020556b1cdd7ebe1ee1a5}\label{namespace_math_a3c1ebbbebd6020556b1cdd7ebe1ee1a5}} 
+\index{Math@{Math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} Math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a99d6a8ff14fa83d33520f7f3f717877c}\label{namespace_math_a99d6a8ff14fa83d33520f7f3f717877c}} 
+\index{Math@{Math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ae164bf95185127aeb0d140f15718e10a}\label{namespace_math_ae164bf95185127aeb0d140f15718e10a}} 
+\index{Math@{Math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a63a0e723e7843e2eb47b2285846df34f}\label{namespace_math_a63a0e723e7843e2eb47b2285846df34f}} 
+\index{Math@{Math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a0fd0b23a7349545e6b45a09ea4758be4}\label{namespace_math_a0fd0b23a7349545e6b45a09ea4758be4}} 
+\index{Math@{Math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} Math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ae4d4050d108be2ff9bbaacbd613cbf48}\label{namespace_math_ae4d4050d108be2ff9bbaacbd613cbf48}} 
+\index{Math@{Math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_ac1d2e4f5c5d22414afbcdc056e957318}\label{namespace_math_ac1d2e4f5c5d22414afbcdc056e957318}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{value,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a47b5ce1ab6c1fd8b4163dbe17fc2c8bc}\label{namespace_math_a47b5ce1ab6c1fd8b4163dbe17fc2c8bc}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{value,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a22a570ffffa9a4508274b38d5f26da25}\label{namespace_math_a22a570ffffa9a4508274b38d5f26da25}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{value,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a283dc37f79d3f2d51bb3e494f02a0ad3}\label{namespace_math_a283dc37f79d3f2d51bb3e494f02a0ad3}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a015e4eb983da8ccc218796edddd145ff}\label{namespace_math_a015e4eb983da8ccc218796edddd145ff}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_aad9dc0788e7f4ff5da49955014221905}\label{namespace_math_aad9dc0788e7f4ff5da49955014221905}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a41131259cf64f7c0ae609d2d0538da66}\label{namespace_math_a41131259cf64f7c0ae609d2d0538da66}} 
+\index{Math@{Math}!operator/@{operator/}}
+\index{operator/@{operator/}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{quat,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_af4687bc70508587a7473bab655a2b2a9}\label{namespace_math_af4687bc70508587a7473bab655a2b2a9}} 
+\index{Math@{Math}!operator==@{operator==}}
+\index{operator==@{operator==}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily bool Math\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector2}{Vector2}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a68e85675a519a429e4e5650bb2613bc0}\label{namespace_math_a68e85675a519a429e4e5650bb2613bc0}} 
+\index{Math@{Math}!operator==@{operator==}}
+\index{operator==@{operator==}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily bool Math\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Vector3}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a63e6345cc66935721e93c8c65978eb7e}\label{namespace_math_a63e6345cc66935721e93c8c65978eb7e}} 
+\index{Math@{Math}!operator==@{operator==}}
+\index{operator==@{operator==}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily bool Math\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector4}{Vector4}} \&}]{t2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a5b40764391fa4cbbc642c330f4299874}\label{namespace_math_a5b40764391fa4cbbc642c330f4299874}} 
+\index{Math@{Math}!operator==@{operator==}}
+\index{operator==@{operator==}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily bool Math\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_abf6196400c58b30a5a616aefccff2f14}\label{namespace_math_abf6196400c58b30a5a616aefccff2f14}} 
+\index{Math@{Math}!operator==@{operator==}}
+\index{operator==@{operator==}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily bool Math\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a9180235433724422d304ae5bb9c96654}\label{namespace_math_a9180235433724422d304ae5bb9c96654}} 
+\index{Math@{Math}!operator==@{operator==}}
+\index{operator==@{operator==}!Math@{Math}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily bool Math\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_math_a718b7874df36cd0c5a220f6404c315f8}\label{namespace_math_a718b7874df36cd0c5a220f6404c315f8}} 
+\index{Math@{Math}!Slerp@{Slerp}}
+\index{Slerp@{Slerp}!Math@{Math}}
+\subsubsection{\texorpdfstring{Slerp()}{Slerp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} Math\+::\+Slerp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Quaternion}} \&}]{q2,  }\item[{float}]{t }\end{DoxyParamCaption})}
+
+
+
+2つのクォータニオンを球面線形補間する 
+
+
+
+\subsection{変数詳解}
+\mbox{\Hypertarget{namespace_math_a443fa0e652be63da57292b24faba00da}\label{namespace_math_a443fa0e652be63da57292b24faba00da}} 
+\index{Math@{Math}!D\+\_\+\+PI@{D\+\_\+\+PI}}
+\index{D\+\_\+\+PI@{D\+\_\+\+PI}!Math@{Math}}
+\subsubsection{\texorpdfstring{D\+\_\+\+PI}{D\_PI}}
+{\footnotesize\ttfamily const double Math\+::\+D\+\_\+\+PI = 3.\+141592653589793}
+
+\mbox{\Hypertarget{namespace_math_aa0985dc913fcb7d0b29f057d46a0a285}\label{namespace_math_aa0985dc913fcb7d0b29f057d46a0a285}} 
+\index{Math@{Math}!F\+\_\+\+PI@{F\+\_\+\+PI}}
+\index{F\+\_\+\+PI@{F\+\_\+\+PI}!Math@{Math}}
+\subsubsection{\texorpdfstring{F\+\_\+\+PI}{F\_PI}}
+{\footnotesize\ttfamily const float Math\+::\+F\+\_\+\+PI = 3.\+14159265f}
+

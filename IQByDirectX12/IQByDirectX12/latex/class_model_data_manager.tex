@@ -1,0 +1,127 @@
+\hypertarget{class_model_data_manager}{}\section{Model\+Data\+Manager クラス}
+\label{class_model_data_manager}\index{Model\+Data\+Manager@{Model\+Data\+Manager}}
+
+
+{\ttfamily \#include $<$Model\+Data\+Manager.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_model_data_manager_ad8a24b96d273af9e717e7cc4b68cf399}{$\sim$\+Model\+Data\+Manager}} ()
+\item 
+int \mbox{\hyperlink{class_model_data_manager_a20b9312e019c39c633d6429e1209d1b7}{Regist}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model_data}{Model\+Data}} $>$ model\+Data)
+\item 
+void \mbox{\hyperlink{class_model_data_manager_aaa1dc0669900e8dc8186ae075133ba24}{Erase}} (int handle)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model_data}{Model\+Data}} $>$ \mbox{\hyperlink{class_model_data_manager_a5f823590ae9c9eac222a7b107d14634b}{Get\+Model\+Data}} (int handle) const
+\item 
+bool \mbox{\hyperlink{class_model_data_manager_a69c14318f17547e1145b714a613732bc}{Is\+Exist}} (int handle) const
+\item 
+void \mbox{\hyperlink{class_model_data_manager_a9c2d9c3a70323f7d486fb42de162d303}{Draw}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ graphics\+Command\+List)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_model_data_manager}{Model\+Data\+Manager}} \& \mbox{\hyperlink{class_model_data_manager_aee0cb9bcad096186bd2902620d1ac780}{Get\+Instance}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_model_data_manager_ad8a24b96d273af9e717e7cc4b68cf399}\label{class_model_data_manager_ad8a24b96d273af9e717e7cc4b68cf399}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!````~Model\+Data\+Manager@{$\sim$\+Model\+Data\+Manager}}
+\index{````~Model\+Data\+Manager@{$\sim$\+Model\+Data\+Manager}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$\+Model\+Data\+Manager()}{~ModelDataManager()}}
+{\footnotesize\ttfamily Model\+Data\+Manager\+::$\sim$\+Model\+Data\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_model_data_manager_a9c2d9c3a70323f7d486fb42de162d303}\label{class_model_data_manager_a9c2d9c3a70323f7d486fb42de162d303}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!Draw@{Draw}}
+\index{Draw@{Draw}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily Model\+Data\+Manager\+::\+Draw (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{graphics\+Command\+List }\end{DoxyParamCaption})}
+
+管理しているモデルデータを描画する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em graphics\+Command\+List} & \+: 描画先コマンドリスト \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_data_manager_aaa1dc0669900e8dc8186ae075133ba24}\label{class_model_data_manager_aaa1dc0669900e8dc8186ae075133ba24}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!Erase@{Erase}}
+\index{Erase@{Erase}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Erase()}{Erase()}}
+{\footnotesize\ttfamily Model\+Data\+Manager\+::\+Erase (\begin{DoxyParamCaption}\item[{int}]{handle }\end{DoxyParamCaption})}
+
+指定したハンドルのモデルデータを削除する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & モデルハンドル \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_data_manager_aee0cb9bcad096186bd2902620d1ac780}\label{class_model_data_manager_aee0cb9bcad096186bd2902620d1ac780}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!Get\+Instance@{Get\+Instance}}
+\index{Get\+Instance@{Get\+Instance}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Instance()}{GetInstance()}}
+{\footnotesize\ttfamily static Model\+Data\+Manager\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+シングルトンインスタンスを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em モデルマネージャのインスタンス} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_model_data_manager_a5f823590ae9c9eac222a7b107d14634b}\label{class_model_data_manager_a5f823590ae9c9eac222a7b107d14634b}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!Get\+Model\+Data@{Get\+Model\+Data}}
+\index{Get\+Model\+Data@{Get\+Model\+Data}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Model\+Data()}{GetModelData()}}
+{\footnotesize\ttfamily Model\+Data\+Manager\+::\+Get\+Model\+Data (\begin{DoxyParamCaption}\item[{int}]{handle }\end{DoxyParamCaption}) const}
+
+モデルデータを作成する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & \+: モデルハンドル \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em モデルデータ} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_model_data_manager_a69c14318f17547e1145b714a613732bc}\label{class_model_data_manager_a69c14318f17547e1145b714a613732bc}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!Is\+Exist@{Is\+Exist}}
+\index{Is\+Exist@{Is\+Exist}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Is\+Exist()}{IsExist()}}
+{\footnotesize\ttfamily Model\+Data\+Manager\+::\+Is\+Exist (\begin{DoxyParamCaption}\item[{int}]{handle }\end{DoxyParamCaption}) const}
+
+指定したハンドルを指すモデルデータが存在するが確認する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & \+: テクスチャハンドル \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 存在する} & true \\
+\hline
+{\em 存在しない} & false \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_model_data_manager_a20b9312e019c39c633d6429e1209d1b7}\label{class_model_data_manager_a20b9312e019c39c633d6429e1209d1b7}} 
+\index{Model\+Data\+Manager@{Model\+Data\+Manager}!Regist@{Regist}}
+\index{Regist@{Regist}!Model\+Data\+Manager@{Model\+Data\+Manager}}
+\subsubsection{\texorpdfstring{Regist()}{Regist()}}
+{\footnotesize\ttfamily Model\+Data\+Manager\+::\+Regist (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model_data}{Model\+Data}} $>$}]{model\+Data }\end{DoxyParamCaption})}
+
+モデルデータを登録し、管理ハンドルを返す 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em model\+Data} & モデルデータ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em モデルデータのハンドル} & \\
+\hline
+\end{DoxyRetVals}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_model_data_manager_8h}{Model\+Data\+Manager.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_model_data_manager_8cpp}{Model\+Data\+Manager.\+cpp}}\end{DoxyCompactItemize}

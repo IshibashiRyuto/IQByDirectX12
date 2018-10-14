@@ -1,0 +1,148 @@
+\hypertarget{class_texture_manager}{}\section{Texture\+Manager クラス}
+\label{class_texture_manager}\index{Texture\+Manager@{Texture\+Manager}}
+
+
+{\ttfamily \#include $<$Texture\+Manager.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_texture_manager_a001d6d74674961db79987e3222682576}{$\sim$\+Texture\+Manager}} ()
+\item 
+int \mbox{\hyperlink{class_texture_manager_a390fd4dc7b2b2e1898a7239b1a8dd26d}{Regist}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_texture}{Texture}} $>$ texture)
+\item 
+void \mbox{\hyperlink{class_texture_manager_abda8c00abcd513182e6447943d1b6808}{Erase}} (int texture\+Handle)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_texture}{Texture}} $>$ \mbox{\hyperlink{class_texture_manager_a8995fa4f73ade280992c56f47b8d6d9d}{Get\+Texture}} (int texture\+Handle) const
+\item 
+bool \mbox{\hyperlink{class_texture_manager_a2de3668d0dd69fc973a53bdc8508d586}{Is\+Exist}} (int handle) const
+\item 
+void \mbox{\hyperlink{class_texture_manager_a3266462ce0ac2bd4e6bad6977df92143}{Create\+White\+And\+Black\+Texture}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device)
+\begin{DoxyCompactList}\small\item\em ヌルテクスチャを作成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_texture_manager}{Texture\+Manager}} \& \mbox{\hyperlink{class_texture_manager_adf67537a12b9a757c363cacbd3d20b56}{Get\+Instance}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_texture_manager_a3fb17a5c43751276c5071cf6212b740c}{W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE}} = -\/1
+\item 
+static const int \mbox{\hyperlink{class_texture_manager_ab31a360ffca7a7a9115361580fc2e558}{B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE}} = -\/2
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_texture_manager_a001d6d74674961db79987e3222682576}\label{class_texture_manager_a001d6d74674961db79987e3222682576}} 
+\index{Texture\+Manager@{Texture\+Manager}!````~Texture\+Manager@{$\sim$\+Texture\+Manager}}
+\index{````~Texture\+Manager@{$\sim$\+Texture\+Manager}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$\+Texture\+Manager()}{~TextureManager()}}
+{\footnotesize\ttfamily Texture\+Manager\+::$\sim$\+Texture\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_texture_manager_a3266462ce0ac2bd4e6bad6977df92143}\label{class_texture_manager_a3266462ce0ac2bd4e6bad6977df92143}} 
+\index{Texture\+Manager@{Texture\+Manager}!Create\+White\+And\+Black\+Texture@{Create\+White\+And\+Black\+Texture}}
+\index{Create\+White\+And\+Black\+Texture@{Create\+White\+And\+Black\+Texture}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{Create\+White\+And\+Black\+Texture()}{CreateWhiteAndBlackTexture()}}
+{\footnotesize\ttfamily void Texture\+Manager\+::\+Create\+White\+And\+Black\+Texture (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})}
+
+
+
+ヌルテクスチャを作成する 
+
+\mbox{\Hypertarget{class_texture_manager_abda8c00abcd513182e6447943d1b6808}\label{class_texture_manager_abda8c00abcd513182e6447943d1b6808}} 
+\index{Texture\+Manager@{Texture\+Manager}!Erase@{Erase}}
+\index{Erase@{Erase}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{Erase()}{Erase()}}
+{\footnotesize\ttfamily Texture\+Manager\+::\+Erase (\begin{DoxyParamCaption}\item[{int}]{texture\+Handle }\end{DoxyParamCaption})}
+
+指定したハンドルのテクスチャを削除する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em int} & テクスチャハンドル \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_texture_manager_adf67537a12b9a757c363cacbd3d20b56}\label{class_texture_manager_adf67537a12b9a757c363cacbd3d20b56}} 
+\index{Texture\+Manager@{Texture\+Manager}!Get\+Instance@{Get\+Instance}}
+\index{Get\+Instance@{Get\+Instance}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Instance()}{GetInstance()}}
+{\footnotesize\ttfamily static Texture\+Manager\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+シングルトンインスタンスを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em テクスチャマネージャのインスタンス} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_texture_manager_a8995fa4f73ade280992c56f47b8d6d9d}\label{class_texture_manager_a8995fa4f73ade280992c56f47b8d6d9d}} 
+\index{Texture\+Manager@{Texture\+Manager}!Get\+Texture@{Get\+Texture}}
+\index{Get\+Texture@{Get\+Texture}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Texture()}{GetTexture()}}
+{\footnotesize\ttfamily Texture\+Manager\+::\+Get\+Texture (\begin{DoxyParamCaption}\item[{int}]{texture\+Handle }\end{DoxyParamCaption}) const}
+
+テクスチャデータを取得する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em texture\+Handle} & \+: テクスチャハンドル \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em テクスチャデータ} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_texture_manager_a2de3668d0dd69fc973a53bdc8508d586}\label{class_texture_manager_a2de3668d0dd69fc973a53bdc8508d586}} 
+\index{Texture\+Manager@{Texture\+Manager}!Is\+Exist@{Is\+Exist}}
+\index{Is\+Exist@{Is\+Exist}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{Is\+Exist()}{IsExist()}}
+{\footnotesize\ttfamily Texture\+Manager\+::\+Is\+Exist (\begin{DoxyParamCaption}\item[{int}]{handle }\end{DoxyParamCaption}) const}
+
+対象としたハンドルの先が存在するか確認する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em handle} & テクスチャハンドル \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 存在する} & true \\
+\hline
+{\em 存在しない} & false \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_texture_manager_a390fd4dc7b2b2e1898a7239b1a8dd26d}\label{class_texture_manager_a390fd4dc7b2b2e1898a7239b1a8dd26d}} 
+\index{Texture\+Manager@{Texture\+Manager}!Regist@{Regist}}
+\index{Regist@{Regist}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{Regist()}{Regist()}}
+{\footnotesize\ttfamily Texture\+Manager\+::\+Regist (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_texture}{Texture}} $>$}]{texture }\end{DoxyParamCaption})}
+
+テクスチャデータをマネージャに登録し、管理ハンドルを返す 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em texture} & \+: テクスチャデータ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em テクスチャのハンドル} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{class_texture_manager_ab31a360ffca7a7a9115361580fc2e558}\label{class_texture_manager_ab31a360ffca7a7a9115361580fc2e558}} 
+\index{Texture\+Manager@{Texture\+Manager}!B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE@{B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE}}
+\index{B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE@{B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE}{BLACK\_TEXTURE}}
+{\footnotesize\ttfamily const int Texture\+Manager\+::\+B\+L\+A\+C\+K\+\_\+\+T\+E\+X\+T\+U\+RE = -\/2\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_texture_manager_a3fb17a5c43751276c5071cf6212b740c}\label{class_texture_manager_a3fb17a5c43751276c5071cf6212b740c}} 
+\index{Texture\+Manager@{Texture\+Manager}!W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE@{W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE}}
+\index{W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE@{W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE}!Texture\+Manager@{Texture\+Manager}}
+\subsubsection{\texorpdfstring{W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE}{WHITE\_TEXTURE}}
+{\footnotesize\ttfamily const int Texture\+Manager\+::\+W\+H\+I\+T\+E\+\_\+\+T\+E\+X\+T\+U\+RE = -\/1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Texture/\mbox{\hyperlink{_texture_manager_8h}{Texture\+Manager.\+h}}\item 
+Source/\+Texture/\mbox{\hyperlink{_texture_manager_8cpp}{Texture\+Manager.\+cpp}}\end{DoxyCompactItemize}

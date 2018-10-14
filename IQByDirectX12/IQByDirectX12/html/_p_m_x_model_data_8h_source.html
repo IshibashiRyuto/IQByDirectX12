@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/Model/PMXModelData.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_4d2cd150aff3df625ebb7431566b7a26.html">Model</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">PMXModelData.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_p_m_x_model_data_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    @file       PMXModelData.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    @brief      PMXモデルのデータを格納する</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    @param      History</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">        2018/08/28  初版作成</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">        2018/09/09  頂点データの構造を変更</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// システムヘッダインクルード</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// 自作ヘッダインクルード</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;../PMXModelDataInfo.h&quot;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_model_data_8h.html">ModelData.h</a>&quot;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../Math/Math.h&quot;</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../Pose.h&quot;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// クラス使用宣言</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="class_vertex_buffer.html">VertexBuffer</a>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="class_index_buffer.html">IndexBuffer</a>;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_constant_buffer.html">ConstantBuffer</a>;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="class_texture_loader.html">TextureLoader</a>;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span><a class="code" href="class_device.html">Device</a>;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_p_m_x_model_data.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_p_m_x_model_data.html">PMXModelData</a> : <span class="keyword">public</span> <a class="code" href="class_model_data.html">ModelData</a></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_p_m_x_model_data.html#a9865c076685f2efab59e2f19b12e86b5">PMXModelData</a>(std::shared_ptr&lt;Device&gt; device,</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        std::vector&lt;PMX::Vertex&gt; vertexData,</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        std::vector&lt;PMX::Index&gt; indexData,</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">int</span> materialCount,</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">int</span> boneCount);</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_p_m_x_model_data.html#aab20c1e8dd3219cd165f877508e256a6">~PMXModelData</a>();</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;PMXModelData&gt; <a class="code" href="class_p_m_x_model_data.html#a86aa963671719340a27fc76f88268dac">Create</a>(std::shared_ptr&lt;Device&gt; device,</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::vector&lt;PMX::Vertex&gt; vertexData,</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        std::vector&lt;PMX::Index&gt; indexData);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;PMXModelData&gt; <a class="code" href="class_p_m_x_model_data.html#a86aa963671719340a27fc76f88268dac">Create</a>(std::shared_ptr&lt;Device&gt; device, <span class="keyword">const</span> <a class="code" href="struct_p_m_x_1_1_model_data_desc.html">PMX::ModelDataDesc</a>&amp; modelDataDesc);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_p_m_x_model_data.html#a4c692007e0b890ee0bfd0f2bbbe0b97f">Update</a>();</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_p_m_x_model_data.html#aa88713736e3c337cabb23127c03be3c2">Draw</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; graphicsCommandList, <span class="keyword">const</span> <a class="code" href="struct_instance_data.html">InstanceData</a>&amp; instanceData) <span class="keyword">const</span>;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">/* 定数定義 */</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">/* 変数宣言 */</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::shared_ptr&lt;ConstantBuffer&gt; mMaterialDataBuffer;            <span class="comment">// マテリアルデータを保存する定数バッファ</span></div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::vector&lt;PMX::MaterialData&gt;  mMaterialData;                  <span class="comment">// マテリアルデータ</span></div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::shared_ptr&lt;TextureLoader&gt;  mTextureLoader;                 <span class="comment">// モデル用テクスチャローダ</span></div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::vector&lt;int&gt;                mTextureHandle;                 <span class="comment">// テクスチャハンドル</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::shared_ptr&lt;ConstantBuffer&gt; mBoneMatrixDataBuffer;          <span class="comment">// ボーン行列情報を保存する定数バッファ</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">/* ローカルメソッド定義 */</span></div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> LoadModelTexture(<span class="keyword">const</span> std::vector&lt;PMX::Texture&gt; &amp; textures, <span class="keyword">const</span> std::wstring&amp; modelFilePath);</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> SetMaterial(<span class="keyword">const</span> std::vector&lt;PMX::Material&gt;&amp; materials);</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> SetBone(<span class="keyword">const</span> std::vector&lt;PMX::BoneData&gt;&amp; bones);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> UpdatePose();</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div><div class="ttc" id="class_p_m_x_model_data_html"><div class="ttname"><a href="class_p_m_x_model_data.html">PMXModelData</a></div><div class="ttdef"><b>Definition:</b> PMXModelData.h:31</div></div>
+<div class="ttc" id="class_p_m_x_model_data_html_aab20c1e8dd3219cd165f877508e256a6"><div class="ttname"><a href="class_p_m_x_model_data.html#aab20c1e8dd3219cd165f877508e256a6">PMXModelData::~PMXModelData</a></div><div class="ttdeci">~PMXModelData()</div><div class="ttdef"><b>Definition:</b> PMXModelData.cpp:25</div></div>
+<div class="ttc" id="class_p_m_x_model_data_html_aa88713736e3c337cabb23127c03be3c2"><div class="ttname"><a href="class_p_m_x_model_data.html#aa88713736e3c337cabb23127c03be3c2">PMXModelData::Draw</a></div><div class="ttdeci">void Draw(ComPtr&lt; ID3D12GraphicsCommandList &gt; graphicsCommandList, const InstanceData &amp;instanceData) const</div><div class="ttdef"><b>Definition:</b> PMXModelData.cpp:51</div></div>
+<div class="ttc" id="class_p_m_x_model_data_html_a9865c076685f2efab59e2f19b12e86b5"><div class="ttname"><a href="class_p_m_x_model_data.html#a9865c076685f2efab59e2f19b12e86b5">PMXModelData::PMXModelData</a></div><div class="ttdeci">PMXModelData(std::shared_ptr&lt; Device &gt; device, std::vector&lt; PMX::Vertex &gt; vertexData, std::vector&lt; PMX::Index &gt; indexData, int materialCount, int boneCount)</div><div class="ttdef"><b>Definition:</b> PMXModelData.cpp:15</div></div>
+<div class="ttc" id="class_vertex_buffer_html"><div class="ttname"><a href="class_vertex_buffer.html">VertexBuffer</a></div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:14</div></div>
+<div class="ttc" id="class_device_html"><div class="ttname"><a href="class_device.html">Device</a></div><div class="ttdef"><b>Definition:</b> Device.h:20</div></div>
+<div class="ttc" id="class_texture_loader_html"><div class="ttname"><a href="class_texture_loader.html">TextureLoader</a></div><div class="ttdoc">テクスチャの読み込みを行うクラス このクラスはテクスチャデータを読み込み、 テクスチャデータの管理を行�...</div><div class="ttdef"><b>Definition:</b> TextureLoader.h:30</div></div>
+<div class="ttc" id="struct_p_m_x_1_1_model_data_desc_html"><div class="ttname"><a href="struct_p_m_x_1_1_model_data_desc.html">PMX::ModelDataDesc</a></div><div class="ttdef"><b>Definition:</b> PMXModelDataInfo.h:314</div></div>
+<div class="ttc" id="class_p_m_x_model_data_html_a86aa963671719340a27fc76f88268dac"><div class="ttname"><a href="class_p_m_x_model_data.html#a86aa963671719340a27fc76f88268dac">PMXModelData::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; PMXModelData &gt; Create(std::shared_ptr&lt; Device &gt; device, std::vector&lt; PMX::Vertex &gt; vertexData, std::vector&lt; PMX::Index &gt; indexData)</div><div class="ttdef"><b>Definition:</b> PMXModelData.cpp:29</div></div>
+<div class="ttc" id="class_constant_buffer_html"><div class="ttname"><a href="class_constant_buffer.html">ConstantBuffer</a></div><div class="ttdef"><b>Definition:</b> ConstantBuffer.h:20</div></div>
+<div class="ttc" id="struct_instance_data_html"><div class="ttname"><a href="struct_instance_data.html">InstanceData</a></div><div class="ttdef"><b>Definition:</b> InstancingDataManager.h:22</div></div>
+<div class="ttc" id="_model_data_8h_html"><div class="ttname"><a href="_model_data_8h.html">ModelData.h</a></div></div>
+<div class="ttc" id="class_p_m_x_model_data_html_a4c692007e0b890ee0bfd0f2bbbe0b97f"><div class="ttname"><a href="class_p_m_x_model_data.html#a4c692007e0b890ee0bfd0f2bbbe0b97f">PMXModelData::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> PMXModelData.cpp:46</div></div>
+<div class="ttc" id="class_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> ModelData.h:22</div></div>
+<div class="ttc" id="class_index_buffer_html"><div class="ttname"><a href="class_index_buffer.html">IndexBuffer</a></div><div class="ttdef"><b>Definition:</b> IndexBuffer.h:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/DepthBuffer.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">DepthBuffer.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_depth_buffer_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    DepthBuffer.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    デプスバッファのリソースとDSVを管理するクラス</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    (今後ステンシルバッファが必要になったらまた改訂します)</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">    @author Ishibashi Ryuto</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">    @history</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">    2018/07/12 初版作成</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// ComPtr使用宣言</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_depth_buffer.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_depth_buffer.html">DepthBuffer</a></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_depth_buffer.html#a9d04ef2a88a2414d476f4fc27a25a7a8">~DepthBuffer</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;DepthBuffer&gt; <a class="code" href="class_depth_buffer.html#a1c465b15498fc12a41662562cde74b83">Create</a>(ComPtr&lt;ID3D12Device&gt; device, <span class="keywordtype">int</span> windowWidth, <span class="keywordtype">int</span> windowHeight);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    D3D12_CPU_DESCRIPTOR_HANDLE <a class="code" href="class_depth_buffer.html#abc91e9fea6125161ebbc5215f783374d">GetDSVHandle</a>();</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_depth_buffer.html#a673f6120808ac749fe900b21b6361bce">ClearDepthBuffer</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; commandList);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">/*定数定義*/</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">const</span> D3D12_CLEAR_VALUE DEPTH_CLEAR_VALUE;  <span class="comment">// 深度クリアの際に使用する値</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">/*変数宣言*/</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ComPtr&lt;ID3D12Resource&gt; mDepthBuffer;        <span class="comment">// 深度バッファリソース</span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    ComPtr&lt;ID3D12DescriptorHeap&gt; mDSVDescHeap;  <span class="comment">// 深度バッファデスクリプタヒープ</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    D3D12_CPU_DESCRIPTOR_HANDLE mDSVCPUHandle;      <span class="comment">// DSVのCPUハンドル</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">/*ローカルメソッド定義*/</span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_depth_buffer.html">DepthBuffer</a>(<span class="keyword">const</span> D3D12_CLEAR_VALUE&amp; depthClearValue);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="ttc" id="class_depth_buffer_html_a673f6120808ac749fe900b21b6361bce"><div class="ttname"><a href="class_depth_buffer.html#a673f6120808ac749fe900b21b6361bce">DepthBuffer::ClearDepthBuffer</a></div><div class="ttdeci">void ClearDepthBuffer(ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</div><div class="ttdef"><b>Definition:</b> DepthBuffer.cpp:81</div></div>
+<div class="ttc" id="class_depth_buffer_html_a1c465b15498fc12a41662562cde74b83"><div class="ttname"><a href="class_depth_buffer.html#a1c465b15498fc12a41662562cde74b83">DepthBuffer::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; DepthBuffer &gt; Create(ComPtr&lt; ID3D12Device &gt; device, int windowWidth, int windowHeight)</div><div class="ttdef"><b>Definition:</b> DepthBuffer.cpp:18</div></div>
+<div class="ttc" id="class_depth_buffer_html_a9d04ef2a88a2414d476f4fc27a25a7a8"><div class="ttname"><a href="class_depth_buffer.html#a9d04ef2a88a2414d476f4fc27a25a7a8">DepthBuffer::~DepthBuffer</a></div><div class="ttdeci">~DepthBuffer()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> DepthBuffer.cpp:14</div></div>
+<div class="ttc" id="class_depth_buffer_html"><div class="ttname"><a href="class_depth_buffer.html">DepthBuffer</a></div><div class="ttdef"><b>Definition:</b> DepthBuffer.h:17</div></div>
+<div class="ttc" id="class_depth_buffer_html_abc91e9fea6125161ebbc5215f783374d"><div class="ttname"><a href="class_depth_buffer.html#abc91e9fea6125161ebbc5215f783374d">DepthBuffer::GetDSVHandle</a></div><div class="ttdeci">D3D12_CPU_DESCRIPTOR_HANDLE GetDSVHandle()</div><div class="ttdef"><b>Definition:</b> DepthBuffer.cpp:76</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

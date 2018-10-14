@@ -1,0 +1,79 @@
+\hypertarget{class_pipeline_state_object}{}\section{Pipeline\+State\+Object クラス}
+\label{class_pipeline_state_object}\index{Pipeline\+State\+Object@{Pipeline\+State\+Object}}
+
+
+{\ttfamily \#include $<$Pipeline\+State\+Object.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_pipeline_state_object_a46d5d211ea123fa6079264bf337e3533}{Pipeline\+State\+Object}} ()
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_pipeline_state_object_a2281c5c6011269f011fda661ea434936}{$\sim$\+Pipeline\+State\+Object}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+Com\+Ptr$<$ I\+D3\+D12\+Pipeline\+State $>$ \mbox{\hyperlink{class_pipeline_state_object_a82794a793dde36220e8cbe54f6620db6}{Get\+Pipeline\+State\+Object}} () const
+\begin{DoxyCompactList}\small\item\em パイプラインステートオブジェクトを取得する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_pipeline_state_object}{Pipeline\+State\+Object}} $>$ \mbox{\hyperlink{class_pipeline_state_object_a1eeacf254c88ede7ee5ec5c584d0a7eb}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device,)
+\begin{DoxyCompactList}\small\item\em パイプラインステートオブジェクトを作成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_pipeline_state_object_a46d5d211ea123fa6079264bf337e3533}\label{class_pipeline_state_object_a46d5d211ea123fa6079264bf337e3533}} 
+\index{Pipeline\+State\+Object@{Pipeline\+State\+Object}!Pipeline\+State\+Object@{Pipeline\+State\+Object}}
+\index{Pipeline\+State\+Object@{Pipeline\+State\+Object}!Pipeline\+State\+Object@{Pipeline\+State\+Object}}
+\subsubsection{\texorpdfstring{Pipeline\+State\+Object()}{PipelineStateObject()}}
+{\footnotesize\ttfamily Pipeline\+State\+Object\+::\+Pipeline\+State\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_pipeline_state_object_a2281c5c6011269f011fda661ea434936}\label{class_pipeline_state_object_a2281c5c6011269f011fda661ea434936}} 
+\index{Pipeline\+State\+Object@{Pipeline\+State\+Object}!````~Pipeline\+State\+Object@{$\sim$\+Pipeline\+State\+Object}}
+\index{````~Pipeline\+State\+Object@{$\sim$\+Pipeline\+State\+Object}!Pipeline\+State\+Object@{Pipeline\+State\+Object}}
+\subsubsection{\texorpdfstring{$\sim$\+Pipeline\+State\+Object()}{~PipelineStateObject()}}
+{\footnotesize\ttfamily Pipeline\+State\+Object\+::$\sim$\+Pipeline\+State\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_pipeline_state_object_a1eeacf254c88ede7ee5ec5c584d0a7eb}\label{class_pipeline_state_object_a1eeacf254c88ede7ee5ec5c584d0a7eb}} 
+\index{Pipeline\+State\+Object@{Pipeline\+State\+Object}!Create@{Create}}
+\index{Create@{Create}!Pipeline\+State\+Object@{Pipeline\+State\+Object}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily static std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_pipeline_state_object}{Pipeline\+State\+Object}}$>$ Pipeline\+State\+Object\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+パイプラインステートオブジェクトを作成する 
+
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功} & \+: パイプラインステートオブジェクトのスマートポインタ \\
+\hline
+{\em 生成失敗} & \+: nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_pipeline_state_object_a82794a793dde36220e8cbe54f6620db6}\label{class_pipeline_state_object_a82794a793dde36220e8cbe54f6620db6}} 
+\index{Pipeline\+State\+Object@{Pipeline\+State\+Object}!Get\+Pipeline\+State\+Object@{Get\+Pipeline\+State\+Object}}
+\index{Get\+Pipeline\+State\+Object@{Get\+Pipeline\+State\+Object}!Pipeline\+State\+Object@{Pipeline\+State\+Object}}
+\subsubsection{\texorpdfstring{Get\+Pipeline\+State\+Object()}{GetPipelineStateObject()}}
+{\footnotesize\ttfamily Com\+Ptr$<$I\+D3\+D12\+Pipeline\+State$>$ Pipeline\+State\+Object\+::\+Get\+Pipeline\+State\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+パイプラインステートオブジェクトを取得する 
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_pipeline_state_object_8h}{Pipeline\+State\+Object.\+h}}\item 
+Source/\mbox{\hyperlink{_pipeline_state_object_8cpp}{Pipeline\+State\+Object.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/RenderTarget.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">RenderTarget.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_render_target_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    RenderTarget.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    レンダーターゲットを管理するクラス</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    @author Ishibashi Ryuto</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">    @history</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">    2018/07/11 初版作成</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*システムヘッダインクルード*/</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;d3d12.h&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;dxgi1_4.h&gt;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;wrl.h&gt;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// ComPtr使用宣言</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">using</span> Microsoft::WRL::ComPtr;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_device.html">Device</a>;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_render_target.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_render_target.html">RenderTarget</a></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_render_target.html#a5c8ef0f2c9e46ed80e5e3ce6e5567b8b">~RenderTarget</a>();</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;RenderTarget&gt; <a class="code" href="class_render_target.html#a3867ed895640f96c911ad7da3cd3e1d0">Create</a>(std::shared_ptr&lt;Device&gt; device, ComPtr&lt;IDXGISwapChain1&gt; swapChain, <span class="keywordtype">int</span> renderTargetsNum);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_render_target.html#a49d0110b24e7a80b5c61838776d8be3d">ChangeRenderTarget</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; commandList, <span class="keywordtype">int</span> targetIndex);</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_render_target.html#a182c92e3d7cb77dba1485b4471bd22c8">FinishRendering</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; commandList);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    D3D12_CPU_DESCRIPTOR_HANDLE <a class="code" href="class_render_target.html#a170c383af63b5919a45965d719db1acb">GetRTVHandle</a>();</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_render_target.html#aa3d82758fcf16a3546289a813f42c654">ClearRenderTarget</a>(ComPtr&lt;ID3D12GraphicsCommandList&gt; commandList);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">/* 定数定義 */</span></div><div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_render_target.html#a921f80927651efee5c3385b99cd5d33f">   53</a></span>&#160;    <span class="keyword">const</span> UINT <a class="code" href="class_render_target.html#a921f80927651efee5c3385b99cd5d33f">RENDER_TARGET_VIEW_DESCRIPTOR_SIZE</a>;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">/* 変数定義 */</span></div><div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_render_target.html#a4069877a023a2802622246f09786d525">   56</a></span>&#160;    std::vector&lt;ComPtr&lt;ID3D12Resource&gt;&gt; <a class="code" href="class_render_target.html#a4069877a023a2802622246f09786d525">mRenderTargets</a>;</div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_render_target.html#a4879247e09bc36ae9fa522ee2ffb5235">   57</a></span>&#160;    ComPtr&lt;ID3D12DescriptorHeap&gt; <a class="code" href="class_render_target.html#a4879247e09bc36ae9fa522ee2ffb5235">mRTVDescHeap</a>;</div><div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_render_target.html#a1bcf37524ecb561b92e355dca767130d">   58</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_render_target.html#a1bcf37524ecb561b92e355dca767130d">mRenderTargetIndex</a>;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">/* ローカルメソッド */</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_render_target.html#a31a30a9219f3ddaf6597247088b65fb6">RenderTarget</a>(std::shared_ptr&lt;Device&gt; device);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="ttc" id="class_render_target_html_a921f80927651efee5c3385b99cd5d33f"><div class="ttname"><a href="class_render_target.html#a921f80927651efee5c3385b99cd5d33f">RenderTarget::RENDER_TARGET_VIEW_DESCRIPTOR_SIZE</a></div><div class="ttdeci">const UINT RENDER_TARGET_VIEW_DESCRIPTOR_SIZE</div><div class="ttdef"><b>Definition:</b> RenderTarget.h:53</div></div>
+<div class="ttc" id="class_render_target_html_a182c92e3d7cb77dba1485b4471bd22c8"><div class="ttname"><a href="class_render_target.html#a182c92e3d7cb77dba1485b4471bd22c8">RenderTarget::FinishRendering</a></div><div class="ttdeci">void FinishRendering(ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:71</div></div>
+<div class="ttc" id="class_render_target_html_a4879247e09bc36ae9fa522ee2ffb5235"><div class="ttname"><a href="class_render_target.html#a4879247e09bc36ae9fa522ee2ffb5235">RenderTarget::mRTVDescHeap</a></div><div class="ttdeci">ComPtr&lt; ID3D12DescriptorHeap &gt; mRTVDescHeap</div><div class="ttdef"><b>Definition:</b> RenderTarget.h:57</div></div>
+<div class="ttc" id="class_render_target_html_a49d0110b24e7a80b5c61838776d8be3d"><div class="ttname"><a href="class_render_target.html#a49d0110b24e7a80b5c61838776d8be3d">RenderTarget::ChangeRenderTarget</a></div><div class="ttdeci">void ChangeRenderTarget(ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList, int targetIndex)</div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:65</div></div>
+<div class="ttc" id="class_render_target_html_a170c383af63b5919a45965d719db1acb"><div class="ttname"><a href="class_render_target.html#a170c383af63b5919a45965d719db1acb">RenderTarget::GetRTVHandle</a></div><div class="ttdeci">D3D12_CPU_DESCRIPTOR_HANDLE GetRTVHandle()</div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:76</div></div>
+<div class="ttc" id="class_render_target_html_a4069877a023a2802622246f09786d525"><div class="ttname"><a href="class_render_target.html#a4069877a023a2802622246f09786d525">RenderTarget::mRenderTargets</a></div><div class="ttdeci">std::vector&lt; ComPtr&lt; ID3D12Resource &gt; &gt; mRenderTargets</div><div class="ttdef"><b>Definition:</b> RenderTarget.h:56</div></div>
+<div class="ttc" id="class_device_html"><div class="ttname"><a href="class_device.html">Device</a></div><div class="ttdef"><b>Definition:</b> Device.h:20</div></div>
+<div class="ttc" id="class_render_target_html_a31a30a9219f3ddaf6597247088b65fb6"><div class="ttname"><a href="class_render_target.html#a31a30a9219f3ddaf6597247088b65fb6">RenderTarget::RenderTarget</a></div><div class="ttdeci">RenderTarget(std::shared_ptr&lt; Device &gt; device)</div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:9</div></div>
+<div class="ttc" id="class_render_target_html"><div class="ttname"><a href="class_render_target.html">RenderTarget</a></div><div class="ttdef"><b>Definition:</b> RenderTarget.h:21</div></div>
+<div class="ttc" id="class_render_target_html_a5c8ef0f2c9e46ed80e5e3ce6e5567b8b"><div class="ttname"><a href="class_render_target.html#a5c8ef0f2c9e46ed80e5e3ce6e5567b8b">RenderTarget::~RenderTarget</a></div><div class="ttdeci">~RenderTarget()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:16</div></div>
+<div class="ttc" id="class_render_target_html_aa3d82758fcf16a3546289a813f42c654"><div class="ttname"><a href="class_render_target.html#aa3d82758fcf16a3546289a813f42c654">RenderTarget::ClearRenderTarget</a></div><div class="ttdeci">void ClearRenderTarget(ComPtr&lt; ID3D12GraphicsCommandList &gt; commandList)</div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:81</div></div>
+<div class="ttc" id="class_render_target_html_a1bcf37524ecb561b92e355dca767130d"><div class="ttname"><a href="class_render_target.html#a1bcf37524ecb561b92e355dca767130d">RenderTarget::mRenderTargetIndex</a></div><div class="ttdeci">int mRenderTargetIndex</div><div class="ttdef"><b>Definition:</b> RenderTarget.h:58</div></div>
+<div class="ttc" id="class_render_target_html_a3867ed895640f96c911ad7da3cd3e1d0"><div class="ttname"><a href="class_render_target.html#a3867ed895640f96c911ad7da3cd3e1d0">RenderTarget::Create</a></div><div class="ttdeci">static std::shared_ptr&lt; RenderTarget &gt; Create(std::shared_ptr&lt; Device &gt; device, ComPtr&lt; IDXGISwapChain1 &gt; swapChain, int renderTargetsNum)</div><div class="ttdef"><b>Definition:</b> RenderTarget.cpp:20</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

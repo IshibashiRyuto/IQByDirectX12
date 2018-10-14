@@ -1,0 +1,79 @@
+\hypertarget{class_v_m_d_loader}{}\section{V\+M\+D\+Loader クラス}
+\label{class_v_m_d_loader}\index{V\+M\+D\+Loader@{V\+M\+D\+Loader}}
+
+
+{\ttfamily \#include $<$V\+M\+D\+Loader.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_v_m_d_loader_a87124ac65ec0ecc82110063b3af64169}{V\+M\+D\+Loader}} ()
+\item 
+\mbox{\hyperlink{class_v_m_d_loader_a57df015efb122fb3d04f73feac588c22}{$\sim$\+V\+M\+D\+Loader}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation}{Animation}} $>$ \mbox{\hyperlink{class_v_m_d_loader_aef220a556a4f5279010e6b6385fc716b}{Load}} (const std\+::string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em V\+M\+D\+Dataをロードする \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_v_m_d_loader}{V\+M\+D\+Loader}} $>$ \mbox{\hyperlink{class_v_m_d_loader_a88df1c7388a466fca58b9245064b3207}{Create}} ()
+\begin{DoxyCompactList}\small\item\em V\+M\+D\+Loaderインスタンスを生成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_v_m_d_loader_a87124ac65ec0ecc82110063b3af64169}\label{class_v_m_d_loader_a87124ac65ec0ecc82110063b3af64169}} 
+\index{V\+M\+D\+Loader@{V\+M\+D\+Loader}!V\+M\+D\+Loader@{V\+M\+D\+Loader}}
+\index{V\+M\+D\+Loader@{V\+M\+D\+Loader}!V\+M\+D\+Loader@{V\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{V\+M\+D\+Loader()}{VMDLoader()}}
+{\footnotesize\ttfamily V\+M\+D\+Loader\+::\+V\+M\+D\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_v_m_d_loader_a57df015efb122fb3d04f73feac588c22}\label{class_v_m_d_loader_a57df015efb122fb3d04f73feac588c22}} 
+\index{V\+M\+D\+Loader@{V\+M\+D\+Loader}!````~V\+M\+D\+Loader@{$\sim$\+V\+M\+D\+Loader}}
+\index{````~V\+M\+D\+Loader@{$\sim$\+V\+M\+D\+Loader}!V\+M\+D\+Loader@{V\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{$\sim$\+V\+M\+D\+Loader()}{~VMDLoader()}}
+{\footnotesize\ttfamily V\+M\+D\+Loader\+::$\sim$\+V\+M\+D\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_v_m_d_loader_a88df1c7388a466fca58b9245064b3207}\label{class_v_m_d_loader_a88df1c7388a466fca58b9245064b3207}} 
+\index{V\+M\+D\+Loader@{V\+M\+D\+Loader}!Create@{Create}}
+\index{Create@{Create}!V\+M\+D\+Loader@{V\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_v_m_d_loader}{V\+M\+D\+Loader}} $>$ V\+M\+D\+Loader\+::\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+V\+M\+D\+Loaderインスタンスを生成する 
+
+\begin{DoxyNote}{覚え書き}
+このクラスのインスタンスはこのメソッドを通じてのみ生成可能 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_v_m_d_loader_aef220a556a4f5279010e6b6385fc716b}\label{class_v_m_d_loader_aef220a556a4f5279010e6b6385fc716b}} 
+\index{V\+M\+D\+Loader@{V\+M\+D\+Loader}!Load@{Load}}
+\index{Load@{Load}!V\+M\+D\+Loader@{V\+M\+D\+Loader}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation}{Animation}} $>$ V\+M\+D\+Loader\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+V\+M\+D\+Dataをロードする 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em file\+Path} & \+: ロードするファイルのパス \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 読み込み成功} & \+: アニメーションのスマートポインタ \\
+\hline
+{\em 読み込み失敗} & \+: nullptr \\
+\hline
+\end{DoxyRetVals}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_v_m_d_loader_8h}{V\+M\+D\+Loader.\+h}}\item 
+Source/\mbox{\hyperlink{_v_m_d_loader_8cpp}{V\+M\+D\+Loader.\+cpp}}\end{DoxyCompactItemize}

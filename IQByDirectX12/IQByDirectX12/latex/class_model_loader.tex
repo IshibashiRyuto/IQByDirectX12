@@ -1,0 +1,113 @@
+\hypertarget{class_model_loader}{}\section{Model\+Loader クラス}
+\label{class_model_loader}\index{Model\+Loader@{Model\+Loader}}
+
+
+{\ttfamily \#include $<$Model\+Loader.\+h$>$}
+
+Model\+Loader の継承関係図\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model_loader}
+\end{center}
+\end{figure}
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_model_loader_a4015291af96be2ea657577bdf4fb29f4}{$\sim$\+Model\+Loader}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model}{Model}} $>$ \mbox{\hyperlink{class_model_loader_a8e2157daa8d364c36fd26922f04adcb0}{Load\+Model}} (const std\+::string \&file\+Path)=0
+\item 
+virtual void \mbox{\hyperlink{class_model_loader_a6662edd78b17eeead09e822e19fc1799}{Clear\+Model\+Data}} ()=0
+\end{DoxyCompactItemize}
+\subsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_model_loader_a0e7c5aa28d4772857b1bab0a9ca7428f}{Model\+Loader}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device)
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ \mbox{\hyperlink{class_model_loader_a2e5b33970d8a71e5851e3b51b7980fa8}{m\+Device}}
+\item 
+\mbox{\hyperlink{class_model_data_manager}{Model\+Data\+Manager}} \& \mbox{\hyperlink{class_model_loader_a5877a5f2d2ec8db87cdcbf0a87c8587b}{m\+Model\+Data\+Manager}}
+\item 
+std\+::map$<$ std\+::string, int $>$ \mbox{\hyperlink{class_model_loader_a8d1002a30494635ec76972f3354f1ba9}{m\+Model\+Handle\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_model_loader_a4015291af96be2ea657577bdf4fb29f4}\label{class_model_loader_a4015291af96be2ea657577bdf4fb29f4}} 
+\index{Model\+Loader@{Model\+Loader}!````~Model\+Loader@{$\sim$\+Model\+Loader}}
+\index{````~Model\+Loader@{$\sim$\+Model\+Loader}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{$\sim$\+Model\+Loader()}{~ModelLoader()}}
+{\footnotesize\ttfamily Model\+Loader\+::$\sim$\+Model\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+デストラクタ 
+
+\mbox{\Hypertarget{class_model_loader_a0e7c5aa28d4772857b1bab0a9ca7428f}\label{class_model_loader_a0e7c5aa28d4772857b1bab0a9ca7428f}} 
+\index{Model\+Loader@{Model\+Loader}!Model\+Loader@{Model\+Loader}}
+\index{Model\+Loader@{Model\+Loader}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{Model\+Loader()}{ModelLoader()}}
+{\footnotesize\ttfamily Model\+Loader\+::\+Model\+Loader (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+コンストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_model_loader_a6662edd78b17eeead09e822e19fc1799}\label{class_model_loader_a6662edd78b17eeead09e822e19fc1799}} 
+\index{Model\+Loader@{Model\+Loader}!Clear\+Model\+Data@{Clear\+Model\+Data}}
+\index{Clear\+Model\+Data@{Clear\+Model\+Data}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{Clear\+Model\+Data()}{ClearModelData()}}
+{\footnotesize\ttfamily Model\+Loader\+::\+Clear\+Model\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+読み込んだモデル情報を削除する 
+
+\mbox{\hyperlink{class_p_m_x_loader_a1c4f3f379e18d6978b7684ab9d901952}{P\+M\+X\+Loader}}, \mbox{\hyperlink{class_p_m_d_loader_abdb6e537aef759341dfc62cd1038539c}{P\+M\+D\+Loader}}で実装されています。
+
+\mbox{\Hypertarget{class_model_loader_a8e2157daa8d364c36fd26922f04adcb0}\label{class_model_loader_a8e2157daa8d364c36fd26922f04adcb0}} 
+\index{Model\+Loader@{Model\+Loader}!Load\+Model@{Load\+Model}}
+\index{Load\+Model@{Load\+Model}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{Load\+Model()}{LoadModel()}}
+{\footnotesize\ttfamily Model\+Loader\+::\+Load\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+モデルをロードする 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em file\+Path} & \+: ファイルパス \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{class_p_m_x_loader_aee4e81ab65eeec5c9772ed5a8de6c5fa}{P\+M\+X\+Loader}}, \mbox{\hyperlink{class_p_m_d_loader_ae1da98c6236a58940ec521521e5c8288}{P\+M\+D\+Loader}}で実装されています。
+
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{class_model_loader_a2e5b33970d8a71e5851e3b51b7980fa8}\label{class_model_loader_a2e5b33970d8a71e5851e3b51b7980fa8}} 
+\index{Model\+Loader@{Model\+Loader}!m\+Device@{m\+Device}}
+\index{m\+Device@{m\+Device}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{m\+Device}{mDevice}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_device}{Device}}$>$ Model\+Loader\+::m\+Device\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_model_loader_a5877a5f2d2ec8db87cdcbf0a87c8587b}\label{class_model_loader_a5877a5f2d2ec8db87cdcbf0a87c8587b}} 
+\index{Model\+Loader@{Model\+Loader}!m\+Model\+Data\+Manager@{m\+Model\+Data\+Manager}}
+\index{m\+Model\+Data\+Manager@{m\+Model\+Data\+Manager}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{m\+Model\+Data\+Manager}{mModelDataManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_model_data_manager}{Model\+Data\+Manager}}\& Model\+Loader\+::m\+Model\+Data\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_model_loader_a8d1002a30494635ec76972f3354f1ba9}\label{class_model_loader_a8d1002a30494635ec76972f3354f1ba9}} 
+\index{Model\+Loader@{Model\+Loader}!m\+Model\+Handle\+Manager@{m\+Model\+Handle\+Manager}}
+\index{m\+Model\+Handle\+Manager@{m\+Model\+Handle\+Manager}!Model\+Loader@{Model\+Loader}}
+\subsubsection{\texorpdfstring{m\+Model\+Handle\+Manager}{mModelHandleManager}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, int$>$ Model\+Loader\+::m\+Model\+Handle\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_model_loader_8h}{Model\+Loader.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_model_loader_8cpp}{Model\+Loader.\+cpp}}\end{DoxyCompactItemize}

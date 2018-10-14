@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/Texture/TextureManager.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_a4b3c80dc9069f921f025e25400cbd21.html">Texture</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">TextureManager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_texture_manager_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">    TextureManager.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">    テクスチャ管理クラス</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    @author Ishibashi Ryuto</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">    @date</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">    2018/09/02 初版作成</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// システムヘッダインクルード</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// 自作ヘッダインクルード</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_texture_8h.html">Texture.h</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// クラス使用宣言</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_device.html">Device</a>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_texture_manager.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_texture_manager.html">TextureManager</a></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_texture_manager.html#a001d6d74674961db79987e3222682576">~TextureManager</a>();</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_texture_manager.html#adf67537a12b9a757c363cacbd3d20b56">   27</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_texture_manager.html">TextureManager</a>&amp; <a class="code" href="class_texture_manager.html#adf67537a12b9a757c363cacbd3d20b56">GetInstance</a>()</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_texture_manager.html">TextureManager</a> inst;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> inst;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_texture_manager.html#a390fd4dc7b2b2e1898a7239b1a8dd26d">Regist</a>(std::shared_ptr&lt;Texture&gt; texture);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_texture_manager.html#abda8c00abcd513182e6447943d1b6808">Erase</a>(<span class="keywordtype">int</span> textureHandle);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::shared_ptr&lt;Texture&gt; <a class="code" href="class_texture_manager.html#a8995fa4f73ade280992c56f47b8d6d9d">GetTexture</a>(<span class="keywordtype">int</span> textureHandle) <span class="keyword">const</span>;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_texture_manager.html#a2de3668d0dd69fc973a53bdc8508d586">IsExist</a>(<span class="keywordtype">int</span> handle) <span class="keyword">const</span>;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_texture_manager.html#a3266462ce0ac2bd4e6bad6977df92143">CreateWhiteAndBlackTexture</a>(std::shared_ptr&lt;Device&gt; device);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_texture_manager.html#a3fb17a5c43751276c5071cf6212b740c">   61</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_texture_manager.html#a3fb17a5c43751276c5071cf6212b740c">WHITE_TEXTURE</a> = -1;</div><div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_texture_manager.html#ab31a360ffca7a7a9115361580fc2e558">   62</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_texture_manager.html#ab31a360ffca7a7a9115361580fc2e558">BLACK_TEXTURE</a> = -2;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_texture_manager.html">TextureManager</a>();</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_texture_manager.html">TextureManager</a>(<span class="keyword">const</span> <a class="code" href="class_texture_manager.html">TextureManager</a>&amp;) {}</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="class_texture_manager.html">TextureManager</a>&amp;) {}</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::map&lt;int, std::shared_ptr&lt;Texture&gt;&gt; mData;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span> mNextTextureHandle;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> UpdateNextTextureHandle();</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> DATA_SIGNATURE_SHIFT_NUM = 24;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> TEXTURE_SIGNATURE = 0x10 &lt;&lt; DATA_SIGNATURE_SHIFT_NUM;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="ttc" id="_texture_8h_html"><div class="ttname"><a href="_texture_8h.html">Texture.h</a></div></div>
+<div class="ttc" id="class_texture_manager_html_ab31a360ffca7a7a9115361580fc2e558"><div class="ttname"><a href="class_texture_manager.html#ab31a360ffca7a7a9115361580fc2e558">TextureManager::BLACK_TEXTURE</a></div><div class="ttdeci">static const int BLACK_TEXTURE</div><div class="ttdef"><b>Definition:</b> TextureManager.h:62</div></div>
+<div class="ttc" id="class_texture_manager_html"><div class="ttname"><a href="class_texture_manager.html">TextureManager</a></div><div class="ttdef"><b>Definition:</b> TextureManager.h:19</div></div>
+<div class="ttc" id="class_texture_manager_html_a3fb17a5c43751276c5071cf6212b740c"><div class="ttname"><a href="class_texture_manager.html#a3fb17a5c43751276c5071cf6212b740c">TextureManager::WHITE_TEXTURE</a></div><div class="ttdeci">static const int WHITE_TEXTURE</div><div class="ttdef"><b>Definition:</b> TextureManager.h:61</div></div>
+<div class="ttc" id="class_texture_manager_html_adf67537a12b9a757c363cacbd3d20b56"><div class="ttname"><a href="class_texture_manager.html#adf67537a12b9a757c363cacbd3d20b56">TextureManager::GetInstance</a></div><div class="ttdeci">static TextureManager &amp; GetInstance()</div><div class="ttdef"><b>Definition:</b> TextureManager.h:27</div></div>
+<div class="ttc" id="class_texture_manager_html_a001d6d74674961db79987e3222682576"><div class="ttname"><a href="class_texture_manager.html#a001d6d74674961db79987e3222682576">TextureManager::~TextureManager</a></div><div class="ttdeci">~TextureManager()</div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:113</div></div>
+<div class="ttc" id="class_texture_manager_html_abda8c00abcd513182e6447943d1b6808"><div class="ttname"><a href="class_texture_manager.html#abda8c00abcd513182e6447943d1b6808">TextureManager::Erase</a></div><div class="ttdeci">void Erase(int textureHandle)</div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:15</div></div>
+<div class="ttc" id="class_device_html"><div class="ttname"><a href="class_device.html">Device</a></div><div class="ttdef"><b>Definition:</b> Device.h:20</div></div>
+<div class="ttc" id="class_texture_manager_html_a2de3668d0dd69fc973a53bdc8508d586"><div class="ttname"><a href="class_texture_manager.html#a2de3668d0dd69fc973a53bdc8508d586">TextureManager::IsExist</a></div><div class="ttdeci">bool IsExist(int handle) const</div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:34</div></div>
+<div class="ttc" id="class_texture_manager_html_a3266462ce0ac2bd4e6bad6977df92143"><div class="ttname"><a href="class_texture_manager.html#a3266462ce0ac2bd4e6bad6977df92143">TextureManager::CreateWhiteAndBlackTexture</a></div><div class="ttdeci">void CreateWhiteAndBlackTexture(std::shared_ptr&lt; Device &gt; device)</div><div class="ttdoc">ヌルテクスチャを作成する </div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:60</div></div>
+<div class="ttc" id="class_texture_manager_html_a8995fa4f73ade280992c56f47b8d6d9d"><div class="ttname"><a href="class_texture_manager.html#a8995fa4f73ade280992c56f47b8d6d9d">TextureManager::GetTexture</a></div><div class="ttdeci">std::shared_ptr&lt; Texture &gt; GetTexture(int textureHandle) const</div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:25</div></div>
+<div class="ttc" id="class_texture_manager_html_a390fd4dc7b2b2e1898a7239b1a8dd26d"><div class="ttname"><a href="class_texture_manager.html#a390fd4dc7b2b2e1898a7239b1a8dd26d">TextureManager::Regist</a></div><div class="ttdeci">int Regist(std::shared_ptr&lt; Texture &gt; texture)</div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:7</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

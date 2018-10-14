@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: InstancingDataManager クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_instancing_data_manager-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">InstancingDataManager クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_instancing_data_manager_8h_source.html">InstancingDataManager.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a9c92fc5fec3ab4f5e45c7fbec43077b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#a9c92fc5fec3ab4f5e45c7fbec43077b3">~InstancingDataManager</a> ()</td></tr>
+<tr class="separator:a9c92fc5fec3ab4f5e45c7fbec43077b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3c9344caa705ab9898af4f0728a020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#abb3c9344caa705ab9898af4f0728a020">SetDevice</a> (ComPtr&lt; ID3D12Device &gt; device)</td></tr>
+<tr class="separator:abb3c9344caa705ab9898af4f0728a020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2a99ea178b9ba80e2dc3772f16d347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#a1f2a99ea178b9ba80e2dc3772f16d347">SetInstanceData</a> (int handle, void *data, size_t size)</td></tr>
+<tr class="separator:a1f2a99ea178b9ba80e2dc3772f16d347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acce3b27d340bdd273b6634f97f5a8ab3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#acce3b27d340bdd273b6634f97f5a8ab3">ResetMaxInstanceCount</a> (int handle, size_t instanceDataSize, int maxInstanceCount=1)</td></tr>
+<tr class="separator:acce3b27d340bdd273b6634f97f5a8ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc81462cef5a960eae978e6e56d22c98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#afc81462cef5a960eae978e6e56d22c98">ResetInstanceData</a> (int handle)</td></tr>
+<tr class="separator:afc81462cef5a960eae978e6e56d22c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf44f22cf99babd3bdd782d8e534124d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#aaf44f22cf99babd3bdd782d8e534124d">ResetInstanceDataAll</a> ()</td></tr>
+<tr class="separator:aaf44f22cf99babd3bdd782d8e534124d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3753bcd17c77cfccf3d758522009b56e"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, <a class="el" href="struct_instance_data.html">InstanceData</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#a3753bcd17c77cfccf3d758522009b56e">GetInstanceDataAll</a> ()</td></tr>
+<tr class="separator:a3753bcd17c77cfccf3d758522009b56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a6e901cdd290e8bb84cef9692bb8a3db8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_instancing_data_manager.html">InstancingDataManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_instancing_data_manager.html#a6e901cdd290e8bb84cef9692bb8a3db8">GetInstance</a> ()</td></tr>
+<tr class="separator:a6e901cdd290e8bb84cef9692bb8a3db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a9c92fc5fec3ab4f5e45c7fbec43077b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c92fc5fec3ab4f5e45c7fbec43077b3">&#9670;&nbsp;</a></span>~InstancingDataManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::~InstancingDataManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a6e901cdd290e8bb84cef9692bb8a3db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e901cdd290e8bb84cef9692bb8a3db8">&#9670;&nbsp;</a></span>GetInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::GetInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>シングルトンインスタンスを取得する </p><dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td><a class="el" href="class_instancing_data_manager.html">InstancingDataManager</a>&amp; : InstancingDataManagerクラスの参照 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3753bcd17c77cfccf3d758522009b56e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3753bcd17c77cfccf3d758522009b56e">&#9670;&nbsp;</a></span>GetInstanceDataAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::GetInstanceDataAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>登録されているインスタンスデータすべてを取得する </p><dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">インスタンスデータとハンドルのマップ</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc81462cef5a960eae978e6e56d22c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc81462cef5a960eae978e6e56d22c98">&#9670;&nbsp;</a></span>ResetInstanceData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::ResetInstanceData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>インスタンスデータをリセットする </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>: リセット対象のハンドル </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaf44f22cf99babd3bdd782d8e534124d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf44f22cf99babd3bdd782d8e534124d">&#9670;&nbsp;</a></span>ResetInstanceDataAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::ResetInstanceDataAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>登録されているインスタンスデータすべてをリセットする </p>
+
+</div>
+</div>
+<a id="acce3b27d340bdd273b6634f97f5a8ab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acce3b27d340bdd273b6634f97f5a8ab3">&#9670;&nbsp;</a></span>ResetMaxInstanceCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::ResetMaxInstanceCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>instanceDataSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxInstanceCount</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>指定したハンドルの最大インスタンス数を修正する </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>: 修正対象のハンドル </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">instanceDataSize</td><td>: インスタンスデータ1つあたりのサイズ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxInstanceCount</td><td>: 最大インスタンス数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>覚え書き</dt><dd>描画中に呼び出した場合、データを削除するため注意 </dd></dl>
+
+</div>
+</div>
+<a id="abb3c9344caa705ab9898af4f0728a020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb3c9344caa705ab9898af4f0728a020">&#9670;&nbsp;</a></span>SetDevice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::SetDevice </td>
+          <td>(</td>
+          <td class="paramtype">ComPtr&lt; ID3D12Device &gt;&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>デバイスをセットする </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">device</td><td>: ID3D12デバイス </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f2a99ea178b9ba80e2dc3772f16d347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f2a99ea178b9ba80e2dc3772f16d347">&#9670;&nbsp;</a></span>SetInstanceData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InstancingDataManager::SetInstanceData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>インスタンシング用のデータをセットする </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>: インスタンシング対象のハンドル </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>: データのポインタ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>: データのサイズ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>覚え書き</dt><dd>インスタンシング登録していない場合、データの登録を行わない。 </dd></dl>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Source/Model/<a class="el" href="_instancing_data_manager_8h_source.html">InstancingDataManager.h</a></li>
+<li>Source/Model/<a class="el" href="_instancing_data_manager_8cpp.html">InstancingDataManager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

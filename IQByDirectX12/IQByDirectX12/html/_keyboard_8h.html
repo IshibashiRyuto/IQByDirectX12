@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/Input/Keyboard.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_5edf23ed69dc7b77fbbf2cc59521cca6.html">Input</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#enum-members">列挙型</a>  </div>
+  <div class="headertitle">
+<div class="title">Keyboard.h ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;Windows.h&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+</div>
+<p><a href="_keyboard_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_keyboard.html">Keyboard</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:a50f7749e42959062d6f7ee3df6a2fd93"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93">VirtualKeyIndex</a> { <br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93aaf269d1e4ffb0df48d9cdf6b4d591a58">VirtualKeyIndex::Key0</a> = 0x30, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af64f4f750f097b4421a050c9d11d9c14">VirtualKeyIndex::Key1</a> = 0x31, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ac31650e34686537020ee36190e71da5b">VirtualKeyIndex::Key2</a> = 0x32, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a3d81009a6cd9a27e5ee8043024070dfb">VirtualKeyIndex::Key3</a> = 0x33, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ae08e48afa7b3099b0df15613b907a648">VirtualKeyIndex::Key4</a> = 0x34, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a850176141118349ca686347d2eed0b55">VirtualKeyIndex::Key5</a> = 0x35, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93aa0b2886a19d886ed19252edbda722a51">VirtualKeyIndex::Key6</a> = 0x36, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a4275a26eae5db36de134edf05c64e44a">VirtualKeyIndex::Key7</a> = 0x37, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a69a678929c3e0b081c385c16535414a3">VirtualKeyIndex::Key8</a> = 0x38, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a2ebdff99c5eacb157ec10aab842b082d">VirtualKeyIndex::Key9</a> = 0x39, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a7fc56270e7a70fa81a5935b72eacbe29">VirtualKeyIndex::A</a> = 0x41, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a9d5ed678fe57bcca610140957afab571">VirtualKeyIndex::B</a> = 0x42, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a0d61f8370cad1d412f80b84d143e1257">VirtualKeyIndex::C</a> = 0x43, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af623e75af30e62bbd73d6df5b50bb7b5">VirtualKeyIndex::D</a> = 0x44, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a3a3ea00cfc35332cedf6e5e9a32e94da">VirtualKeyIndex::E</a> = 0x45, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a800618943025315f869e4e1f09471012">VirtualKeyIndex::F</a> = 0x46, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93adfcf28d0734569a6a693bc8194de62bf">VirtualKeyIndex::G</a> = 0x47, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ac1d9f50f86825a1a2302ec2449c17196">VirtualKeyIndex::H</a> = 0x48, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93add7536794b63bf90eccfd37f9b147d7f">VirtualKeyIndex::I</a> = 0x49, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93aff44570aca8241914870afbc310cdb85">VirtualKeyIndex::J</a> = 0x4A, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93aa5f3c6a11b03839d46af9fb43c97c188">VirtualKeyIndex::K</a> = 0x4B, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587">VirtualKeyIndex::L</a> = 0x4C, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a69691c7bdcc3ce6d5d8a1361f22d04ac">VirtualKeyIndex::M</a> = 0x4D, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a8d9c307cb7f3c4a32822a51922d1ceaa">VirtualKeyIndex::N</a> = 0x4E, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af186217753c37b9b9f958d906208506e">VirtualKeyIndex::O</a> = 0x4F, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a44c29edb103a2872f519ad0c9a0fdaaa">VirtualKeyIndex::P</a> = 0x50, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af09564c9ca56850d4cd6b3319e541aee">VirtualKeyIndex::Q</a> = 0x51, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ae1e1d3d40573127e9ee0480caf1283d6">VirtualKeyIndex::R</a> = 0x52, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a5dbc98dcc983a70728bd082d1a47546e">VirtualKeyIndex::S</a> = 0x53, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ab9ece18c950afbfa6b0fdbfa4ff731d3">VirtualKeyIndex::T</a> = 0x54, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a4c614360da93c0a041b22e537de151eb">VirtualKeyIndex::U</a> = 0x55, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a5206560a306a2e085a437fd258eb57ce">VirtualKeyIndex::V</a> = 0x56, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a61e9c06ea9a85a5088a499df6458d276">VirtualKeyIndex::W</a> = 0x57, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a02129bb861061d1a052c592e2dc6b383">VirtualKeyIndex::X</a> = 0x58, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a57cec4137b614c87cb4e24a3d003a3e0">VirtualKeyIndex::Y</a> = 0x59, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a21c2e59531c8710156d34a3c30ac81d5">VirtualKeyIndex::Z</a> = 0x5A, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af1851d5600eae616ee802a31ac74701b">VirtualKeyIndex::Enter</a> = 0x0D, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a825a3d98017bab11815ad2817201324c">VirtualKeyIndex::Shift</a> = 0x10, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93aa1595abbb4c3a326636dd178757cd6c1">VirtualKeyIndex::Control</a> = 0x11, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93aa2e92861b757ab878312dd57993d60cf">VirtualKeyIndex::Alt</a> = 0x12, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a1a74f6abebf362586bca737e7193bd58">VirtualKeyIndex::L_Shift</a> = 0xA0, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a0761725521a1c2647b6d5c919858ed20">VirtualKeyIndex::R_Shift</a> = 0xA1, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af72f82ea284c8365db22de37206c71bd">VirtualKeyIndex::L_Control</a> = 0xA2, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a10a5fc6221d36df68ae4b63a6119f8e3">VirtualKeyIndex::R_Control</a> = 0xA3, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a7c196eadae97eab012533b78b324b603">VirtualKeyIndex::L_Alt</a> = 0xA4, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a9651eb98654e61e8b916e8e54185b4d4">VirtualKeyIndex::R_Alt</a> = 0xA5, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a013ec032d3460d4be4431c6ab1f8f224">VirtualKeyIndex::Escape</a> = 0x1B, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ad511f8439ecde36647437fbba67a4394">VirtualKeyIndex::Space</a> = 0x20, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a945d5e233cf7d6240f6b783b36a374ff">VirtualKeyIndex::Left</a> = 0x25, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a258f49887ef8d14ac268c92b02503aaa">VirtualKeyIndex::Up</a> = 0x26, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a92b09c7c48c520c3c55e497875da437c">VirtualKeyIndex::Right</a> = 0x27, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a08a38277b0309070706f6652eeae9a53">VirtualKeyIndex::Down</a> = 0x28, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a1b1118fbe9aecd479f93d37449578365">VirtualKeyIndex::Numpad0</a> = 0x60, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ac8e841f6b917061dd15aedb19a80cb77">VirtualKeyIndex::Numpad1</a> = 0x61, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93af7303042267ef3576930c1f4cd79348a">VirtualKeyIndex::Numpad2</a> = 0x62, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a5e23a433a108a85788894b705ec11cdd">VirtualKeyIndex::Numpad3</a> = 0x63, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a50b622a0442de23f15effc7fc46f3892">VirtualKeyIndex::Numpad4</a> = 0x64, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a6252c5b171a2982612e31042b953f558">VirtualKeyIndex::Numpad5</a> = 0x65, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a4d9afa3da3cc40661d50a925dd3010ad">VirtualKeyIndex::Numpad6</a> = 0x66, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a4314bbf1a297c4b03a5246a71c9c93b6">VirtualKeyIndex::Numpad7</a> = 0x67, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a8bf3a062ba0e0fa6ef21508d15e7820e">VirtualKeyIndex::Numpad8</a> = 0x68, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a15f7ca721fe2b648a34d498084f70919">VirtualKeyIndex::Numpad9</a> = 0x69, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ae1dffc8709f31a4987c8a88334107e89">VirtualKeyIndex::F1</a> = 0x70, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93afe5c3684dce76cdd9f7f42430868aa74">VirtualKeyIndex::F2</a> = 0x71, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a4b6bf4b531770872d4328ce69bef5627">VirtualKeyIndex::F3</a> = 0x72, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ae7e0e72401a9f2718ed0f39f2861d702">VirtualKeyIndex::F4</a> = 0x73, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a37f438df6a6d5ba4c17ef8ca58562f00">VirtualKeyIndex::F5</a> = 0x74, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a1faf42f2823f184eb2c9f0dffe5d73f2">VirtualKeyIndex::F6</a> = 0x75, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a47489eb597b7db34caa24b1fc78fc839">VirtualKeyIndex::F7</a> = 0x76, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a4787509ad9f9d747a81a30e9dde3d4a7">VirtualKeyIndex::F8</a> = 0x77, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a892a245e287c163080b23db737d3c4c9">VirtualKeyIndex::F9</a> = 0x78, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ab213ce22ca6ad4eda8db82966b9b6e5a">VirtualKeyIndex::F10</a> = 0x79, 
+<br />
+&#160;&#160;<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93a643b0662422d1d0dffa3fca2e2bf28a8">VirtualKeyIndex::F11</a> = 0x7A, 
+<a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93ae902674982fc99aa343cdd94da7476c3">VirtualKeyIndex::F12</a> = 0x7B
+<br />
+ }</td></tr>
+<tr class="memdesc:a50f7749e42959062d6f7ee3df6a2fd93"><td class="mdescLeft">&#160;</td><td class="mdescRight">仮想キーインデックス  <a href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93">[詳解]</a><br /></td></tr>
+<tr class="separator:a50f7749e42959062d6f7ee3df6a2fd93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">列挙型詳解</h2>
+<a id="a50f7749e42959062d6f7ee3df6a2fd93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f7749e42959062d6f7ee3df6a2fd93">&#9670;&nbsp;</a></span>VirtualKeyIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_keyboard_8h.html#a50f7749e42959062d6f7ee3df6a2fd93">VirtualKeyIndex</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>仮想キーインデックス </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93aaf269d1e4ffb0df48d9cdf6b4d591a58"></a>Key0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af64f4f750f097b4421a050c9d11d9c14"></a>Key1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ac31650e34686537020ee36190e71da5b"></a>Key2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a3d81009a6cd9a27e5ee8043024070dfb"></a>Key3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ae08e48afa7b3099b0df15613b907a648"></a>Key4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a850176141118349ca686347d2eed0b55"></a>Key5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93aa0b2886a19d886ed19252edbda722a51"></a>Key6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a4275a26eae5db36de134edf05c64e44a"></a>Key7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a69a678929c3e0b081c385c16535414a3"></a>Key8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a2ebdff99c5eacb157ec10aab842b082d"></a>Key9&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a7fc56270e7a70fa81a5935b72eacbe29"></a>A&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a9d5ed678fe57bcca610140957afab571"></a>B&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a0d61f8370cad1d412f80b84d143e1257"></a>C&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af623e75af30e62bbd73d6df5b50bb7b5"></a>D&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a3a3ea00cfc35332cedf6e5e9a32e94da"></a>E&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a800618943025315f869e4e1f09471012"></a>F&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93adfcf28d0734569a6a693bc8194de62bf"></a>G&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ac1d9f50f86825a1a2302ec2449c17196"></a>H&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93add7536794b63bf90eccfd37f9b147d7f"></a>I&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93aff44570aca8241914870afbc310cdb85"></a>J&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93aa5f3c6a11b03839d46af9fb43c97c188"></a>K&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ad20caec3b48a1eef164cb4ca81ba2587"></a>L&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a69691c7bdcc3ce6d5d8a1361f22d04ac"></a>M&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a8d9c307cb7f3c4a32822a51922d1ceaa"></a>N&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af186217753c37b9b9f958d906208506e"></a>O&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a44c29edb103a2872f519ad0c9a0fdaaa"></a>P&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af09564c9ca56850d4cd6b3319e541aee"></a>Q&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ae1e1d3d40573127e9ee0480caf1283d6"></a>R&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a5dbc98dcc983a70728bd082d1a47546e"></a>S&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ab9ece18c950afbfa6b0fdbfa4ff731d3"></a>T&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a4c614360da93c0a041b22e537de151eb"></a>U&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a5206560a306a2e085a437fd258eb57ce"></a>V&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a61e9c06ea9a85a5088a499df6458d276"></a>W&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a02129bb861061d1a052c592e2dc6b383"></a>X&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a57cec4137b614c87cb4e24a3d003a3e0"></a>Y&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a21c2e59531c8710156d34a3c30ac81d5"></a>Z&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af1851d5600eae616ee802a31ac74701b"></a>Enter&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a825a3d98017bab11815ad2817201324c"></a>Shift&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93aa1595abbb4c3a326636dd178757cd6c1"></a>Control&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93aa2e92861b757ab878312dd57993d60cf"></a>Alt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a1a74f6abebf362586bca737e7193bd58"></a>L_Shift&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a0761725521a1c2647b6d5c919858ed20"></a>R_Shift&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af72f82ea284c8365db22de37206c71bd"></a>L_Control&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a10a5fc6221d36df68ae4b63a6119f8e3"></a>R_Control&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a7c196eadae97eab012533b78b324b603"></a>L_Alt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a9651eb98654e61e8b916e8e54185b4d4"></a>R_Alt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a013ec032d3460d4be4431c6ab1f8f224"></a>Escape&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ad511f8439ecde36647437fbba67a4394"></a>Space&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a945d5e233cf7d6240f6b783b36a374ff"></a>Left&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a258f49887ef8d14ac268c92b02503aaa"></a>Up&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a92b09c7c48c520c3c55e497875da437c"></a>Right&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a08a38277b0309070706f6652eeae9a53"></a>Down&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a1b1118fbe9aecd479f93d37449578365"></a>Numpad0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ac8e841f6b917061dd15aedb19a80cb77"></a>Numpad1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93af7303042267ef3576930c1f4cd79348a"></a>Numpad2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a5e23a433a108a85788894b705ec11cdd"></a>Numpad3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a50b622a0442de23f15effc7fc46f3892"></a>Numpad4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a6252c5b171a2982612e31042b953f558"></a>Numpad5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a4d9afa3da3cc40661d50a925dd3010ad"></a>Numpad6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a4314bbf1a297c4b03a5246a71c9c93b6"></a>Numpad7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a8bf3a062ba0e0fa6ef21508d15e7820e"></a>Numpad8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a15f7ca721fe2b648a34d498084f70919"></a>Numpad9&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ae1dffc8709f31a4987c8a88334107e89"></a>F1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93afe5c3684dce76cdd9f7f42430868aa74"></a>F2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a4b6bf4b531770872d4328ce69bef5627"></a>F3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ae7e0e72401a9f2718ed0f39f2861d702"></a>F4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a37f438df6a6d5ba4c17ef8ca58562f00"></a>F5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a1faf42f2823f184eb2c9f0dffe5d73f2"></a>F6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a47489eb597b7db34caa24b1fc78fc839"></a>F7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a4787509ad9f9d747a81a30e9dde3d4a7"></a>F8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a892a245e287c163080b23db737d3c4c9"></a>F9&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ab213ce22ca6ad4eda8db82966b9b6e5a"></a>F10&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93a643b0662422d1d0dffa3fca2e2bf28a8"></a>F11&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a50f7749e42959062d6f7ee3df6a2fd93ae902674982fc99aa343cdd94da7476c3"></a>F12&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

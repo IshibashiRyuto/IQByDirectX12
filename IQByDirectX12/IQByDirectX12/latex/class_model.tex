@@ -1,0 +1,146 @@
+\hypertarget{class_model}{}\section{Model クラス}
+\label{class_model}\index{Model@{Model}}
+
+
+{\ttfamily \#include $<$Model.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_model_ae3b375de5f6df4faf74a95d64748e048}{Model}} ()
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_model_afce3f8d94c9a80c814df5546346f6efb}{Model}} (int model\+Handle)
+\item 
+\mbox{\hyperlink{class_model_ad6ebd2062a0b823db841a0b88baac4c0}{$\sim$\+Model}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_model_abe96911d27ec826d3267dce06998d11f}{Set\+Position}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&position)
+\item 
+void \mbox{\hyperlink{class_model_abaea345ca45636f8e4f557499e48cfdf}{Set\+Rotation}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&rotation)
+\item 
+void \mbox{\hyperlink{class_model_a512b73ff13cabdf1264d52a7a65b4481}{Set\+Rotation}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Math\+::\+Quaternion}} \&rot\+Quaternion)
+\item 
+void \mbox{\hyperlink{class_model_aeffe10c8cb6db69220bb5f1b588935e4}{Set\+Scale}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&scale)
+\item 
+void \mbox{\hyperlink{class_model_a4c06da42f281939cfa54f9a955bc1321}{Set\+Scale}} (float scale)
+\item 
+void \mbox{\hyperlink{class_model_a1223b5f764ce02e3b3e6b80229cfb6f5}{Draw}} () const
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ \mbox{\hyperlink{class_model_a6f5a9f4a413ce2d4e03314ee95a86725}{\+\_\+\+Debug\+Get\+Desc\+Heap}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_pose}{Pose}} $>$ \mbox{\hyperlink{class_model_ae348f27e9cb5cdee6e32029d4ef48300}{\+\_\+\+Debug\+Get\+Pose}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_model}{Model}} $>$ \mbox{\hyperlink{class_model_a82c645e8d4ca6f65297751dc9453d6af}{Create}} (int model\+Handle)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_model_ae3b375de5f6df4faf74a95d64748e048}\label{class_model_ae3b375de5f6df4faf74a95d64748e048}} 
+\index{Model@{Model}!Model@{Model}}
+\index{Model@{Model}!Model@{Model}}
+\subsubsection{\texorpdfstring{Model()}{Model()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Model\+::\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_model_afce3f8d94c9a80c814df5546346f6efb}\label{class_model_afce3f8d94c9a80c814df5546346f6efb}} 
+\index{Model@{Model}!Model@{Model}}
+\index{Model@{Model}!Model@{Model}}
+\subsubsection{\texorpdfstring{Model()}{Model()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Model\+::\+Model (\begin{DoxyParamCaption}\item[{int}]{model\+Handle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_model_ad6ebd2062a0b823db841a0b88baac4c0}\label{class_model_ad6ebd2062a0b823db841a0b88baac4c0}} 
+\index{Model@{Model}!````~Model@{$\sim$\+Model}}
+\index{````~Model@{$\sim$\+Model}!Model@{Model}}
+\subsubsection{\texorpdfstring{$\sim$\+Model()}{~Model()}}
+{\footnotesize\ttfamily Model\+::$\sim$\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_model_a6f5a9f4a413ce2d4e03314ee95a86725}\label{class_model_a6f5a9f4a413ce2d4e03314ee95a86725}} 
+\index{Model@{Model}!\+\_\+\+Debug\+Get\+Desc\+Heap@{\+\_\+\+Debug\+Get\+Desc\+Heap}}
+\index{\+\_\+\+Debug\+Get\+Desc\+Heap@{\+\_\+\+Debug\+Get\+Desc\+Heap}!Model@{Model}}
+\subsubsection{\texorpdfstring{\+\_\+\+Debug\+Get\+Desc\+Heap()}{\_DebugGetDescHeap()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_descriptor_heap}{Descriptor\+Heap}} $>$ Model\+::\+\_\+\+Debug\+Get\+Desc\+Heap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_model_ae348f27e9cb5cdee6e32029d4ef48300}\label{class_model_ae348f27e9cb5cdee6e32029d4ef48300}} 
+\index{Model@{Model}!\+\_\+\+Debug\+Get\+Pose@{\+\_\+\+Debug\+Get\+Pose}}
+\index{\+\_\+\+Debug\+Get\+Pose@{\+\_\+\+Debug\+Get\+Pose}!Model@{Model}}
+\subsubsection{\texorpdfstring{\+\_\+\+Debug\+Get\+Pose()}{\_DebugGetPose()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_pose}{Pose}} $>$ Model\+::\+\_\+\+Debug\+Get\+Pose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_model_a82c645e8d4ca6f65297751dc9453d6af}\label{class_model_a82c645e8d4ca6f65297751dc9453d6af}} 
+\index{Model@{Model}!Create@{Create}}
+\index{Create@{Create}!Model@{Model}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Model\+::\+Create (\begin{DoxyParamCaption}\item[{int}]{model\+Handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+モデルクラスを生成する \begin{DoxyNote}{覚え書き}
+Modelクラスの実体はこのメソッドでのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em model\+Handle} & \+: モデルハンドル \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em モデルのスマートポインタ} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_model_a1223b5f764ce02e3b3e6b80229cfb6f5}\label{class_model_a1223b5f764ce02e3b3e6b80229cfb6f5}} 
+\index{Model@{Model}!Draw@{Draw}}
+\index{Draw@{Draw}!Model@{Model}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily Model\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+モデルの描画処理を行う \mbox{\Hypertarget{class_model_abe96911d27ec826d3267dce06998d11f}\label{class_model_abe96911d27ec826d3267dce06998d11f}} 
+\index{Model@{Model}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!Model@{Model}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily Model\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{position }\end{DoxyParamCaption})}
+
+位置を指定する 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em position} & \+: モデル配置位置 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_abaea345ca45636f8e4f557499e48cfdf}\label{class_model_abaea345ca45636f8e4f557499e48cfdf}} 
+\index{Model@{Model}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Model@{Model}}
+\subsubsection{\texorpdfstring{Set\+Rotation()}{SetRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Model\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{rotation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_model_a512b73ff13cabdf1264d52a7a65b4481}\label{class_model_a512b73ff13cabdf1264d52a7a65b4481}} 
+\index{Model@{Model}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Model@{Model}}
+\subsubsection{\texorpdfstring{Set\+Rotation()}{SetRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Model\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Math\+::\+Quaternion}} \&}]{rot\+Quaternion }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_model_aeffe10c8cb6db69220bb5f1b588935e4}\label{class_model_aeffe10c8cb6db69220bb5f1b588935e4}} 
+\index{Model@{Model}!Set\+Scale@{Set\+Scale}}
+\index{Set\+Scale@{Set\+Scale}!Model@{Model}}
+\subsubsection{\texorpdfstring{Set\+Scale()}{SetScale()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Model\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_model_a4c06da42f281939cfa54f9a955bc1321}\label{class_model_a4c06da42f281939cfa54f9a955bc1321}} 
+\index{Model@{Model}!Set\+Scale@{Set\+Scale}}
+\index{Set\+Scale@{Set\+Scale}!Model@{Model}}
+\subsubsection{\texorpdfstring{Set\+Scale()}{SetScale()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Model\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_model_8h}{Model.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_model_8cpp}{Model.\+cpp}}\end{DoxyCompactItemize}

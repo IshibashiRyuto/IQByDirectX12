@@ -1,0 +1,289 @@
+\hypertarget{struct_math_1_1_matrix4x4}{}\section{Math\+:\+:Matrix4x4 構造体}
+\label{struct_math_1_1_matrix4x4}\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+
+
+{\ttfamily \#include $<$Math.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4_a714a467ba7f85f88ebe3897b5e3580be}{Matrix4x4}} ()
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4_affb9606dbdc0c8995cbe544f474e64a4}{Matrix4x4}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4_a5742d2aa46a5555a89718ee256d24687}{Matrix4x4}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4_adc4b241f8829fb8f3272909cd9d39966}{Matrix4x4}} (\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&\&mat)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4_a800b92eacd31be52d0ad1c52d74bd16a}{Matrix4x4}} (float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44)
+\item 
+float \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_a9a2d9a85d02f98341b7406fbdf39d60a}{operator()}} (unsigned int row, unsigned int col)
+\item 
+const float \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_afdbffc353a52b2aa9b622b47bb13b9c9}{operator()}} (unsigned int row, unsigned int col) const
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{struct_math_1_1_matrix4x4_a1962a62b402bfb5076a67cc87e5fb4d7}{operator+}} () const
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \mbox{\hyperlink{struct_math_1_1_matrix4x4_a6df8840e180ef2dd22d00b63fd94be29}{operator-\/}} () const
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_a9ee081e0ca62967af780d4979a58deb2}{operator=}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_a718f2e437d7a81545cbc09e94a14be17}{operator+=}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_a50317a53f50d2f657ddaf9882120a895}{operator-\/=}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_a44bf597aad18c77f05d265cf88258207}{operator$\ast$=}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&value)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_a2c940c611c86e4d27b8443a49710f29f}{operator$\ast$=}} (float scale)
+\item 
+\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& \mbox{\hyperlink{struct_math_1_1_matrix4x4_af4b1bfd9239ce87f82090f05645c08c3}{operator/=}} (float scale)
+\item 
+float \mbox{\hyperlink{struct_math_1_1_matrix4x4_ab848d45dfc3a1efb60601214488d2e4a}{Determinant}} () const
+\end{DoxyCompactItemize}
+\subsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a96b268eec9f5948dd5353e99a0d7c956}{matrix}} \mbox{[}4\mbox{]}\mbox{[}4\mbox{]}\\
+\>struct \{\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a6286cd46feb2d7f065a6c536dee4405b}{\_11}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a11af6acd1dc9055fcf6a3f996d0edb3a}{\_12}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_ac85f56b1032239a7f3c5617466c265df}{\_13}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a4ce2e1b4aaa1f97b423950e1237d2a57}{\_14}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a5e321aaa28a4b5e776b1e2002ab9ba3e}{\_21}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a3405e91df63a704e3d3a79570202b3af}{\_22}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a049d68f48f36069d70e613611570a644}{\_23}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_addcdb0885353226c90ae80e371871850}{\_24}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a81f1469fb8e83f8255890ca0c59f8ff7}{\_31}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_adfc5816a9b398be6b1ba9fc42a32c811}{\_32}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a1de5b49c33683c4c4049eacf26e10366}{\_33}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_ab2445c944794987feee6f516b9313572}{\_34}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a81f4d26300dbfb8bde00a8bf6b21aa0d}{\_41}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_af16525c898868cc68112beaf38604da5}{\_42}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_a14106ef4b4723d705136a9b086848aed}{\_43}}\\
+\>\>float \mbox{\hyperlink{struct_math_1_1_matrix4x4_ae9b31ecdda9e5f6677119809e010425e}{\_44}}\\
+\>\} \\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{詳解}
+4x4行列を表す構造体 四次元ベクトルvと4x4行列\+Mとの乗算は v$\ast$\+Mで演算可能で、\+Vector4を返す 
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a714a467ba7f85f88ebe3897b5e3580be}\label{struct_math_1_1_matrix4x4_a714a467ba7f85f88ebe3897b5e3580be}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{Matrix4x4()}{Matrix4x4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily Matrix4x4\+::\+Matrix4x4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_affb9606dbdc0c8995cbe544f474e64a4}\label{struct_math_1_1_matrix4x4_affb9606dbdc0c8995cbe544f474e64a4}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{Matrix4x4()}{Matrix4x4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Matrix4x4\+::\+Matrix4x4 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a5742d2aa46a5555a89718ee256d24687}\label{struct_math_1_1_matrix4x4_a5742d2aa46a5555a89718ee256d24687}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{Matrix4x4()}{Matrix4x4()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Math\+::\+Matrix4x4\+::\+Matrix4x4 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x3}{Matrix4x3}} \&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_adc4b241f8829fb8f3272909cd9d39966}\label{struct_math_1_1_matrix4x4_adc4b241f8829fb8f3272909cd9d39966}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{Matrix4x4()}{Matrix4x4()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Math\+::\+Matrix4x4\+::\+Matrix4x4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&\&}]{mat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a800b92eacd31be52d0ad1c52d74bd16a}\label{struct_math_1_1_matrix4x4_a800b92eacd31be52d0ad1c52d74bd16a}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{Matrix4x4()}{Matrix4x4()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Matrix4x4\+::\+Matrix4x4 (\begin{DoxyParamCaption}\item[{float}]{m11,  }\item[{float}]{m12,  }\item[{float}]{m13,  }\item[{float}]{m14,  }\item[{float}]{m21,  }\item[{float}]{m22,  }\item[{float}]{m23,  }\item[{float}]{m24,  }\item[{float}]{m31,  }\item[{float}]{m32,  }\item[{float}]{m33,  }\item[{float}]{m34,  }\item[{float}]{m41,  }\item[{float}]{m42,  }\item[{float}]{m43,  }\item[{float}]{m44 }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_ab848d45dfc3a1efb60601214488d2e4a}\label{struct_math_1_1_matrix4x4_ab848d45dfc3a1efb60601214488d2e4a}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!Determinant@{Determinant}}
+\index{Determinant@{Determinant}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{Determinant()}{Determinant()}}
+{\footnotesize\ttfamily float Matrix4x4\+::\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a9a2d9a85d02f98341b7406fbdf39d60a}\label{struct_math_1_1_matrix4x4_a9a2d9a85d02f98341b7406fbdf39d60a}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator()@{operator()}}
+\index{operator()@{operator()}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float \& Matrix4x4\+::operator() (\begin{DoxyParamCaption}\item[{unsigned int}]{row,  }\item[{unsigned int}]{col }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_afdbffc353a52b2aa9b622b47bb13b9c9}\label{struct_math_1_1_matrix4x4_afdbffc353a52b2aa9b622b47bb13b9c9}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator()@{operator()}}
+\index{operator()@{operator()}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const float \& Matrix4x4\+::operator() (\begin{DoxyParamCaption}\item[{unsigned int}]{row,  }\item[{unsigned int}]{col }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a44bf597aad18c77f05d265cf88258207}\label{struct_math_1_1_matrix4x4_a44bf597aad18c77f05d265cf88258207}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& Matrix4x4\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a2c940c611c86e4d27b8443a49710f29f}\label{struct_math_1_1_matrix4x4_a2c940c611c86e4d27b8443a49710f29f}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& Matrix4x4\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a1962a62b402bfb5076a67cc87e5fb4d7}\label{struct_math_1_1_matrix4x4_a1962a62b402bfb5076a67cc87e5fb4d7}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator+@{operator+}}
+\index{operator+@{operator+}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Matrix4x4\+::operator+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a718f2e437d7a81545cbc09e94a14be17}\label{struct_math_1_1_matrix4x4_a718f2e437d7a81545cbc09e94a14be17}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& Matrix4x4\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a6df8840e180ef2dd22d00b63fd94be29}\label{struct_math_1_1_matrix4x4_a6df8840e180ef2dd22d00b63fd94be29}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} Matrix4x4\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a50317a53f50d2f657ddaf9882120a895}\label{struct_math_1_1_matrix4x4_a50317a53f50d2f657ddaf9882120a895}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& Matrix4x4\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_af4b1bfd9239ce87f82090f05645c08c3}\label{struct_math_1_1_matrix4x4_af4b1bfd9239ce87f82090f05645c08c3}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& Matrix4x4\+::operator/= (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a9ee081e0ca62967af780d4979a58deb2}\label{struct_math_1_1_matrix4x4_a9ee081e0ca62967af780d4979a58deb2}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!operator=@{operator=}}
+\index{operator=@{operator=}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \& Matrix4x4\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Matrix4x4}} \&}]{value }\end{DoxyParamCaption})}
+
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a26661b2ee7b330182342e8479d648721}\label{struct_math_1_1_matrix4x4_a26661b2ee7b330182342e8479d648721}} 
+\subsubsection{\texorpdfstring{"@1}{@1}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a6286cd46feb2d7f065a6c536dee4405b}\label{struct_math_1_1_matrix4x4_a6286cd46feb2d7f065a6c536dee4405b}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+11@{\+\_\+11}}
+\index{\+\_\+11@{\+\_\+11}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+11}{\_11}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+11}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a11af6acd1dc9055fcf6a3f996d0edb3a}\label{struct_math_1_1_matrix4x4_a11af6acd1dc9055fcf6a3f996d0edb3a}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+12@{\+\_\+12}}
+\index{\+\_\+12@{\+\_\+12}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+12}{\_12}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+12}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_ac85f56b1032239a7f3c5617466c265df}\label{struct_math_1_1_matrix4x4_ac85f56b1032239a7f3c5617466c265df}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+13@{\+\_\+13}}
+\index{\+\_\+13@{\+\_\+13}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+13}{\_13}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+13}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a4ce2e1b4aaa1f97b423950e1237d2a57}\label{struct_math_1_1_matrix4x4_a4ce2e1b4aaa1f97b423950e1237d2a57}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+14@{\+\_\+14}}
+\index{\+\_\+14@{\+\_\+14}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+14}{\_14}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+14}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a5e321aaa28a4b5e776b1e2002ab9ba3e}\label{struct_math_1_1_matrix4x4_a5e321aaa28a4b5e776b1e2002ab9ba3e}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+21@{\+\_\+21}}
+\index{\+\_\+21@{\+\_\+21}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+21}{\_21}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+21}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a3405e91df63a704e3d3a79570202b3af}\label{struct_math_1_1_matrix4x4_a3405e91df63a704e3d3a79570202b3af}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+22@{\+\_\+22}}
+\index{\+\_\+22@{\+\_\+22}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+22}{\_22}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+22}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a049d68f48f36069d70e613611570a644}\label{struct_math_1_1_matrix4x4_a049d68f48f36069d70e613611570a644}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+23@{\+\_\+23}}
+\index{\+\_\+23@{\+\_\+23}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+23}{\_23}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+23}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_addcdb0885353226c90ae80e371871850}\label{struct_math_1_1_matrix4x4_addcdb0885353226c90ae80e371871850}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+24@{\+\_\+24}}
+\index{\+\_\+24@{\+\_\+24}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+24}{\_24}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+24}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a81f1469fb8e83f8255890ca0c59f8ff7}\label{struct_math_1_1_matrix4x4_a81f1469fb8e83f8255890ca0c59f8ff7}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+31@{\+\_\+31}}
+\index{\+\_\+31@{\+\_\+31}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+31}{\_31}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+31}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_adfc5816a9b398be6b1ba9fc42a32c811}\label{struct_math_1_1_matrix4x4_adfc5816a9b398be6b1ba9fc42a32c811}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+32@{\+\_\+32}}
+\index{\+\_\+32@{\+\_\+32}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+32}{\_32}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+32}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a1de5b49c33683c4c4049eacf26e10366}\label{struct_math_1_1_matrix4x4_a1de5b49c33683c4c4049eacf26e10366}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+33@{\+\_\+33}}
+\index{\+\_\+33@{\+\_\+33}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+33}{\_33}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+33}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_ab2445c944794987feee6f516b9313572}\label{struct_math_1_1_matrix4x4_ab2445c944794987feee6f516b9313572}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+34@{\+\_\+34}}
+\index{\+\_\+34@{\+\_\+34}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+34}{\_34}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+34}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a81f4d26300dbfb8bde00a8bf6b21aa0d}\label{struct_math_1_1_matrix4x4_a81f4d26300dbfb8bde00a8bf6b21aa0d}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+41@{\+\_\+41}}
+\index{\+\_\+41@{\+\_\+41}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+41}{\_41}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+41}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_af16525c898868cc68112beaf38604da5}\label{struct_math_1_1_matrix4x4_af16525c898868cc68112beaf38604da5}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+42@{\+\_\+42}}
+\index{\+\_\+42@{\+\_\+42}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+42}{\_42}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+42}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a14106ef4b4723d705136a9b086848aed}\label{struct_math_1_1_matrix4x4_a14106ef4b4723d705136a9b086848aed}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+43@{\+\_\+43}}
+\index{\+\_\+43@{\+\_\+43}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+43}{\_43}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+43}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_ae9b31ecdda9e5f6677119809e010425e}\label{struct_math_1_1_matrix4x4_ae9b31ecdda9e5f6677119809e010425e}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!\+\_\+44@{\+\_\+44}}
+\index{\+\_\+44@{\+\_\+44}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{\+\_\+44}{\_44}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::\+\_\+44}
+
+\mbox{\Hypertarget{struct_math_1_1_matrix4x4_a96b268eec9f5948dd5353e99a0d7c956}\label{struct_math_1_1_matrix4x4_a96b268eec9f5948dd5353e99a0d7c956}} 
+\index{Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}!matrix@{matrix}}
+\index{matrix@{matrix}!Math\+::\+Matrix4x4@{Math\+::\+Matrix4x4}}
+\subsubsection{\texorpdfstring{matrix}{matrix}}
+{\footnotesize\ttfamily float Math\+::\+Matrix4x4\+::matrix\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Math/\mbox{\hyperlink{_math_8h}{Math.\+h}}\item 
+Source/\+Math/\mbox{\hyperlink{_math___matrix4x4_8cpp}{Math\+\_\+\+Matrix4x4.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,124 @@
+\hypertarget{class_bone}{}\section{Bone クラス}
+\label{class_bone}\index{Bone@{Bone}}
+
+
+{\ttfamily \#include $<$Bone.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_bone_a8a85b84508716d1214f7fb69982d917c}{$\sim$\+Bone}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bone_a4d328e19a6a90cb28bfe016a16eeac94}{Set\+Rotation}} (const \mbox{\hyperlink{struct_math_1_1_quaternion}{Math\+::\+Quaternion}} \&rotation)
+\begin{DoxyCompactList}\small\item\em ボーンの回転を設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bone_a949005e4fab78a4072736614d6ec7886}{Set\+Rotation}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&rotation)
+\item 
+void \mbox{\hyperlink{class_bone_a8fd49736393fd37e5e029523e006c3a3}{Set\+Rotation}} (float rotX, float rotY, float rotZ)
+\item 
+void \mbox{\hyperlink{class_bone_a13f0dd0077175c8d8e446b8aaadcc85e}{Set\+Limit\+Axis}} (bool is\+Use, const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&axis)
+\begin{DoxyCompactList}\small\item\em 軸制限の使用設定を行う \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bone_ab75e73a4a7ea9901ee53a686953ade2d}{Rotate}} (const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Math\+::\+Matrix4x4}} \&matrix)
+\begin{DoxyCompactList}\small\item\em ボーンを回転させる \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_math_1_1_quaternion}{Math\+::\+Quaternion}} \& \mbox{\hyperlink{class_bone_a4994c5b3c7412465cc78a6f9ac1d6e23}{Get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em ボーンの回転情報を取得する \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Math\+::\+Matrix4x4}} \mbox{\hyperlink{class_bone_ae87eaca1d2bd48b7f77668792686c5f8}{Get\+Bone\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em ボーン回転行列を取得する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_bone}{Bone}} $>$ \mbox{\hyperlink{class_bone_af837ae78ad27ca34d5adf52db611dc47}{Create}} (const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&head\+Position)
+\begin{DoxyCompactList}\small\item\em ボーン情報を生成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_bone_a8a85b84508716d1214f7fb69982d917c}\label{class_bone_a8a85b84508716d1214f7fb69982d917c}} 
+\index{Bone@{Bone}!````~Bone@{$\sim$\+Bone}}
+\index{````~Bone@{$\sim$\+Bone}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{$\sim$\+Bone()}{~Bone()}}
+{\footnotesize\ttfamily Bone\+::$\sim$\+Bone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_bone_af837ae78ad27ca34d5adf52db611dc47}\label{class_bone_af837ae78ad27ca34d5adf52db611dc47}} 
+\index{Bone@{Bone}!Create@{Create}}
+\index{Create@{Create}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_bone}{Bone}} $>$ Bone\+::\+Create (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{head\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+ボーン情報を生成する 
+
+\mbox{\Hypertarget{class_bone_ae87eaca1d2bd48b7f77668792686c5f8}\label{class_bone_ae87eaca1d2bd48b7f77668792686c5f8}} 
+\index{Bone@{Bone}!Get\+Bone\+Matrix@{Get\+Bone\+Matrix}}
+\index{Get\+Bone\+Matrix@{Get\+Bone\+Matrix}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Get\+Bone\+Matrix()}{GetBoneMatrix()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Math\+::\+Matrix4x4}} Bone\+::\+Get\+Bone\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+ボーン回転行列を取得する 
+
+\mbox{\Hypertarget{class_bone_a4994c5b3c7412465cc78a6f9ac1d6e23}\label{class_bone_a4994c5b3c7412465cc78a6f9ac1d6e23}} 
+\index{Bone@{Bone}!Get\+Rotation@{Get\+Rotation}}
+\index{Get\+Rotation@{Get\+Rotation}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Get\+Rotation()}{GetRotation()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_math_1_1_quaternion}{Math\+::\+Quaternion}} \& Bone\+::\+Get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+ボーンの回転情報を取得する 
+
+\mbox{\Hypertarget{class_bone_ab75e73a4a7ea9901ee53a686953ade2d}\label{class_bone_ab75e73a4a7ea9901ee53a686953ade2d}} 
+\index{Bone@{Bone}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Rotate()}{Rotate()}}
+{\footnotesize\ttfamily void Bone\+::\+Rotate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_matrix4x4}{Math\+::\+Matrix4x4}} \&}]{matrix }\end{DoxyParamCaption})}
+
+
+
+ボーンを回転させる 
+
+\mbox{\Hypertarget{class_bone_a13f0dd0077175c8d8e446b8aaadcc85e}\label{class_bone_a13f0dd0077175c8d8e446b8aaadcc85e}} 
+\index{Bone@{Bone}!Set\+Limit\+Axis@{Set\+Limit\+Axis}}
+\index{Set\+Limit\+Axis@{Set\+Limit\+Axis}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Set\+Limit\+Axis()}{SetLimitAxis()}}
+{\footnotesize\ttfamily void Bone\+::\+Set\+Limit\+Axis (\begin{DoxyParamCaption}\item[{bool}]{is\+Use,  }\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{axis }\end{DoxyParamCaption})}
+
+
+
+軸制限の使用設定を行う 
+
+\mbox{\Hypertarget{class_bone_a4d328e19a6a90cb28bfe016a16eeac94}\label{class_bone_a4d328e19a6a90cb28bfe016a16eeac94}} 
+\index{Bone@{Bone}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Set\+Rotation()}{SetRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Bone\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_quaternion}{Math\+::\+Quaternion}} \&}]{rotation }\end{DoxyParamCaption})}
+
+
+
+ボーンの回転を設定する 
+
+\mbox{\Hypertarget{class_bone_a949005e4fab78a4072736614d6ec7886}\label{class_bone_a949005e4fab78a4072736614d6ec7886}} 
+\index{Bone@{Bone}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Set\+Rotation()}{SetRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Bone\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_math_1_1_vector3}{Math\+::\+Vector3}} \&}]{rotation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bone_a8fd49736393fd37e5e029523e006c3a3}\label{class_bone_a8fd49736393fd37e5e029523e006c3a3}} 
+\index{Bone@{Bone}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Bone@{Bone}}
+\subsubsection{\texorpdfstring{Set\+Rotation()}{SetRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Bone\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{rotX,  }\item[{float}]{rotY,  }\item[{float}]{rotZ }\end{DoxyParamCaption})}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_bone_8h}{Bone.\+h}}\item 
+Source/\mbox{\hyperlink{_bone_8cpp}{Bone.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IQ By DirectX12: Source/Math/Math.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IQ By DirectX12
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_e11b0d151eb01caf664c9344ba74d0cd.html">Math</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#namespaces">名前空間</a> &#124;
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">Math.h ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="_math_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_math_1_1_vector2.html">Math::Vector2</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_math_1_1_vector3.html">Math::Vector3</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_math_1_1_vector4.html">Math::Vector4</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_math_1_1_matrix4x4.html">Math::Matrix4x4</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_math_1_1_matrix4x3.html">Math::Matrix4x3</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_math_1_1_quaternion.html">Math::Quaternion</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+名前空間</h2></td></tr>
+<tr class="memitem:namespace_math"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html">Math</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:a622cf93fd441b31963159cb086b01ff4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a622cf93fd441b31963159cb086b01ff4">Math::IsEqual</a> (float v1, float v2)</td></tr>
+<tr class="separator:a622cf93fd441b31963159cb086b01ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a298771bf90fda8152d34b6fd004d1c7f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a298771bf90fda8152d34b6fd004d1c7f">Math::IsEqual</a> (double v1, double v2)</td></tr>
+<tr class="separator:a298771bf90fda8152d34b6fd004d1c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9851c5508417d12ef139ebbe943f6a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aa9851c5508417d12ef139ebbe943f6a7">Math::IsEqual</a> (float v1, double v2)</td></tr>
+<tr class="separator:aa9851c5508417d12ef139ebbe943f6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eeb1781896881768b92899090b7d750"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a5eeb1781896881768b92899090b7d750">Math::IsEqual</a> (double v1, float v2)</td></tr>
+<tr class="separator:a5eeb1781896881768b92899090b7d750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85ef15b6a4171111a31bb17db917dd9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aa85ef15b6a4171111a31bb17db917dd9">Math::IsZero</a> (float value)</td></tr>
+<tr class="separator:aa85ef15b6a4171111a31bb17db917dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e4a54ad68fe1c946ba6b5c425e47ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a50e4a54ad68fe1c946ba6b5c425e47ad">Math::IsZero</a> (double value)</td></tr>
+<tr class="separator:a50e4a54ad68fe1c946ba6b5c425e47ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a182d010a122c2bf2332d080682068"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a63a182d010a122c2bf2332d080682068">Math::Clamp</a> (float value, float minValue, float maxValue)</td></tr>
+<tr class="separator:a63a182d010a122c2bf2332d080682068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e59da084cd78b8cd7bc184931280f62"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a9e59da084cd78b8cd7bc184931280f62">Math::Clamp</a> (double value, double minValue, double maxValue)</td></tr>
+<tr class="separator:a9e59da084cd78b8cd7bc184931280f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4687bc70508587a7473bab655a2b2a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#af4687bc70508587a7473bab655a2b2a9">Math::operator==</a> (const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t2)</td></tr>
+<tr class="separator:af4687bc70508587a7473bab655a2b2a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248dfe0b65dce8c8f25689145d18fc68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a248dfe0b65dce8c8f25689145d18fc68">Math::operator!=</a> (const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t2)</td></tr>
+<tr class="separator:a248dfe0b65dce8c8f25689145d18fc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f686c8f0b005ab24cd368fe4ab1b4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a62f686c8f0b005ab24cd368fe4ab1b4b">Math::operator+</a> (const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t2)</td></tr>
+<tr class="separator:a62f686c8f0b005ab24cd368fe4ab1b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c1ebbbebd6020556b1cdd7ebe1ee1a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3c1ebbbebd6020556b1cdd7ebe1ee1a5">Math::operator-</a> (const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;t2)</td></tr>
+<tr class="separator:a3c1ebbbebd6020556b1cdd7ebe1ee1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9071831f1488bc75d0dff29a52258009"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a9071831f1488bc75d0dff29a52258009">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;value, float scale)</td></tr>
+<tr class="separator:a9071831f1488bc75d0dff29a52258009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64567d7ee2881978a228a6ceaeca4f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ae64567d7ee2881978a228a6ceaeca4f4">Math::operator*</a> (float scale, const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;value)</td></tr>
+<tr class="separator:ae64567d7ee2881978a228a6ceaeca4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d2e4f5c5d22414afbcdc056e957318"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ac1d2e4f5c5d22414afbcdc056e957318">Math::operator/</a> (const <a class="el" href="struct_math_1_1_vector2.html">Vector2</a> &amp;value, float scale)</td></tr>
+<tr class="separator:ac1d2e4f5c5d22414afbcdc056e957318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e85675a519a429e4e5650bb2613bc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a68e85675a519a429e4e5650bb2613bc0">Math::operator==</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t2)</td></tr>
+<tr class="separator:a68e85675a519a429e4e5650bb2613bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd6ae74465b9e93459c15a638efcdb61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#acd6ae74465b9e93459c15a638efcdb61">Math::operator!=</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t2)</td></tr>
+<tr class="separator:acd6ae74465b9e93459c15a638efcdb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a279c2ff1375f08332e47f665f9d96622"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a279c2ff1375f08332e47f665f9d96622">Math::operator+</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t2)</td></tr>
+<tr class="separator:a279c2ff1375f08332e47f665f9d96622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99d6a8ff14fa83d33520f7f3f717877c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a99d6a8ff14fa83d33520f7f3f717877c">Math::operator-</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;t2)</td></tr>
+<tr class="separator:a99d6a8ff14fa83d33520f7f3f717877c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94042de53627e5809c4676b6c5340963"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a94042de53627e5809c4676b6c5340963">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;value, float scale)</td></tr>
+<tr class="separator:a94042de53627e5809c4676b6c5340963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d1f5fd771b09fb7d2c8e0ebbc182f19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a0d1f5fd771b09fb7d2c8e0ebbc182f19">Math::operator*</a> (float scale, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;value)</td></tr>
+<tr class="separator:a0d1f5fd771b09fb7d2c8e0ebbc182f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b5ce1ab6c1fd8b4163dbe17fc2c8bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a47b5ce1ab6c1fd8b4163dbe17fc2c8bc">Math::operator/</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;value, float scale)</td></tr>
+<tr class="separator:a47b5ce1ab6c1fd8b4163dbe17fc2c8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b728d3fd626ed55895d4b59575e071a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a1b728d3fd626ed55895d4b59575e071a">Math::Dot</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;v1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;v2)</td></tr>
+<tr class="separator:a1b728d3fd626ed55895d4b59575e071a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e7d67884adf533a55598952787420b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3e7d67884adf533a55598952787420b2">Math::Cross</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;v1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;v2)</td></tr>
+<tr class="separator:a3e7d67884adf533a55598952787420b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4369be47f3ec66cce0862bc66966e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ad4369be47f3ec66cce0862bc66966e96">Math::Normalize</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;vec)</td></tr>
+<tr class="separator:ad4369be47f3ec66cce0862bc66966e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1dbf09b73e7c8d4144887c802c66fdc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ac1dbf09b73e7c8d4144887c802c66fdc">Math::CalcAngleVecToVec</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;v1, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;v2)</td></tr>
+<tr class="memdesc:ac1dbf09b73e7c8d4144887c802c66fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">2つのベクトル間角度を計算する  <a href="namespace_math.html#ac1dbf09b73e7c8d4144887c802c66fdc">[詳解]</a><br /></td></tr>
+<tr class="separator:ac1dbf09b73e7c8d4144887c802c66fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e6345cc66935721e93c8c65978eb7e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a63e6345cc66935721e93c8c65978eb7e">Math::operator==</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t2)</td></tr>
+<tr class="separator:a63e6345cc66935721e93c8c65978eb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363043a928db204744bfb86367be979d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a363043a928db204744bfb86367be979d">Math::operator!=</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t2)</td></tr>
+<tr class="separator:a363043a928db204744bfb86367be979d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a5770bc56d8813435b7530021278b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a62a5770bc56d8813435b7530021278b5">Math::operator+</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t2)</td></tr>
+<tr class="separator:a62a5770bc56d8813435b7530021278b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae164bf95185127aeb0d140f15718e10a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ae164bf95185127aeb0d140f15718e10a">Math::operator-</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t1, const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;t2)</td></tr>
+<tr class="separator:ae164bf95185127aeb0d140f15718e10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c882069472ade27f2265b16041baf76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a2c882069472ade27f2265b16041baf76">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;value, float scale)</td></tr>
+<tr class="separator:a2c882069472ade27f2265b16041baf76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dd17b1db67faf64ebabe1e113d40af4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3dd17b1db67faf64ebabe1e113d40af4">Math::operator*</a> (float scale, const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;value)</td></tr>
+<tr class="separator:a3dd17b1db67faf64ebabe1e113d40af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22a570ffffa9a4508274b38d5f26da25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a22a570ffffa9a4508274b38d5f26da25">Math::operator/</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;value, float scale)</td></tr>
+<tr class="separator:a22a570ffffa9a4508274b38d5f26da25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b40764391fa4cbbc642c330f4299874"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a5b40764391fa4cbbc642c330f4299874">Math::operator==</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat2)</td></tr>
+<tr class="separator:a5b40764391fa4cbbc642c330f4299874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f64c58fbe9c4788f9697c9a12dfdf7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#af3f64c58fbe9c4788f9697c9a12dfdf7">Math::operator!=</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat2)</td></tr>
+<tr class="separator:af3f64c58fbe9c4788f9697c9a12dfdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389dadeebac6c85cbab4622add8901a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a389dadeebac6c85cbab4622add8901a5">Math::operator+</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat2)</td></tr>
+<tr class="separator:a389dadeebac6c85cbab4622add8901a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a0e723e7843e2eb47b2285846df34f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a63a0e723e7843e2eb47b2285846df34f">Math::operator-</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat2)</td></tr>
+<tr class="separator:a63a0e723e7843e2eb47b2285846df34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06472d628f45d93a8bdb7cdcb0b1be8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a06472d628f45d93a8bdb7cdcb0b1be8d">Math::operator*</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat2)</td></tr>
+<tr class="separator:a06472d628f45d93a8bdb7cdcb0b1be8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adddddb021bc36b35e73f09ed99fa11c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#adddddb021bc36b35e73f09ed99fa11c5">Math::operator*</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat, float scale)</td></tr>
+<tr class="separator:adddddb021bc36b35e73f09ed99fa11c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7239dba8d71c3d6209d9fd502fd1e2ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a7239dba8d71c3d6209d9fd502fd1e2ad">Math::operator*</a> (float scale, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="separator:a7239dba8d71c3d6209d9fd502fd1e2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7973248d0183ea280fef5097eb6ef3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aa7973248d0183ea280fef5097eb6ef3f">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;vec, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="separator:aa7973248d0183ea280fef5097eb6ef3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7db6c4bdacba08e4a5488fe9643450"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a4d7db6c4bdacba08e4a5488fe9643450">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;vec, const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="separator:a4d7db6c4bdacba08e4a5488fe9643450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a283dc37f79d3f2d51bb3e494f02a0ad3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a283dc37f79d3f2d51bb3e494f02a0ad3">Math::operator/</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat, float scale)</td></tr>
+<tr class="separator:a283dc37f79d3f2d51bb3e494f02a0ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d07a84dd7006820b10c0dcca8d649d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#af3d07a84dd7006820b10c0dcca8d649d">Math::GetMatrixScale</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="memdesc:af3d07a84dd7006820b10c0dcca8d649d"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x4行列から3次元の拡縮成分を取得する  <a href="namespace_math.html#af3d07a84dd7006820b10c0dcca8d649d">[詳解]</a><br /></td></tr>
+<tr class="separator:af3d07a84dd7006820b10c0dcca8d649d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a362448daab24abbbe2f8aeb947396e45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a362448daab24abbbe2f8aeb947396e45">Math::GetMatrixTranslate</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="memdesc:a362448daab24abbbe2f8aeb947396e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x4行列から3次元の並行移動成分を取得する  <a href="namespace_math.html#a362448daab24abbbe2f8aeb947396e45">[詳解]</a><br /></td></tr>
+<tr class="separator:a362448daab24abbbe2f8aeb947396e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af020b3d35d199e53d32895a737e7c02e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#af020b3d35d199e53d32895a737e7c02e">Math::GetMatrixRotation</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="memdesc:af020b3d35d199e53d32895a737e7c02e"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x4行列から任意軸回転を行うクォータニオン成分を取得する  <a href="namespace_math.html#af020b3d35d199e53d32895a737e7c02e">[詳解]</a><br /></td></tr>
+<tr class="separator:af020b3d35d199e53d32895a737e7c02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc0372b98a0dd4833848ee1bf268332"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a4cc0372b98a0dd4833848ee1bf268332">Math::GetTransposeMatrix</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="memdesc:a4cc0372b98a0dd4833848ee1bf268332"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x4行列の転置行列を取得する  <a href="namespace_math.html#a4cc0372b98a0dd4833848ee1bf268332">[詳解]</a><br /></td></tr>
+<tr class="separator:a4cc0372b98a0dd4833848ee1bf268332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1511b5df243ca4ee521026cb9b373efd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a1511b5df243ca4ee521026cb9b373efd">Math::GetInvertMatrix</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;mat)</td></tr>
+<tr class="memdesc:a1511b5df243ca4ee521026cb9b373efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x4行列の逆行列を取得する  <a href="namespace_math.html#a1511b5df243ca4ee521026cb9b373efd">[詳解]</a><br /></td></tr>
+<tr class="separator:a1511b5df243ca4ee521026cb9b373efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad7bb8945263031607f8b323d9ae1cd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aad7bb8945263031607f8b323d9ae1cd7">Math::CreateIdent</a> ()</td></tr>
+<tr class="memdesc:aad7bb8945263031607f8b323d9ae1cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x4単位行列を作成する  <a href="namespace_math.html#aad7bb8945263031607f8b323d9ae1cd7">[詳解]</a><br /></td></tr>
+<tr class="separator:aad7bb8945263031607f8b323d9ae1cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70c81aec69f6a6b6e586a0d0f5d2ae71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a70c81aec69f6a6b6e586a0d0f5d2ae71">Math::CreateScaleMatrix</a> (float scale)</td></tr>
+<tr class="memdesc:a70c81aec69f6a6b6e586a0d0f5d2ae71"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定のスケールで拡縮する4x4行列を作成する  <a href="namespace_math.html#a70c81aec69f6a6b6e586a0d0f5d2ae71">[詳解]</a><br /></td></tr>
+<tr class="separator:a70c81aec69f6a6b6e586a0d0f5d2ae71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37fd756ce6f0ed92743c168b170b695"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#af37fd756ce6f0ed92743c168b170b695">Math::CreateScaleMatrix</a> (float sx, float sy, float sz)</td></tr>
+<tr class="separator:af37fd756ce6f0ed92743c168b170b695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb993929e559b690bbb60e9504f3ad95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#abb993929e559b690bbb60e9504f3ad95">Math::CreateScaleMatrix</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;scale)</td></tr>
+<tr class="separator:abb993929e559b690bbb60e9504f3ad95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22c654a35f22329b5f0ed96a82d843ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a22c654a35f22329b5f0ed96a82d843ca">Math::CreateTranslateMatrix</a> (float tx, float ty, float tz)</td></tr>
+<tr class="memdesc:a22c654a35f22329b5f0ed96a82d843ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した分だけ平行移動を行う4x4行列を作成する  <a href="namespace_math.html#a22c654a35f22329b5f0ed96a82d843ca">[詳解]</a><br /></td></tr>
+<tr class="separator:a22c654a35f22329b5f0ed96a82d843ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0007f1238972eb1db1fa2f1a2d3b834"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ad0007f1238972eb1db1fa2f1a2d3b834">Math::CreateTranslateMatrix</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;movement)</td></tr>
+<tr class="separator:ad0007f1238972eb1db1fa2f1a2d3b834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e4a920c3ea9b1afefe04ed2d4e3b34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ac4e4a920c3ea9b1afefe04ed2d4e3b34">Math::CreateXRotMatrix</a> (float rad)</td></tr>
+<tr class="memdesc:ac4e4a920c3ea9b1afefe04ed2d4e3b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">X軸中心回転を行う4x4行列を取得する  <a href="namespace_math.html#ac4e4a920c3ea9b1afefe04ed2d4e3b34">[詳解]</a><br /></td></tr>
+<tr class="separator:ac4e4a920c3ea9b1afefe04ed2d4e3b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82079192513df361d5828e6a8c8754f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a82079192513df361d5828e6a8c8754f3">Math::CreateYRotMatrix</a> (float rad)</td></tr>
+<tr class="memdesc:a82079192513df361d5828e6a8c8754f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y軸中心回転を行う4x4行列を取得する  <a href="namespace_math.html#a82079192513df361d5828e6a8c8754f3">[詳解]</a><br /></td></tr>
+<tr class="separator:a82079192513df361d5828e6a8c8754f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359a2e7263fd64b49264e158052107ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a359a2e7263fd64b49264e158052107ab">Math::CreateZRotMatrix</a> (float rad)</td></tr>
+<tr class="memdesc:a359a2e7263fd64b49264e158052107ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Z軸中心回転を行う4x4行列を取得する  <a href="namespace_math.html#a359a2e7263fd64b49264e158052107ab">[詳解]</a><br /></td></tr>
+<tr class="separator:a359a2e7263fd64b49264e158052107ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade59dd308fe183bc0c185f8d1c6d7074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ade59dd308fe183bc0c185f8d1c6d7074">Math::CreateAxisRotMatrix</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;axis, float rad)</td></tr>
+<tr class="memdesc:ade59dd308fe183bc0c185f8d1c6d7074"><td class="mdescLeft">&#160;</td><td class="mdescRight">任意軸を中止に回転を行う4x4行列を取得する  <a href="namespace_math.html#ade59dd308fe183bc0c185f8d1c6d7074">[詳解]</a><br /></td></tr>
+<tr class="separator:ade59dd308fe183bc0c185f8d1c6d7074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f8e9946f11a9efd4592ff441549a64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a33f8e9946f11a9efd4592ff441549a64">Math::CreateLookAtMatrix</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;eye, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;target, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;upper)</td></tr>
+<tr class="memdesc:a33f8e9946f11a9efd4592ff441549a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">視点、注視点、上方向ベクトルからLookAt行列を作成する  <a href="namespace_math.html#a33f8e9946f11a9efd4592ff441549a64">[詳解]</a><br /></td></tr>
+<tr class="separator:a33f8e9946f11a9efd4592ff441549a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902772771ec476f8ba2563babfcd865f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a902772771ec476f8ba2563babfcd865f">Math::CreateLookAtMatrixFromCameraMatrix</a> (const <a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a> &amp;cameraMatrix)</td></tr>
+<tr class="memdesc:a902772771ec476f8ba2563babfcd865f"><td class="mdescLeft">&#160;</td><td class="mdescRight">カメラ行列からLookAt行列を作成する  <a href="namespace_math.html#a902772771ec476f8ba2563babfcd865f">[詳解]</a><br /></td></tr>
+<tr class="separator:a902772771ec476f8ba2563babfcd865f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a425ade3b937625acd000ced1caa45f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3a425ade3b937625acd000ced1caa45f">Math::CreatePerspectiveMatrix</a> (float Aspect, float nearZ, float farZ, float fov)</td></tr>
+<tr class="memdesc:a3a425ade3b937625acd000ced1caa45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する  <a href="namespace_math.html#a3a425ade3b937625acd000ced1caa45f">[詳解]</a><br /></td></tr>
+<tr class="separator:a3a425ade3b937625acd000ced1caa45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf6196400c58b30a5a616aefccff2f14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#abf6196400c58b30a5a616aefccff2f14">Math::operator==</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat2)</td></tr>
+<tr class="separator:abf6196400c58b30a5a616aefccff2f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4834d702630aaf6717303b4faf834cd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a4834d702630aaf6717303b4faf834cd2">Math::operator!=</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat2)</td></tr>
+<tr class="separator:a4834d702630aaf6717303b4faf834cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959ebc86863f66d4fb3bc96f3b0ad6be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a959ebc86863f66d4fb3bc96f3b0ad6be">Math::operator+</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat2)</td></tr>
+<tr class="separator:a959ebc86863f66d4fb3bc96f3b0ad6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fd0b23a7349545e6b45a09ea4758be4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a0fd0b23a7349545e6b45a09ea4758be4">Math::operator-</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat2)</td></tr>
+<tr class="separator:a0fd0b23a7349545e6b45a09ea4758be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a231015e930e4e65cfeb4d3ed35c5f60b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a231015e930e4e65cfeb4d3ed35c5f60b">Math::operator*</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat1, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat2)</td></tr>
+<tr class="separator:a231015e930e4e65cfeb4d3ed35c5f60b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c473bb33aae64090197e0d686ad75c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a9c473bb33aae64090197e0d686ad75c3">Math::operator*</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat, float scale)</td></tr>
+<tr class="separator:a9c473bb33aae64090197e0d686ad75c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab554e261e8209bde30f33f893c0f2bbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ab554e261e8209bde30f33f893c0f2bbb">Math::operator*</a> (float scale, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat)</td></tr>
+<tr class="separator:ab554e261e8209bde30f33f893c0f2bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaac4a662eebe65536e53580498f7377"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#abaac4a662eebe65536e53580498f7377">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;vec, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat)</td></tr>
+<tr class="separator:abaac4a662eebe65536e53580498f7377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad610b35195c92a20ff2913aaa5c14f4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ad610b35195c92a20ff2913aaa5c14f4c">Math::operator*</a> (const <a class="el" href="struct_math_1_1_vector4.html">Vector4</a> &amp;vec, const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat)</td></tr>
+<tr class="separator:ad610b35195c92a20ff2913aaa5c14f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a015e4eb983da8ccc218796edddd145ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a015e4eb983da8ccc218796edddd145ff">Math::operator/</a> (const <a class="el" href="struct_math_1_1_matrix4x3.html">Matrix4x3</a> &amp;mat, float scale)</td></tr>
+<tr class="separator:a015e4eb983da8ccc218796edddd145ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9180235433724422d304ae5bb9c96654"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a9180235433724422d304ae5bb9c96654">Math::operator==</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="separator:a9180235433724422d304ae5bb9c96654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2018345b202259554f37833e2ad4f368"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a2018345b202259554f37833e2ad4f368">Math::operator!=</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="separator:a2018345b202259554f37833e2ad4f368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4702dd289093f85efd2ce191d042773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aa4702dd289093f85efd2ce191d042773">Math::operator+</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="separator:aa4702dd289093f85efd2ce191d042773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d4050d108be2ff9bbaacbd613cbf48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ae4d4050d108be2ff9bbaacbd613cbf48">Math::operator-</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="separator:ae4d4050d108be2ff9bbaacbd613cbf48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf16f62e56ee18741a93b0db7a555fe2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#adf16f62e56ee18741a93b0db7a555fe2">Math::operator*</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="separator:adf16f62e56ee18741a93b0db7a555fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a53d7e378ecb1c87b7a9fa0745de29f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a7a53d7e378ecb1c87b7a9fa0745de29f">Math::operator*</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;quat, float scale)</td></tr>
+<tr class="separator:a7a53d7e378ecb1c87b7a9fa0745de29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e62d95a67155ffedb323e468943905"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a10e62d95a67155ffedb323e468943905">Math::operator*</a> (float scale, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;quat)</td></tr>
+<tr class="separator:a10e62d95a67155ffedb323e468943905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad9dc0788e7f4ff5da49955014221905"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aad9dc0788e7f4ff5da49955014221905">Math::operator/</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="separator:aad9dc0788e7f4ff5da49955014221905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41131259cf64f7c0ae609d2d0538da66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a41131259cf64f7c0ae609d2d0538da66">Math::operator/</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;quat, float scale)</td></tr>
+<tr class="separator:a41131259cf64f7c0ae609d2d0538da66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7fbde4f45edfa3a988c966f6184fca9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ae7fbde4f45edfa3a988c966f6184fca9">Math::CreateInvertQuaternion</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;quat)</td></tr>
+<tr class="memdesc:ae7fbde4f45edfa3a988c966f6184fca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">逆四元数を作成する  <a href="namespace_math.html#ae7fbde4f45edfa3a988c966f6184fca9">[詳解]</a><br /></td></tr>
+<tr class="separator:ae7fbde4f45edfa3a988c966f6184fca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69178ac4c7a158859b5e693397f07048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a69178ac4c7a158859b5e693397f07048">Math::CreateConjugateQuaternion</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;quat)</td></tr>
+<tr class="memdesc:a69178ac4c7a158859b5e693397f07048"><td class="mdescLeft">&#160;</td><td class="mdescRight">共役四元数を作成する  <a href="namespace_math.html#a69178ac4c7a158859b5e693397f07048">[詳解]</a><br /></td></tr>
+<tr class="separator:a69178ac4c7a158859b5e693397f07048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a9db6fc0b36439d59d46bc89b2f254"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a75a9db6fc0b36439d59d46bc89b2f254">Math::CreateRotAxisQuaternion</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;axis, float angle)</td></tr>
+<tr class="memdesc:a75a9db6fc0b36439d59d46bc89b2f254"><td class="mdescLeft">&#160;</td><td class="mdescRight">任意軸方向回転を行う四元数を作成する  <a href="namespace_math.html#a75a9db6fc0b36439d59d46bc89b2f254">[詳解]</a><br /></td></tr>
+<tr class="separator:a75a9db6fc0b36439d59d46bc89b2f254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50fabf83a1d5a726f448e8085c6ce06f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a50fabf83a1d5a726f448e8085c6ce06f">Math::CreateRotXYZQuaternion</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;rotAngle)</td></tr>
+<tr class="memdesc:a50fabf83a1d5a726f448e8085c6ce06f"><td class="mdescLeft">&#160;</td><td class="mdescRight">XYZ軸回転を行う四元数を作成する  <a href="namespace_math.html#a50fabf83a1d5a726f448e8085c6ce06f">[詳解]</a><br /></td></tr>
+<tr class="separator:a50fabf83a1d5a726f448e8085c6ce06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc7f7b4f59532bf2b31aebf97743c8a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#adc7f7b4f59532bf2b31aebf97743c8a9">Math::CreateRotVecToVec</a> (const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;dstVec, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;srcVec, const <a class="el" href="struct_math_1_1_vector3.html">Vector3</a> &amp;up=<a class="el" href="struct_math_1_1_vector3.html">Vector3</a>(0.0f, 1.0f, 0.0f))</td></tr>
+<tr class="separator:adc7f7b4f59532bf2b31aebf97743c8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ceb0ab69bdfd0752989983241d1055e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a2ceb0ab69bdfd0752989983241d1055e">Math::Lerp</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> q2, float t)</td></tr>
+<tr class="separator:a2ceb0ab69bdfd0752989983241d1055e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a718b7874df36cd0c5a220f6404c315f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a718b7874df36cd0c5a220f6404c315f8">Math::Slerp</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2, float t)</td></tr>
+<tr class="memdesc:a718b7874df36cd0c5a220f6404c315f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">2つのクォータニオンを球面線形補間する  <a href="namespace_math.html#a718b7874df36cd0c5a220f6404c315f8">[詳解]</a><br /></td></tr>
+<tr class="separator:a718b7874df36cd0c5a220f6404c315f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75856a56466e76f5c6308cc78eab656"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#af75856a56466e76f5c6308cc78eab656">Math::Dot</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="memdesc:af75856a56466e76f5c6308cc78eab656"><td class="mdescLeft">&#160;</td><td class="mdescRight">2つのクォータニオンの内積  <a href="namespace_math.html#af75856a56466e76f5c6308cc78eab656">[詳解]</a><br /></td></tr>
+<tr class="separator:af75856a56466e76f5c6308cc78eab656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573c0790a83c7b0056ade0534c3c26e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a573c0790a83c7b0056ade0534c3c26e5">Math::CalcAngleQuatToQuat</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q1, const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;q2)</td></tr>
+<tr class="memdesc:a573c0790a83c7b0056ade0534c3c26e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">2つのクォータニオン間の角度を求める  <a href="namespace_math.html#a573c0790a83c7b0056ade0534c3c26e5">[詳解]</a><br /></td></tr>
+<tr class="separator:a573c0790a83c7b0056ade0534c3c26e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac3705a108d796688a41340d99852f2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_math_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aac3705a108d796688a41340d99852f2e">Math::GetMatrixFromQuat</a> (const <a class="el" href="struct_math_1_1_quaternion.html">Quaternion</a> &amp;quat)</td></tr>
+<tr class="memdesc:aac3705a108d796688a41340d99852f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">クォータニオンから回転行列を求める  <a href="namespace_math.html#aac3705a108d796688a41340d99852f2e">[詳解]</a><br /></td></tr>
+<tr class="separator:aac3705a108d796688a41340d99852f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:aa0985dc913fcb7d0b29f057d46a0a285"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aa0985dc913fcb7d0b29f057d46a0a285">Math::F_PI</a> = 3.14159265f</td></tr>
+<tr class="separator:aa0985dc913fcb7d0b29f057d46a0a285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a443fa0e652be63da57292b24faba00da"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a443fa0e652be63da57292b24faba00da">Math::D_PI</a> = 3.141592653589793</td></tr>
+<tr class="separator:a443fa0e652be63da57292b24faba00da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

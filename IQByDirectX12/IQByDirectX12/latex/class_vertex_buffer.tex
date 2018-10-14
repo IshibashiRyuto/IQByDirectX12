@@ -1,0 +1,121 @@
+\hypertarget{class_vertex_buffer}{}\section{Vertex\+Buffer クラス}
+\label{class_vertex_buffer}\index{Vertex\+Buffer@{Vertex\+Buffer}}
+
+
+{\ttfamily \#include $<$Vertex\+Buffer.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vertex_buffer_a5216726fdd43b2ae8e1439e347717fdd}{$\sim$\+Vertex\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+const D3\+D12\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW \& \mbox{\hyperlink{class_vertex_buffer_abd6e75355e6ab6a85a2c79780467c12c}{Get\+Vertex\+Buffer\+View}} ()
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ \mbox{\hyperlink{class_vertex_buffer_a29dc2a0375049af708962af8db2ba2fd}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, void $\ast$p\+Vertex\+Resource, size\+\_\+t vertex\+Count, size\+\_\+t vertex\+Size)
+\end{DoxyCompactItemize}
+\subsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vertex_buffer_adb25d82a47ad82d5b69a75ac111401b8}{Vertex\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertex_buffer_a5e6393d302e2e7b1ed0c8477298793f3}{Vertex\+Buffer}} (const \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} \&)
+\end{DoxyCompactItemize}
+\subsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+Com\+Ptr$<$ I\+D3\+D12\+Resource $>$ \mbox{\hyperlink{class_vertex_buffer_aadda88c933f0e44a84402af9cc6e0dda}{m\+Vertex\+Buffer}}
+\item 
+D3\+D12\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW \mbox{\hyperlink{class_vertex_buffer_a42f71aacaf7c1da89bcb729e3f6cf091}{m\+Vertex\+Buffer\+View}}
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_vertex_buffer_a5216726fdd43b2ae8e1439e347717fdd}\label{class_vertex_buffer_a5216726fdd43b2ae8e1439e347717fdd}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!````~Vertex\+Buffer@{$\sim$\+Vertex\+Buffer}}
+\index{````~Vertex\+Buffer@{$\sim$\+Vertex\+Buffer}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{$\sim$\+Vertex\+Buffer()}{~VertexBuffer()}}
+{\footnotesize\ttfamily Vertex\+Buffer\+::$\sim$\+Vertex\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+\mbox{\Hypertarget{class_vertex_buffer_adb25d82a47ad82d5b69a75ac111401b8}\label{class_vertex_buffer_adb25d82a47ad82d5b69a75ac111401b8}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!Vertex\+Buffer@{Vertex\+Buffer}}
+\index{Vertex\+Buffer@{Vertex\+Buffer}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{Vertex\+Buffer()}{VertexBuffer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Vertex\+Buffer\+::\+Vertex\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_vertex_buffer_a5e6393d302e2e7b1ed0c8477298793f3}\label{class_vertex_buffer_a5e6393d302e2e7b1ed0c8477298793f3}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!Vertex\+Buffer@{Vertex\+Buffer}}
+\index{Vertex\+Buffer@{Vertex\+Buffer}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{Vertex\+Buffer()}{VertexBuffer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Vertex\+Buffer\+::\+Vertex\+Buffer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_vertex_buffer_a29dc2a0375049af708962af8db2ba2fd}\label{class_vertex_buffer_a29dc2a0375049af708962af8db2ba2fd}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!Create@{Create}}
+\index{Create@{Create}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Vertex\+Buffer\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{void $\ast$}]{p\+Vertex\+Resource,  }\item[{size\+\_\+t}]{vertex\+Count,  }\item[{size\+\_\+t}]{vertex\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+頂点バッファの生成 \begin{DoxyNote}{覚え書き}
+Vertex\+Bufferクラスはこのメソッドによってのみ生成可能 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & I\+D3\+D12\+Device \\
+\hline
+\mbox{\tt in}  & {\em p\+Vertex\+Resource} & 頂点リソースのポインタ \\
+\hline
+\mbox{\tt in}  & {\em vertex\+Count} & 頂点数 \\
+\hline
+\mbox{\tt in}  & {\em vertex\+Size} & 1頂点当たりのサイズ(sizeofで取得) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功} & Vertex\+Bufferのshared\+\_\+ptr, 生成失敗\+: nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_vertex_buffer_abd6e75355e6ab6a85a2c79780467c12c}\label{class_vertex_buffer_abd6e75355e6ab6a85a2c79780467c12c}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!Get\+Vertex\+Buffer\+View@{Get\+Vertex\+Buffer\+View}}
+\index{Get\+Vertex\+Buffer\+View@{Get\+Vertex\+Buffer\+View}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{Get\+Vertex\+Buffer\+View()}{GetVertexBufferView()}}
+{\footnotesize\ttfamily Vertex\+Buffer\+::\+Get\+Vertex\+Buffer\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+頂点バッファビューの取得 
+\begin{DoxyRetVals}{戻り値}
+{\em D3\+D12\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW} & 頂点バッファビューへの参照 \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{class_vertex_buffer_aadda88c933f0e44a84402af9cc6e0dda}\label{class_vertex_buffer_aadda88c933f0e44a84402af9cc6e0dda}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!m\+Vertex\+Buffer@{m\+Vertex\+Buffer}}
+\index{m\+Vertex\+Buffer@{m\+Vertex\+Buffer}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{m\+Vertex\+Buffer}{mVertexBuffer}}
+{\footnotesize\ttfamily Com\+Ptr$<$I\+D3\+D12\+Resource$>$ Vertex\+Buffer\+::m\+Vertex\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_buffer_a42f71aacaf7c1da89bcb729e3f6cf091}\label{class_vertex_buffer_a42f71aacaf7c1da89bcb729e3f6cf091}} 
+\index{Vertex\+Buffer@{Vertex\+Buffer}!m\+Vertex\+Buffer\+View@{m\+Vertex\+Buffer\+View}}
+\index{m\+Vertex\+Buffer\+View@{m\+Vertex\+Buffer\+View}!Vertex\+Buffer@{Vertex\+Buffer}}
+\subsubsection{\texorpdfstring{m\+Vertex\+Buffer\+View}{mVertexBufferView}}
+{\footnotesize\ttfamily D3\+D12\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+V\+I\+EW Vertex\+Buffer\+::m\+Vertex\+Buffer\+View\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_vertex_buffer_8h}{Vertex\+Buffer.\+h}}\item 
+Source/\mbox{\hyperlink{_vertex_buffer_8cpp}{Vertex\+Buffer.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,93 @@
+\hypertarget{struct_render_state}{}\section{Render\+State 構造体}
+\label{struct_render_state}\index{Render\+State@{Render\+State}}
+
+
+レンダーステートを集約した構造体  
+
+
+
+
+{\ttfamily \#include $<$Render\+State.\+h$>$}
+
+\subsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{struct_render_state_aa61ce61f3ea1393a390282c4812107bd}{depth\+Test}}\+: 1
+\item 
+bool \mbox{\hyperlink{struct_render_state_aa654d20df8b2f3405136082098b0397c}{depth\+Write}}\+: 1
+\begin{DoxyCompactList}\small\item\em 深度テストを行うか \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036}{Alpha\+Blend\+Type}} \mbox{\hyperlink{struct_render_state_a7e18c4c10e6b76dedef6d8ffd519a7ca}{alpha\+Blend}}
+\begin{DoxyCompactList}\small\item\em 深度バッファへの書き込みを行うか \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75}{Culling\+Type}} \mbox{\hyperlink{struct_render_state_a2a951326c32d1319d5a7dd328db45ee2}{culling\+Type}}
+\begin{DoxyCompactList}\small\item\em アルファブレンド \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_render_state_8h_a21d270ce58807e6b815650a47f4beba3}{Texture\+Filter\+Type}} \mbox{\hyperlink{struct_render_state_a22610d4664d4b8bc5481a75d782d5aef}{texture\+Filter\+Type}}
+\begin{DoxyCompactList}\small\item\em カリングタイプ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2b}{Texture\+Wrap\+Type}} \mbox{\hyperlink{struct_render_state_a05e12034f4c324a83aa53d0da9be5ed3}{texture\+Wrap\+Type}}
+\begin{DoxyCompactList}\small\item\em サンプリングする際のサンプリング方法 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{詳解}
+レンダーステートを集約した構造体 
+
+\subsection{メンバ詳解}
+\mbox{\Hypertarget{struct_render_state_a7e18c4c10e6b76dedef6d8ffd519a7ca}\label{struct_render_state_a7e18c4c10e6b76dedef6d8ffd519a7ca}} 
+\index{Render\+State@{Render\+State}!alpha\+Blend@{alpha\+Blend}}
+\index{alpha\+Blend@{alpha\+Blend}!Render\+State@{Render\+State}}
+\subsubsection{\texorpdfstring{alpha\+Blend}{alphaBlend}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_render_state_8h_a9700cc765f1d439500b41d8411f32036}{Alpha\+Blend\+Type}} Render\+State\+::alpha\+Blend}
+
+
+
+深度バッファへの書き込みを行うか 
+
+\mbox{\Hypertarget{struct_render_state_a2a951326c32d1319d5a7dd328db45ee2}\label{struct_render_state_a2a951326c32d1319d5a7dd328db45ee2}} 
+\index{Render\+State@{Render\+State}!culling\+Type@{culling\+Type}}
+\index{culling\+Type@{culling\+Type}!Render\+State@{Render\+State}}
+\subsubsection{\texorpdfstring{culling\+Type}{cullingType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_render_state_8h_a09f66f004d665fd114424afb2fb42c75}{Culling\+Type}} Render\+State\+::culling\+Type}
+
+
+
+アルファブレンド 
+
+\mbox{\Hypertarget{struct_render_state_aa61ce61f3ea1393a390282c4812107bd}\label{struct_render_state_aa61ce61f3ea1393a390282c4812107bd}} 
+\index{Render\+State@{Render\+State}!depth\+Test@{depth\+Test}}
+\index{depth\+Test@{depth\+Test}!Render\+State@{Render\+State}}
+\subsubsection{\texorpdfstring{depth\+Test}{depthTest}}
+{\footnotesize\ttfamily bool Render\+State\+::depth\+Test}
+
+\mbox{\Hypertarget{struct_render_state_aa654d20df8b2f3405136082098b0397c}\label{struct_render_state_aa654d20df8b2f3405136082098b0397c}} 
+\index{Render\+State@{Render\+State}!depth\+Write@{depth\+Write}}
+\index{depth\+Write@{depth\+Write}!Render\+State@{Render\+State}}
+\subsubsection{\texorpdfstring{depth\+Write}{depthWrite}}
+{\footnotesize\ttfamily bool Render\+State\+::depth\+Write}
+
+
+
+深度テストを行うか 
+
+\mbox{\Hypertarget{struct_render_state_a22610d4664d4b8bc5481a75d782d5aef}\label{struct_render_state_a22610d4664d4b8bc5481a75d782d5aef}} 
+\index{Render\+State@{Render\+State}!texture\+Filter\+Type@{texture\+Filter\+Type}}
+\index{texture\+Filter\+Type@{texture\+Filter\+Type}!Render\+State@{Render\+State}}
+\subsubsection{\texorpdfstring{texture\+Filter\+Type}{textureFilterType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_render_state_8h_a21d270ce58807e6b815650a47f4beba3}{Texture\+Filter\+Type}} Render\+State\+::texture\+Filter\+Type}
+
+
+
+カリングタイプ 
+
+\mbox{\Hypertarget{struct_render_state_a05e12034f4c324a83aa53d0da9be5ed3}\label{struct_render_state_a05e12034f4c324a83aa53d0da9be5ed3}} 
+\index{Render\+State@{Render\+State}!texture\+Wrap\+Type@{texture\+Wrap\+Type}}
+\index{texture\+Wrap\+Type@{texture\+Wrap\+Type}!Render\+State@{Render\+State}}
+\subsubsection{\texorpdfstring{texture\+Wrap\+Type}{textureWrapType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_render_state_8h_a7da0419d34309c6fd35bd55dcc01de2b}{Texture\+Wrap\+Type}} Render\+State\+::texture\+Wrap\+Type}
+
+
+
+サンプリングする際のサンプリング方法 
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{_render_state_8h}{Render\+State.\+h}}\end{DoxyCompactItemize}

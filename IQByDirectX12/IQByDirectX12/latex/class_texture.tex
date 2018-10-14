@@ -1,0 +1,107 @@
+\hypertarget{class_texture}{}\section{Texture クラス}
+\label{class_texture}\index{Texture@{Texture}}
+
+
+{\ttfamily \#include $<$Texture.\+h$>$}
+
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_texture_a6c275e3f186675ff6ed73ccf970e552f}{Texture}} ()
+\begin{DoxyCompactList}\small\item\em コンストラクタ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}{$\sim$\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em デストラクタ \end{DoxyCompactList}\item 
+const Com\+Ptr$<$ I\+D3\+D12\+Resource $>$ \mbox{\hyperlink{class_texture_a316e50cf43286cd222657cda25ea2c9b}{Get\+Texture\+Data}} () const
+\item 
+const D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \& \mbox{\hyperlink{class_texture_a05b95c1d27164b79e1df38c4a8c3b5a5}{Get\+Shader\+Resource\+View}} () const
+\item 
+void \mbox{\hyperlink{class_texture_a280d4de4b1e45c3468a72df4fbd7f50d}{Set\+Shader\+Resource\+View}} (const D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&srv)
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_texture}{Texture}} $>$ \mbox{\hyperlink{class_texture_ab52334c24fcd84853ba455d8ed282ae4}{Create}} (Com\+Ptr$<$ I\+D3\+D12\+Resource $>$ texture\+Data)
+\end{DoxyCompactItemize}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_texture_a6c275e3f186675ff6ed73ccf970e552f}\label{class_texture_a6c275e3f186675ff6ed73ccf970e552f}} 
+\index{Texture@{Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Texture@{Texture}}
+\subsubsection{\texorpdfstring{Texture()}{Texture()}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+コンストラクタ 
+
+\mbox{\Hypertarget{class_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{class_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
+\index{Texture@{Texture}!````~Texture@{$\sim$\+Texture}}
+\index{````~Texture@{$\sim$\+Texture}!Texture@{Texture}}
+\subsubsection{\texorpdfstring{$\sim$\+Texture()}{~Texture()}}
+{\footnotesize\ttfamily Texture\+::$\sim$\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+デストラクタ 
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_texture_ab52334c24fcd84853ba455d8ed282ae4}\label{class_texture_ab52334c24fcd84853ba455d8ed282ae4}} 
+\index{Texture@{Texture}!Create@{Create}}
+\index{Create@{Create}!Texture@{Texture}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Texture\+::\+Create (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Resource $>$}]{texture\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+テクスチャデータを生成する \begin{DoxyNote}{覚え書き}
+Textureクラスはこのメソッドを通じてのみ生成可能 実体を直接持つことはできない 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em device} & D3\+D12デバイス \\
+\hline
+\mbox{\tt in}  & {\em texture\+Data} & テクスチャデータの込むポインタ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{戻り値}
+{\em 生成成功} & Textureのshared\+\_\+ptr \\
+\hline
+{\em 生成失敗} & nullptr \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_texture_a05b95c1d27164b79e1df38c4a8c3b5a5}\label{class_texture_a05b95c1d27164b79e1df38c4a8c3b5a5}} 
+\index{Texture@{Texture}!Get\+Shader\+Resource\+View@{Get\+Shader\+Resource\+View}}
+\index{Get\+Shader\+Resource\+View@{Get\+Shader\+Resource\+View}!Texture@{Texture}}
+\subsubsection{\texorpdfstring{Get\+Shader\+Resource\+View()}{GetShaderResourceView()}}
+{\footnotesize\ttfamily Texture\+::\+Get\+Shader\+Resource\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+シェーダーリソースビューを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em シェーダリソースビュー} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_texture_a316e50cf43286cd222657cda25ea2c9b}\label{class_texture_a316e50cf43286cd222657cda25ea2c9b}} 
+\index{Texture@{Texture}!Get\+Texture\+Data@{Get\+Texture\+Data}}
+\index{Get\+Texture\+Data@{Get\+Texture\+Data}!Texture@{Texture}}
+\subsubsection{\texorpdfstring{Get\+Texture\+Data()}{GetTextureData()}}
+{\footnotesize\ttfamily Texture\+::\+Get\+Texture\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+テクスチャデータを取得する 
+\begin{DoxyRetVals}{戻り値}
+{\em テクスチャデータ} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_texture_a280d4de4b1e45c3468a72df4fbd7f50d}\label{class_texture_a280d4de4b1e45c3468a72df4fbd7f50d}} 
+\index{Texture@{Texture}!Set\+Shader\+Resource\+View@{Set\+Shader\+Resource\+View}}
+\index{Set\+Shader\+Resource\+View@{Set\+Shader\+Resource\+View}!Texture@{Texture}}
+\subsubsection{\texorpdfstring{Set\+Shader\+Resource\+View()}{SetShaderResourceView()}}
+{\footnotesize\ttfamily Texture\+::\+Set\+Shader\+Resource\+View (\begin{DoxyParamCaption}\item[{const D3\+D12\+\_\+\+S\+H\+A\+D\+E\+R\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+V\+I\+E\+W\+\_\+\+D\+E\+SC \&}]{srv }\end{DoxyParamCaption})}
+
+シェーダーリソースビューを設定する 
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Texture/\mbox{\hyperlink{_texture_8h}{Texture.\+h}}\item 
+Source/\+Texture/\mbox{\hyperlink{_texture_8cpp}{Texture.\+cpp}}\end{DoxyCompactItemize}

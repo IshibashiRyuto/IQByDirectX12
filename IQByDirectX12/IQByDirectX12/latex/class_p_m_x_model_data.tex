@@ -1,0 +1,94 @@
+\hypertarget{class_p_m_x_model_data}{}\section{P\+M\+X\+Model\+Data クラス}
+\label{class_p_m_x_model_data}\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+
+
+{\ttfamily \#include $<$P\+M\+X\+Model\+Data.\+h$>$}
+
+P\+M\+X\+Model\+Data の継承関係図\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_m_x_model_data}
+\end{center}
+\end{figure}
+\subsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_m_x_model_data_a9865c076685f2efab59e2f19b12e86b5}{P\+M\+X\+Model\+Data}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_vertex}{P\+M\+X\+::\+Vertex}} $>$ vertex\+Data, std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_index}{P\+M\+X\+::\+Index}} $>$ index\+Data, int material\+Count, int bone\+Count)
+\item 
+\mbox{\hyperlink{class_p_m_x_model_data_aab20c1e8dd3219cd165f877508e256a6}{$\sim$\+P\+M\+X\+Model\+Data}} ()
+\item 
+void \mbox{\hyperlink{class_p_m_x_model_data_a4c692007e0b890ee0bfd0f2bbbe0b97f}{Update}} ()
+\item 
+void \mbox{\hyperlink{class_p_m_x_model_data_aa88713736e3c337cabb23127c03be3c2}{Draw}} (Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$ graphics\+Command\+List, const \mbox{\hyperlink{struct_instance_data}{Instance\+Data}} \&instance\+Data) const
+\end{DoxyCompactItemize}
+\subsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_x_model_data}{P\+M\+X\+Model\+Data}} $>$ \mbox{\hyperlink{class_p_m_x_model_data_a86aa963671719340a27fc76f88268dac}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_vertex}{P\+M\+X\+::\+Vertex}} $>$ vertex\+Data, std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_index}{P\+M\+X\+::\+Index}} $>$ index\+Data)
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_x_model_data}{P\+M\+X\+Model\+Data}} $>$ \mbox{\hyperlink{class_p_m_x_model_data_ad65a359bdb1bd0e82225bee2c4158036}{Create}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$ device, const \mbox{\hyperlink{struct_p_m_x_1_1_model_data_desc}{P\+M\+X\+::\+Model\+Data\+Desc}} \&model\+Data\+Desc)
+\end{DoxyCompactItemize}
+\subsection*{その他の継承メンバ}
+
+
+\subsection{構築子と解体子}
+\mbox{\Hypertarget{class_p_m_x_model_data_a9865c076685f2efab59e2f19b12e86b5}\label{class_p_m_x_model_data_a9865c076685f2efab59e2f19b12e86b5}} 
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\subsubsection{\texorpdfstring{P\+M\+X\+Model\+Data()}{PMXModelData()}}
+{\footnotesize\ttfamily P\+M\+X\+Model\+Data\+::\+P\+M\+X\+Model\+Data (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_vertex}{P\+M\+X\+::\+Vertex}} $>$}]{vertex\+Data,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_index}{P\+M\+X\+::\+Index}} $>$}]{index\+Data,  }\item[{int}]{material\+Count,  }\item[{int}]{bone\+Count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_p_m_x_model_data_aab20c1e8dd3219cd165f877508e256a6}\label{class_p_m_x_model_data_aab20c1e8dd3219cd165f877508e256a6}} 
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!````~P\+M\+X\+Model\+Data@{$\sim$\+P\+M\+X\+Model\+Data}}
+\index{````~P\+M\+X\+Model\+Data@{$\sim$\+P\+M\+X\+Model\+Data}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\subsubsection{\texorpdfstring{$\sim$\+P\+M\+X\+Model\+Data()}{~PMXModelData()}}
+{\footnotesize\ttfamily P\+M\+X\+Model\+Data\+::$\sim$\+P\+M\+X\+Model\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{関数詳解}
+\mbox{\Hypertarget{class_p_m_x_model_data_a86aa963671719340a27fc76f88268dac}\label{class_p_m_x_model_data_a86aa963671719340a27fc76f88268dac}} 
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!Create@{Create}}
+\index{Create@{Create}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_x_model_data}{P\+M\+X\+Model\+Data}} $>$ P\+M\+X\+Model\+Data\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_vertex}{P\+M\+X\+::\+Vertex}} $>$}]{vertex\+Data,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_p_m_x_1_1_index}{P\+M\+X\+::\+Index}} $>$}]{index\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_p_m_x_model_data_ad65a359bdb1bd0e82225bee2c4158036}\label{class_p_m_x_model_data_ad65a359bdb1bd0e82225bee2c4158036}} 
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!Create@{Create}}
+\index{Create@{Create}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_p_m_x_model_data}{P\+M\+X\+Model\+Data}} $>$ P\+M\+X\+Model\+Data\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_device}{Device}} $>$}]{device,  }\item[{const \mbox{\hyperlink{struct_p_m_x_1_1_model_data_desc}{P\+M\+X\+::\+Model\+Data\+Desc}} \&}]{model\+Data\+Desc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_p_m_x_model_data_aa88713736e3c337cabb23127c03be3c2}\label{class_p_m_x_model_data_aa88713736e3c337cabb23127c03be3c2}} 
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!Draw@{Draw}}
+\index{Draw@{Draw}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily P\+M\+X\+Model\+Data\+::\+Draw (\begin{DoxyParamCaption}\item[{Com\+Ptr$<$ I\+D3\+D12\+Graphics\+Command\+List $>$}]{graphics\+Command\+List,  }\item[{const \mbox{\hyperlink{struct_instance_data}{Instance\+Data}} \&}]{instance\+Data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+描画処理 
+\begin{DoxyParams}[1]{引数}
+\mbox{\tt in}  & {\em graphics\+Command\+List} & \+: コマンドリスト \\
+\hline
+\mbox{\tt in}  & {\em instance\+Data} & \+: インスタンスデータ \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{class_model_data_a774032c8dac7355ad2657c83cf0d1e21}{Model\+Data}}を再実装しています。
+
+\mbox{\Hypertarget{class_p_m_x_model_data_a4c692007e0b890ee0bfd0f2bbbe0b97f}\label{class_p_m_x_model_data_a4c692007e0b890ee0bfd0f2bbbe0b97f}} 
+\index{P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}!Update@{Update}}
+\index{Update@{Update}!P\+M\+X\+Model\+Data@{P\+M\+X\+Model\+Data}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily P\+M\+X\+Model\+Data\+::\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+モデル情報の更新処理 
+
+\mbox{\hyperlink{class_model_data_a67a18789221798611c63fd18edb3a9fc}{Model\+Data}}を再実装しています。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Model/\mbox{\hyperlink{_p_m_x_model_data_8h}{P\+M\+X\+Model\+Data.\+h}}\item 
+Source/\+Model/\mbox{\hyperlink{_p_m_x_model_data_8cpp}{P\+M\+X\+Model\+Data.\+cpp}}\end{DoxyCompactItemize}
