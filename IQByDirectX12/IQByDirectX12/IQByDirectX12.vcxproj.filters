@@ -310,4 +310,8 @@
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />
+    <FxCompile Include="Resource\Shader\PMXModelShader.hlsl" />
+  </ItemGroup>
 </Project>

@@ -25,5 +25,7 @@ private:
 	PMDLoader(std::shared_ptr<Device> device);
 	PMDLoader(const PMDLoader&);
 	void operator=(const PMDLoader&) {}
+
+	void LoadBone(FILE *fp);
 };
 

@@ -71,7 +71,7 @@ void CommandQueue::ExecuteCommandList(const std::vector<std::shared_ptr<Graphics
 	{
 		commandListsArray[i] = commandLists[i]->GetCommandList().Get();
 	}
-	mCommandQueue->ExecuteCommandLists(commandListsArray.size(), commandListsArray.data());
+	mCommandQueue->ExecuteCommandLists(static_cast<UINT>(commandListsArray.size()), commandListsArray.data());
 }
 
 void CommandQueue::Signal()

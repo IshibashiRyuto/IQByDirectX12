@@ -7,6 +7,10 @@ PMDLoader::PMDLoader(std::shared_ptr<Device> device)
 {
 }
 
+void PMDLoader::LoadBone(FILE *fp)
+{
+}
+
 
 PMDLoader::~PMDLoader()
 {
@@ -79,6 +83,9 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 		fread(&materialCount, sizeof(int), 1, fp);
 		modelInfo.materials.resize(materialCount);
 		fread(modelInfo.materials.data(), sizeof(PMDMaterial), materialCount, fp);
+
+		// ƒ{[ƒ“î•ñ“Ç‚İ‚İ
+
 
 		fclose(fp);
 

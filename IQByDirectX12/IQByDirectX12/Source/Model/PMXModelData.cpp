@@ -15,7 +15,7 @@
 PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
 	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
 		IndexBuffer::Create(device->GetDevice(), indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device->GetDevice(), 1 + materialCount * 3 + 1))
+		DescriptorHeap::Create(device->GetDevice(), 1 + materialCount * 4 + 1))
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
 	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
 	, mTextureLoader(TextureLoader::Create(device))
@@ -52,7 +52,7 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 {
 	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
 	mDescHeap->BindRootDescriptorTable(0, 0);
-	mDescHeap->BindRootDescriptorTable(2, 1 + 3 * static_cast<int>(mMaterialData.size()));
+	mDescHeap->BindRootDescriptorTable(2, 1 + 4 * static_cast<int>(mMaterialData.size()));
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
 	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
 	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
@@ -62,7 +62,7 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 	int indexOffset = 0;
 	for (int i = 0; i < mMaterialData.size(); ++i)
 	{
-		mDescHeap->BindRootDescriptorTable(1, i * 3 + 1);
+		mDescHeap->BindRootDescriptorTable(1, i * 4 + 1);
 		graphicsCommandList->DrawIndexedInstanced(mMaterialData[i].vertsNum, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterialData[i].vertsNum;
 	}
@@ -89,11 +89,26 @@ void PMXModelData::SetMaterial(const std::vector<PMX::Material>& materials)
 		mMaterialData[i].ambient = materials[i].ambient;
 		mMaterialData[i].vertsNum = materials[i].vertNum;
 		mMaterialDataBuffer->SetData(&mMaterialData[i], sizeof(PMX::MaterialData), i);
-		mDescHeap->SetConstantBufferView(mMaterialDataBuffer->GetConstantBufferView(i), i * 3 + 1);
+		mDescHeap->SetConstantBufferView(mMaterialDataBuffer->GetConstantBufferView(i), i * 4 + 1);
 		auto normalTexture = TextureManager::GetInstance().GetTexture(mTextureHandle[materials[i].textureIndex]);
-		mDescHeap->SetTexture(normalTexture, i*3 + 2);
-		auto sphereTexture = TextureManager::GetInstance().GetTexture(mTextureHandle[materials[i].textureIndex]);
-		mDescHeap->SetTexture(sphereTexture, i * 3 + 3);
+		
+		auto addSphereTextureIndex = TextureManager::BLACK_TEXTURE;
+		auto mulSphereTextureIndex = TextureManager::WHITE_TEXTURE;
+
+		if (materials[i].sphereMode == 1)
+		{
+			mulSphereTextureIndex = mTextureHandle[materials[i].sphereTextureIndex];
+		}
+		else if (materials[i].sphereMode == 2)
+		{
+			addSphereTextureIndex = mTextureHandle[materials[i].sphereTextureIndex];
+		}
+		auto addSphereTexture = TextureManager::GetInstance().GetTexture(addSphereTextureIndex);
+		auto mulSphereTexture = TextureManager::GetInstance().GetTexture(mulSphereTextureIndex);
+
+		mDescHeap->SetTexture(normalTexture, i*4 + 2);
+		mDescHeap->SetTexture(addSphereTexture, i * 4 + 3);
+		mDescHeap->SetTexture(mulSphereTexture, i * 4 + 4);
 	}
 }
 
@@ -125,8 +140,8 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 	{
 		boneMatrixes[i] = poseBones[i]->GetBoneMatrix();
 	}
-	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), sizeof(Math::Matrix4x4) * boneMatrixes.size());
-	mDescHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), 1 + 3 * mMaterialData.size());
+	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), static_cast<UINT>( sizeof(Math::Matrix4x4) * boneMatrixes.size()));
+	mDescHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), static_cast<UINT>( 1 + 4 * mMaterialData.size()));
 }
 
 void PMXModelData::UpdatePose()
@@ -139,5 +154,5 @@ void PMXModelData::UpdatePose()
 	{
 		boneMatrixes[i] = poseBones[i]->GetBoneMatrix();
 	}
-	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), sizeof(Math::Matrix4x4) * boneMatrixes.size());
+	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), static_cast<UINT>( sizeof(Math::Matrix4x4) * boneMatrixes.size() ) );
 }

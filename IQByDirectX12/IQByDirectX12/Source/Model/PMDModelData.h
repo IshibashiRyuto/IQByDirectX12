@@ -21,6 +21,12 @@ class ConstantBuffer;
 class Device;
 class TextureLoader;
 
+
+/*
+*		PMD情報定義
+*		参考: https://blog.goo.ne.jp/torisu_tetosuki
+*/
+
 ///	@struct PMDHeader
 /// PMDヘッダ情報
 struct PMDHeader
@@ -59,13 +65,22 @@ struct PMDMaterial
 
 struct PMDShaderMaterialData
 {
-	Math::Vector3 diffuseColor;
-	float alpha;
+	Math::Vector4 diffuseColor;
 	float specularity;
 	Math::Vector3 specularColor;
 	Math::Vector3 ambientColor;
 	int isUseTexture;
 	int sphereFlag;				// スフィアフラグ ... 0: 加算スフィア, 1: 乗算スフィア
+};
+
+struct PMDBone
+{
+	char boneName[20];
+	unsigned int parentBoneIndex;
+	unsigned int tailBoneIndex;
+	unsigned char boneType;
+	unsigned int ikParentBoneIndex;
+	Math::Vector3 headPos;
 };
 
 #pragma pack()

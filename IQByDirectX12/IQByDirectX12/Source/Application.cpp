@@ -109,22 +109,22 @@ bool Application::Initialize(const Window & window)
 	}
 	
 	// ルートシグニチャの作成
-	//if (!CreateRootSignature())
-	if(!_DebugCreatePMDRootSignature())
+	if (!CreateRootSignature())
+	//if(!_DebugCreatePMDRootSignature())
 	{
 		return false;
 	}
 
 	// シェーダの読み込み
-	//if (!ReadShader())
-	if(!_DebugReadPMDShader())
+	if (!ReadShader())
+	//if(!_DebugReadPMDShader())
 	{
 		return false;
 	}
 	
 	// パイプラインオブジェクトの作成
-	//if (!CreatePipelineState())
-	if(!_DebugCreatePMDPipelineState())
+	if (!CreatePipelineState())
+	//if(!_DebugCreatePMDPipelineState())
 	{
 		return false;
 	}
@@ -166,19 +166,22 @@ void Application::Render()
 
 	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f,0.f,0.f));
 	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
+	static Math::Vector3 pos(0.0f, 0.0f, 0.0f);
+	static float speed = 0.05;
 
 	mKeyboard->UpdateKeyState();
 
-	/*int i = 0;
+	int i = 0;
 	for (auto model : mInstancingTestModels)
 	{
 		if (i++ == 5)
 		{
 			model->SetRotation(rot);
-			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
+			model->SetPosition(pos);
+			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
 			model->Draw();
 		}
-	}*/
+	}
 
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
 	{
@@ -196,6 +199,23 @@ void Application::Render()
 	{
 		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.05f);
 	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Up))
+	{
+		pos.y += speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Down))
+	{
+		pos.y -= speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Left))
+	{
+		pos.x -= speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Right))
+	{
+		pos.x += speed;
+	}
+
 
 
 	t+=0.5f;
@@ -204,9 +224,9 @@ void Application::Render()
 		t = 0;
 	}
 	mModelData->SetPosition(Math::Vector3(0.0f,0.0f,0.0f));
-	//mModelData->SetScale(sin(t / 30.f * Math::F_PI * 2) * 0.1f + 1.0f);
 	mModelData->SetRotation(rot);
-	mModelData->Draw();
+	mModelData->SetPosition(pos);
+	//mModelData->Draw();
 	// endDebug
 
 	// コマンドリスト初期化
@@ -266,7 +286,7 @@ bool Application::CreateRootSignature()
 
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 2, 0);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 3, 0);
 	mRootSignature->AddDescriptorRange(boneMatrixBufferIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
 	
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
@@ -338,6 +358,19 @@ bool Application::CreatePipelineState()
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
 
 	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
+	for (int i = 0; i < 8; ++i)
+	{
+		gpsDesc.BlendState.RenderTarget[i].BlendEnable = true;
+		gpsDesc.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+		gpsDesc.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
+		gpsDesc.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ONE;
+		gpsDesc.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_MAX;
+
+		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
+		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
+		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
+
+	}
 
 	gpsDesc.DepthStencilState.DepthEnable = true;
 	gpsDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
@@ -388,6 +421,19 @@ bool Application::_DebugCreatePMDPipelineState()
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
 
 	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
+	for (int i = 0; i < 8; ++i)
+	{
+		gpsDesc.BlendState.RenderTarget[i].BlendEnable = true;
+		gpsDesc.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+		gpsDesc.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
+		gpsDesc.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ONE;
+		gpsDesc.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_MAX;
+
+		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
+		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
+		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
+
+	}
 
 	gpsDesc.DepthStencilState.DepthEnable = true;
 	gpsDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
@@ -476,6 +522,7 @@ void Application::LoadPMD()
 	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
 	mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd");
 	if (!mModelData)
 	{
 		return;
@@ -497,9 +544,9 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
-		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 

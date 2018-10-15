@@ -1,5 +1,6 @@
 Texture2D<float4> materialNormalTexture : register(t0);		// マテリアル通常テクスチャ
-Texture2D<float4> materialSphereTexture : register(t1);		// マテリアルスフィアテクスチャ
+Texture2D<float4> materialAddSphereTexture : register(t1);	// マテリアル加算スフィアテクスチャ
+Texture2D<float4> materialMulSphereTexture : register(t2);	// マテリアル乗算スフィアテクスチャ
 
 SamplerState smp : register(s0);  
 
@@ -100,7 +101,7 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
-	float3 light = normalize(float3(0.0f, 1.0f, -1.0f));
+	float3 light = normalize(float3(1.0f, -1.0f, 1.0f));
     float3 lightSpecularColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
     float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);
@@ -124,15 +125,15 @@ float4 PSMain(PSInput input) : SV_Target
 
 	// スペキュラ計算
 	float3 reflectRay = normalize(reflect(vray, input.normal));
-	float3 modelSpecularColor = specularColor * materialSphereTexture.Sample(smp, reflectRay.xy * float2(0.5, -0.5) + float2(0.5, 0.5)).rgb;
-    float spec = saturate(pow(dot(reflect(light, input.normal), -vray), specularity));
-    modelSpecularColor = modelSpecularColor * spec;
-
+    float spec = saturate(pow(dot(reflect(light, input.normal), -vray), 10));
+    float3 modelSpecularColor = specularColor * spec;
+	modelSpecularColor = float3(1, 1, 1) * spec;
     
     float4 texColor = materialNormalTexture.Sample(smp, input.uv);
 
     float4 modelColor = float4(modelDiffuseColor, alpha) * texColor;
-	modelColor = modelColor + float4(modelSpecularColor, 0.0f);// *materialSphereTexture.Sample(smp, input.uv);
+	float2 sphereUV = reflectRay.xy * float2(0.5, -0.5) + float2(0.5f, 0.5f);
+	modelColor = modelColor * materialMulSphereTexture.Sample(smp, sphereUV) + materialAddSphereTexture.Sample(smp, sphereUV) +float4(modelSpecularColor, 0.0f);
 
     return modelColor;
 }

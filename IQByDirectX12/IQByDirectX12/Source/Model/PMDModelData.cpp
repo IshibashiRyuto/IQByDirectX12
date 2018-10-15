@@ -54,8 +54,10 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
 		PMDShaderMaterialData data;
-		data.alpha = materials[i].alpha;
-		data.diffuseColor = materials[i].diffuseColor;
+		data.diffuseColor.x = materials[i].diffuseColor.x;
+		data.diffuseColor.y = materials[i].diffuseColor.y;
+		data.diffuseColor.z = materials[i].diffuseColor.z;
+		data.diffuseColor.w = materials[i].alpha;
 		data.specularColor = materials[i].specularColor;
 		data.specularity = materials[i].specularity;
 		data.ambientColor = materials[i].ambientColor;
@@ -127,6 +129,7 @@ void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const Ins
 	int indexOffset = 0;
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
+		//if (i == 11) continue;
 		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_SHADER_RESOURCE_NUM + 1);
 		commandList->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterials[i].faceVertexCount;
