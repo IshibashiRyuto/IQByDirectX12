@@ -16,8 +16,7 @@ cbuffer material : register(b1)
 {
     float3 diffuseColor;
     float alpha;
-    float specularity;
-    float3 specularColor;
+    float4 specularColor;
     float3 ambientColor;
 }
 
@@ -125,8 +124,8 @@ float4 PSMain(PSInput input) : SV_Target
 
 	// スペキュラ計算
 	float3 reflectRay = normalize(reflect(vray, input.normal));
-    float spec = saturate(pow(dot(reflect(light, input.normal), -vray), 10));
-    float3 modelSpecularColor = specularColor * spec;
+    float spec = saturate(pow(dot(reflect(light, input.normal), -vray), specularColor.w));
+    float3 modelSpecularColor = specularColor.rgb * spec;
 	modelSpecularColor = float3(1, 1, 1) * spec;
     
     float4 texColor = materialNormalTexture.Sample(smp, input.uv);

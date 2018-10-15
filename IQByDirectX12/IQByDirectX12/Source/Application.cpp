@@ -432,7 +432,6 @@ bool Application::_DebugCreatePMDPipelineState()
 		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
 		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
 		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
-
 	}
 
 	gpsDesc.DepthStencilState.DepthEnable = true;
@@ -544,9 +543,9 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 
