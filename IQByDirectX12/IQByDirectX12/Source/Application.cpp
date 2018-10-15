@@ -178,7 +178,7 @@ void Application::Render()
 		{
 			model->SetRotation(rot);
 			model->SetPosition(pos);
-			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
+			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
 			model->Draw();
 		}
 	}
@@ -543,9 +543,10 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 
