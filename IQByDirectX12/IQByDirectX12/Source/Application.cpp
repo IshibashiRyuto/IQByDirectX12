@@ -179,7 +179,7 @@ void Application::Render()
 			model->SetRotation(rot);
 			model->SetPosition(pos);
 			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
-			model->Draw();
+			//model->Draw();
 		}
 	}
 
@@ -226,7 +226,7 @@ void Application::Render()
 	mModelData->SetPosition(Math::Vector3(0.0f,0.0f,0.0f));
 	mModelData->SetRotation(rot);
 	mModelData->SetPosition(pos);
-	//mModelData->Draw();
+	mModelData->Draw();
 	// endDebug
 
 	// コマンドリスト初期化
@@ -544,8 +544,8 @@ void Application::LoadPMX()
 	{
 		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 

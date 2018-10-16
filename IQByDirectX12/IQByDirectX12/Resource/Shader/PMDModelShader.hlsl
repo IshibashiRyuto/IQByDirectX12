@@ -48,7 +48,6 @@ VSOutput VSMain(VSInput input)
 	output.origPosition = mul(world, mul(input.modelMatrix, float4(input.position, 1.0f)));
 
 	output.normal = normalize(mul(world,mul(input.modelMatrix, float4(input.normal, 0.0f))).xyz);
-	output.sphereUV = normalize(mul(view, output.normal).xyz).xy;
 
 	output.uv = input.uv;
 
@@ -99,11 +98,11 @@ float4 PSMain(PSInput input) : SV_Target
 
 	float4 texColor = surfaceTexture.Sample(smp, input.uv);
 	
-	float3 modelColor = modelDiffuseColor + modelAmbientColor;
-	modelColor = modelColor * texColor.xyz;
-	modelColor = modelColor * mulSphereTexture.Sample(smp, sphereUV) +addSphereTexture.Sample(smp, sphereUV);
-	modelColor = saturate( modelColor + modelSpecularColor);
+    float4 modelColor = float4(modelDiffuseColor + modelAmbientColor, diffuseColor.a);
+	modelColor = modelColor * texColor;
+	//modelColor = modelColor * mulSphereTexture.Sample(smp, sphereUV) +addSphereTexture.Sample(smp, sphereUV);
+    modelColor = saturate(modelColor + float4(modelSpecularColor, 0.0f));
 
 
-	return float4 (modelColor, diffuseColor.a);
+    return modelColor;
 }

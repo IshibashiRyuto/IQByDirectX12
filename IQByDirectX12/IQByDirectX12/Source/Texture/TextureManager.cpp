@@ -80,7 +80,7 @@ void TextureManager::CreateWhiteAndBlackTexture(std::shared_ptr<Device> device)
 	rscDesc.Width = 2;
 	rscDesc.Height = 2;
 	rscDesc.DepthOrArraySize = 1;
-	rscDesc.MipLevels = 1;
+	rscDesc.MipLevels = 0;
 	rscDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	rscDesc.SampleDesc.Count = 1;
 	rscDesc.SampleDesc.Quality = 0;

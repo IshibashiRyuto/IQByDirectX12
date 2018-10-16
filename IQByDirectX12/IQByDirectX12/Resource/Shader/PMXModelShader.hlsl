@@ -15,8 +15,7 @@ cbuffer mat : register(b0)
 
 cbuffer material : register(b1)
 {
-    float3 diffuseColor;
-    float alpha;
+    float4 diffuseColor;
     float4 specularColor;
     float3 ambientColor;
 }
@@ -118,8 +117,9 @@ float4 PSMain(PSInput input) : SV_Target
 
 
 	// ディフューズカラー計算
-	float3 modelDiffuseColor = diffuseColor * toonTexture.Sample(smp, float2(0,1 - brightness));
-	modelDiffuseColor = modelDiffuseColor * lightDiffuseColor;
+    float3 modelDiffuseColor = diffuseColor.rgb * brightness;
+    //toonTexture.Sample(smp, float2(0, 1 - brightness)).xyz;
+    modelDiffuseColor = modelDiffuseColor;// * lightDiffuseColor;
 	modelDiffuseColor += modelAmbientColor;
 
 	// スペキュラ計算
@@ -130,7 +130,7 @@ float4 PSMain(PSInput input) : SV_Target
     
     float4 texColor = materialNormalTexture.Sample(smp, input.uv);
 
-    float4 modelColor = float4(modelDiffuseColor, alpha) * texColor;
+    float4 modelColor = float4(modelDiffuseColor, diffuseColor.a) * texColor;
 
 	// スフィアマップ用uv計算
 	float3 vrayAxisX = cross(up, vray);
@@ -138,7 +138,8 @@ float4 PSMain(PSInput input) : SV_Target
 	float2 sphereUV = float2(dot(vrayAxisX, input.normal), dot(vrayAxisY, input.normal));
 
 	sphereUV = sphereUV * float2(0.5, -0.5) + float2(0.5f, 0.5f);
-	modelColor = modelColor * materialMulSphereTexture.Sample(smp, sphereUV) + materialAddSphereTexture.Sample(smp, sphereUV) +float4(modelSpecularColor, 0.0f);
+	//modelColor = modelColor * materialMulSphereTexture.Sample(smp, sphereUV) + materialAddSphereTexture.Sample(smp, sphereUV) +float4(modelSpecularColor, 0.0f);
+    
 
     return modelColor;
 }
