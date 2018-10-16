@@ -18,6 +18,7 @@
 using Microsoft::WRL::ComPtr;
 class ModelData;
 class Device;
+class TextureLoader;
 
 class ModelLoader
 {
@@ -36,9 +37,11 @@ public:
 	virtual void ClearModelData() = 0;
 
 protected:
+	/* 変数宣言 */
 	std::shared_ptr<Device> mDevice;			// Dx12デバイス
 	ModelDataManager& mModelDataManager;	// モデルデータマネージャへの参照
 	std::map<std::string, int> mModelHandleManager;	// モデルハンドルの管理
+	std::shared_ptr<TextureLoader> mTextureLoader;		// モデルテクスチャローダ
 													
 	/// コンストラクタ
 	ModelLoader(std::shared_ptr<Device> device);

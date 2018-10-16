@@ -7,7 +7,6 @@
 
 PMXLoader::PMXLoader(std::shared_ptr<Device> device)
 	: ModelLoader(device)
-	, mTextureLoader(TextureLoader::Create(device))
 {
 }
 
@@ -16,9 +15,10 @@ PMXLoader::~PMXLoader()
 {
 }
 
-std::shared_ptr<PMXLoader> PMXLoader::Create(std::shared_ptr<Device> device)
+std::shared_ptr<PMXLoader> PMXLoader::Create(std::shared_ptr<Device> device, const std::string& shareToonFolderPath)
 {
 	auto modelLoader = std::shared_ptr<PMXLoader>(new PMXLoader(device));
+	modelLoader->LoadShareToon(shareToonFolderPath);
 	return modelLoader;
 }
 
@@ -82,6 +82,10 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		LoadDisplayFrame(modelDataDesc.displayFrame, static_cast<size_t>(modelDataDesc.header.pmxDataInfo[static_cast<int>(PMX::DataInfo::boneIndexSize)]), static_cast<size_t>(modelDataDesc.header.pmxDataInfo[static_cast<int>(PMX::DataInfo::morphIndexSize)]), fp);
 
 		fclose(fp);
+
+		// 共有トゥーンテクスチャ情報の受け渡し
+		modelDataDesc.shareToonTextureIndexies.resize(mShareToonTextureHandle.size());
+		std::copy(mShareToonTextureHandle.begin(), mShareToonTextureHandle.end(), modelDataDesc.shareToonTextureIndexies.begin());
 
 		auto modelData = PMXModelData::Create(mDevice, modelDataDesc);
 		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
@@ -438,5 +442,15 @@ void PMXLoader::LoadDisplayFrame(std::vector<PMX::DisplayFrame>& displayFrameDat
 				fread(&displayFrameElement.morphIndex, morphIndexSize, 1, fp);
 			}
 		}
+	}
+}
+
+void PMXLoader::LoadShareToon(const std::string & folderPath)
+{
+	mShareToonTextureHandle.resize(SHARE_TOON_NUM);
+	for (int i = 0; i < SHARE_TOON_NUM; ++i)
+	{
+		auto path = folderPath + "/" + SHARE_TOON_PATH[i];
+		mShareToonTextureHandle[i] = mTextureLoader->Load(path);
 	}
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "PMDLoader.h"
+#include "../Texture/TextureLoader.h"
 
 
 PMDLoader::PMDLoader(std::shared_ptr<Device> device)
@@ -11,16 +12,26 @@ void PMDLoader::LoadBone(FILE *fp)
 {
 }
 
+void PMDLoader::LoadShareToon(const std::string & toonFolderPath)
+{
+	mShareToonTextureHandle.resize(SHARE_TOON_NUM);
+	for (int i = 0; i < SHARE_TOON_NUM; ++i)
+	{
+		auto path = toonFolderPath + "/" + SHARE_TOON_PATH[i];
+		mShareToonTextureHandle[i] = mTextureLoader->Load(path);
+	}
+}
+
 
 PMDLoader::~PMDLoader()
 {
 	ClearModelData();
 }
 
-std::shared_ptr<PMDLoader> PMDLoader::Create(std::shared_ptr<Device> device)
+std::shared_ptr<PMDLoader> PMDLoader::Create(std::shared_ptr<Device> device, const std::string& shareToonFolderPath)
 {
 	auto pmdLoader = std::shared_ptr<PMDLoader>(new PMDLoader(device));
-	pmdLoader->mDevice = device;
+	pmdLoader->LoadShareToon(shareToonFolderPath);
 	return pmdLoader;
 }
 
@@ -90,7 +101,7 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 		fclose(fp);
 
 		/// モデルデータの生成、登録
-		auto modelData = PMDModelData::Create(mDevice, modelInfo);
+		auto modelData = PMDModelData::Create(mDevice, modelInfo, mShareToonTextureHandle);
 
 		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
 	}

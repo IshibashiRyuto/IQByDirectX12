@@ -9,7 +9,7 @@
 #include "../Texture//TextureLoader.h"
 #include "../Texture/TextureManager.h"
 
-PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo)
+PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex)
 	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
 		IndexBuffer::Create(device->GetDevice(), (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
 		DescriptorHeap::Create(device->GetDevice(), 1 + (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
@@ -17,16 +17,16 @@ PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& m
 {
 	SetVertexData(modelInfo.vertexData);
 	SetIndexData(modelInfo.indexData);
-	SetMaterialData(device, modelInfo.materials, modelInfo.modelPath);
+	SetMaterialData(device, modelInfo.materials, modelInfo.modelPath, shareToonTextureIndex);
 }
 
 PMDModelData::~PMDModelData()
 {
 }
 
-std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo)
+std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex)
 {
-	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo));
+	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo, shareToonTextureIndex));
 	if (model->mVertexBuffer == nullptr || model->mIndexBuffer == nullptr)
 	{
 		return nullptr;
@@ -46,7 +46,7 @@ void PMDModelData::SetIndexData(const std::vector<unsigned short>& indexData)
 	mIndex = indexData;
 }
 
-void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath)
+void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath, const std::vector<int> shareToonTextureIndex)
 {
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
@@ -97,12 +97,12 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 			{
 				auto surfaceTexturePath = modelPath.substr(0, max(modelPath.find_last_of('/') + 1, modelPath.find_last_of('\\') + 1));
 				auto sphereTexturePath = surfaceTexturePath;
-				surfaceTexturePath += texturePath.substr(0, t - 1);
+				surfaceTexturePath += texturePath.substr(0, t);
 				sphereTexturePath += texturePath.substr(t + 1, texturePath.size() - 1);
 				int surfaceTextureHandle = mTextureLoader->Load(surfaceTexturePath);
 				int sphereTextureHandle = mTextureLoader->Load(sphereTexturePath);
 				surfaceTexture = TextureManager::GetInstance().GetTexture(surfaceTextureHandle);
-				if (texturePath.substr(texturePath.rfind('.') + 1, texturePath.size() - 1) == "sph")
+				if (texturePath.substr(texturePath.rfind('.') + 1, texturePath.size() - 1) == "spa")
 				{
 					addSphereTexture = TextureManager::GetInstance().GetTexture(sphereTextureHandle);
 				}
@@ -112,9 +112,13 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 				}
 			}
 		}
+
+		auto toonTexture = TextureManager::GetInstance().GetTexture( shareToonTextureIndex[ static_cast<int>(materials[i].toonIndex + 1)] );
+
 		mDescHeap->SetTexture(surfaceTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1 + 1);
 		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 2 + 1);
 		mDescHeap->SetTexture(mulSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 3 + 1);
+		mDescHeap->SetTexture(toonTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 4 + 1);
 	}
 }
 

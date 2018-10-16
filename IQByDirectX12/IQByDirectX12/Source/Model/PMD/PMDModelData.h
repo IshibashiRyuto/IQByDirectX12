@@ -96,21 +96,21 @@ struct PMDModelInfo
 class PMDModelData : public ModelData
 {
 public:
-	PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo);
+	PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex);
 	~PMDModelData();
 	
-	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo);
+	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex);
 
 	void SetVertexData(const std::vector<PMDVertex>& vertexData);
 
 	void SetIndexData(const std::vector<unsigned short>& indexData);
 
-	void SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath);
+	void SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath, const std::vector<int> shareToonTextureIndex);
 
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
-	static const int MATERIAL_SHADER_RESOURCE_NUM = 4;
+	static const int MATERIAL_SHADER_RESOURCE_NUM = 5;
 
 	unsigned int					mVertexCount;	// 頂点数
 	std::vector<PMDVertex>			mVertex;		// 頂点データ

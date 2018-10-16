@@ -1,6 +1,7 @@
 Texture2D<float4> surfaceTexture : register(t0);
 Texture2D<float4> addSphereTexture : register(t1);
 Texture2D<float4> mulSphereTexture : register(t2);
+Texture2D<float4> toonTexture : register(t3);
 SamplerState smp : register(s0);
 
 cbuffer mat:register(b0)
@@ -34,7 +35,7 @@ struct VSOutput
 	float4 position : SV_POSITION;
 	float3 origPosition	: POSITION1;
 	float3 normal   : NORMAL;
-	float2 uv       : TEXCORD;
+	float2 uv       : TEXCOORD;
 };
 
 typedef VSOutput PSInput;
@@ -46,10 +47,11 @@ VSOutput VSMain(VSInput input)
 	output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
 	output.origPosition = mul(world, mul(input.modelMatrix, float4(input.position, 1.0f)));
 
-	input.modelMatrix._14_24_34 = float3(0.0f, 0.0f, 0.0f);
-	output.normal = normalize(mul(input.modelMatrix, float4(input.normal, 1.0f)).xyz);
+	output.normal = normalize(mul(world,mul(input.modelMatrix, float4(input.normal, 0.0f))).xyz);
+	output.sphereUV = normalize(mul(view, output.normal).xyz).xy;
 
 	output.uv = input.uv;
+
 
 	return output;
 }
@@ -77,6 +79,7 @@ float4 PSMain(PSInput input) : SV_Target
 
 	// ディフューズカラー計算
 	float3 modelDiffuseColor = diffuseColor.rgb * brightness;
+
 	modelDiffuseColor = modelDiffuseColor * lightDiffuseColor;
 
 	// スペキュラ計算
@@ -86,13 +89,15 @@ float4 PSMain(PSInput input) : SV_Target
 
 
 	// スフィアマップ計算
-	float3 reflectVray = normalize( reflect(vray, input.normal) );
-
+	
 	float3 vrayAxisX = cross(up, vray);
 	float3 vrayAxisY = cross( vray, vrayAxisX);
-	float2 sphereUV = float2(dot(vrayAxisX, input.normal), dot(vrayAxisY, input.normal));  //reflectVray.xy * float2(0.5f, -0.5) + float2(0.5, 0.5);
+	float2 sphereUV = float2(dot(vrayAxisX, input.normal), dot(vrayAxisY, input.normal));
+	
 	sphereUV = sphereUV * float2(0.5f, -0.5f) + float2(0.5f, 0.5f);
-	float4 texColor = surfaceTexture.Sample(smp, input.uv);// *mulSphereTexture.Sample(smp, sphereUV) + addSphereTexture.Sample(smp, sphereUV);
+
+
+	float4 texColor = surfaceTexture.Sample(smp, input.uv);
 	
 	float3 modelColor = modelDiffuseColor + modelAmbientColor;
 	modelColor = modelColor * texColor.xyz;

@@ -326,6 +326,7 @@ namespace PMX
 		std::vector<DisplayFrame> displayFrame;
 		std::vector<RigidBody> rigidBodies;
 		std::vector<Joint> joints;
+		std::vector<int>	shareToonTextureIndexies;
 	};
 
 

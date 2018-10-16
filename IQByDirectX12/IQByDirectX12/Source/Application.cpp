@@ -109,22 +109,22 @@ bool Application::Initialize(const Window & window)
 	}
 	
 	// ルートシグニチャの作成
-	if (!CreateRootSignature())
-	//if(!_DebugCreatePMDRootSignature())
+	//if (!CreateRootSignature())
+	if(!_DebugCreatePMDRootSignature())
 	{
 		return false;
 	}
 
 	// シェーダの読み込み
-	if (!ReadShader())
-	//if(!_DebugReadPMDShader())
+	//if (!ReadShader())
+	if(!_DebugReadPMDShader())
 	{
 		return false;
 	}
 	
 	// パイプラインオブジェクトの作成
-	if (!CreatePipelineState())
-	//if(!_DebugCreatePMDPipelineState())
+	//if (!CreatePipelineState())
+	if(!_DebugCreatePMDPipelineState())
 	{
 		return false;
 	}
@@ -286,7 +286,7 @@ bool Application::CreateRootSignature()
 
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 3, 0);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 4, 0);
 	mRootSignature->AddDescriptorRange(boneMatrixBufferIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
 	
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
@@ -300,7 +300,7 @@ bool Application::_DebugCreatePMDRootSignature()
 
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 3, 0);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 4, 0);
 
 
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
@@ -517,11 +517,12 @@ void Application::SetWVPMatrix()
 
 void Application::LoadPMD()
 {
-	mModelLoader = PMDLoader::Create(mDevice);
+	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
-	mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd");
+	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd");
 	if (!mModelData)
 	{
 		return;
@@ -532,9 +533,7 @@ void Application::LoadPMD()
 
 void Application::LoadPMX()
 {
-	mPMXModelLoader = PMXLoader::Create(mDevice);
-	mPMXModelData = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-	mPMXModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
+	mPMXModelLoader = PMXLoader::Create(mDevice, "Resource/Model/Toon");
 
 
 	mInstancingTestModels.resize(100);
@@ -545,8 +544,8 @@ void Application::LoadPMX()
 	{
 		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
-		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-		model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
+		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
 		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 

@@ -81,7 +81,7 @@ private:
 	/// @fn SetMaterial
 	/// マテリアルデータをセットする
 	/// @param[in] materials マテリアルデータ配列
-	void SetMaterial(const std::vector<PMX::Material>& materials);
+	void SetMaterial(const std::vector<PMX::Material>& materials, const std::vector<int>& shareToonTextureIndexies);
 
 	/// @fn SetBone
 	/// ボーン情報をセットする

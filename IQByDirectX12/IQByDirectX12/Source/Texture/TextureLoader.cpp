@@ -53,8 +53,7 @@ int TextureLoader::Load(const std::wstring & filePath)
 			&resource,
 			decodedData,
 			subResourceData);
-
-
+		
 		if (FAILED(result))
 		{
 			std::wstring str = L"Failed Load Texture File \"" + filePath;
@@ -65,6 +64,21 @@ int TextureLoader::Load(const std::wstring & filePath)
 			str += L"\".";
 			DebugLayer::GetInstance().PrintDebugMessage(str);
 			return -1;
+		}
+
+
+		auto desc = resource->GetDesc();
+
+		if (desc.Format != DXGI_FORMAT_R8G8B8A8_UNORM)
+		{
+
+			std::wstring str = L"This Texture is Not Format R8G8B8A8_UNORM \"" + filePath;
+			if ((*str.rbegin()) == '\0')
+			{
+				(*str.rbegin()) = ' ';
+			}
+			str += L"\".";
+			DebugLayer::GetInstance().PrintDebugMessage(str);
 		}
 
 		UpdateTextureSubresource(resource, subResourceData);
