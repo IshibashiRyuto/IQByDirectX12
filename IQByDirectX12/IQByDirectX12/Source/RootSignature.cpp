@@ -10,9 +10,9 @@ RootSignature::RootSignature()
 	{
 		mStaticSamplerDesc = D3D12_STATIC_SAMPLER_DESC();
 		mStaticSamplerDesc.Filter = D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT;
-		mStaticSamplerDesc.AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		mStaticSamplerDesc.AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		mStaticSamplerDesc.AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+		mStaticSamplerDesc.AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+		mStaticSamplerDesc.AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+		mStaticSamplerDesc.AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
 		mStaticSamplerDesc.MaxLOD = D3D12_FLOAT32_MAX;
 		mStaticSamplerDesc.MinLOD = 0.0f;
 		mStaticSamplerDesc.MipLODBias = 0.0f;

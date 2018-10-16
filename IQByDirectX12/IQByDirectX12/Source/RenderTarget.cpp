@@ -41,7 +41,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 	renderTarget->mRenderTargets.resize(renderTargetsNum);
 
 	D3D12_RENDER_TARGET_VIEW_DESC rtvDesc;
-	rtvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	rtvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	rtvDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
 	rtvDesc.Texture2D.MipSlice = 0;
 	rtvDesc.Texture2D.PlaneSlice = 0;

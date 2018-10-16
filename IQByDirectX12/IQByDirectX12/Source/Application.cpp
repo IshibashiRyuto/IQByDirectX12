@@ -386,7 +386,7 @@ bool Application::CreatePipelineState()
 
 	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 	
@@ -448,7 +448,7 @@ bool Application::_DebugCreatePMDPipelineState()
 
 	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
 	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
@@ -499,8 +499,8 @@ void Application::SetWVPMatrix()
 	if (mConstantBuffer != nullptr)
 	{
 		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -10.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
-		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/2.0f);
+		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -50.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/8.0f);
 		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
 		
 		DirectX::XMMATRIX data[4];

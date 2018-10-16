@@ -54,10 +54,10 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
 		PMDShaderMaterialData data;
-		data.diffuseColor.x = materials[i].diffuseColor.x;
-		data.diffuseColor.y = materials[i].diffuseColor.y;
-		data.diffuseColor.z = materials[i].diffuseColor.z;
-		data.diffuseColor.w = materials[i].alpha;
+		data.diffuseColor = Math::Vector4(materials[i].diffuseColor.x,
+			materials[i].diffuseColor.y,
+			materials[i].diffuseColor.z,
+			materials[i].alpha);
 		data.specularColor = materials[i].specularColor;
 		data.specularity = materials[i].specularity;
 		data.ambientColor = materials[i].ambientColor;

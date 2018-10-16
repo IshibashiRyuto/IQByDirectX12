@@ -119,8 +119,8 @@ float4 PSMain(PSInput input) : SV_Target
 	// ディフューズカラー計算
     float3 modelDiffuseColor = diffuseColor.rgb * brightness;
     //toonTexture.Sample(smp, float2(0, 1 - brightness)).xyz;
-    modelDiffuseColor = modelDiffuseColor;// * lightDiffuseColor;
-	modelDiffuseColor += modelAmbientColor;
+    modelDiffuseColor = modelDiffuseColor * lightDiffuseColor;
+    modelDiffuseColor += saturate(modelDiffuseColor + modelAmbientColor);
 
 	// スペキュラ計算
 	float3 reflectRay = normalize(reflect(vray, input.normal));

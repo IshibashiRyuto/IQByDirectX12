@@ -58,12 +58,12 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
-	float3 light = normalize(float3(1.0f, -1.0f, 1.0f));
-	float3 lightSpecularColor = float3(1.0f, 1.0f, 1.0f);
-	float3 lightDiffuseColor = float3(1.0f, 1.0f, 1.0f);
+	float3 light = normalize(float3(-0.41f, -0.82f, 0.41f));
+	float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
+	float3 lightDiffuseColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);
 
-	float3 eyePosition = float3(0.0f, 20.0f, -15.0f);
+	float3 eyePosition = float3(0.0f, 15.0f, -50.0f);
 
 	float3 vray = normalize(input.origPosition - eyePosition);
 	float3 up = float3 (0, 1, 0);
@@ -75,18 +75,16 @@ float4 PSMain(PSInput input) : SV_Target
 	/// アンビエントカラー計算
 	float3 modelAmbientColor = ambientColor * attenuation;
 	modelAmbientColor = modelAmbientColor * lightAmbientColor;
-
-	// ディフューズカラー計算
-	float3 modelDiffuseColor = diffuseColor.rgb * brightness;
-
-	modelDiffuseColor = modelDiffuseColor * lightDiffuseColor;
+    // ディフューズカラー計算
+    float normalRad = acos(brightness);
+    float3 modelDiffuseColor = diffuseColor.rgb * lightDiffuseColor;
 
 	// スペキュラ計算
-	float3 modelSpecularColor = specularColor * attenuation;
-	float spec = saturate(pow(dot(reflect(light, input.normal), -vray), specularity));
+	float3 modelSpecularColor = specularColor * attenuation * lightSpecularColor;
+    float spec = pow(saturate(dot(reflect(light, input.normal), -vray)), (100 - specularity)/10.0f);
 	modelSpecularColor = modelSpecularColor * spec;
 
-
+    
 	// スフィアマップ計算
 	
 	float3 vrayAxisX = cross(up, vray);
@@ -98,11 +96,12 @@ float4 PSMain(PSInput input) : SV_Target
 
 	float4 texColor = surfaceTexture.Sample(smp, input.uv);
 	
-    float4 modelColor = float4(modelDiffuseColor + modelAmbientColor, diffuseColor.a);
-	modelColor = modelColor * texColor;
-	//modelColor = modelColor * mulSphereTexture.Sample(smp, sphereUV) +addSphereTexture.Sample(smp, sphereUV);
+    float4 modelColor = saturate(float4(modelDiffuseColor + modelAmbientColor, diffuseColor.a));
+    
+	modelColor = modelColor * mulSphereTexture.Sample(smp, sphereUV) +addSphereTexture.Sample(smp, sphereUV);
     modelColor = saturate(modelColor + float4(modelSpecularColor, 0.0f));
+    modelColor = modelColor * texColor * toonTexture.Sample(smp, float2(0.0f, saturate(normalRad / (3.141592f))));
 
-
+    
     return modelColor;
 }
