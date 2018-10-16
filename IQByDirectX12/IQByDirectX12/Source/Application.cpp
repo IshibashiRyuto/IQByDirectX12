@@ -19,10 +19,10 @@
 #include "DescriptorHeap.h"
 #include "ConstantBuffer.h"
 #include "MathConvert.h"
-#include "Model/PMDLoader.h"
-#include "Model/PMDModelData.h"
-#include "Model/PMXLoader.h"
-#include "Model/PMXModelData.h"
+#include "Model/PMD/PMDLoader.h"
+#include "Model/PMD/PMDModelData.h"
+#include "Model/PMX/PMXLoader.h"
+#include "Model/PMX/PMXModelData.h"
 #include "Texture/TextureManager.h"
 #include "Model/InstancingDataManager.h"
 #include "RootSignature.h"
@@ -167,7 +167,7 @@ void Application::Render()
 	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f,0.f,0.f));
 	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
 	static Math::Vector3 pos(0.0f, 0.0f, 0.0f);
-	static float speed = 0.05;
+	static float speed = 0.05f;
 
 	mKeyboard->UpdateKeyState();
 
@@ -178,7 +178,7 @@ void Application::Render()
 		{
 			model->SetRotation(rot);
 			model->SetPosition(pos);
-			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
+			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
 			model->Draw();
 		}
 	}

@@ -4,7 +4,7 @@
 #include "../DescriptorHeap.h"
 #include "../ConstantBuffer.h"
 #include "../InstanceBuffer.h"
-#include "InstancingDataManager.h"
+#include "../InstancingDataManager.h"
 #include "../Device.h"
 #include "../Texture//TextureLoader.h"
 #include "../Texture/TextureManager.h"

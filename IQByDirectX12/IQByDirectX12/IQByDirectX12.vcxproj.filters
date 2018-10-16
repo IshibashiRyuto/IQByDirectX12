@@ -67,18 +67,6 @@
     <ClCompile Include="Source\Model\ModelLoader.cpp">
       <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Model\PMDLoader.cpp">
-      <Filter>Source\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Model\PMDModelData.cpp">
-      <Filter>Source\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Model\PMXLoader.cpp">
-      <Filter>Source\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Model\PMXModelData.cpp">
-      <Filter>Source\Model</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Texture\WICTextureLoader\WICTextureLoader12.cpp">
       <Filter>Source\Texture\WICTextureLoader</Filter>
     </ClCompile>
@@ -174,6 +162,18 @@
     <ClCompile Include="Source\Debug\DebugLayer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Model\PMD\PMDLoader.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\PMD\PMDModelData.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\PMX\PMXLoader.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\PMX\PMXModelData.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -201,18 +201,6 @@
       <Filter>Source\Model</Filter>
     </ClInclude>
     <ClInclude Include="Source\Model\ModelLoader.h">
-      <Filter>Source\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Model\PMDLoader.h">
-      <Filter>Source\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Model\PMDModelData.h">
-      <Filter>Source\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Model\PMXLoader.h">
-      <Filter>Source\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Model\PMXModelData.h">
       <Filter>Source\Model</Filter>
     </ClInclude>
     <ClInclude Include="Source\Texture\WICTextureLoader\WICTextureLoader12.h">
@@ -266,9 +254,6 @@
     <ClInclude Include="Source\MathConvert.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PMXModelDataInfo.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Pose.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -307,6 +292,21 @@
     </ClInclude>
     <ClInclude Include="Source\PipelineStateObject.h" />
     <ClInclude Include="Source\Debug\DebugLayer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\PMD\PMDLoader.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\PMD\PMDModelData.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\PMX\PMXLoader.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\PMX\PMXModelData.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\PMX\PMXModelDataInfo.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

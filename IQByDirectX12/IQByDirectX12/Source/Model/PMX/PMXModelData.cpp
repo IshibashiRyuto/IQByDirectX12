@@ -3,7 +3,7 @@
 #include "../IndexBuffer.h"
 #include "../DescriptorHeap.h"
 #include "../ConstantBuffer.h"
-#include "InstancingDataManager.h"
+#include "../InstancingDataManager.h"
 #include "../InstanceBuffer.h"
 #include "../Texture/TextureLoader.h"
 #include "../Texture/TextureManager.h"
@@ -18,7 +18,6 @@ PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vert
 		DescriptorHeap::Create(device->GetDevice(), 1 + materialCount * 4 + 1))
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
 	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
-	, mTextureLoader(TextureLoader::Create(device))
 {
 }
 
@@ -73,8 +72,7 @@ void PMXModelData::LoadModelTexture(const std::vector<PMX::Texture>& textures, c
 	mTextureHandle.resize(textures.size());
 	for (unsigned int i = 0; i < mTextureHandle.size(); ++i)
 	{
-		auto modelTexturePath = modelFilePath.substr(0, max( modelFilePath.find_last_of('/')+1, modelFilePath.find_last_of('\\') + 1 ) ) + textures[i].texturePath;
-		mTextureHandle[i] = mTextureLoader->Load(modelTexturePath);
+		mTextureHandle[i] = textures[i].textureHandle;
 	}
 }
 

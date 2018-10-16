@@ -3,10 +3,11 @@
 #include "../Debug/DebugLayer.h"
 #include <cstdio>
 #include <iostream>
-
+#include "../Texture/TextureLoader.h"
 
 PMXLoader::PMXLoader(std::shared_ptr<Device> device)
 	: ModelLoader(device)
+	, mTextureLoader(TextureLoader::Create(device))
 {
 }
 
@@ -66,7 +67,7 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		LoadIndexData(modelDataDesc.indexies, modelDataDesc.header, fp);
 
 		// テクスチャ情報読み込み
-		LoadTextureData(modelDataDesc.textures, fp);
+		LoadTextureData(modelDataDesc.textures, modelDataDesc.modelFilePath, fp);
 
 		// マテリアル情報読み込み
 		LoadMaterial(modelDataDesc.materials, modelDataDesc.header, fp);
@@ -226,7 +227,7 @@ void PMXLoader::LoadIndexData(std::vector<PMX::Index>& indexData, const PMX::Hea
 	}
 }
 
-void PMXLoader::LoadTextureData(std::vector<PMX::Texture>& textureData, FILE * fp)
+void PMXLoader::LoadTextureData(std::vector<PMX::Texture>& textureData, const std::wstring& modelPath, FILE* fp)
 {
 	int textureNum;
 	fread(&textureNum, sizeof(textureNum), 1, fp);
@@ -234,7 +235,11 @@ void PMXLoader::LoadTextureData(std::vector<PMX::Texture>& textureData, FILE * f
 	for (auto& texture : textureData)
 	{
 		texture.texturePath = ReadTextBufWString(fp);
+
+		auto modelTexturePath = modelPath.substr(0, max(modelPath.find_last_of('/') + 1, modelPath.find_last_of('\\') + 1)) + texture.texturePath;
+		texture.textureHandle = mTextureLoader->Load(modelTexturePath);
 	}
+
 }
 
 void PMXLoader::LoadMaterial(std::vector<PMX::Material>& materialData, const PMX::Header & header, FILE * fp)

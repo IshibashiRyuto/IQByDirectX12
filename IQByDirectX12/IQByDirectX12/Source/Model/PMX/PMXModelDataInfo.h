@@ -72,6 +72,7 @@ namespace PMX
 	struct Texture
 	{
 		std::wstring texturePath;
+		int textureHandle;
 	};
 
 	struct Material

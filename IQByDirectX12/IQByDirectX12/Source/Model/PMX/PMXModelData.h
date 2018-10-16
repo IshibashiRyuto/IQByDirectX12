@@ -13,8 +13,8 @@
 #include <d3d12.h>
 
 // 自作ヘッダインクルード
-#include "../PMXModelDataInfo.h"
-#include "ModelData.h"
+#include "PMXModelDataInfo.h"
+#include "../ModelData.h"
 #include "../Math/Math.h"
 #include "../Pose.h"
 
@@ -67,7 +67,6 @@ private:
 	/* 変数宣言 */
 	std::shared_ptr<ConstantBuffer> mMaterialDataBuffer;			// マテリアルデータを保存する定数バッファ
 	std::vector<PMX::MaterialData>	mMaterialData;					// マテリアルデータ
-	std::shared_ptr<TextureLoader>	mTextureLoader;					// モデル用テクスチャローダ
 	std::vector<int>				mTextureHandle;					// テクスチャハンドル
 	std::shared_ptr<ConstantBuffer> mBoneMatrixDataBuffer;			// ボーン行列情報を保存する定数バッファ
 

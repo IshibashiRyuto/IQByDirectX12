@@ -9,8 +9,8 @@
 #include <d3d12.h>
 
 // 自作ヘッダインクルード
+#include "../ModelLoader.h"
 #include "PMXModelData.h"
-#include "ModelLoader.h"
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
@@ -34,6 +34,9 @@ private:
 	/* 定数定義 */
 	const std::string FILE_SIGNATURE = "PMX ";
 	const size_t SIGNATURE_SIZE = sizeof(char) * 4;
+
+	/* 変数宣言 */
+	std::shared_ptr<TextureLoader> mTextureLoader;
 
 	/* ローカルメソッド定義 */
 	/// @fn ReadTextBuf
@@ -77,8 +80,9 @@ private:
 	/// @fn LoadTextureData
 	/// テクスチャ情報を読み込む
 	/// @param[in] textureData	: テクスチャデータのベクタ
+	/// @param[in] modelPath	: モデルのファイルパス
 	/// @param[in] fp			: ファイルポインタ
-	void LoadTextureData(std::vector<PMX::Texture>& textureData, FILE* fp);
+	void LoadTextureData(std::vector<PMX::Texture>& textureData, const std::wstring& modelPath, FILE* fp);
 
 	/// @fn LoadMaterial
 	/// マテリアル情報を読み込む

@@ -12,8 +12,8 @@
 #include <d3d12.h>
 
 // 自作ヘッダインクルード
-#include "../Math/Math.h"
-#include "ModelData.h"
+#include "../../Math/Math.h"
+#include "../ModelData.h"
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
