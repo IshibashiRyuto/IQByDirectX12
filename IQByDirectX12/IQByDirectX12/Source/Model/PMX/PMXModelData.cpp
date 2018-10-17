@@ -106,19 +106,19 @@ void PMXModelData::SetMaterial(const std::vector<PMX::Material>& materials, cons
 		auto addSphereTexture = TextureManager::GetInstance().GetTexture(addSphereTextureIndex);
 		auto mulSphereTexture = TextureManager::GetInstance().GetTexture(mulSphereTextureIndex);
 
-		auto toonTextureHandle = TextureManager::BLACK_TEXTURE;
+		auto toonTextureHandle = shareToonTextureIndexies[0];
 		if (materials[i].shareToonFlag == 0)
 		{
 			if (materials[i].toonTextureIndex < mTextureHandle.size())
 			{
 				toonTextureHandle = mTextureHandle[materials[i].toonTextureIndex];
 			}
-			toonTextureHandle = TextureManager::BLACK_TEXTURE;
 		}
 		else
 		{
 			toonTextureHandle = shareToonTextureIndexies[materials[i].shareToonTexture + 1];
 		}
+
 
 		auto toonTexture = TextureManager::GetInstance().GetTexture(toonTextureHandle);
 

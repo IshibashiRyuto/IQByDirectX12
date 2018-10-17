@@ -68,7 +68,7 @@ float4 PSMain(PSInput input) : SV_Target
 	float3 vray = normalize(input.origPosition - eyePosition);
 	float3 up = float3 (0, 1, 0);
 	
-	float brightness = saturate( dot(input.normal, -light) );
+	float brightness =  dot(input.normal, -light);
     
 	float attenuation = 1.0f;
 
@@ -98,10 +98,10 @@ float4 PSMain(PSInput input) : SV_Target
 	
     float4 modelColor = saturate(float4(modelDiffuseColor + modelAmbientColor, diffuseColor.a));
     
-	modelColor = modelColor * mulSphereTexture.Sample(smp, sphereUV) +addSphereTexture.Sample(smp, sphereUV);
-    modelColor = saturate(modelColor + float4(modelSpecularColor, 0.0f));
     modelColor = modelColor * texColor * toonTexture.Sample(smp, float2(0.0f, saturate(normalRad / (3.141592f))));
+	modelColor = modelColor * mulSphereTexture.Sample(smp, sphereUV) + addSphereTexture.Sample(smp, sphereUV);
 
-    
+	modelColor = saturate(modelColor + float4(modelSpecularColor, 0.0f));
+
     return modelColor;
 }
