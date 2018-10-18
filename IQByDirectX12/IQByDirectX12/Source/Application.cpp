@@ -520,9 +520,9 @@ void Application::LoadPMD()
 	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/”—í—ì–²/reimu_G02.pmd");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/‰‰¹ƒ~ƒN.pmd");
-	mModelData = mModelLoader->LoadModel("Resource/Model/‰ä“ß”e‹¿v1.0/‰ä“ß”e‹¿v1.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/‰ä“ß”e‹¿v1.0/‰ä“ß”e‹¿v1.pmd");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/‰‰¹ƒ~ƒNmetal.pmd");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/hibari/‰_Ver1.10.pmd");
+	mModelData = mModelLoader->LoadModel("Resource/Model/hibari/‰_Ver1.10.pmd");
 	if (!mModelData)
 	{
 		return;

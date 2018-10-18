@@ -46,7 +46,7 @@ void PMDModelData::SetIndexData(const std::vector<unsigned short>& indexData)
 	mIndex = indexData;
 }
 
-void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath, const std::vector<int> shareToonTextureIndex)
+void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath, const std::vector<int>& shareToonTextureIndex)
 {
 	mMaterialCount = (unsigned int)materials.size();
 	mMaterials = materials;
@@ -113,7 +113,9 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 			}
 		}
 
-		auto toonTexture = TextureManager::GetInstance().GetTexture( shareToonTextureIndex[ static_cast<int>(materials[i].toonIndex + 1)] );
+		unsigned char toonIndex = materials[i].toonIndex + 1;
+
+		auto toonTexture = TextureManager::GetInstance().GetTexture( shareToonTextureIndex[ static_cast<int>(toonIndex)] );
 
 		mDescHeap->SetTexture(surfaceTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1 + 1);
 		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 2 + 1);

@@ -43,7 +43,8 @@ public:
 	/// @fn Load
 	/// テクスチャをロードし、テクスチャのハンドルを返す
 	/// @param[in] filePath : テクスチャのファイルパス
-	/// @retval int :		テクスチャ管理ハンドル
+	/// @retval 読み込み成功時 : テクスチャ管理ハンドル
+	/// @retval 読み込み失敗時 : -1
 	int Load(const std::string& filePath);
 	int Load(const std::wstring& filePath);
 private:

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "PMDLoader.h"
 #include "../Texture/TextureLoader.h"
+#include <array>
 
 
 PMDLoader::PMDLoader(std::shared_ptr<Device> device)
@@ -19,6 +20,102 @@ void PMDLoader::LoadShareToon(const std::string & toonFolderPath)
 	{
 		auto path = toonFolderPath + "/" + SHARE_TOON_PATH[i];
 		mShareToonTextureHandle[i] = mTextureLoader->Load(path);
+	}
+}
+
+void PMDLoader::LoadToonData(FILE * fp, std::vector<int>& toonTextureHandle, const std::string& modelPath)
+{
+	/*
+	// 先頭からヘッダ情報を読み飛ばし
+	fseek(fp, 283, SEEK_SET);
+
+	// 頂点情報を読み飛ばし
+	unsigned int vertCount = 0;
+	fread(&vertCount, sizeof(vertCount), 1, fp);
+	fseek(fp, vertCount * 38, SEEK_CUR);
+
+	// 頂点インデックスを読み飛ばす
+	unsigned int indexCount = 0;
+	fread(&indexCount, sizeof(indexCount), 1, fp);
+	fseek(fp, indexCount * sizeof(short), SEEK_CUR);
+	
+	// マテリアル情報を読み飛ばす
+	unsigned int materialCount = 0;
+	fread(&materialCount, sizeof(materialCount), 1, fp);
+	fseek(fp, materialCount * sizeof(PMDMaterial), SEEK_CUR);
+	*/
+	// ボーン情報を読み飛ばす
+	unsigned short boneCount;
+	fread(&boneCount, sizeof(boneCount), 1, fp);
+	fseek(fp, boneCount * 39, SEEK_CUR);
+
+	// IK情報を読み飛ばす
+	unsigned short ikDataCount;
+	fread(&ikDataCount, sizeof(ikDataCount), 1, fp);
+	for (unsigned short i = 0; i < ikDataCount; ++i)
+	{
+		unsigned char ikChainLength;
+		fseek(fp, 4, SEEK_CUR);
+		fread(&ikChainLength, sizeof(ikChainLength), 1, fp);
+		fseek(fp, 6 + ikChainLength * sizeof(unsigned short), SEEK_CUR);
+	}
+
+	// 表情データを読み飛ばす
+	unsigned short skinCount = 0;
+	fread(&skinCount, sizeof(skinCount), 1, fp);
+	for (int i = 0; i < skinCount; ++i)
+	{
+		fseek(fp, 20, SEEK_CUR);
+		unsigned int vertNum = 0;
+		fread(&vertNum, sizeof(vertNum), 1, fp);
+		fseek(fp, 1, SEEK_CUR);
+		fseek(fp, 16 * vertNum, SEEK_CUR);
+	}
+
+	// 表示用データ
+	unsigned char skinDispNum = 0;
+	fread(&skinDispNum, sizeof(skinDispNum), 1, fp);
+	fseek(fp, skinDispNum * sizeof(unsigned short), SEEK_CUR);
+
+	// 表示用ボーン名
+	unsigned char boneDispNum = 0;
+	fread(&boneDispNum, sizeof(boneDispNum), 1, fp);
+	fseek(fp, 50 * boneDispNum, SEEK_CUR);
+
+	// 表示ボーンリスト
+	unsigned int dispBoneNum = 0;
+	fread(&dispBoneNum, sizeof(dispBoneNum), 1, fp);
+	fseek(fp, 3 * dispBoneNum, SEEK_CUR);
+
+	// 英名
+	unsigned char englishFlg = 0;
+	fread(&englishFlg, sizeof(englishFlg), 1, fp);
+	if (englishFlg)
+	{
+		fseek(fp, 20 + 256, SEEK_CUR);
+
+		fseek(fp, boneCount * 20, SEEK_CUR);
+
+		fseek(fp, (skinCount - 1) * 20, SEEK_CUR);
+
+		fseek(fp, boneDispNum * 50, SEEK_CUR);
+	}
+
+	std::array<char[100], 10> toonTexNames;
+	fread(toonTexNames.data(), sizeof(char) * 100, toonTexNames.size(), fp);
+	toonTextureHandle.resize(toonTexNames.size() + 1);
+	toonTextureHandle[0] = TextureManager::WHITE_TEXTURE;
+
+	for (int i = 0; i < toonTexNames.size(); ++i)
+	{
+		std::string toonPath(toonTexNames[i]);
+		toonPath = modelPath.substr(0, modelPath.rfind('/') + 1) + toonPath;
+		int toonHandle = mTextureLoader->Load(toonPath);
+		if (toonHandle < 0)
+		{
+			toonHandle = mShareToonTextureHandle[i + 1];
+		}
+		toonTextureHandle[i + 1] = toonHandle;
 	}
 }
 
@@ -97,11 +194,14 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 
 		// ボーン情報読み込み
 
+		// toon情報読み込み(仮)
+		std::vector<int> toonTextureHandle;
+		LoadToonData(fp, toonTextureHandle, filePath);
 
 		fclose(fp);
 
 		/// モデルデータの生成、登録
-		auto modelData = PMDModelData::Create(mDevice, modelInfo, mShareToonTextureHandle);
+		auto modelData = PMDModelData::Create(mDevice, modelInfo, toonTextureHandle);
 
 		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
 	}

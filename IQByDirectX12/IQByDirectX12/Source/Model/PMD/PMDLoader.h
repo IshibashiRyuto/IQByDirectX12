@@ -48,5 +48,7 @@ private:
 	void LoadBone(FILE *fp);
 
 	void LoadShareToon(const std::string& toonFolderPath);
+
+	void LoadToonData(FILE *fp, std::vector<int>& toonTextureHandle, const std::string& modelPath);
 };
 
