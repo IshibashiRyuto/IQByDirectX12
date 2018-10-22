@@ -529,6 +529,12 @@ Matrix4x4 Math::CreateLookAtMatrix(const Vector3 & eye, const Vector3 & target, 
 	);
 }
 
+Matrix4x4 Math::CreateLookAtMatrix(const Vector3 & eyePos, const Quaternion & direction, const Vector3 & upper)
+{
+	auto dirVec = (direction * Quaternion(Vector3(0.0f, 0.0f, 1.0f)) * CreateConjugateQuaternion(direction)).v;
+	return Math::CreateLookAtMatrix(eyePos, eyePos + dirVec, upper);
+}
+
 Matrix4x4 Math::CreateLookAtMatrixFromCameraMatrix(const Matrix4x4 & cameraMatrix)
 {
 	auto retMatrix = GetTransposeMatrix(cameraMatrix);

@@ -244,6 +244,10 @@ namespace Math
 	/// 視点、注視点、上方向ベクトルからLookAt行列を作成する
 	Matrix4x4 CreateLookAtMatrix(const Vector3& eye, const Vector3& target, const Vector3& upper);
 
+	/// 視点、向き、上方向ベクトルからLookAt行列を作成する
+	/// @note 向きはz軸正向きをデフォルトとする回転
+	Matrix4x4 CreateLookAtMatrix(const Vector3& eyePos, const Quaternion& direction, const Vector3& upper);
+
 	/// カメラ行列からLookAt行列を作成する
 	Matrix4x4 CreateLookAtMatrixFromCameraMatrix(const Matrix4x4& cameraMatrix);
 

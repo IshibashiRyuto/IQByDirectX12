@@ -160,6 +160,7 @@ bool Application::Initialize(const Window & window)
 
 void Application::Render()
 {
+	UpdateMatrix();
 
 	////debug
 	static float t = 0;
@@ -498,19 +499,14 @@ void Application::SetWVPMatrix()
 {
 	if (mConstantBuffer != nullptr)
 	{
-		mWorldMatrix = Math::CreateIdent();
-		mViewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -50.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
-		mProjectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/8.0f);
-		mAffineMatrix = (mWorldMatrix * mViewMatrix) * mProjectionMatrix;
-		
-		DirectX::XMMATRIX data[4];
-		data[0] = ConvertMatrix4x4ToXMMATRIX(mAffineMatrix);
-		data[1] = ConvertMatrix4x4ToXMMATRIX(mWorldMatrix);
-		data[2] = ConvertMatrix4x4ToXMMATRIX(mViewMatrix);
-		data[3] = ConvertMatrix4x4ToXMMATRIX(mProjectionMatrix);
+		mMatrixes.worldMatrix = Math::CreateIdent();
+		mMatrixes.viewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -50.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
+		mMatrixes.projectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/8.0f);
+		mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
 
+		mCameraRot = Math::GetMatrixRotation(mMatrixes.viewMatrix);
 
-		mConstantBuffer->SetData(data, sizeof(DirectX::XMMATRIX) * 4, 0);
+		mConstantBuffer->SetData(&mMatrixes, sizeof(mMatrixes), 0);
 		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 }
@@ -567,4 +563,12 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
+}
+
+void Application::UpdateMatrix()
+{
+	mCameraRot *= Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 300.0f, 0.0f));
+	mMatrixes.viewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -50.0f), mCameraRot, Math::Vector3(0.0f, 1.0f, 0.0f));
+	mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
+	mConstantBuffer->SetData(&mMatrixes, sizeof(mMatrixes));
 }

@@ -92,11 +92,18 @@ private:
 
 	std::shared_ptr<Keyboard>			mKeyboard;
 
-	Math::Matrix4x4 mWorldMatrix;
-	Math::Matrix4x4 mViewMatrix;
-	Math::Matrix4x4 mProjectionMatrix;
-	Math::Matrix4x4 mAffineMatrix;
+	
 
+	struct WVPMat
+	{
+		Math::Matrix4x4 affineMatrix;
+		Math::Matrix4x4 worldMatrix;
+		Math::Matrix4x4 viewMatrix;
+		Math::Matrix4x4 projectionMatrix;
+	};
+
+	WVPMat mMatrixes;
+	Math::Quaternion mCameraRot;
 
 	int mWindowWidth;
 	int mWindowHeight;
@@ -157,5 +164,8 @@ private:
 
 	/// @brief モーションデータをロードする
 	void LoadMotion();
+
+	/// @brief 行列情報を更新する
+	void UpdateMatrix();
 };
 
