@@ -6,6 +6,7 @@
 
 /// @date
 /// 2018/09/11	operator*=‚ÌƒoƒN‚ğC³
+/// 2018/10/22	CreateRotVecToVec‚Ì‰ñ“]‚ª‰EèŒnŠî€‚É‚È‚Á‚Ä‚¢‚½‚½‚ßC³
 
 using namespace Math;
 
@@ -170,6 +171,11 @@ Quaternion Math::operator/(const Quaternion & quat, float scale)
 	return Quaternion(quat)/=scale;
 }
 
+Quaternion Math::CreateIdentQuaternion()
+{
+	return Quaternion(1.0f,0.0f,0.0f,0.0f);
+}
+
 Quaternion Math::CreateInvertQuaternion(const Quaternion & quat)
 {
 	return CreateConjugateQuaternion(quat) /= quat.NormSquare();
@@ -202,7 +208,7 @@ Quaternion Math::CreateRotVecToVec(const Vector3 & dstVec, const Vector3 & srcVe
 {
 	auto rotAxis = Cross(dstVec, srcVec);
 	auto rotAngle = CalcAngleVecToVec(dstVec, srcVec);
-	return CreateRotAxisQuaternion(rotAxis, rotAngle);
+	return CreateRotAxisQuaternion(-rotAxis, rotAngle);
 }
 
 Quaternion Math::Lerp(const Quaternion & q1, const Quaternion q2, float t)

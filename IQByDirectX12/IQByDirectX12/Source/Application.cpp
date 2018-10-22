@@ -33,6 +33,7 @@
 #include "GraphicsCommandList.h"
 #include "Input/Keyboard.h"
 #include "Debug/DebugLayer.h"
+#include "Camera/Camera.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -499,9 +500,20 @@ void Application::SetWVPMatrix()
 {
 	if (mConstantBuffer != nullptr)
 	{
+		/// 射影行列のパラメータ設定
+		ProjectionParam projParam;
+		projParam.aspect = (float)mWindowWidth / (float)mWindowHeight;
+		projParam.nearZ = 1.0f;
+		projParam.farZ = 300.0f;
+		projParam.fov = Math::F_PI / 8.0f;
+
+		mCamera = Camera::Create(Math::Vector3(0.0f, 15.0f, -50.0f),  Math::Vector3(0.0f, 10.0f, 0.0f) - Math::Vector3(0.0f, 15.0f, -50.0f), ProjectionType::Perspective, projParam);
+		mCamera->SetTargetPos(Math::Vector3(0.0f, 10.0f, 0.0f));
+		mCamera->UpdateMatrix();
 		mMatrixes.worldMatrix = Math::CreateIdent();
-		mMatrixes.viewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -50.0f), Math::Vector3(0.0f, 10.0f, 0.0f), Math::Vector3(0.0f, 1.0f, 0.0f));
 		mMatrixes.projectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/8.0f);
+		mMatrixes.viewMatrix = mCamera->GetViewMatrix();
+
 		mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
 
 		mCameraRot = Math::GetMatrixRotation(mMatrixes.viewMatrix);
@@ -567,8 +579,9 @@ void Application::LoadMotion()
 
 void Application::UpdateMatrix()
 {
-	mCameraRot *= Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 300.0f, 0.0f));
-	mMatrixes.viewMatrix = Math::CreateLookAtMatrix(Math::Vector3(0.0f, 15.0f, -50.0f), mCameraRot, Math::Vector3(0.0f, 1.0f, 0.0f));
+	mCamera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 300.0f, 0.0f)));
+	mCamera->UpdateMatrix();
+	mMatrixes.viewMatrix = mCamera->GetViewMatrix();
 	mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
 	mConstantBuffer->SetData(&mMatrixes, sizeof(mMatrixes));
 }

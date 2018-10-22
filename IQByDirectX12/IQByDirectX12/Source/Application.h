@@ -36,6 +36,8 @@ class Animation;
 class Keyboard;
 class GraphicsCommandList;
 
+class Camera;
+
 using Microsoft::WRL::ComPtr;
 
 struct Vertex
@@ -91,6 +93,7 @@ private:
 	std::vector<std::shared_ptr<Model>>		mInstancingTestModels;
 
 	std::shared_ptr<Keyboard>			mKeyboard;
+	std::shared_ptr<Camera>				mCamera;
 
 	
 

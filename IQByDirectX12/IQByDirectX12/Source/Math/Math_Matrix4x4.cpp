@@ -559,3 +559,14 @@ Matrix4x4 Math::CreatePerspectiveMatrix(float aspect, float nearZ, float farZ, f
 	);
 }
 
+Matrix4x4 Math::CreateOrthoGraphicMatrix(float aspect, float nearZ, float farZ)
+{
+	return Matrix4x4
+	(
+		aspect, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, farZ/(farZ - nearZ), 1.0f,
+		0.0f, 0.0f, -(nearZ*farZ)/(farZ-nearZ), 0.0f
+	);
+}
+

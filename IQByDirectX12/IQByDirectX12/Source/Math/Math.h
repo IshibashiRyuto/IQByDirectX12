@@ -8,6 +8,7 @@
 		・LookAt行列の生成
 		・Perspective行列の生成
 	2018/10/03	データ量削減のため4x3行列を追加
+	2018/10/22	Perspective行列,OrthoGraphic行列,単位クォータニオン生成関数を追加
 */
 #pragma once
 namespace Math
@@ -254,6 +255,9 @@ namespace Math
 	/// アスペクト比、前面クリップ面、後方クリップ面、画角からパースペクティブ行列を作成する
 	Matrix4x4 CreatePerspectiveMatrix(float Aspect, float nearZ, float farZ, float fov);
 
+	/// アスペクト比、前面クリップ面、後方クリップ面から平行投影行列を作成する
+	Matrix4x4 CreateOrthoGraphicMatrix(float aspect, float nearZ, float farZ);
+
 
 	/// @struct Matrix4x3
 	/// 4x3行列を表す構造体
@@ -352,6 +356,9 @@ namespace Math
 	Quaternion operator*(float scale, const Quaternion& quat);
 	Quaternion operator/(const Quaternion& q1, const Quaternion& q2);
 	Quaternion operator/(const Quaternion& quat, float scale);
+
+	/// 単位クォータニオンを作成する
+	Quaternion CreateIdentQuaternion();
 
 	/// 逆四元数を作成する
 	Quaternion CreateInvertQuaternion(const Quaternion& quat);
