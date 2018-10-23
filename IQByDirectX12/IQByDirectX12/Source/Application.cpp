@@ -502,17 +502,21 @@ void Application::SetWVPMatrix()
 	{
 		/// 射影行列のパラメータ設定
 		ProjectionParam projParam;
-		projParam.aspect = (float)mWindowWidth / (float)mWindowHeight;
+		projParam.width = (float)mWindowWidth;
+		projParam.height = (float)mWindowHeight;
 		projParam.nearZ = 1.0f;
 		projParam.farZ = 300.0f;
 		projParam.fov = Math::F_PI / 8.0f;
 
-		mCamera = Camera::Create(Math::Vector3(0.0f, 15.0f, -50.0f),  Math::Vector3(0.0f, 10.0f, 0.0f) - Math::Vector3(0.0f, 15.0f, -50.0f), ProjectionType::Perspective, projParam);
+		mCamera = Camera::Create(Math::Vector3(0.0f, 30.0f, -50.0f),  Math::Vector3(0.0f, 10.0f, 0.0f) - Math::Vector3(0.0f, 30.0f, -50.0f), ProjectionType::Perspective, projParam);
 		mCamera->SetTargetPos(Math::Vector3(0.0f, 10.0f, 0.0f));
 		mCamera->UpdateMatrix();
 		mMatrixes.worldMatrix = Math::CreateIdent();
 		mMatrixes.projectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/8.0f);
+		mMatrixes.projectionMatrix = mCamera->GetProjMatrix();
 		mMatrixes.viewMatrix = mCamera->GetViewMatrix();
+
+		auto projMat = DirectX::XMMatrixOrthographicLH((float)mWindowWidth, (float)mWindowHeight, 1.0f, 300.0f);
 
 		mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
 
@@ -579,7 +583,7 @@ void Application::LoadMotion()
 
 void Application::UpdateMatrix()
 {
-	mCamera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 300.0f, 0.0f)));
+	//mCamera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 300.0f, 0.0f)));
 	mCamera->UpdateMatrix();
 	mMatrixes.viewMatrix = mCamera->GetViewMatrix();
 	mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;

@@ -256,7 +256,7 @@ namespace Math
 	Matrix4x4 CreatePerspectiveMatrix(float Aspect, float nearZ, float farZ, float fov);
 
 	/// アスペクト比、前面クリップ面、後方クリップ面から平行投影行列を作成する
-	Matrix4x4 CreateOrthoGraphicMatrix(float aspect, float nearZ, float farZ);
+	Matrix4x4 CreateOrthoGraphicMatrix(float width, float height, float nearZ, float farZ);
 
 
 	/// @struct Matrix4x3

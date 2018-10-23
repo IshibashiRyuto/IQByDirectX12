@@ -88,12 +88,12 @@ const Math::Matrix4x4 & Camera::GetProjMatrix() const
 
 Math::Matrix4x4 Camera::CreatePerspectiveMatrix(const ProjectionParam & projParam)
 {
-	return Math::CreatePerspectiveMatrix(projParam.aspect, projParam.nearZ, projParam.farZ, projParam.fov);
+	return Math::CreatePerspectiveMatrix(projParam.width/ projParam.height, projParam.nearZ, projParam.farZ, projParam.fov);
 }
 
 Math::Matrix4x4 Camera::CreateOrthographicMatrix(const ProjectionParam & projParam)
 {
-	return Math::CreateOrthoGraphicMatrix(projParam.aspect, projParam.nearZ, projParam.farZ);
+	return Math::CreateOrthoGraphicMatrix(projParam.width, projParam.height, projParam.nearZ, projParam.farZ);
 }
 
 void Camera::UpdateViewMat()

@@ -22,7 +22,8 @@ enum class ProjectionType
 /// @brief 射影行列の設定パラメータ
 struct ProjectionParam
 {
-	float aspect;
+	float width;
+	float height;
 	float fov;
 	float nearZ;
 	float farZ;
