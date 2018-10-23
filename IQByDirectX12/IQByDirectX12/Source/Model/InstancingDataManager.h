@@ -10,12 +10,12 @@
 #include <map>
 #include <memory>
 #include <wrl.h>
-#include <d3d12.h>
 
 // 自作ヘッダインクルード
 
 // クラス使用宣言
 class InstanceBuffer;
+class Device;
 using Microsoft::WRL::ComPtr;
 
 // 構造体定義
@@ -44,8 +44,8 @@ public:
 
 	/// @fn SetDevice
 	/// デバイスをセットする
-	/// @param[in] device	: ID3D12デバイス
-	void SetDevice(ComPtr<ID3D12Device> device);
+	/// @param[in] device	: デバイス
+	void SetDevice(std::shared_ptr<Device> device);
 
 	/// @fn SetInstanceData
 	/// インスタンシング用のデータをセットする
@@ -80,7 +80,7 @@ public:
 private:
 	/* メンバ変数定義 */
 	std::map<int, InstanceData> mInstanceDataMap;		// インスタンシングデータ管理用マップ
-	ComPtr<ID3D12Device> mDevice;						// ID3D12デバイス
+	std::shared_ptr<Device> mDevice;						// ID3D12デバイス
 
 	/* ローカルメソッド定義 */
 	// コンストラクタ

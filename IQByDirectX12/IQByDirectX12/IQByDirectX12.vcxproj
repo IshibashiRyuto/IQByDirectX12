@@ -22,9 +22,9 @@
     <ClCompile Include="Source\Camera\Camera.cpp" />
     <ClCompile Include="Source\Debug\DebugLayer.cpp" />
     <ClCompile Include="Source\PipelineStateObject.cpp" />
-    <ClCompile Include="Source\Animation.cpp" />
+    <ClCompile Include="Source\Motion\Animation.cpp" />
     <ClCompile Include="Source\Application.cpp" />
-    <ClCompile Include="Source\Bone.cpp" />
+    <ClCompile Include="Source\Motion\Bone.cpp" />
     <ClCompile Include="Source\CommandAllocator.cpp" />
     <ClCompile Include="Source\CommandQueue.cpp" />
     <ClCompile Include="Source\ConstantBuffer.cpp" />
@@ -56,7 +56,7 @@
     <ClCompile Include="Source\Model\PMD\PMDModelData.cpp" />
     <ClCompile Include="Source\Model\PMX\PMXLoader.cpp" />
     <ClCompile Include="Source\Model\PMX\PMXModelData.cpp" />
-    <ClCompile Include="Source\Pose.cpp" />
+    <ClCompile Include="Source\Motion\Pose.cpp" />
     <ClCompile Include="Source\RenderTarget.cpp" />
     <ClCompile Include="Source\RootSignature.cpp" />
     <ClCompile Include="Source\Sampler.cpp" />
@@ -67,17 +67,17 @@
     <ClCompile Include="Source\Texture\TextureManager.cpp" />
     <ClCompile Include="Source\Texture\WICTextureLoader\WICTextureLoader12.cpp" />
     <ClCompile Include="Source\VertexBuffer.cpp" />
-    <ClCompile Include="Source\VMDData.cpp" />
-    <ClCompile Include="Source\VMDLoader.cpp" />
+    <ClCompile Include="Source\Motion\VMDData.cpp" />
+    <ClCompile Include="Source\Motion\VMDLoader.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Camera\Camera.h" />
     <ClInclude Include="Source\Debug\DebugLayer.h" />
     <ClInclude Include="Source\PipelineStateObject.h" />
-    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Motion\Animation.h" />
     <ClInclude Include="Source\Application.h" />
-    <ClInclude Include="Source\Bone.h" />
+    <ClInclude Include="Source\Motion\Bone.h" />
     <ClInclude Include="Source\CommandAllocator.h" />
     <ClInclude Include="Source\CommandQueue.h" />
     <ClInclude Include="Source\ConstantBuffer.h" />
@@ -103,7 +103,7 @@
     <ClInclude Include="Source\Model\PMX\PMXLoader.h" />
     <ClInclude Include="Source\Model\PMX\PMXModelData.h" />
     <ClInclude Include="Source\Model\PMX\PMXModelDataInfo.h" />
-    <ClInclude Include="Source\Pose.h" />
+    <ClInclude Include="Source\Motion\Pose.h" />
     <ClInclude Include="Source\RenderState.h" />
     <ClInclude Include="Source\RenderTarget.h" />
     <ClInclude Include="Source\RootSignature.h" />
@@ -115,8 +115,8 @@
     <ClInclude Include="Source\Texture\TextureManager.h" />
     <ClInclude Include="Source\Texture\WICTextureLoader\WICTextureLoader12.h" />
     <ClInclude Include="Source\VertexBuffer.h" />
-    <ClInclude Include="Source\VMDData.h" />
-    <ClInclude Include="Source\VMDLoader.h" />
+    <ClInclude Include="Source\Motion\VMDData.h" />
+    <ClInclude Include="Source\Motion\VMDLoader.h" />
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>

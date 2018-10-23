@@ -11,7 +11,7 @@ InstancingDataManager::~InstancingDataManager()
 {
 }
 
-void InstancingDataManager::SetDevice(ComPtr<ID3D12Device> device)
+void InstancingDataManager::SetDevice(std::shared_ptr<Device> device)
 {
 	mDevice = device;
 }

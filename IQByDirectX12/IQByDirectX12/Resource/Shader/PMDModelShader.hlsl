@@ -22,11 +22,19 @@ cbuffer material : register(b1)
 	uint sphereFlag;
 }
 
+
+cbuffer boneMatrix : register(b2)
+{
+	float4x4 boneMatrix[512];
+}
+
 struct VSInput
 {
 	float3 position     : POSITION0;
 	float3 normal       : NORMAL;
 	float2 uv           : TEXCOORD;
+	min16uint2	boneno	: BONENO;
+	min16uint	weight	: WEIGHT;
 	float4x4 modelMatrix : INSTANCE_MATRIX;
 };
 
@@ -44,13 +52,22 @@ VSOutput VSMain(VSInput input)
 {
 	VSOutput output;
 
-	output.position = mul(wvp, mul(input.modelMatrix, float4(input.position, 1.0f)));
-	output.origPosition = mul(world, mul(input.modelMatrix, float4(input.position, 1.0f)));
+	float w = input.weight / 100.f;
+	uint idx1 = input.boneno.x;
+	uint idx2 = input.boneno.y;
 
-	output.normal = normalize(mul(world,mul(input.modelMatrix, float4(input.normal, 0.0f))).xyz);
+	float4x4 localModelMatrix = { 1.0f, 0.0f, 0.0f, 0.0f,
+						0.0f, 1.0f, 0.0f, 0.0f,
+						0.0f, 0.0f, 1.0f, 0.0f,
+						0.0f, 0.0f, 0.0f, 1.0f };
+	localModelMatrix = boneMatrix[0];// *w + boneMatrix[0] * (1.0f - w);
+
+	output.position = mul(wvp, mul(input.modelMatrix, mul(localModelMatrix, float4(input.position, 1.0f))));
+	output.origPosition = mul(world, mul(input.modelMatrix,mul(localModelMatrix, float4(input.position, 1.0f))));
+
+	output.normal = normalize(mul(world,mul(input.modelMatrix, mul(localModelMatrix,float4(input.normal, 0.0f)))).xyz);
 
 	output.uv = input.uv;
-
 
 	return output;
 }

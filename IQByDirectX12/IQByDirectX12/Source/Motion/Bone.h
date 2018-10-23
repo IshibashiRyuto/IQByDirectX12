@@ -11,7 +11,7 @@
 #include <memory>
 
 // 自作ヘッダインクルード
-#include "Math/Math.h"
+#include "../Math/Math.h"
 
 class Bone
 {

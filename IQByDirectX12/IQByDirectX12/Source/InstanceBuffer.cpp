@@ -2,6 +2,7 @@
 #include <d3dx12.h>
 #include "InstanceBuffer.h"
 #include "Debug\DebugLayer.h"
+#include "Device.h"
 
 
 InstanceBuffer::InstanceBuffer()
@@ -14,7 +15,7 @@ InstanceBuffer::~InstanceBuffer()
 	mInstanceBuffer->Unmap(0, nullptr);
 }
 
-std::shared_ptr<InstanceBuffer> InstanceBuffer::Create(ComPtr<ID3D12Device> device, size_t instanceDataSize, int maxInstanceCount)
+std::shared_ptr<InstanceBuffer> InstanceBuffer::Create(std::shared_ptr<Device> device, size_t instanceDataSize, int maxInstanceCount)
 {
 	auto instanceBuffer = std::shared_ptr<InstanceBuffer>(new InstanceBuffer());
 	// バッファリソース作成
@@ -23,7 +24,7 @@ std::shared_ptr<InstanceBuffer> InstanceBuffer::Create(ComPtr<ID3D12Device> devi
 		// リソースステートのGENERIC_READは非推奨。
 		// 詳しい調査をしていないため、今回は仮として使っている。
 		// 後日修正予定
-		auto result = device->CreateCommittedResource(
+		auto result = (*device)->CreateCommittedResource(
 			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
 			D3D12_HEAP_FLAG_NONE,
 			&CD3DX12_RESOURCE_DESC::Buffer(instanceDataSize * maxInstanceCount),

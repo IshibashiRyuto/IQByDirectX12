@@ -12,7 +12,7 @@
 #include <string>
 
 // 自作ヘッダインクルード
-#include "Math\Math.h"
+#include "../Math\Math.h"
 
 #pragma pack(1)
 

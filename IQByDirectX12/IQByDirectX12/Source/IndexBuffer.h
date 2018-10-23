@@ -15,6 +15,7 @@
 
 // クラス前方宣言
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class IndexBuffer
 {
@@ -29,7 +30,7 @@ public:
 	/// @param[in] indexCount: インデックスの数
 	/// @param[in] indexSize: インデックス1つ当たりのサイズ(sizeofで取得)
 	/// @retval 生成成功: VertexBufferのshared_ptr, 生成失敗: nullptr
-	static std::shared_ptr<IndexBuffer> Create(ComPtr<ID3D12Device> device, void* pIndexResource, size_t indexCount, size_t indexSize);
+	static std::shared_ptr<IndexBuffer> Create(std::shared_ptr<Device> device, void* pIndexResource, size_t indexCount, size_t indexSize);
 
 	const D3D12_INDEX_BUFFER_VIEW& GetIndexBufferView();
 

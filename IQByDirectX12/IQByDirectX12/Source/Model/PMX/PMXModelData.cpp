@@ -7,8 +7,8 @@
 #include "../InstanceBuffer.h"
 #include "../Texture/TextureLoader.h"
 #include "../Texture/TextureManager.h"
-#include "../Pose.h"
-#include "../Bone.h"
+#include "../Motion/Pose.h"
+#include "../Motion/Bone.h"
 #include "../Device.h"
 #include <algorithm>
 
@@ -16,8 +16,8 @@ const int MATERIAL_HEAP_STRIDE = 5;		// É}ÉeÉäÉAÉã1óvëfìñÇΩÇËÇÃÉqÅ[ÉvÇÃÉXÉgÉâÉCÉ
 
 PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
 	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
-		IndexBuffer::Create(device->GetDevice(), indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device->GetDevice(), 1 + materialCount * MATERIAL_HEAP_STRIDE + 1))
+		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
+		DescriptorHeap::Create(device, 1 + materialCount * MATERIAL_HEAP_STRIDE + 1))
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
 	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
 {
@@ -135,6 +135,13 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 	for (unsigned int i = 0; i < bones.size(); ++i)
 	{
 		auto bone = Bone::Create(bones[i].position);
+
+
+		if (i == 5)
+		{
+			bone->Rotate(Math::CreateZRotMatrix(0.5f));
+		}
+
 		if (bones[i].axisFixed)
 		{
 			bone->SetLimitAxis(true, bones[i].axisVector);
@@ -150,6 +157,7 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 	}
 
 	std::vector<Math::Matrix4x4> boneMatrixes;
+	mPose->CalcPose();
 	auto poseBones = mPose->GetBones();
 
 	boneMatrixes.resize(poseBones.size());

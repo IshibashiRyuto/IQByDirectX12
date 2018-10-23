@@ -13,6 +13,7 @@
 /*前方宣言*/
 using Microsoft::WRL::ComPtr;
 class Texture;
+class Device;
 
 class DescriptorHeap
 {
@@ -27,14 +28,14 @@ public:
 	/// @param[in]	desc		デスクリプタヒープの設定
 	/// @retval		生成成功	DescriptorHeapのポインタ
 	/// @retval		生成失敗	nullptr
-	static std::shared_ptr<DescriptorHeap> Create(ComPtr<ID3D12Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& desc);
+	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& desc);
 
 	/// @fn Create
 	/// ディスクリプタヒープの作成
 	/// @note DescriptorHeapはこのメソッドを通じてのみ作成可能
 	/// @param[in] device			デバイス
 	/// @param[in] descriptorNum	セット可能なデスクリプタの個数
-	static std::shared_ptr<DescriptorHeap> Create(ComPtr<ID3D12Device> device, UINT numDescriptors);
+	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, UINT numDescriptors);
 
 	/// @fn SetConstantBufferView
 	/// コンスタントバッファビューをセットする
@@ -78,7 +79,7 @@ private:
 	const UINT HEAP_STRIDE;
 
 	/*変数定義*/
-	ComPtr<ID3D12Device>			mDevice;			//! デバイス
+	std::shared_ptr<Device>			mDevice;			//! デバイス
 	ComPtr<ID3D12DescriptorHeap>	mDescriptorHeap;	//! ディスクリプタヒープの実態
 	UINT							mNumDescriptors;		//! ディスクリプタの数
 	ComPtr<ID3D12GraphicsCommandList>	mGraphicsCommandList;	//!	描画コマンドリスト
@@ -86,7 +87,7 @@ private:
 	/*ローカルメソッド*/
 
 	/// コンストラクタ
-	DescriptorHeap(ComPtr<ID3D12Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc);
+	DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc);
 
 };
 

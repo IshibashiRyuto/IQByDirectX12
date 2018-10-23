@@ -8,16 +8,20 @@
 #include "../Device.h"
 #include "../Texture//TextureLoader.h"
 #include "../Texture/TextureManager.h"
+#include "../Motion/Pose.h"
+#include "../Motion/Bone.h"
+#include "../ConvertString.h"
 
 PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex)
 	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
-		IndexBuffer::Create(device->GetDevice(), (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
-		DescriptorHeap::Create(device->GetDevice(), 1 + (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
+		IndexBuffer::Create(device, (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
+		DescriptorHeap::Create(device, 1 + (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
 	, mTextureLoader(TextureLoader::Create(device))
 {
 	SetVertexData(modelInfo.vertexData);
 	SetIndexData(modelInfo.indexData);
 	SetMaterialData(device, modelInfo.materials, modelInfo.modelPath, shareToonTextureIndex);
+	SetBoneData(device, modelInfo.boneData);
 }
 
 PMDModelData::~PMDModelData()
@@ -124,6 +128,37 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 	}
 }
 
+void PMDModelData::SetBoneData(std::shared_ptr<Device> device, const std::vector<PMDBone>& boneData)
+{
+	mBoneHeap = DescriptorHeap::Create(device, 1);
+	mBoneMatrixBuffer = ConstantBuffer::Create(device, sizeof(Math::Matrix4x4) * boneData.size(), 1);
+	mPose = Pose::Create(boneData.size());
+	for (unsigned int i = 0; i < boneData.size(); ++i)
+	{
+		auto boneName = ConvertStringToWString(std::string(boneData[i].boneName));
+		auto bone = Bone::Create(boneData[i].headPos);
+		if (boneData[i].parentBoneIndex < boneData.size())
+		{
+			mPose->SetBoneData(boneName, bone, i, boneData[i].parentBoneIndex);
+		}
+		else
+		{
+			mPose->SetBoneData(boneName, bone, i);
+		}
+	}
+
+	std::vector<Math::Matrix4x4> boneMatrixes;
+	auto poseBones = mPose->GetBones();
+	boneMatrixes.resize(poseBones.size());
+	for (int i = 0; i < boneMatrixes.size(); ++i)
+	{
+		boneMatrixes[i] = Math::CreateYRotMatrix(Math::F_PI / 4);
+			// poseBones[i]->GetBoneMatrix();
+	}
+	mBoneMatrixBuffer->SetData(boneMatrixes.data(), static_cast<UINT>(sizeof(Math::Matrix4x4) * boneMatrixes.size()));
+	mBoneHeap->SetConstantBufferView(mBoneMatrixBuffer->GetConstantBufferView(), 0);
+}
+
 void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData & instanceData) const
 {
 	mDescHeap->BindGraphicsCommandList(commandList);
@@ -132,10 +167,13 @@ void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const Ins
 	commandList->IASetVertexBuffers(0, 2, vbViews);
 	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
 
+	mBoneHeap->BindGraphicsCommandList(commandList);
+	mBoneHeap->BindRootDescriptorTable(2, 0);
+
+	mDescHeap->BindGraphicsCommandList(commandList);
 	int indexOffset = 0;
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
-		//if (i == 11) continue;
 		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_SHADER_RESOURCE_NUM + 1);
 		commandList->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterials[i].faceVertexCount;

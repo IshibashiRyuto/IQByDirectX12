@@ -9,10 +9,6 @@ PMDLoader::PMDLoader(std::shared_ptr<Device> device)
 {
 }
 
-void PMDLoader::LoadBone(FILE *fp)
-{
-}
-
 void PMDLoader::LoadShareToon(const std::string & toonFolderPath)
 {
 	mShareToonTextureHandle.resize(SHARE_TOON_NUM);
@@ -25,9 +21,9 @@ void PMDLoader::LoadShareToon(const std::string & toonFolderPath)
 
 void PMDLoader::LoadToonData(FILE * fp, std::vector<int>& toonTextureHandle, const std::string& modelPath)
 {
-	/*
+	fseek(fp, 0, SEEK_SET);
 	// 先頭からヘッダ情報を読み飛ばし
-	fseek(fp, 283, SEEK_SET);
+	fseek(fp, 283, SEEK_CUR);
 
 	// 頂点情報を読み飛ばし
 	unsigned int vertCount = 0;
@@ -43,8 +39,7 @@ void PMDLoader::LoadToonData(FILE * fp, std::vector<int>& toonTextureHandle, con
 	unsigned int materialCount = 0;
 	fread(&materialCount, sizeof(materialCount), 1, fp);
 	fseek(fp, materialCount * sizeof(PMDMaterial), SEEK_CUR);
-	*/
-	// ボーン情報を読み飛ばす
+
 	unsigned short boneCount;
 	fread(&boneCount, sizeof(boneCount), 1, fp);
 	fseek(fp, boneCount * 39, SEEK_CUR);
@@ -148,6 +143,7 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 		unsigned int vertexCount;
 		unsigned int indexCount;
 		unsigned int materialCount;
+		unsigned short boneCount;
 		PMDHeader pmdHeader;
 
 		// ファイルを開く
@@ -193,6 +189,10 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath)
 		fread(modelInfo.materials.data(), sizeof(PMDMaterial), materialCount, fp);
 
 		// ボーン情報読み込み
+		fread(&boneCount, sizeof(boneCount), 1, fp);
+		modelInfo.boneData.resize(boneCount);
+		fread(modelInfo.boneData.data(), sizeof(PMDBone), boneCount, fp);
+
 
 		// toon情報読み込み(仮)
 		std::vector<int> toonTextureHandle;

@@ -1,6 +1,7 @@
 #include <d3dx12.h>
 #include <iostream>
 #include "IndexBuffer.h"
+#include "Device.h"
 #include "Debug\DebugLayer.h"
 
 
@@ -14,7 +15,7 @@ IndexBuffer::~IndexBuffer()
 {
 }
 
-std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, void * pIndexResource, size_t indexCount, size_t indexSize)
+std::shared_ptr<IndexBuffer> IndexBuffer::Create(std::shared_ptr<Device> device, void * pIndexResource, size_t indexCount, size_t indexSize)
 {
 	auto indexBuffer = std::shared_ptr<IndexBuffer>(new IndexBuffer());
 	indexBuffer->mIndexCount = (unsigned int)indexCount;
@@ -25,7 +26,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(ComPtr<ID3D12Device> device, vo
 		// Ú‚µ‚¢’²¸‚ð‚µ‚Ä‚¢‚È‚¢‚½‚ßA¡‰ñ‚Í‰¼‚Æ‚µ‚ÄŽg‚Á‚Ä‚¢‚éB
 		// Œã“úC³—\’è
 
-		auto result = device->CreateCommittedResource(&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+		auto result = (*device)->CreateCommittedResource(&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
 			D3D12_HEAP_FLAG_NONE,
 			&CD3DX12_RESOURCE_DESC::Buffer(indexSize * indexCount),
 			D3D12_RESOURCE_STATE_GENERIC_READ,

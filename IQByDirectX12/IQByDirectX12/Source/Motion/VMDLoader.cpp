@@ -7,7 +7,7 @@
 #include "VMDData.h"
 #include "Animation.h"
 #include "Bone.h"
-#include "ConvertString.h"
+#include "../ConvertString.h"
 
 
 VMDLoader::VMDLoader()

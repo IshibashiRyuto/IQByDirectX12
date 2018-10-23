@@ -76,10 +76,10 @@ struct PMDShaderMaterialData
 struct PMDBone
 {
 	char boneName[20];
-	unsigned int parentBoneIndex;
-	unsigned int tailBoneIndex;
+	unsigned short parentBoneIndex;
+	unsigned short tailBoneIndex;
 	unsigned char boneType;
-	unsigned int ikParentBoneIndex;
+	unsigned short ikParentBoneIndex;
 	Math::Vector3 headPos;
 };
 
@@ -87,10 +87,11 @@ struct PMDBone
 
 struct PMDModelInfo
 {
-	std::string modelPath;
-	std::vector<PMDVertex> vertexData;
+	std::string					modelPath;
+	std::vector<PMDVertex>		vertexData;
 	std::vector<unsigned short> indexData;
-	std::vector<PMDMaterial> materials;
+	std::vector<PMDMaterial>	materials;
+	std::vector<PMDBone>		boneData;
 };
 
 class PMDModelData : public ModelData
@@ -107,6 +108,8 @@ public:
 
 	void SetMaterialData(std::shared_ptr<Device> device, const std::vector<PMDMaterial>& materials, const std::string& modelPath, const std::vector<int>& shareToonTextureIndex);
 
+	void SetBoneData(std::shared_ptr<Device> device, const std::vector<PMDBone>& mBone);
+
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
@@ -118,7 +121,9 @@ private:
 	std::vector<unsigned short>		mIndex;			// インデックスデータ
 	unsigned int					mMaterialCount;	// マテリアル数
 	std::vector<PMDMaterial>		mMaterials;		// マテリアルデータ
+	std::vector<PMDBone>			mBoneData;		// ボーン情報
 	std::shared_ptr<ConstantBuffer> mMaterialData;	// マテリアルデータ用定数バッファ
 	std::shared_ptr<TextureLoader>	mTextureLoader;	// モデルテクスチャローダ
+	std::shared_ptr<DescriptorHeap> mBoneHeap;		// ボーン情報用ヒープ
+	std::shared_ptr<ConstantBuffer> mBoneMatrixBuffer;	// ボーン情報用バッファ
 };
-

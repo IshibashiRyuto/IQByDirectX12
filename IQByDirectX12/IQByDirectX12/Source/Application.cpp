@@ -27,9 +27,9 @@
 #include "Model/InstancingDataManager.h"
 #include "RootSignature.h"
 #include "Shader.h"
-#include "VMDLoader.h"
+#include "Motion/VMDLoader.h"
 #include "SwapChain.h"
-#include "Animation.h"
+#include "Motion/Animation.h"
 #include "GraphicsCommandList.h"
 #include "Input/Keyboard.h"
 #include "Debug/DebugLayer.h"
@@ -149,7 +149,7 @@ bool Application::Initialize(const Window & window)
 	SetWVPMatrix();
 
 	// インスタンシングデータマネージャにデバイスを登録
-	InstancingDataManager::GetInstance().SetDevice(mDevice->GetDevice());
+	InstancingDataManager::GetInstance().SetDevice(mDevice);
 
 	// モデルデータ読込
 	LoadPMD();
@@ -299,11 +299,11 @@ bool Application::_DebugCreatePMDRootSignature()
 	mRootSignature = RootSignature::Create();
 	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 	int materialIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-
+	int boneIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
 	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 4, 0);
-
+	mRootSignature->AddDescriptorRange(boneIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
 
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
@@ -413,7 +413,9 @@ bool Application::_DebugCreatePMDPipelineState()
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"	, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "NORMAL"		, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"	, 0, DXGI_FORMAT_R32G32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
-		
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "BONENO"		, 0, DXGI_FORMAT_R16G16_UINT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "WEIGHT"		, 0, DXGI_FORMAT_R8_UINT			, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 0, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 1, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 2, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
@@ -483,7 +485,7 @@ void Application::LoadTexture()
 {
 	TextureManager::GetInstance().CreateWhiteAndBlackTexture(mDevice);
 	mTextureLoader = TextureLoader::Create(mDevice);
-	mDescriptorHeap = DescriptorHeap::Create(mDevice->GetDevice(), 2);
+	mDescriptorHeap = DescriptorHeap::Create(mDevice, 2);
 }
 
 bool Application::CreateConstantBuffer()

@@ -82,9 +82,6 @@
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bone.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CommandAllocator.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -121,9 +118,6 @@
     <ClCompile Include="Source\MathConvert.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Pose.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RenderTarget.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -142,16 +136,7 @@
     <ClCompile Include="Source\VertexBuffer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\VMDData.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VMDLoader.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Window.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Animation.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Math\Math_Matrix4x3.cpp" />
@@ -175,6 +160,21 @@
       <Filter>Source\Model</Filter>
     </ClCompile>
     <ClCompile Include="Source\Camera\Camera.cpp" />
+    <ClCompile Include="Source\Motion\Bone.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Motion\Animation.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Motion\VMDData.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Motion\VMDLoader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Motion\Pose.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -219,9 +219,6 @@
     <ClInclude Include="Source\Application.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Bone.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CommandAllocator.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -255,9 +252,6 @@
     <ClInclude Include="Source\MathConvert.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Pose.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RenderState.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -279,16 +273,7 @@
     <ClInclude Include="Source\VertexBuffer.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\VMDData.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\VMDLoader.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Window.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Animation.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\PipelineStateObject.h" />
@@ -311,6 +296,21 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Camera\Camera.h" />
+    <ClInclude Include="Source\Motion\Bone.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Motion\Animation.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Motion\VMDData.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Motion\VMDLoader.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Motion\Pose.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

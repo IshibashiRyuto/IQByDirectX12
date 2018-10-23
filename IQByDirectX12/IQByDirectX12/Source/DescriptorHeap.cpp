@@ -1,11 +1,13 @@
 #include <iostream>
 #include "DescriptorHeap.h"
+#include "Device.h"
 #include "Texture/Texture.h"
 #include "Debug/DebugLayer.h"
 
 
-DescriptorHeap::DescriptorHeap(ComPtr<ID3D12Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc)
-	: HEAP_STRIDE(device->GetDescriptorHandleIncrementSize(heapDesc.Type))
+
+DescriptorHeap::DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc)
+	: HEAP_STRIDE((*device)->GetDescriptorHandleIncrementSize(heapDesc.Type))
 	, mDevice(device)
 	, mNumDescriptors(heapDesc.NumDescriptors)
 {
@@ -16,11 +18,11 @@ DescriptorHeap::~DescriptorHeap()
 {
 }
 
-std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(ComPtr<ID3D12Device> device, const D3D12_DESCRIPTOR_HEAP_DESC & desc)
+std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC & desc)
 {
 	auto descHeap = std::shared_ptr<DescriptorHeap>(new DescriptorHeap(device, desc) );
 	
-	auto result = device->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descHeap->mDescriptorHeap));
+	auto result = (*device)->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descHeap->mDescriptorHeap));
 	
 	if (FAILED(result))
 	{
@@ -30,7 +32,7 @@ std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(ComPtr<ID3D12Device> devi
 	return descHeap;
 }
 
-std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(ComPtr<ID3D12Device> device, UINT numDescriptors)
+std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(std::shared_ptr<Device> device, UINT numDescriptors)
 {
 	D3D12_DESCRIPTOR_HEAP_DESC heapDesc{};
 	heapDesc.NumDescriptors = numDescriptors;
@@ -43,14 +45,14 @@ void DescriptorHeap::SetConstantBufferView(const D3D12_CONSTANT_BUFFER_VIEW_DESC
 {
 	auto handle = mDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 	handle.ptr += HEAP_STRIDE * index;
-	mDevice->CreateConstantBufferView(&constantBufferView, handle);
+	(*mDevice)->CreateConstantBufferView(&constantBufferView, handle);
 }
 
 void DescriptorHeap::SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC & shaderResourceView, ComPtr<ID3D12Resource> shaderResource, UINT index)
 {
 	auto handle = mDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 	handle.ptr += HEAP_STRIDE * index;
-	mDevice->CreateShaderResourceView(shaderResource.Get(), &shaderResourceView, handle);
+	(*mDevice)->CreateShaderResourceView(shaderResource.Get(), &shaderResourceView, handle);
 }
 
 void DescriptorHeap::SetTexture(std::shared_ptr<Texture> texture, UINT index)

@@ -15,6 +15,7 @@
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;
+class Device;
 
 class InstanceBuffer
 {
@@ -31,7 +32,7 @@ public:
 	/// @param[in] device : ID3D12デバイス
 	/// @param[in] instanceDataSize	: インスタンスデータのサイズ
 	/// @param[in] maxInstanceCount	: 最大インスタンス数
-	static std::shared_ptr<InstanceBuffer> Create(ComPtr<ID3D12Device> device, size_t instanceDataSize, int maxInstanceCount);
+	static std::shared_ptr<InstanceBuffer> Create(std::shared_ptr<Device> device, size_t instanceDataSize, int maxInstanceCount);
 
 	/// @fn GetVertexBufferView
 	/// 頂点バッファビューの取得
