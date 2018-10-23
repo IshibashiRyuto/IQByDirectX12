@@ -29,8 +29,6 @@ void ModelData::Update()
 
 void ModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instancingData) const
 {
-	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
-	mDescHeap->BindRootDescriptorTable(0, 0);
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instancingData.instanceBuffer->GetVertexBufferView() };
 	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
 	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());

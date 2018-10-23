@@ -17,7 +17,7 @@ const int MATERIAL_HEAP_STRIDE = 5;		// É}ÉeÉäÉAÉã1óvëfìñÇΩÇËÇÃÉqÅ[ÉvÇÃÉXÉgÉâÉCÉ
 PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
 	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
 		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device, 1 + materialCount * MATERIAL_HEAP_STRIDE + 1))
+		DescriptorHeap::Create(device, materialCount * MATERIAL_HEAP_STRIDE + 1))
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
 	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
 {
@@ -52,8 +52,7 @@ void PMXModelData::Update()
 void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData & instanceData) const
 {
 	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
-	mDescHeap->BindRootDescriptorTable(0, 0);
-	mDescHeap->BindRootDescriptorTable(2, 1 + MATERIAL_HEAP_STRIDE * static_cast<int>(mMaterialData.size()));
+	mDescHeap->BindRootDescriptorTable(2, MATERIAL_HEAP_STRIDE * static_cast<int>(mMaterialData.size()));
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
 	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
 	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
@@ -63,7 +62,7 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 	int indexOffset = 0;
 	for (int i = 0; i < mMaterialData.size(); ++i)
 	{
-		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_HEAP_STRIDE + 1);
+		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_HEAP_STRIDE);
 		graphicsCommandList->DrawIndexedInstanced(mMaterialData[i].vertsNum, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterialData[i].vertsNum;
 	}
@@ -89,7 +88,7 @@ void PMXModelData::SetMaterial(const std::vector<PMX::Material>& materials, cons
 		mMaterialData[i].ambient = materials[i].ambient;
 		mMaterialData[i].vertsNum = materials[i].vertNum;
 		mMaterialDataBuffer->SetData(&mMaterialData[i], sizeof(PMX::MaterialData), i);
-		mDescHeap->SetConstantBufferView(mMaterialDataBuffer->GetConstantBufferView(i), i * MATERIAL_HEAP_STRIDE + 1);
+		mDescHeap->SetConstantBufferView(mMaterialDataBuffer->GetConstantBufferView(i), i * MATERIAL_HEAP_STRIDE);
 		auto normalTexture = TextureManager::GetInstance().GetTexture(mTextureHandle[materials[i].textureIndex]);
 		
 		auto addSphereTextureIndex = TextureManager::BLACK_TEXTURE;
@@ -122,10 +121,10 @@ void PMXModelData::SetMaterial(const std::vector<PMX::Material>& materials, cons
 
 		auto toonTexture = TextureManager::GetInstance().GetTexture(toonTextureHandle);
 
-		mDescHeap->SetTexture(normalTexture, i * MATERIAL_HEAP_STRIDE + 2);
-		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_HEAP_STRIDE + 3);
-		mDescHeap->SetTexture(mulSphereTexture, i * MATERIAL_HEAP_STRIDE + 4);
-		mDescHeap->SetTexture(toonTexture, i * MATERIAL_HEAP_STRIDE + 5);
+		mDescHeap->SetTexture(normalTexture, i * MATERIAL_HEAP_STRIDE + 1);
+		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_HEAP_STRIDE + 2);
+		mDescHeap->SetTexture(mulSphereTexture, i * MATERIAL_HEAP_STRIDE + 3);
+		mDescHeap->SetTexture(toonTexture, i * MATERIAL_HEAP_STRIDE + 4);
 	}
 }
 
@@ -166,7 +165,7 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 		boneMatrixes[i] = poseBones[i]->GetBoneMatrix();
 	}
 	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), static_cast<UINT>( sizeof(Math::Matrix4x4) * boneMatrixes.size()));
-	mDescHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), static_cast<UINT>( 1 + MATERIAL_HEAP_STRIDE * mMaterialData.size()));
+	mDescHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), static_cast<UINT>(MATERIAL_HEAP_STRIDE * mMaterialData.size()));
 }
 
 void PMXModelData::UpdatePose()

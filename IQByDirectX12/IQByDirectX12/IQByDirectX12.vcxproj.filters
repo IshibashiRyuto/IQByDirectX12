@@ -175,6 +175,7 @@
     <ClCompile Include="Source\Motion\Pose.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Camera\Dx12Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -311,6 +312,7 @@
     <ClInclude Include="Source\Motion\Pose.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Camera\Dx12Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

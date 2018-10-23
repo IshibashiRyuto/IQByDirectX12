@@ -37,6 +37,7 @@ class Keyboard;
 class GraphicsCommandList;
 
 class Camera;
+class Dx12Camera;
 
 using Microsoft::WRL::ComPtr;
 
@@ -79,10 +80,6 @@ private:
 	std::shared_ptr<RootSignature>			mRootSignature;			//! ルートシグネチャ
 	std::shared_ptr<DepthBuffer>			mDepthBuffer;			//! 深度バッファ
 	std::vector<D3D12_INPUT_ELEMENT_DESC>	mInputLayoutDescs;
-	std::shared_ptr<TextureLoader>			mTextureLoader;
-	int										mTextureHandle;
-	std::shared_ptr<DescriptorHeap>			mDescriptorHeap;
-	std::shared_ptr<ConstantBuffer>			mConstantBuffer;
 	std::shared_ptr<Shader>					mPixelShaderClass;
 	std::shared_ptr<Shader>					mVertexShaderClass;
 	std::shared_ptr<PMDLoader>				mModelLoader;
@@ -93,21 +90,9 @@ private:
 	std::vector<std::shared_ptr<Model>>		mInstancingTestModels;
 
 	std::shared_ptr<Keyboard>			mKeyboard;
-	std::shared_ptr<Camera>				mCamera;
+	std::shared_ptr<Dx12Camera>			mDx12Camera;
 
 	
-
-	struct WVPMat
-	{
-		Math::Matrix4x4 affineMatrix;
-		Math::Matrix4x4 worldMatrix;
-		Math::Matrix4x4 viewMatrix;
-		Math::Matrix4x4 projectionMatrix;
-	};
-
-	WVPMat mMatrixes;
-	Math::Quaternion mCameraRot;
-
 	int mWindowWidth;
 	int mWindowHeight;
 
@@ -143,19 +128,9 @@ private:
 	/// @retval true: 生成成功, false: 生成失敗
 	bool CreateCommandList();
 
-	/// @fn LoadTexture
-	/// テクスチャロード
-	void LoadTexture();
-
-	/// @fn CreateConstantBuffer
-	/// コンスタントバッファ生成
-	/// @retval 生成成功: true
-	/// @retval 生成失敗: false
-	bool CreateConstantBuffer();
-
-	/// @fn SetWVPMatrix
-	/// WVP行列をコンスタントバッファにセットする
-	void SetWVPMatrix();
+	/// @fn CreateCamera
+	/// カメラを作成する
+	void CreateCamera();
 
 	/// @fn LoadPMD
 	/// PMDモデルデータをロードする

@@ -1,8 +1,10 @@
 #include "Camera.h"
 
 /* íËêîíËã` */
-Math::Vector3 Z_AXIS(0.0f, 0.0f, 1.0f); //! Zé≤ê≥ÇÃå¸Ç´
-
+namespace
+{
+	Math::Vector3 Z_AXIS(0.0f, 0.0f, 1.0f); //! Zé≤ê≥ÇÃå¸Ç´
+}
 Camera::Camera(const Math::Vector3& pos,
 	const Math::Vector3& direction,
 	ProjectionType projType,
@@ -17,7 +19,7 @@ Camera::Camera(const Math::Vector3& pos,
 	SetDirection(direction);
 
 	mProjMat = CreateProjMat[projType](projParam);
-	UpdateViewMat();
+	_UpdateViewMat();
 }
 
 
@@ -33,47 +35,60 @@ std::shared_ptr<Camera> Camera::Create(const Math::Vector3 & pos, const Math::Ve
 void Camera::SetTargetPos(const Math::Vector3 & targetPos)
 {
 	SetDirection(targetPos - mPosition);
+	mIsUpdate = true;
 }
 
 void Camera::SetPos(const Math::Vector3 & pos)
 {
 	mPosition = pos;
+	mIsUpdate = true;
 }
 
 void Camera::SetDirection(const Math::Vector3 & direction)
 {
 	mDirection = Math::CreateRotVecToVec(Z_AXIS, direction, mUpper);
+	mIsUpdate = true;
 }
 
 void Camera::SetDirection(const Math::Quaternion & direction)
 {
 	mDirection = direction;
+	mIsUpdate = true;
 }
 
 void Camera::SetProjectionType(ProjectionType projType, const ProjectionParam & projParam)
 {
 	mProjMat = CreateProjMat[projType](projParam);
+	mIsUpdate = true;
 }
 
 void Camera::Rotate(const Math::Quaternion & rotation)
 {
 	mDirection *= rotation;
+	mIsUpdate = true;
 }
 
 void Camera::RotateWithUpper(const Math::Quaternion & rotation)
 {
 	mDirection *= rotation;
 	mUpper = (rotation * Math::Quaternion(mUpper) * Math::CreateConjugateQuaternion(rotation)).v;
+	mIsUpdate = true;
 }
 
 void Camera::Move(const Math::Vector3 & movement)
 {
 	mPosition += movement;
+	mIsUpdate = true;
 }
 
 void Camera::UpdateMatrix()
 {
-	UpdateViewMat();
+	if (!mIsUpdate)
+	{
+		return;
+	}
+	_UpdateViewMat();
+	mIsUpdate = false;
 }
 
 const Math::Matrix4x4 & Camera::GetViewMatrix() const
@@ -96,7 +111,7 @@ Math::Matrix4x4 Camera::CreateOrthographicMatrix(const ProjectionParam & projPar
 	return Math::CreateOrthoGraphicMatrix(projParam.width, projParam.height, projParam.nearZ, projParam.farZ);
 }
 
-void Camera::UpdateViewMat()
+void Camera::_UpdateViewMat()
 {
 	mViewMat = Math::CreateLookAtMatrix(mPosition, mDirection, mUpper);
 }

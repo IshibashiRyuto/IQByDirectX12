@@ -15,7 +15,7 @@
 PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex)
 	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
 		IndexBuffer::Create(device, (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
-		DescriptorHeap::Create(device, 1 + (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
+		DescriptorHeap::Create(device, (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
 	, mTextureLoader(TextureLoader::Create(device))
 {
 	SetVertexData(modelInfo.vertexData);
@@ -67,7 +67,7 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 		data.ambientColor = materials[i].ambientColor;
 		data.isUseTexture = (strcmp(materials[i].textureFileName, "") == 0) ? 0 : 1;
 		mMaterialData->SetData(&data, sizeof(PMDShaderMaterialData), i);
-		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i * MATERIAL_SHADER_RESOURCE_NUM + 1);
+		mDescHeap->SetConstantBufferView(mMaterialData->GetConstantBufferView(i), i * MATERIAL_SHADER_RESOURCE_NUM);
 		std::shared_ptr<Texture> surfaceTexture;
 		std::shared_ptr<Texture> addSphereTexture;
 		std::shared_ptr<Texture> mulSphereTexture;
@@ -121,10 +121,10 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 
 		auto toonTexture = TextureManager::GetInstance().GetTexture( shareToonTextureIndex[ static_cast<int>(toonIndex)] );
 
-		mDescHeap->SetTexture(surfaceTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1 + 1);
-		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 2 + 1);
-		mDescHeap->SetTexture(mulSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 3 + 1);
-		mDescHeap->SetTexture(toonTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 4 + 1);
+		mDescHeap->SetTexture(surfaceTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 1);
+		mDescHeap->SetTexture(addSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 2);
+		mDescHeap->SetTexture(mulSphereTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 3);
+		mDescHeap->SetTexture(toonTexture, i * MATERIAL_SHADER_RESOURCE_NUM + 4);
 	}
 }
 
@@ -168,7 +168,6 @@ void PMDModelData::SetBoneData(std::shared_ptr<Device> device, const std::vector
 void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData & instanceData) const
 {
 	mDescHeap->BindGraphicsCommandList(commandList);
-	mDescHeap->BindRootDescriptorTable(0, 0);
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
 	commandList->IASetVertexBuffers(0, 2, vbViews);
 	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
@@ -180,7 +179,7 @@ void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const Ins
 	int indexOffset = 0;
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
-		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_SHADER_RESOURCE_NUM + 1);
+		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_SHADER_RESOURCE_NUM);
 		commandList->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterials[i].faceVertexCount;
 	}

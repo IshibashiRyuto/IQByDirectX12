@@ -40,7 +40,7 @@ public:
 		const ProjectionParam& projParam);
 
 	/// @brief	デストラクタ
-	~Camera();
+	virtual ~Camera();
 
 	/// @brief	カメラクラスを生成する
 	/// @note	カメラクラスはこのメソッドを通してのみ生成可能
@@ -92,13 +92,14 @@ public:
 	/// @brief	プロジェクション行列を取得する
 	const Math::Matrix4x4& GetProjMatrix() const;
 
-private:
+protected:
 	/* 変数宣言 */
 	Math::Vector3 mPosition;		//! カメラの位置
 	Math::Quaternion mDirection;	//! カメラの向き
 	Math::Vector3 mUpper;			//! カメラの上方向ベクトル
 	Math::Matrix4x4 mViewMat;		//! ビュー行列
 	Math::Matrix4x4 mProjMat;		//! プロジェクション行列
+	bool mIsUpdate{ true };			//! 行列情報の更新が行われたか
 	std::map<ProjectionType, std::function<Math::Matrix4x4(const ProjectionParam&)>> CreateProjMat;	//! 射影行列生成を行う関数
 
 	/* ローカルメソッド定義 */
@@ -110,6 +111,6 @@ private:
 	static Math::Matrix4x4 CreateOrthographicMatrix(const ProjectionParam& projParam);
 
 	/// @brief	ビュー行列を更新する
-	void UpdateViewMat();
+	void _UpdateViewMat();
 };
 

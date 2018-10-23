@@ -34,6 +34,7 @@
 #include "Input/Keyboard.h"
 #include "Debug/DebugLayer.h"
 #include "Camera/Camera.h"
+#include "Camera/Dx12Camera.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -110,22 +111,22 @@ bool Application::Initialize(const Window & window)
 	}
 	
 	// ルートシグニチャの作成
-	//if (!CreateRootSignature())
-	if(!_DebugCreatePMDRootSignature())
+	if (!CreateRootSignature())
+	//if(!_DebugCreatePMDRootSignature())
 	{
 		return false;
 	}
 
 	// シェーダの読み込み
-	//if (!ReadShader())
-	if(!_DebugReadPMDShader())
+	if (!ReadShader())
+	//if(!_DebugReadPMDShader())
 	{
 		return false;
 	}
 	
 	// パイプラインオブジェクトの作成
-	//if (!CreatePipelineState())
-	if(!_DebugCreatePMDPipelineState())
+	if (!CreatePipelineState())
+	//if(!_DebugCreatePMDPipelineState())
 	{
 		return false;
 	}
@@ -136,17 +137,11 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
-	// テクスチャ読み込み
-	LoadTexture();
+	// テクスチャマネージャの白黒テクスチャ作成
+	TextureManager::GetInstance().CreateWhiteAndBlackTexture(mDevice);
 
-	// コンスタントバッファ作成
-	if (!CreateConstantBuffer())
-	{
-		return false;
-	}
-
-	// 行列設定
-	SetWVPMatrix();
+	// カメラの作成
+	CreateCamera();
 
 	// インスタンシングデータマネージャにデバイスを登録
 	InstancingDataManager::GetInstance().SetDevice(mDevice);
@@ -174,6 +169,7 @@ void Application::Render()
 	mKeyboard->UpdateKeyState();
 
 	int i = 0;
+	// PMX Instance Draw
 	for (auto model : mInstancingTestModels)
 	{
 		if (i++ == 5)
@@ -181,7 +177,7 @@ void Application::Render()
 			model->SetRotation(rot);
 			model->SetPosition(pos);
 			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
-			//model->Draw();
+			model->Draw();
 		}
 	}
 
@@ -225,10 +221,12 @@ void Application::Render()
 	{
 		t = 0;
 	}
+
+	// PMD Draw
 	mModelData->SetPosition(Math::Vector3(0.0f,0.0f,0.0f));
 	mModelData->SetRotation(rot);
 	mModelData->SetPosition(pos);
-	mModelData->Draw();
+	//mModelData->Draw();
 	// endDebug
 
 	// コマンドリスト初期化
@@ -257,7 +255,11 @@ void Application::Render()
 
 	// ポリゴン描画
 	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	// 定数バッファ登録
 	
+	mDx12Camera->SetCameraData(mCommandList, 0);
+
 	// モデル描画
 	ModelDataManager::GetInstance().Draw(mCommandList->GetCommandList());
 
@@ -481,52 +483,20 @@ bool Application::CreateCommandList()
 	return true;
 }
 
-void Application::LoadTexture()
+void Application::CreateCamera()
 {
-	TextureManager::GetInstance().CreateWhiteAndBlackTexture(mDevice);
-	mTextureLoader = TextureLoader::Create(mDevice);
-	mDescriptorHeap = DescriptorHeap::Create(mDevice, 2);
-}
+	/// 射影行列のパラメータ設定
+	ProjectionParam projParam;
+	projParam.width = (float)mWindowWidth;
+	projParam.height = (float)mWindowHeight;
+	projParam.nearZ = 1.0f;
+	projParam.farZ = 300.0f;
+	projParam.fov = Math::F_PI / 8.0f;
 
-bool Application::CreateConstantBuffer()
-{
-	mConstantBuffer = ConstantBuffer::Create(mDevice, sizeof(DirectX::XMMATRIX)*4, 1);
-	if (mConstantBuffer == nullptr)
-	{
-		return false;
-	}
-	return true;
-}
-
-void Application::SetWVPMatrix()
-{
-	if (mConstantBuffer != nullptr)
-	{
-		/// 射影行列のパラメータ設定
-		ProjectionParam projParam;
-		projParam.width = (float)mWindowWidth;
-		projParam.height = (float)mWindowHeight;
-		projParam.nearZ = 1.0f;
-		projParam.farZ = 300.0f;
-		projParam.fov = Math::F_PI / 8.0f;
-
-		mCamera = Camera::Create(Math::Vector3(0.0f, 30.0f, -50.0f),  Math::Vector3(0.0f, 10.0f, 0.0f) - Math::Vector3(0.0f, 30.0f, -50.0f), ProjectionType::Perspective, projParam);
-		mCamera->SetTargetPos(Math::Vector3(0.0f, 10.0f, 0.0f));
-		mCamera->UpdateMatrix();
-		mMatrixes.worldMatrix = Math::CreateIdent();
-		mMatrixes.projectionMatrix = Math::CreatePerspectiveMatrix((float)mWindowWidth / (float)mWindowHeight, 1.0f, 300.0f, Math::F_PI/8.0f);
-		mMatrixes.projectionMatrix = mCamera->GetProjMatrix();
-		mMatrixes.viewMatrix = mCamera->GetViewMatrix();
-
-		auto projMat = DirectX::XMMatrixOrthographicLH((float)mWindowWidth, (float)mWindowHeight, 1.0f, 300.0f);
-
-		mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
-
-		mCameraRot = Math::GetMatrixRotation(mMatrixes.viewMatrix);
-
-		mConstantBuffer->SetData(&mMatrixes, sizeof(mMatrixes), 0);
-		mDescriptorHeap->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
-	}
+	mDx12Camera = Dx12Camera::Create(Math::Vector3(0.f,30.f,-50.f),
+		Math::Vector3(0.0f, 10.0f, 0.0f) - Math::Vector3(0.0f, 30.0f, -50.0f),
+		ProjectionType::Perspective,
+		projParam, mDevice);
 }
 
 void Application::LoadPMD()
@@ -541,7 +511,6 @@ void Application::LoadPMD()
 	{
 		return;
 	}
-	mModelData->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 
 }
 
@@ -560,7 +529,6 @@ void Application::LoadPMX()
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
 		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
 		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
-		model->_DebugGetDescHeap()->SetConstantBufferView(mConstantBuffer->GetConstantBufferView(0), 0);
 	}
 
 	int modelCount = 0;
@@ -585,9 +553,6 @@ void Application::LoadMotion()
 
 void Application::UpdateMatrix()
 {
-	//mCamera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 300.0f, 0.0f)));
-	mCamera->UpdateMatrix();
-	mMatrixes.viewMatrix = mCamera->GetViewMatrix();
-	mMatrixes.affineMatrix = (mMatrixes.worldMatrix * mMatrixes.viewMatrix) * mMatrixes.projectionMatrix;
-	mConstantBuffer->SetData(&mMatrixes, sizeof(mMatrixes));
+	mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 60.0f, 0.0f)));
+	mDx12Camera->UpdateMatrix();
 }
