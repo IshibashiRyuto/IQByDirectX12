@@ -43,6 +43,7 @@ struct VSOutput
 	float4 position : SV_POSITION;
 	float3 origPosition	: POSITION1;
 	float3 normal   : NORMAL;
+    float3 color : COLOR;
 	float2 uv       : TEXCOORD;
 };
 
@@ -56,11 +57,11 @@ VSOutput VSMain(VSInput input)
 	uint idx1 = input.boneno.x;
 	uint idx2 = input.boneno.y;
 
-	float4x4 localModelMatrix = { 1.0f, 0.0f, 0.0f, 0.0f,
+	float4x4 localModelMatrix = { 2.0f, 0.0f, 0.0f, 0.0f,
 						0.0f, 1.0f, 0.0f, 0.0f,
 						0.0f, 0.0f, 1.0f, 0.0f,
 						0.0f, 0.0f, 0.0f, 1.0f };
-	localModelMatrix = boneMatrix[0];// *w + boneMatrix[0] * (1.0f - w);
+	localModelMatrix = boneMatrix[idx1] * w + boneMatrix[idx2] * (1.0f - w);
 
 	output.position = mul(wvp, mul(input.modelMatrix, mul(localModelMatrix, float4(input.position, 1.0f))));
 	output.origPosition = mul(world, mul(input.modelMatrix,mul(localModelMatrix, float4(input.position, 1.0f))));

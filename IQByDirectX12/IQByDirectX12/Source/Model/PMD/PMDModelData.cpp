@@ -137,6 +137,12 @@ void PMDModelData::SetBoneData(std::shared_ptr<Device> device, const std::vector
 	{
 		auto boneName = ConvertStringToWString(std::string(boneData[i].boneName));
 		auto bone = Bone::Create(boneData[i].headPos);
+
+		if (i == 10)
+		{
+			bone->SetRotation(0.0f, 0.0f, Math::F_PI / 4);
+		}
+
 		if (boneData[i].parentBoneIndex < boneData.size())
 		{
 			mPose->SetBoneData(boneName, bone, i, boneData[i].parentBoneIndex);
@@ -147,13 +153,13 @@ void PMDModelData::SetBoneData(std::shared_ptr<Device> device, const std::vector
 		}
 	}
 
+	mPose->CalcPose();
 	std::vector<Math::Matrix4x4> boneMatrixes;
 	auto poseBones = mPose->GetBones();
 	boneMatrixes.resize(poseBones.size());
 	for (int i = 0; i < boneMatrixes.size(); ++i)
 	{
-		boneMatrixes[i] = Math::CreateYRotMatrix(Math::F_PI / 4);
-			// poseBones[i]->GetBoneMatrix();
+		boneMatrixes[i] = poseBones[i]->GetBoneMatrix();
 	}
 	mBoneMatrixBuffer->SetData(boneMatrixes.data(), static_cast<UINT>(sizeof(Math::Matrix4x4) * boneMatrixes.size()));
 	mBoneHeap->SetConstantBufferView(mBoneMatrixBuffer->GetConstantBufferView(), 0);
