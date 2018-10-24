@@ -2,10 +2,14 @@
 #include "InstancingDataManager.h"
 #include "../InstanceBuffer.h"
 
-ModelData::ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer, std::shared_ptr<DescriptorHeap> descriptorHeap)
+ModelData::ModelData(std::shared_ptr<VertexBuffer> vertexBuffer,
+	std::shared_ptr<IndexBuffer> indexBuffer, 
+	std::shared_ptr<DescriptorHeap> descriptorHeap,
+	std::shared_ptr<PipelineStateObject> pipelineStateObject)
 	: mVertexBuffer(vertexBuffer)
 	, mIndexBuffer(indexBuffer)
 	, mDescHeap(descriptorHeap)
+	, mPipelineStateObject(pipelineStateObject)
 {
 }
 

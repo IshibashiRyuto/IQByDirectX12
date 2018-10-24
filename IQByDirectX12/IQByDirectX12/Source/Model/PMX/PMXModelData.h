@@ -35,7 +35,8 @@ public:
 		std::vector<PMX::Vertex> vertexData,
 		std::vector<PMX::Index> indexData,
 		int materialCount,
-		int boneCount);
+		int boneCount,
+		std::shared_ptr<PipelineStateObject> pipelineStateObject);
 	~PMXModelData();
 
 	/// @fn Create
@@ -47,9 +48,8 @@ public:
 	/// @retval 生成成功: PMXModelDataのスマートポインタ
 	/// @retval 生成失敗時: nullptr
 	static std::shared_ptr<PMXModelData> Create(std::shared_ptr<Device> device,
-		std::vector<PMX::Vertex> vertexData,
-		std::vector<PMX::Index> indexData);
-	static std::shared_ptr<PMXModelData> Create(std::shared_ptr<Device> device, const PMX::ModelDataDesc& modelDataDesc);
+		const PMX::ModelDataDesc& modelDataDesc,
+		std::shared_ptr<PipelineStateObject> pipelineStateObject);
 
 	/// @fn Update
 	/// モデル情報の更新処理

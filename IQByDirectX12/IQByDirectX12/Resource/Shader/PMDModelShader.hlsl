@@ -9,7 +9,7 @@ cbuffer mat:register(b0)
 	float4x4 wvp;			// wvp行列
 	float4x4 world;			// world行列
 	float4x4 view;			// view行列
-	float4x4 projection;	// projection行列	
+	float4x4 projection;	// projection行列
 }
 
 cbuffer material : register(b1)
@@ -57,11 +57,7 @@ VSOutput VSMain(VSInput input)
 	uint idx1 = input.boneno.x;
 	uint idx2 = input.boneno.y;
 
-	float4x4 localModelMatrix = { 2.0f, 0.0f, 0.0f, 0.0f,
-						0.0f, 1.0f, 0.0f, 0.0f,
-						0.0f, 0.0f, 1.0f, 0.0f,
-						0.0f, 0.0f, 0.0f, 1.0f };
-	localModelMatrix = boneMatrix[idx1] * w + boneMatrix[idx2] * (1.0f - w);
+	float4x4 localModelMatrix = boneMatrix[idx1] * w + boneMatrix[idx2] * (1.0f - w);
 
 	output.position = mul(wvp, mul(input.modelMatrix, mul(localModelMatrix, float4(input.position, 1.0f))));
 	output.origPosition = mul(world, mul(input.modelMatrix,mul(localModelMatrix, float4(input.position, 1.0f))));

@@ -19,7 +19,7 @@ class PipelineStateObject
 {
 public:
 	/// @brief	コンストラクタ
-	PipelineStateObject();
+	PipelineStateObject(std::shared_ptr<Device> device, const D3D12_GRAPHICS_PIPELINE_STATE_DESC & pipelineStateDesc);
 	/// @brief	デストラクタ
 	~PipelineStateObject();
 

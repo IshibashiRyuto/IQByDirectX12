@@ -97,10 +97,21 @@ struct PMDModelInfo
 class PMDModelData : public ModelData
 {
 public:
-	PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex);
+	PMDModelData(std::shared_ptr<Device> device,
+		const PMDModelInfo& modelInfo,
+		const std::vector<int> shareToonTextureIndex,
+		std::shared_ptr<PipelineStateObject> pipelineStateObject);
 	~PMDModelData();
 	
-	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex);
+	/// @brief	PMDモデルを生成する
+	/// @param[in]	device					: dx12デバイス
+	/// @param[in]	modelInfo				: モデル情報
+	/// @param[in]	shareToonTextureIndex	: 共有テクスチャトゥーンのインデックス
+	/// @param[in]	pipelineStateObject		: パイプラインステートオブジェクト
+	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,
+		const PMDModelInfo& modelInfo,
+		const std::vector<int> shareToonTextureIndex,
+		std::shared_ptr<PipelineStateObject> pipelineStateObject);
 
 	void SetVertexData(const std::vector<PMDVertex>& vertexData);
 
@@ -110,6 +121,9 @@ public:
 
 	void SetBoneData(std::shared_ptr<Device> device, const std::vector<PMDBone>& mBone);
 
+	/// @brief		描画処理
+	/// @param[in]	commandList		: 描画対象コマンドリスト
+	/// @param[in]	instanceData	: インスタンス情報
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:

@@ -28,7 +28,7 @@ public:
 	/// @param[in]	shareToonFolderPath	: 共有Toonのフォルダパス
 	static std::shared_ptr<PMXLoader> Create(std::shared_ptr<Device> device, const std::string& shareToonFolderPath);
 
-	std::shared_ptr<Model> LoadModel(const std::string& filePath);
+	std::shared_ptr<Model> LoadModel(const std::string& filePath, std::shared_ptr<PipelineStateObject> pso);
 
 	void ClearModelData();
 

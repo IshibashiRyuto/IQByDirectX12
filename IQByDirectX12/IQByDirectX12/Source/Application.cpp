@@ -35,6 +35,7 @@
 #include "Debug/DebugLayer.h"
 #include "Camera/Camera.h"
 #include "Camera/Dx12Camera.h"
+#include "PipelineStateObject.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -110,23 +111,14 @@ bool Application::Initialize(const Window & window)
 		}
 	}
 	
-	// ルートシグニチャの作成
-	if (!CreateRootSignature())
-	//if(!_DebugCreatePMDRootSignature())
+	// PMDパイプラインステートオブジェクトの作成
+	if (!CreatePMDPipelineStateObject())
 	{
 		return false;
 	}
 
-	// シェーダの読み込み
-	if (!ReadShader())
-	//if(!_DebugReadPMDShader())
-	{
-		return false;
-	}
-	
-	// パイプラインオブジェクトの作成
-	if (!CreatePipelineState())
-	//if(!_DebugCreatePMDPipelineState())
+	// PMXパイプラインステートオブジェクトの作成
+	if (!CreatePMXPipelineStateObject())
 	{
 		return false;
 	}
@@ -168,34 +160,23 @@ void Application::Render()
 
 	mKeyboard->UpdateKeyState();
 
-	int i = 0;
-	// PMX Instance Draw
-	for (auto model : mInstancingTestModels)
-	{
-		if (i++ == 5)
-		{
-			model->SetRotation(rot);
-			model->SetPosition(pos);
-			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
-			model->Draw();
-		}
-	}
+
 
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
 	{
-		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.05f);
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.03f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
 	{
-		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.05f);
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.03f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
 	{
-		rot *= Math::CreateRotAxisQuaternion(rotAxis, 0.05f);
+		rot *= Math::CreateRotAxisQuaternion(rotAxis, 0.03f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
 	{
-		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.05f);
+		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.03f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Up))
 	{
@@ -214,19 +195,29 @@ void Application::Render()
 		pos.x += speed;
 	}
 
-
-
-	t+=0.5f;
+	t += 0.5f;
 	if (t >= 30)
 	{
 		t = 0;
 	}
 
+	int i = 0;
+	// PMX Instance Draw
+	for (auto model : mInstancingTestModels)
+	{
+		if (i++ == 5)
+		{
+			model->SetRotation(rot);
+			model->SetPosition(pos);
+			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
+			model->Draw();
+		}
+	}
+
 	// PMD Draw
-	mModelData->SetPosition(Math::Vector3(0.0f,0.0f,0.0f));
 	mModelData->SetRotation(rot);
-	mModelData->SetPosition(pos);
-	//mModelData->Draw();
+	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f,0.0f));
+	mModelData->Draw();
 	// endDebug
 
 	// コマンドリスト初期化
@@ -279,6 +270,35 @@ void Application::Render()
 
 void Application::Terminate()
 {
+}
+
+bool Application::CreatePMDPipelineStateObject()
+{
+	if (!_DebugCreatePMDRootSignature())
+	{
+		return false;
+	}
+
+	if (!_DebugReadPMDShader())
+	{
+		return false;
+	}
+
+	return _DebugCreatePMDPipelineState();
+}
+
+bool Application::CreatePMXPipelineStateObject()
+{
+	if (!CreateRootSignature())
+	{
+		return false;
+	}
+	if (!ReadShader())
+	{
+		return false;
+	}
+
+	return CreatePipelineState();
 }
 
 bool Application::CreateRootSignature()
@@ -398,8 +418,9 @@ bool Application::CreatePipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
-	if (FAILED(result))
+	//auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	mPMXPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
+	if (!mPMXPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
 		return false;
@@ -462,8 +483,9 @@ bool Application::_DebugCreatePMDPipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
-	if (FAILED(result))
+	//auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
+	mPMDPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
+	if (!mPMDPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
 		return false;
@@ -502,11 +524,11 @@ void Application::CreateCamera()
 void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd");
-	mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd");
+	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd", mPMDPipelineState);
+	mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd", mPMDPipelineState);
 	if (!mModelData)
 	{
 		return;
@@ -525,10 +547,10 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx");
-		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx");
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx");
-		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx");
+		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx", mPMXPipelineState);
+		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx", mPMXPipelineState);
+		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx", mPMXPipelineState);
+		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx", mPMXPipelineState);
 	}
 
 	int modelCount = 0;
@@ -553,6 +575,6 @@ void Application::LoadMotion()
 
 void Application::UpdateMatrix()
 {
-	mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 60.0f, 0.0f)));
+	//mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 60.0f, 0.0f)));
 	mDx12Camera->UpdateMatrix();
 }

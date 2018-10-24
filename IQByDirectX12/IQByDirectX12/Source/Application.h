@@ -35,6 +35,7 @@ class SwapChain;
 class Animation;
 class Keyboard;
 class GraphicsCommandList;
+class PipelineStateObject;
 
 class Camera;
 class Dx12Camera;
@@ -89,6 +90,9 @@ private:
 	std::shared_ptr<Animation>				mAnimationData;
 	std::vector<std::shared_ptr<Model>>		mInstancingTestModels;
 
+	std::shared_ptr<PipelineStateObject>	mPMDPipelineState;		//! PMDパイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPMXPipelineState;		//! PMXパイプラインステート
+
 	std::shared_ptr<Keyboard>			mKeyboard;
 	std::shared_ptr<Dx12Camera>			mDx12Camera;
 
@@ -97,6 +101,12 @@ private:
 	int mWindowHeight;
 
 	/* ローカルメソッド定義 */
+
+	/// @brief PMD用PSOを作成する
+	bool CreatePMDPipelineStateObject();
+
+	/// @brief PMX用PSOを作成する
+	bool CreatePMXPipelineStateObject();
 
 	/// @fn CreateRootSignature
 	/// ルートシグネチャを生成する

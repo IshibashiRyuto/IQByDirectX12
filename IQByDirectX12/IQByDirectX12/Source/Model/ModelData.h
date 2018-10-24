@@ -18,12 +18,16 @@
 // クラス使用宣言
 struct InstanceData;
 class Pose;
+class PipelineStateObject;
 
 class ModelData
 {
 public:
 	/// コンストラクタ
-	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer, std::shared_ptr<DescriptorHeap> descriptorHeap);
+	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, 
+		std::shared_ptr<IndexBuffer> indexBuffer,
+		std::shared_ptr<DescriptorHeap> descriptorHeap,
+		std::shared_ptr<PipelineStateObject> pipelineStateObject);
 
 	/// デストラクタ
 	virtual ~ModelData();
@@ -48,10 +52,11 @@ public:
 	virtual void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
 
 protected:
-	std::shared_ptr<VertexBuffer> mVertexBuffer;
-	std::shared_ptr<IndexBuffer> mIndexBuffer;
-	std::shared_ptr<DescriptorHeap> mDescHeap;
-	std::shared_ptr<Pose>			mPose;
+	std::shared_ptr<VertexBuffer>			mVertexBuffer;
+	std::shared_ptr<IndexBuffer>			mIndexBuffer;
+	std::shared_ptr<DescriptorHeap>			mDescHeap;
+	std::shared_ptr<Pose>					mPose;
+	std::shared_ptr<PipelineStateObject>	mPipelineStateObject;
 private:
 };
 

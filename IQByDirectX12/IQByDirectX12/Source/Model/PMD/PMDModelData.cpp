@@ -11,11 +11,17 @@
 #include "../Motion/Pose.h"
 #include "../Motion/Bone.h"
 #include "../ConvertString.h"
+#include "../PipelineStateObject.h"
 
-PMDModelData::PMDModelData(std::shared_ptr<Device> device, const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex)
+PMDModelData::PMDModelData(std::shared_ptr<Device> device,
+	const PMDModelInfo& modelInfo,
+	const std::vector<int> shareToonTextureIndex,
+	std::shared_ptr<PipelineStateObject> pipelineStateObject)
+
 	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
 		IndexBuffer::Create(device, (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
-		DescriptorHeap::Create(device, (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM) )
+		DescriptorHeap::Create(device, (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM),
+		pipelineStateObject)
 	, mTextureLoader(TextureLoader::Create(device))
 {
 	SetVertexData(modelInfo.vertexData);
@@ -28,9 +34,12 @@ PMDModelData::~PMDModelData()
 {
 }
 
-std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device,	const PMDModelInfo& modelInfo, const std::vector<int> shareToonTextureIndex)
+std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device,
+	const PMDModelInfo& modelInfo,
+	const std::vector<int> shareToonTextureIndex,
+	std::shared_ptr<PipelineStateObject> pipelineStateObject)
 {
-	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo, shareToonTextureIndex));
+	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo, shareToonTextureIndex, pipelineStateObject));
 	if (model->mVertexBuffer == nullptr || model->mIndexBuffer == nullptr)
 	{
 		return nullptr;
@@ -167,14 +176,19 @@ void PMDModelData::SetBoneData(std::shared_ptr<Device> device, const std::vector
 
 void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData & instanceData) const
 {
-	mDescHeap->BindGraphicsCommandList(commandList);
+	// psoセット
+	commandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
+
+	// 頂点情報セット
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
 	commandList->IASetVertexBuffers(0, 2, vbViews);
 	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
 
+	// ボーン情報をセット
 	mBoneHeap->BindGraphicsCommandList(commandList);
 	mBoneHeap->BindRootDescriptorTable(2, 0);
 
+	// マテリアルをセットして描画
 	mDescHeap->BindGraphicsCommandList(commandList);
 	int indexOffset = 0;
 	for (unsigned int i = 0; i < mMaterialCount; ++i)

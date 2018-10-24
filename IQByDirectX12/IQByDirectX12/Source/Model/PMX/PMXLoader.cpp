@@ -22,7 +22,7 @@ std::shared_ptr<PMXLoader> PMXLoader::Create(std::shared_ptr<Device> device, con
 	return modelLoader;
 }
 
-std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
+std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath, std::shared_ptr<PipelineStateObject> pso)
 {
 	auto handleItr = mModelHandleManager.find(filePath);
 
@@ -87,7 +87,7 @@ std::shared_ptr<Model> PMXLoader::LoadModel(const std::string & filePath)
 		modelDataDesc.shareToonTextureIndexies.resize(mShareToonTextureHandle.size());
 		std::copy(mShareToonTextureHandle.begin(), mShareToonTextureHandle.end(), modelDataDesc.shareToonTextureIndexies.begin());
 
-		auto modelData = PMXModelData::Create(mDevice, modelDataDesc);
+		auto modelData = PMXModelData::Create(mDevice, modelDataDesc, pso);
 		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
 	}
 	return std::shared_ptr<Model>(new Model(mModelHandleManager[filePath]));

@@ -10,14 +10,21 @@
 #include "../Motion/Pose.h"
 #include "../Motion/Bone.h"
 #include "../Device.h"
+#include "../PipelineStateObject.h"
 #include <algorithm>
 
 const int MATERIAL_HEAP_STRIDE = 5;		// マテリアル1要素当たりのヒープのストライド数
 
-PMXModelData::PMXModelData(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData, int materialCount, int boneCount)
+PMXModelData::PMXModelData(std::shared_ptr<Device> device,
+	std::vector<PMX::Vertex> vertexData,
+	std::vector<PMX::Index> indexData,
+	int materialCount, int boneCount,
+	std::shared_ptr<PipelineStateObject> pipelineStateObject)
+
 	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
 		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device, materialCount * MATERIAL_HEAP_STRIDE + 1))
+		DescriptorHeap::Create(device, materialCount * MATERIAL_HEAP_STRIDE + 1),
+		pipelineStateObject)
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
 	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
 {
@@ -27,16 +34,16 @@ PMXModelData::~PMXModelData()
 {
 }
 
-std::shared_ptr<PMXModelData> PMXModelData::Create(std::shared_ptr<Device> device, std::vector<PMX::Vertex> vertexData, std::vector<PMX::Index> indexData)
-{
-	return std::shared_ptr<PMXModelData>(new PMXModelData(device, vertexData, indexData, 1, 0));
-}
-
-std::shared_ptr<PMXModelData> PMXModelData::Create(std::shared_ptr<Device> device, const PMX::ModelDataDesc & modelDataDesc)
+std::shared_ptr<PMXModelData> PMXModelData::Create(std::shared_ptr<Device> device, const PMX::ModelDataDesc & modelDataDesc, std::shared_ptr<PipelineStateObject> pipelineStateObject)
 {
 	auto modelData = std::shared_ptr<PMXModelData>
 		(
-			new PMXModelData(device, modelDataDesc.vertices, modelDataDesc.indexies, (int)modelDataDesc.materials.size(), static_cast<int>(modelDataDesc.bones.size()) )
+			new PMXModelData(device,
+				modelDataDesc.vertices,
+				modelDataDesc.indexies,
+				(int)modelDataDesc.materials.size(),
+				static_cast<int>(modelDataDesc.bones.size()),
+				pipelineStateObject)
 			);
 	modelData->LoadModelTexture(modelDataDesc.textures, modelDataDesc.modelFilePath);
 	modelData->SetMaterial(modelDataDesc.materials, modelDataDesc.shareToonTextureIndexies);
@@ -51,8 +58,14 @@ void PMXModelData::Update()
 
 void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData & instanceData) const
 {
+	// PSOセット
+	graphicsCommandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
+
+	// ボーン情報バインド
 	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
 	mDescHeap->BindRootDescriptorTable(2, MATERIAL_HEAP_STRIDE * static_cast<int>(mMaterialData.size()));
+	
+	// 頂点情報セット
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
 	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
 	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
