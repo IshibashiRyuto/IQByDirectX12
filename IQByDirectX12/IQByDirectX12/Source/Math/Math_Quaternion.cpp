@@ -221,7 +221,7 @@ Quaternion Math::Slerp(const Quaternion & q1, const Quaternion & q2, float t)
 {
 	t = Clamp(t, 0.0f, 1.0f);
 	float angle = CalcAngleQuatToQuat(q1, q2);
-	if (angle == 0.0f)
+	if (IsZero(angle))
 	{
 		return q1;
 	}

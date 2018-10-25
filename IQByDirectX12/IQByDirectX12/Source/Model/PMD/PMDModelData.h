@@ -121,6 +121,9 @@ public:
 
 	void SetBoneData(std::shared_ptr<Device> device, const std::vector<PMDBone>& mBone);
 
+	/// @brief 更新処理
+	void Update();
+
 	/// @brief		描画処理
 	/// @param[in]	commandList		: 描画対象コマンドリスト
 	/// @param[in]	instanceData	: インスタンス情報
@@ -140,4 +143,6 @@ private:
 	std::shared_ptr<TextureLoader>	mTextureLoader;	// モデルテクスチャローダ
 	std::shared_ptr<DescriptorHeap> mBoneHeap;		// ボーン情報用ヒープ
 	std::shared_ptr<ConstantBuffer> mBoneMatrixBuffer;	// ボーン情報用バッファ
+
+	void UpdatePose();
 };
