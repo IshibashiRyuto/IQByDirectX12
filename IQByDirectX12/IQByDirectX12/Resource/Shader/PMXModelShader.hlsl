@@ -1,4 +1,4 @@
-Texture2D<float4> materialNormalTexture		: register(t0);		// マテリアル通常テクスチャ
+Texture2D<float4> surfaceTexture		: register(t0);		// マテリアル通常テクスチャ
 Texture2D<float4> materialAddSphereTexture	: register(t1);	// マテリアル加算スフィアテクスチャ
 Texture2D<float4> materialMulSphereTexture	: register(t2);	// マテリアル乗算スフィアテクスチャ
 Texture2D<float4> toonTexture				: register(t3);	// トゥーンテクスチャ
@@ -96,6 +96,7 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
+
 	float3 light = normalize(float3(-0.41f, -0.82f, 0.41f));
 	float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightDiffuseColor = float3(0.6f, 0.6f, 0.6f);
@@ -126,7 +127,7 @@ float4 PSMain(PSInput input) : SV_Target
     float spec = saturate(pow(dot(reflect(light, input.normal), -vray), specularColor.w));
     float3 modelSpecularColor = specularColor.rgb * spec * lightSpecularColor;
     
-    float4 texColor = materialNormalTexture.Sample(smp, input.uv);
+    float4 texColor = surfaceTexture.Sample(smp, input.uv);
 
 
 	// スフィアマップ用uv計算

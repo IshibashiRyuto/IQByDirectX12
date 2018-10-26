@@ -20,7 +20,7 @@ std::shared_ptr<GraphicsCommandList> GraphicsCommandList::Create(std::shared_ptr
 	return std::shared_ptr<GraphicsCommandList>( new GraphicsCommandList(device, commandListType, name) );
 }
 
-ComPtr<ID3D12GraphicsCommandList> GraphicsCommandList::GetCommandList()
+ComPtr<ID3D12GraphicsCommandList1> GraphicsCommandList::GetCommandList()
 {
 	return mCommandList;
 }
@@ -42,7 +42,7 @@ void GraphicsCommandList::Reset(ComPtr<ID3D12PipelineState> pipelineState)
 	mCommandList->Reset(mCommandAllocator->GetAllocator().Get(), pipelineState.Get());
 }
 
-ID3D12GraphicsCommandList * const GraphicsCommandList::operator->()
+ID3D12GraphicsCommandList1 * const GraphicsCommandList::operator->()
 {
 	return mCommandList.Get();
 }

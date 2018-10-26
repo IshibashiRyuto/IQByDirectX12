@@ -244,6 +244,7 @@ void Application::Render()
 	mCommandList->Reset(mPipelineState);
 	(*mCommandList)->SetGraphicsRootSignature(mRootSignature->GetRootSignature().Get());
 
+
 	// •`‰æ”ÍˆÍİ’è
 	D3D12_VIEWPORT vp = { 0.0f,0.0f, (FLOAT)mWindowWidth, (FLOAT)mWindowHeight, 0.0f,1.0f };
 	D3D12_RECT rc = { 0,0,mWindowWidth, mWindowHeight };
@@ -544,8 +545,8 @@ void Application::CreateCamera()
 void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
-	//mModelData = mModelLoader->LoadModel("Resource/Model/”—í—ì–²/reimu_G02.pmd", mPMDPipelineState);
-	mModelData = mModelLoader->LoadModel("Resource/Model/‰‰¹ƒ~ƒN.pmd", mPMDPipelineState);
+	mModelData = mModelLoader->LoadModel("Resource/Model/”—í—ì–²/reimu_G02.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/‰‰¹ƒ~ƒN.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/‰ä“ß”e‹¿v1.0/‰ä“ß”e‹¿v1.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/‰‰¹ƒ~ƒNmetal.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/hibari/‰_Ver1.10.pmd", mPMDPipelineState);

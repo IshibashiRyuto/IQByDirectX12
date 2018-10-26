@@ -11,6 +11,7 @@
 #include <string>
 #include <memory>
 #include <map>
+#include <DirectXTex.h>
 
 /*自作ヘッダインクルード*/
 #include "Texture.h"
@@ -52,8 +53,6 @@ private:
 	std::map< std::wstring, int> mTextureHandleManager;			// 読み込み済みテクスチャのハンドルを管理する
 	std::shared_ptr<Device> mDevice;								// デバイス
 	TextureManager &mTextureManager;							// テクスチャマネージャへの参照
-	std::shared_ptr<GraphicsCommandList> mCommandList;			// コマンドリスト
-	std::shared_ptr<CommandQueue>	mCommandQueue;				// コマンドキュー
 
 	ComPtr<ID3D12Resource> mUpdateBuffer;						// UpdateSubResourceで使用
 
@@ -62,10 +61,37 @@ private:
 	/// コンストラクタ
 	TextureLoader(std::shared_ptr<Device> device);
 
-	/// @fn UpdateTextureSubresource
-	/// テクスチャのサブリソースをアップデートする
-	/// @param[in]	resource ID3D12Resourceのポインタ
-	/// @param[in]	subresource サブリソースデータ
-	void UpdateTextureSubresource(ComPtr<ID3D12Resource> resource, D3D12_SUBRESOURCE_DATA& subresource);
+	/// @fn LoadTGATexture
+	/// @brief		TGAテクスチャを読み込む
+	/// @param[in]	filePath	: ファイルパス
+	/// @param[out]	metaData	: メタデータ
+	/// @param[out] image		: イメージデータ
+	/// @retval		読み込み成功の可否
+	bool LoadTGATexture(std::wstring filePath, DirectX::TexMetadata* metaData, DirectX::ScratchImage& imageData) const;
+
+	/// @fn LoadDDSTexture
+	/// @brief		DDSテクスチャを読み込む
+	/// @param[in]	filePath	: ファイルパス
+	/// @param[out]	metaData	: メタデータ
+	/// @param[out] image		: イメージデータ
+	/// @retval		読み込み成功の可否
+	bool LoadDDSTexture(std::wstring filePath, DirectX::TexMetadata* metaData, DirectX::ScratchImage& imageData) const;
+
+	/// @fn LoadWICTexture
+	/// @brief		WICテクスチャを読み込む
+	/// @param[in]	filePath	: ファイルパス
+	/// @param[out]	metaData	: メタデータ
+	/// @param[out] image		: イメージデータ
+	/// @retval		読み込み成功の可否
+	bool LoadWICTexture(std::wstring filePath, DirectX::TexMetadata* metaData, DirectX::ScratchImage& imageData) const;
+
+	/// @fn CreateTextureResource
+	/// @brief テクスチャリソースを作成する
+	/// 受け取ったメタデータとイメージデータをもとに
+	/// テクスチャリソースを作成する
+	/// @param[in]	metaData	: メタデータ
+	/// @param[in]	image		: イメージデータ
+	/// @retval		テクスチャリソースへのComポインタ
+	ComPtr<ID3D12Resource> CreateTextureResource(const DirectX::TexMetadata& metaData, const DirectX::ScratchImage& imageData);
 };
 

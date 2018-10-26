@@ -1,21 +1,24 @@
 #include <Windows.h>
 #include <d3dx12.h>
 #include <iostream>
-#include "TextureLoader.h"
+#include <DirectXTex.h>
 #include "WICTextureLoader/WICTextureLoader12.h"
+#include "TextureLoader.h"
 #include "../CommandQueue.h"
 #include "../GraphicsCommandList.h"
 #include "../Device.h"
 #include "../ConvertString.h"
 #include "../Debug/DebugLayer.h"
+#include <d3d12.h>
+
+#pragma comment(lib, "DirectXTex.lib")
+
+using namespace DirectX;
 
 TextureLoader::TextureLoader(std::shared_ptr<Device> device)
 	: mTextureManager(TextureManager::GetInstance())
 	, mDevice(device)
 {
-	mCommandList = GraphicsCommandList::Create(device, D3D12_COMMAND_LIST_TYPE_DIRECT, L"TextureLoader");
-	mCommandQueue = CommandQueue::Create(device);
-	mCommandList->Close();
 }
 
 
@@ -45,16 +48,27 @@ int TextureLoader::Load(const std::wstring & filePath)
 	if (it == mTextureHandleManager.end() || !mTextureManager.IsExist((*it).second))
 	{
 		ComPtr<ID3D12Resource> resource;
-		
-		D3D12_SUBRESOURCE_DATA subResourceData;
-		std::unique_ptr<uint8_t[]> decodedData;
-		auto result = DirectX::LoadWICTextureFromFile(mDevice->GetDevice().Get(),
-			filePath.data(),
-			&resource,
-			decodedData,
-			subResourceData);
-		
-		if (FAILED(result))
+		TexMetadata metaData;
+		ScratchImage imageData;
+
+
+		auto signature = filePath.substr(filePath.rfind(L'.')+1);
+		bool isImageLoaded;
+
+		if (signature == L"tga")
+		{
+			isImageLoaded = LoadTGATexture(filePath, &metaData, imageData);
+		}
+		else if (signature == L"dds")
+		{
+			isImageLoaded = LoadDDSTexture(filePath, &metaData, imageData);
+		}
+		else
+		{
+			isImageLoaded = LoadWICTexture(filePath, &metaData, imageData);
+		}
+
+		if (!isImageLoaded)
 		{
 			std::wstring str = L"Failed Load Texture File \"" + filePath;
 			if ((*str.rbegin()) == '\0')
@@ -66,22 +80,19 @@ int TextureLoader::Load(const std::wstring & filePath)
 			return -1;
 		}
 
-
-		auto desc = resource->GetDesc();
-
-		if (desc.Format != DXGI_FORMAT_R8G8B8A8_UNORM)
+		resource = CreateTextureResource(metaData, imageData);
+		
+		if (!resource)
 		{
-
-			std::wstring str = L"This Texture is Not Format R8G8B8A8_UNORM \"" + filePath;
+			std::wstring str = L"Failed Load Texture File \"" + filePath;
 			if ((*str.rbegin()) == '\0')
 			{
 				(*str.rbegin()) = ' ';
 			}
 			str += L"\".";
 			DebugLayer::GetInstance().PrintDebugMessage(str);
+			return -1;
 		}
-
-		UpdateTextureSubresource(resource, subResourceData);
 
 		auto textureData = Texture::Create(resource);
 		mTextureHandleManager[filePath] = mTextureManager.Regist(textureData);
@@ -89,52 +100,70 @@ int TextureLoader::Load(const std::wstring & filePath)
 	return mTextureHandleManager[filePath];
 }
 
-void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D12_SUBRESOURCE_DATA & subresource)
+bool TextureLoader::LoadTGATexture(std::wstring filePath, TexMetadata * metaData, ScratchImage & imageData) const
 {
+	auto result = LoadFromTGAFile(filePath.c_str(), metaData, imageData);
+	return static_cast<bool>(SUCCEEDED(result));
+}
+
+bool TextureLoader::LoadDDSTexture(std::wstring filePath, DirectX::TexMetadata * metaData, DirectX::ScratchImage & imageData) const
+{
+	auto result = LoadFromDDSFile(filePath.c_str(), WIC_FLAGS_NONE, metaData, imageData);
+	return static_cast<bool>(SUCCEEDED(result));
+}
+
+bool TextureLoader::LoadWICTexture(std::wstring filePath, TexMetadata * metaData, ScratchImage & imageData) const
+{
+	auto result = LoadFromWICFile(filePath.c_str(), WIC_FLAGS_NONE, metaData, imageData);
+	return static_cast<bool>(SUCCEEDED(result));
+}
+
+ComPtr<ID3D12Resource> TextureLoader::CreateTextureResource(const TexMetadata & metaData, const ScratchImage & imageData)
+{
+	ComPtr<ID3D12Resource> texResource;
+
 	D3D12_HEAP_PROPERTIES heapProp = {};
-	heapProp.Type = D3D12_HEAP_TYPE_UPLOAD;
-	heapProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
-	heapProp.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	heapProp.Type = D3D12_HEAP_TYPE_CUSTOM;
+	heapProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_WRITE_BACK;
+	heapProp.MemoryPoolPreference = D3D12_MEMORY_POOL_L0;
 	heapProp.CreationNodeMask = 1;
 	heapProp.VisibleNodeMask = 1;
 
-	D3D12_RESOURCE_DESC uploadDesc;
-	uploadDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
-	uploadDesc.Alignment = 0;
-	uploadDesc.Width = GetRequiredIntermediateSize(resource.Get(), 0, 1);
-	uploadDesc.Height = 1;
-	uploadDesc.DepthOrArraySize = 1;
-	uploadDesc.MipLevels = 1;
-	uploadDesc.Format = DXGI_FORMAT_UNKNOWN;
-	uploadDesc.SampleDesc.Count = 1;
-	uploadDesc.SampleDesc.Quality = 0;
-	uploadDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
-	uploadDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+	D3D12_RESOURCE_DESC resourceDesc = {};
+	resourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+	resourceDesc.Alignment = 0;
+	resourceDesc.Width = metaData.width;
+	resourceDesc.Height = metaData.height;
+	resourceDesc.DepthOrArraySize = 1;
+	resourceDesc.MipLevels = 1;
+	resourceDesc.Format = metaData.format;
+	resourceDesc.SampleDesc.Count = 1;
+	resourceDesc.SampleDesc.Quality = 0;
+	resourceDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
+	resourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
 
-	(*mDevice)->CreateCommittedResource(
-		&heapProp,
+	auto result = (*mDevice)->CreateCommittedResource(&heapProp,
 		D3D12_HEAP_FLAG_NONE,
-		&uploadDesc,
+		&resourceDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
-		IID_PPV_ARGS(&mUpdateBuffer)
-	);
+		IID_PPV_ARGS(&texResource));
 
-
-	// リソースアップデートコマンドの実行
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
 	
-	mCommandList->Reset();
+	D3D12_BOX writeBox = {};
+	writeBox.left = 0;
+	writeBox.right = (metaData.width);
+	writeBox.top = 0;
+	writeBox.bottom = (metaData.height);
+	writeBox.front = 0;
+	writeBox.back = 1;
 
-	UpdateSubresources( mCommandList->GetCommandList().Get(),
-		resource.Get(),
-		mUpdateBuffer.Get(),
-		(UINT64)0,
-		(UINT)0,
-		(UINT)1,
-		&subresource);
-
-	mCommandList->Close();
-
-	mCommandQueue->ExecuteCommandList(mCommandList);
-	mCommandQueue->Signal();
+	texResource->WriteToSubresource(0, &writeBox, imageData.GetPixels(), 4 * metaData.width, 4 * metaData.width * metaData.height);
+	
+	return texResource;
 }
+
