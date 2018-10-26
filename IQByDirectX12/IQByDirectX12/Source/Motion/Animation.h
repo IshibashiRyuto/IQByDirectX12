@@ -30,6 +30,7 @@ public:
 
 	/// @brief アニメーション情報の生成
 	/// @note Animationクラスのインスタンスはこのメソッドを通じてのみ生成
+	/// @param[in] frameCount : アニメーションの総フレーム数
 	/// @retval	生成成功 : インスタンスのスマートポインタ
 	/// @retval 生成失敗 : nullptr
 	static std::shared_ptr<Animation> Create();
@@ -37,7 +38,7 @@ public:
 	/// @brief		アニメーション情報を追加する
 	/// @param[in]	boneName		: ボーン名
 	/// @param[in]	frame			: キーフレーム
-	/// @param[in]	animationData	: アニメーションデータ
+	/// @param[in]	keyFrameData	: キーフレームのアニメーションデータ
 	void AddKeyFrameData(const std::wstring& boneName, int frame, const KeyFrameData& keyFrameData);
 
 	/// @brief 指定したフレームのモーションをモデルの姿勢情報に格納する
@@ -47,6 +48,7 @@ public:
 	void SetPose(int frame, std::shared_ptr<Pose> pose);
 
 private:
+	int mFrameCount;															//! フレームカウント
 	std::map<std::wstring, std::map< int, KeyFrameData> > mAnimationData;	//! アニメーションデータ
 };
 

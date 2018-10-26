@@ -4,6 +4,7 @@
 #include "Pose.h"
 
 Animation::Animation()
+	: mFrameCount(-1)
 {
 }
 
@@ -20,6 +21,10 @@ std::shared_ptr<Animation> Animation::Create()
 void Animation::AddKeyFrameData(const std::wstring & boneName, int frame, const KeyFrameData & keyFrameData)
 {
 	mAnimationData[boneName][frame] = keyFrameData;
+	if (mFrameCount < frame)
+	{
+		mFrameCount = frame;
+	}
 }
 
 void Animation::SetPose(int frame, std::shared_ptr<Pose> pose)

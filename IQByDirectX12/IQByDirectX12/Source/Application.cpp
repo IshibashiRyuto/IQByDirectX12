@@ -178,29 +178,47 @@ void Application::Render()
 	{
 		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.03f);
 	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Up))
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad8))
 	{
 		pos.y += speed;
 	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Down))
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad2))
 	{
 		pos.y -= speed;
 	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Left))
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad4))
 	{
 		pos.x -= speed;
 	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Right))
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad6))
 	{
 		pos.x += speed;
 	}
-
-	t += 0.5f;
-	if (t >= 30)
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad7))
 	{
-		t = 0;
+		pos.z -= speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad9))
+	{
+		pos.z += speed;
 	}
 
+	static bool isStop = false;
+	
+	if (mKeyboard->IsKeyTrigger(VirtualKeyIndex::Z))
+	{
+		isStop = !isStop;
+	}
+
+	if (!isStop)
+	{
+		
+		t += 0.5f;
+		if (t >= 60)
+		{
+			t = 0;
+		}
+	}
 	int i = 0;
 	// PMX Instance Draw
 	for (auto model : mInstancingTestModels)
@@ -210,7 +228,7 @@ void Application::Render()
 			model->SetRotation(rot);
 			model->SetPosition(pos);
 			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
-			mAnimationData->SetPose(0, model->_DebugGetPose());
+			mAnimationData->SetPose(50, model->_DebugGetPose());
 			model->Draw();
 		}
 	}
@@ -218,7 +236,7 @@ void Application::Render()
 	// PMD Draw
 	mModelData->SetRotation(rot);
 	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f,0.0f));
-	mAnimationData->SetPose(0, mModelData->_DebugGetPose());
+	mAnimationData->SetPose(t, mModelData->_DebugGetPose());
 	mModelData->Draw();
 	// endDebug
 
@@ -549,9 +567,9 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		//model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx", mPMXPipelineState);
+		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx", mPMXPipelineState);
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx", mPMXPipelineState);
-		model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx", mPMXPipelineState);
+		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx", mPMXPipelineState);
 		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx", mPMXPipelineState);
 	}
 
@@ -573,7 +591,7 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
-	mAnimationData = loader->Load("Resource/Motion/pose.vmd");
+	mAnimationData = loader->Load("Resource/Motion/charge.vmd");
 }
 
 void Application::UpdateMatrix()

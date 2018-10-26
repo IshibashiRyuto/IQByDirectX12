@@ -26,7 +26,6 @@ std::shared_ptr<VMDLoader> VMDLoader::Create()
 
 std::shared_ptr<Animation> VMDLoader::Load(const std::string & filePath)
 {
-	auto animationData = Animation::Create();
 	FILE *fp;
 	errno_t err;
 	err = fopen_s(&fp, filePath.c_str(), "rb");
@@ -46,15 +45,15 @@ std::shared_ptr<Animation> VMDLoader::Load(const std::string & filePath)
 
 	auto size = sizeof(VMD::MotionDataInfo);
 
+	int lastAnimFrame = 0;
 	for (int i = 0; i < frameDataCount; ++i)
 	{
-		int dataCnt = fread(&motionData[i], size, 1, fp);
-		int err = ferror(fp);
-		int end = feof(fp);
-		int a = 0;
+		fread(&motionData[i], size, 1, fp);
 	}
 
 	fclose(fp);
+
+	auto animationData = Animation::Create();
 
 	for (auto& data : motionData)
 	{

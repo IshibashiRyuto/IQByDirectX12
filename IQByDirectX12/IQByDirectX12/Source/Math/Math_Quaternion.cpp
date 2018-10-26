@@ -220,6 +220,10 @@ Quaternion Math::Lerp(const Quaternion & q1, const Quaternion q2, float t)
 Quaternion Math::Slerp(const Quaternion & q1, const Quaternion & q2, float t)
 {
 	t = Clamp(t, 0.0f, 1.0f);
+	if (IsZero(t))
+	{
+		return q1;
+	}
 	float angle = CalcAngleQuatToQuat(q1, q2);
 	if (IsZero(angle))
 	{
