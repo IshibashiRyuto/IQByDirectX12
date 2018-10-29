@@ -21,6 +21,7 @@ std::shared_ptr<Animation> Animation::Create()
 void Animation::AddKeyFrameData(const std::wstring & boneName, int frame, const KeyFrameData & keyFrameData)
 {
 	mAnimationData[boneName][frame] = keyFrameData;
+
 	if (mFrameCount < frame)
 	{
 		mFrameCount = frame;
@@ -56,4 +57,16 @@ void Animation::SetPose(int frame, std::shared_ptr<Pose> pose)
 		boneData[boneIndex]->SetRotation(boneRot);
 	}
 	pose->CalcPose();
+}
+
+float Animation::GetBezierCurveY(float x, const Math::Vector2& ctrlPoint1, const Math::Vector2& ctrlPoint2)
+{
+	if (Math::IsEqual(ctrlPoint1.x, ctrlPoint1.y)
+		&& Math::IsEqual(ctrlPoint2.x, ctrlPoint2.y))
+	{
+		return x;
+	}
+
+
+	return 0.0f;
 }

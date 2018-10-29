@@ -9,6 +9,7 @@
 // システムヘッダインクルード
 #include <map>
 #include <memory>
+#include <vector>
 
 // 自作ヘッダインクルード
 #include "../Math/Math.h"
@@ -20,6 +21,8 @@ class Pose;
 struct KeyFrameData
 {
 	std::shared_ptr<Bone> bone;
+	Math::Vector2 bazieCtrlPoint1;
+	Math::Vector2 bazieCtrlPoint2;
 };
 
 class Animation
@@ -48,7 +51,9 @@ public:
 	void SetPose(int frame, std::shared_ptr<Pose> pose);
 
 private:
-	int mFrameCount;															//! フレームカウント
+	int mFrameCount;														//! フレームカウント
 	std::map<std::wstring, std::map< int, KeyFrameData> > mAnimationData;	//! アニメーションデータ
+
+	float GetBezierCurveY(float x, const Math::Vector2& ctrlPoint1, const Math::Vector2& ctrlPoint2);
 };
 
