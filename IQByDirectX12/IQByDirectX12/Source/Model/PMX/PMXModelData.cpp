@@ -156,10 +156,6 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 			bone->Rotate(Math::CreateZRotMatrix(0.5f));
 		}
 
-		if (bones[i].axisFixed)
-		{
-			bone->SetLimitAxis(true, bones[i].axisVector);
-		}
 		if (bones[i].parentBoneIndex < bones.size())
 		{
 			mPose->SetBoneData(bones[i].name, bone, i, bones[i].parentBoneIndex);

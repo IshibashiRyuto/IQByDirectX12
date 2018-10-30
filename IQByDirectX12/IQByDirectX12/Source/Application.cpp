@@ -591,10 +591,10 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/バイバイ.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
-	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
+	mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
 	//mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
-	mAnimationData = loader->Load("Resource/Motion/charge.vmd");
+	//mAnimationData = loader->Load("Resource/Motion/charge.vmd");
 }
 
 void Application::UpdateMatrix()
