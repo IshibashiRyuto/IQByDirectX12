@@ -50,10 +50,15 @@ public:
 	/// @note 呼出し時、姿勢計算まで行う
 	void SetPose(int frame, std::shared_ptr<Pose> pose);
 
+	///	@brief	アニメーションの時間を取得する
+	int GetDuration() const;
+
 private:
-	int mFrameCount;														//! フレームカウント
+	int mDuration;														//! フレームカウント
 	std::map<std::wstring, std::map< int, KeyFrameData> > mAnimationData;	//! アニメーションデータ
 
-	float GetBezierCurveY(float x, const Math::Vector2& ctrlPoint1, const Math::Vector2& ctrlPoint2);
+	float GetBezierCurveYWithNewton(float x, const Math::Vector2& ctrlPoint1, const Math::Vector2& ctrlPoint2, int n = 16);
+
+	float GetBezierCurveYWithBisection(float x, const Math::Vector2& ctrlPoint1, const Math::Vector2& ctrlPoint2, int n = 8);
 };
 

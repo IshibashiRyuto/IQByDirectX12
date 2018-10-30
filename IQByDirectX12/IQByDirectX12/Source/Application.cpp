@@ -203,7 +203,7 @@ void Application::Render()
 		pos.z += speed;
 	}
 
-	static bool isStop = false;
+	static bool isStop = true;
 	
 	if (mKeyboard->IsKeyTrigger(VirtualKeyIndex::Z))
 	{
@@ -213,8 +213,8 @@ void Application::Render()
 	if (!isStop)
 	{
 		
-		t += 0.5f;
-		if (t >= 60)
+		t += 0.05f;
+		if (t > mAnimationData->GetDuration())
 		{
 			t = 0;
 		}
@@ -227,8 +227,8 @@ void Application::Render()
 		{
 			model->SetRotation(rot);
 			model->SetPosition(pos);
-			//mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
-			mAnimationData->SetPose(50, model->_DebugGetPose());
+			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
+			//mAnimationData->SetPose(50, model->_DebugGetPose());
 			model->Draw();
 		}
 	}
@@ -545,8 +545,8 @@ void Application::CreateCamera()
 void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
-	mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd", mPMDPipelineState);
-	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd", mPMDPipelineState);
+	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd", mPMDPipelineState);
@@ -590,9 +590,11 @@ void Application::LoadMotion()
 	auto loader = VMDLoader::Create();
 	//mAnimationData =loader->Load("Resource/Motion/バイバイ.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
-	mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
+	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
-	//mAnimationData = loader->Load("Resource/Motion/charge.vmd");
+	mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
+	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
+	//mAnimationData = loader->Load("Resource/Motion/swing3.vmd");
 }
 
 void Application::UpdateMatrix()

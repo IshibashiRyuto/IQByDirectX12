@@ -239,7 +239,8 @@ float Math::Dot(const Quaternion & q1, const Quaternion & q2)
 
 float Math::CalcAngleQuatToQuat(const Quaternion & q1, const Quaternion & q2)
 {
-	return acosf( Dot(q1, q2) / ( q1.Norm() * q2.Norm() ));
+	float cos = Dot(q1, q2) / (q1.Norm() * q2.Norm());
+	return acosf( Math::Clamp( cos, -1.0f, 1.0f) );
 }
 
 Matrix4x4 Math::GetMatrixFromQuat(const Quaternion & quat)

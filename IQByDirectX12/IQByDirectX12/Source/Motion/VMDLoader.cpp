@@ -60,6 +60,17 @@ std::shared_ptr<Animation> VMDLoader::Load(const std::string & filePath)
 		KeyFrameData keyFrameData;
 		keyFrameData.bone = Bone::Create(Math::Vector3());
 		keyFrameData.bone->SetRotation(data.rotation);
+
+		// ベジェの制御点情報
+		float ax, ay, bx, by;
+		ax = data.interpolation[48] / 127.0f;
+		ay = data.interpolation[52] / 127.0f;
+		bx = data.interpolation[56] / 127.0f;
+		by = data.interpolation[60] / 127.0f;
+
+		keyFrameData.bazieCtrlPoint1 = Math::Vector2(ax, ay);
+		keyFrameData.bazieCtrlPoint2 = Math::Vector2(bx, by);
+
 		std::wstring boneName;
 
 		std::string str(data.boneName);
