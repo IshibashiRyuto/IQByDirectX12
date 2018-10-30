@@ -68,6 +68,7 @@ private:
 	std::shared_ptr<ConstantBuffer> mMaterialDataBuffer;			// マテリアルデータを保存する定数バッファ
 	std::vector<PMX::MaterialData>	mMaterialData;					// マテリアルデータ
 	std::vector<int>				mTextureHandle;					// テクスチャハンドル
+	std::shared_ptr<DescriptorHeap> mBoneHeap;						// ボーン情報を格納するヒープ
 	std::shared_ptr<ConstantBuffer> mBoneMatrixDataBuffer;			// ボーン行列情報を保存する定数バッファ
 
 	/* ローカルメソッド定義 */

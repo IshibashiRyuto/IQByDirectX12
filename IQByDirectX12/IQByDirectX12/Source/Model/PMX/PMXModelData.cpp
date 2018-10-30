@@ -23,10 +23,11 @@ PMXModelData::PMXModelData(std::shared_ptr<Device> device,
 
 	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
 		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
-		DescriptorHeap::Create(device, materialCount * MATERIAL_HEAP_STRIDE + 1),
+		DescriptorHeap::Create(device, materialCount * MATERIAL_HEAP_STRIDE),
 		pipelineStateObject)
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))
 	, mBoneMatrixDataBuffer(ConstantBuffer::Create(device, sizeof(Math::Matrix4x4)*boneCount, 1) )
+	, mBoneHeap(DescriptorHeap::Create(device, 1))
 {
 }
 
@@ -62,8 +63,8 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 	graphicsCommandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
 
 	// ボーン情報バインド
-	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
-	mDescHeap->BindRootDescriptorTable(2, MATERIAL_HEAP_STRIDE * static_cast<int>(mMaterialData.size()));
+	mBoneHeap->BindGraphicsCommandList(graphicsCommandList);
+	mBoneHeap->BindRootDescriptorTable(2, 0);
 	
 	// 頂点情報セット
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
@@ -72,6 +73,7 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 
 
 	// マテリアルをセットして描画
+	mDescHeap->BindGraphicsCommandList(graphicsCommandList);
 	int indexOffset = 0;
 	for (int i = 0; i < mMaterialData.size(); ++i)
 	{
@@ -178,7 +180,7 @@ void PMXModelData::SetBone(const std::vector<PMX::BoneData>& bones)
 		boneMatrixes[i] = poseBones[i]->GetBoneMatrix();
 	}
 	mBoneMatrixDataBuffer->SetData(boneMatrixes.data(), static_cast<UINT>( sizeof(Math::Matrix4x4) * boneMatrixes.size()));
-	mDescHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), static_cast<UINT>(MATERIAL_HEAP_STRIDE * mMaterialData.size()));
+	mBoneHeap->SetConstantBufferView(mBoneMatrixDataBuffer->GetConstantBufferView(), 0);
 }
 
 void PMXModelData::UpdatePose()
