@@ -22,6 +22,7 @@
     <ClCompile Include="Source\Camera\Dx12Camera.cpp" />
     <ClCompile Include="Source\Camera\Camera.cpp" />
     <ClCompile Include="Source\Debug\DebugLayer.cpp" />
+    <ClCompile Include="Source\Math\XMMath.cpp" />
     <ClCompile Include="Source\PipelineStateObject.cpp" />
     <ClCompile Include="Source\Motion\Animation.cpp" />
     <ClCompile Include="Source\Application.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="Source\Motion\VMDData.h" />
     <ClInclude Include="Source\Motion\VMDLoader.h" />
     <ClInclude Include="Source\Window.h" />
+    <ClInclude Include="Source\Math\XMMath.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\3DPrimitiveShader.hlsl">
