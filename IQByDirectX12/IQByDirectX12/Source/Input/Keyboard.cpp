@@ -29,7 +29,7 @@ bool Keyboard::IsKeyDown(VirtualKeyIndex keyIndex) const
 
 bool Keyboard::IsKeyTrigger(VirtualKeyIndex keyIndex) const
 {
-	return static_cast<bool>( ( ~(mKeyState[static_cast<int>(keyIndex)] & KEY_CHECK_DOWN) ) & (mPreKeyState[static_cast<int>(keyIndex)] & KEY_CHECK_DOWN));
+	return static_cast<bool>( ( (mKeyState[static_cast<int>(keyIndex)] & KEY_CHECK_DOWN) ) & ~(mPreKeyState[static_cast<int>(keyIndex)] & KEY_CHECK_DOWN));
 }
 
 bool Keyboard::IsKeyToggle(VirtualKeyIndex keyIndex) const

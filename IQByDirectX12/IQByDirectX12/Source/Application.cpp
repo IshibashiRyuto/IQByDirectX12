@@ -162,14 +162,6 @@ void Application::Render()
 
 
 
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
-	{
-		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.03f);
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
-	{
-		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.03f);
-	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
 	{
 		rot *= Math::CreateRotAxisQuaternion(rotAxis, 0.03f);
@@ -177,6 +169,14 @@ void Application::Render()
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
 	{
 		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.03f);
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
+	{
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.03f);
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
+	{
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.03f);
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad8))
 	{
@@ -213,7 +213,7 @@ void Application::Render()
 	if (!isStop)
 	{
 		
-		t += 0.05f;
+		t += 0.5f;
 		if (t > mAnimationData->GetDuration())
 		{
 			t = 0;
@@ -592,9 +592,9 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
-	mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
+	//mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
-	//mAnimationData = loader->Load("Resource/Motion/swing3.vmd");
+	mAnimationData = loader->Load("Resource/Motion/charge.vmd");
 }
 
 void Application::UpdateMatrix()

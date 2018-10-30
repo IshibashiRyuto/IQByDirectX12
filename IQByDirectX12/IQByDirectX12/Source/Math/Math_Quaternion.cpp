@@ -4,9 +4,12 @@
 #include <cassert>
 #include "Math.h"
 
+
 /// @date
 /// 2018/09/11	operator*=‚ÌƒoƒN‚ðC³
 /// 2018/10/22	CreateRotVecToVec‚Ì‰ñ“]‚ª‰EŽèŒnŠî€‚É‚È‚Á‚Ä‚¢‚½‚½‚ßC³
+///	2018/10/30	operator*=‚ÅAŠOÏ‚ÌŒ‹‰Ê‚ðˆø‚¢‚Ä‚¢‚½•”•ª‚ð‘«‚·‚æ‚¤‚ÉC³
+///	2018/10/30	Slerp‚Å‹——£Å¬«‚ð–ž‚½‚µ‚Ä‚¢‚È‚©‚Á‚½•”•ª‚ðC³
 
 using namespace Math;
 
@@ -85,7 +88,7 @@ Quaternion& Quaternion::operator-=(const Quaternion& quat)
 Quaternion& Quaternion::operator*=(const Quaternion& quat)
 {
 	auto mw = this->w * quat.w - Dot(this->v, quat.v);
-	auto mv = this->w * quat.v + quat.w * this->v - Cross(this->v, quat.v);
+	auto mv = this->w * quat.v + quat.w * this->v + Cross(this->v, quat.v);
 	this->w = mw;
 	this->v = mv;
 	return *this;
@@ -128,7 +131,7 @@ float Math::Quaternion::NormSquare() const
 
 bool Math::operator==(const Quaternion& q1, const Quaternion& q2)
 {
-	return (q1.w == q2.w) && (q1.x == q2.x) && (q1.y == q2.y) && (q1.z == q2.z);
+	return (IsEqual(q1.w, q2.w) && IsEqual(q1.x, q2.x) && IsEqual(q1.y, q2.y) && IsEqual(q1.z, q2.z));
 }
 
 bool Math::operator!=(const Quaternion& q1, const Quaternion& q2)
@@ -208,7 +211,7 @@ Quaternion Math::CreateRotVecToVec(const Vector3 & dstVec, const Vector3 & srcVe
 {
 	auto rotAxis = Cross(dstVec, srcVec);
 	auto rotAngle = CalcAngleVecToVec(dstVec, srcVec);
-	return CreateRotAxisQuaternion(-rotAxis, rotAngle);
+	return CreateRotAxisQuaternion(rotAxis, rotAngle);
 }
 
 Quaternion Math::Lerp(const Quaternion & q1, const Quaternion q2, float t)
@@ -219,17 +222,26 @@ Quaternion Math::Lerp(const Quaternion & q1, const Quaternion q2, float t)
 
 Quaternion Math::Slerp(const Quaternion & q1, const Quaternion & q2, float t)
 {
+	auto _q1 = q1;
+	auto _q2 = q2;
+	if (Dot(_q1, _q2) < 0.0f)
+	{
+		_q2 = -q2;
+	}
 	t = Clamp(t, 0.0f, 1.0f);
+
 	if (IsZero(t))
 	{
-		return q1;
+		return _q1;
 	}
-	float angle = CalcAngleQuatToQuat(q1, q2);
+	float angle = CalcAngleQuatToQuat(_q1, _q2);
 	if (IsZero(angle))
 	{
-		return q1;
+		return _q1;
 	}
-	return Quaternion(q1 * (sinf((1.0f - t) * angle) / sinf(angle)) + q2 * (sinf(t * angle) / sinf(angle)));
+	auto a = Quaternion(_q1 * (sinf((1.0f - t) * angle) / sinf(angle)) + _q2 * (sinf(t * angle) / sinf(angle)));
+	a /= a.Norm();
+	return a;
 }
 
 float Math::Dot(const Quaternion & q1, const Quaternion & q2)
@@ -239,8 +251,7 @@ float Math::Dot(const Quaternion & q1, const Quaternion & q2)
 
 float Math::CalcAngleQuatToQuat(const Quaternion & q1, const Quaternion & q2)
 {
-	float cos = Dot(q1, q2) / (q1.Norm() * q2.Norm());
-	return acosf( Math::Clamp( cos, -1.0f, 1.0f) );
+	return acosf( Math::Clamp(Dot(q1 / q1.Norm(), q2 / q2.Norm()), -1.0f, 1.0f) );
 }
 
 Matrix4x4 Math::GetMatrixFromQuat(const Quaternion & quat)
