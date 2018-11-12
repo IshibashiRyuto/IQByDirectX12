@@ -236,7 +236,7 @@ void Application::Render()
 	// PMD Draw
 	mModelData->SetRotation(rot);
 	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f,0.0f));
-	mAnimationData->SetPose(t, mModelData->_DebugGetPose());
+	//mAnimationData->SetPose(t, mModelData->_DebugGetPose());
 	mModelData->Draw();
 	// endDebug
 
@@ -546,10 +546,10 @@ void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd", mPMDPipelineState);
-	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd", mPMDPipelineState);
-	//mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd", mPMDPipelineState);
+	mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd", mPMDPipelineState);
 	if (!mModelData)
 	{
 		return;
@@ -591,8 +591,8 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/バイバイ.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
-	mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
-	//mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
+	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
+	mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/charge.vmd");
 }

@@ -19,18 +19,14 @@ using Microsoft::WRL::ComPtr;
 class Texture
 {
 public:
-	/// コンストラクタ
-	Texture();
-
 	/// デストラクタ
-	~Texture();
+	virtual ~Texture();
 
 	/// @fn Create
 	/// テクスチャデータを生成する
 	/// @note Textureクラスはこのメソッドを通じてのみ生成可能
 	/// 実体を直接持つことはできない
-	/// @param[in] device		D3D12デバイス
-	/// @param[in] textureData	テクスチャデータの込むポインタ
+	/// @param[in] textureData :テクスチャデータ書き込み済みのリソースバッファ
 	/// @retval 生成成功: Textureのshared_ptr
 	/// @retval 生成失敗: nullptr
 	static std::shared_ptr<Texture> Create(ComPtr<ID3D12Resource> textureData);
@@ -49,7 +45,14 @@ public:
 	/// シェーダーリソースビューを設定する
 	void SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC& srv);
 
-private:
+protected:
 	ComPtr<ID3D12Resource> mTextureData;
 	D3D12_SHADER_RESOURCE_VIEW_DESC mShaderResourceView;
+
+
+	/// コンストラクタ
+	Texture(ComPtr<ID3D12Resource> textureData);
+
+	/// リソース情報を元にSRVを構築する
+	void ConstructSRV();
 };

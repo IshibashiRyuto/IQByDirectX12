@@ -10,6 +10,10 @@ cbuffer mat:register(b0)
 	float4x4 world;			// world行列
 	float4x4 view;			// view行列
 	float4x4 projection;	// projection行列
+    float3 eyePos;          // 視点
+    float3 eyeDir;          // 視線ベクトル
+    float3 upper;           // 上方向ベクトル
+    float3 right;           // 右方向ベクトル
 }
 
 cbuffer material : register(b1)
@@ -76,11 +80,9 @@ float4 PSMain(PSInput input) : SV_Target
 	float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightDiffuseColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);
+    
 
-	float3 eyePosition = float3(0.0f, 15.0f, -50.0f);
-
-	float3 vray = normalize(input.origPosition - eyePosition);
-	float3 up = float3 (0, 1, 0);
+	float3 vray = normalize(input.origPosition - eyePos);
 	
 	float brightness =  dot(input.normal, -light);
     
@@ -101,7 +103,7 @@ float4 PSMain(PSInput input) : SV_Target
     
 	// スフィアマップ計算
 	
-	float3 vrayAxisX = cross(up, vray);
+	float3 vrayAxisX = cross(upper, vray);
 	float3 vrayAxisY = cross( vray, vrayAxisX);
 	float2 sphereUV = float2(dot(vrayAxisX, input.normal), dot(vrayAxisY, input.normal));
 	
