@@ -86,7 +86,7 @@ bool Application::Initialize(const Window & window)
 	}
 
 	// スワップチェイン生成
-	mSwapChain = SwapChain::Create(mCommandQueue, window, RENDER_TARGET_NUM);
+	mSwapChain = SwapChain::Create(mCommandQueue, window);
 	if (!mSwapChain)
 	{
 		return false;

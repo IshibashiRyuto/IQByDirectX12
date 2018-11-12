@@ -69,7 +69,7 @@ public:
 private:
 
 	/* 定数定義 */
-	const int RENDER_TARGET_NUM = 2;		//!	レンダーターゲット数
+	const int RENDER_TARGET_NUM = 3;		//!	レンダーターゲット数
 
 	/* 変数宣言 */
 	std::shared_ptr<SwapChain>				mSwapChain;				//! スワップチェイン

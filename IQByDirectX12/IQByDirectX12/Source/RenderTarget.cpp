@@ -3,6 +3,7 @@
 #include "Device.h"
 #include "RenderTarget.h"
 #include "Debug\DebugLayer.h"
+#include "Texture/RenderTargetTexture.h"
 
 
 
@@ -40,24 +41,34 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 	// レンダーターゲットビューの作成
 	renderTarget->mRenderTargets.resize(renderTargetsNum);
 
-	D3D12_RENDER_TARGET_VIEW_DESC rtvDesc;
-	rtvDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
-	rtvDesc.Texture2D.MipSlice = 0;
-	rtvDesc.Texture2D.PlaneSlice = 0;
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE descHandle(renderTarget->mRTVDescHeap->GetCPUDescriptorHandleForHeapStart());
+	DXGI_SWAP_CHAIN_DESC swapChainDesc;
+	swapChain->GetDesc(&swapChainDesc);
+	int backBufferNum = swapChainDesc.BufferCount;
 	for (int i = 0; i < renderTargetsNum; ++i)
 	{
-		auto result = swapChain->GetBuffer(i, IID_PPV_ARGS(&(renderTarget->mRenderTargets[i])));
-		if (FAILED(result))
+		if (i < backBufferNum)
 		{
-			DebugLayer::GetInstance().PrintDebugMessage("Failed Create Render Target.");
-			return nullptr;
+
+			ComPtr<ID3D12Resource> resource;
+			auto result = swapChain->GetBuffer(i, IID_PPV_ARGS(&resource));
+			if (FAILED(result))
+			{
+				DebugLayer::GetInstance().PrintDebugMessage("Failed Create Render Target.");
+				return nullptr;
+			}
+
+			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(resource);
+		}
+		else
+		{
+			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(device, 800, 600);
 		}
 
-		rtvDesc.Format = renderTarget->mRenderTargets[i]->GetDesc().Format;
-
-		device->GetDevice()->CreateRenderTargetView(renderTarget->mRenderTargets[i].Get(), &rtvDesc, descHandle);
+		auto rtvDesc = renderTarget->mRenderTargets[i]->GetRenderTargetViewDesc();
+		
+		device->GetDevice()->CreateRenderTargetView(renderTarget->mRenderTargets[i]->GetTextureData().Get(), &rtvDesc, descHandle);
 		descHandle.Offset(1, renderTarget->RENDER_TARGET_VIEW_DESCRIPTOR_SIZE);
 	}
 
@@ -67,12 +78,12 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 void RenderTarget::ChangeRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList, int targetIndex)
 {
 	mRenderTargetIndex = targetIndex;
-	commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mRenderTargets[targetIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
+	commandList->ResourceBarrier(1, &mRenderTargets[targetIndex]->GetTransitionBarrier(D3D12_RESOURCE_STATE_RENDER_TARGET));
 }
 
 void RenderTarget::FinishRendering(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
-	commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mRenderTargets[mRenderTargetIndex].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
+	commandList->ResourceBarrier(1, &mRenderTargets[mRenderTargetIndex]->GetTransitionBarrier(D3D12_RESOURCE_STATE_PRESENT));
 }
 
 D3D12_CPU_DESCRIPTOR_HANDLE RenderTarget::GetRTVHandle()

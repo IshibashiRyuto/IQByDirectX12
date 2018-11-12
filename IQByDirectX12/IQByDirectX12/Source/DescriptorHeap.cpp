@@ -61,9 +61,8 @@ void DescriptorHeap::SetTexture(std::shared_ptr<Texture> texture, UINT index)
 	{
 		return;
 	}
-	auto srv = texture->GetShaderResourceView();
+	auto srv = texture->GetShaderResourceViewDesc();
 	SetShaderResourceView(srv, texture->GetTextureData(), index);
-	texture->SetShaderResourceView(srv);
 }
 
 void DescriptorHeap::SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC & unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index)

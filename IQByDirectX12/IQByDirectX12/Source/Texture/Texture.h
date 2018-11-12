@@ -1,19 +1,16 @@
 /*
-	Texture.h
-	テクスチャデータを扱うクラス
-	@author Ishibashi Ryuto
-	@param history
-	2018/07/28 初版作成
+*	@file	Texture.h
+*	@brief	テクスチャデータを扱うクラス
+*	@author Ishibashi Ryuto
+*	@date	2018/07/28 初版作成
 */
 #pragma once
-/*システムヘッダインクルード*/
+/*ヘッダインクルード*/
 #include <d3d12.h>
 #include <wrl.h>
 #include <memory>
 
-/*自作ヘッダインクルード*/
-
-/*前方宣言*/
+/*クラス使用宣言*/
 using Microsoft::WRL::ComPtr;
 
 class Texture
@@ -36,23 +33,23 @@ public:
 	/// @retval	テクスチャデータ
 	const ComPtr<ID3D12Resource> GetTextureData() const;
 
-	/// @fn GetShaderResourceView
+	/// @fn GetShaderResourceViewDesc
 	/// シェーダーリソースビューを取得する
 	/// @retval シェーダリソースビュー
-	const D3D12_SHADER_RESOURCE_VIEW_DESC& GetShaderResourceView() const;
+	const D3D12_SHADER_RESOURCE_VIEW_DESC& GetShaderResourceViewDesc() const;
 
-	/// @fn SetShaderResourceView
+	/// @fn SetShaderResourceViewDesc
 	/// シェーダーリソースビューを設定する
-	void SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC& srv);
+	void SetShaderResourceViewDesc(const D3D12_SHADER_RESOURCE_VIEW_DESC& srvDesc);
 
 protected:
 	ComPtr<ID3D12Resource> mTextureData;
-	D3D12_SHADER_RESOURCE_VIEW_DESC mShaderResourceView;
+	D3D12_SHADER_RESOURCE_VIEW_DESC mShaderResourceViewDesc;
 
 
 	/// コンストラクタ
 	Texture(ComPtr<ID3D12Resource> textureData);
 
 	/// リソース情報を元にSRVを構築する
-	void ConstructSRV();
+	void ConstructSRVDesc();
 };

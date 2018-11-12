@@ -5,10 +5,10 @@
 Texture::Texture(ComPtr<ID3D12Resource> textureData)
 	: mTextureData(textureData)
 {
-	ConstructSRV();
+	ConstructSRVDesc();
 }
 
-void Texture::ConstructSRV()
+void Texture::ConstructSRVDesc()
 {
 	if (!mTextureData)
 	{
@@ -17,11 +17,11 @@ void Texture::ConstructSRV()
 
 	auto rscDesc = mTextureData->GetDesc();
 
-	mShaderResourceView = D3D12_SHADER_RESOURCE_VIEW_DESC{};
-	mShaderResourceView.Format = rscDesc.Format;
-	mShaderResourceView.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-	mShaderResourceView.Texture2D.MipLevels = rscDesc.MipLevels;
-	mShaderResourceView.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	mShaderResourceViewDesc = D3D12_SHADER_RESOURCE_VIEW_DESC{};
+	mShaderResourceViewDesc.Format = rscDesc.Format;
+	mShaderResourceViewDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+	mShaderResourceViewDesc.Texture2D.MipLevels = rscDesc.MipLevels;
+	mShaderResourceViewDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 }
 
 
@@ -40,12 +40,12 @@ const ComPtr<ID3D12Resource> Texture::GetTextureData() const
 	return mTextureData;
 }
 
-const D3D12_SHADER_RESOURCE_VIEW_DESC & Texture::GetShaderResourceView() const
+const D3D12_SHADER_RESOURCE_VIEW_DESC & Texture::GetShaderResourceViewDesc() const
 {
-	return mShaderResourceView;
+	return mShaderResourceViewDesc;
 }
 
-void Texture::SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC & srv)
+void Texture::SetShaderResourceViewDesc(const D3D12_SHADER_RESOURCE_VIEW_DESC & srvDesc)
 {
-	mShaderResourceView = srv;
+	mShaderResourceViewDesc = srvDesc;
 }

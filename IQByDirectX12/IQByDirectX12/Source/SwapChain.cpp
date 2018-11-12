@@ -13,7 +13,7 @@ SwapChain::~SwapChain()
 {
 }
 
-std::shared_ptr<SwapChain> SwapChain::Create(std::shared_ptr<CommandQueue> commandQueue, const Window & window, unsigned int renderTargetNum)
+std::shared_ptr<SwapChain> SwapChain::Create(std::shared_ptr<CommandQueue> commandQueue, const Window & window, unsigned int backBufferNum)
 {
 	auto instance = std::shared_ptr<SwapChain>(new SwapChain());
 
@@ -24,7 +24,7 @@ std::shared_ptr<SwapChain> SwapChain::Create(std::shared_ptr<CommandQueue> comma
 	}
 
 	// スワップチェイン生成
-	if (!instance->CreateSwapChain(commandQueue, window, renderTargetNum))
+	if (!instance->CreateSwapChain(commandQueue, window, backBufferNum))
 	{
 		return nullptr;
 	}
@@ -57,7 +57,7 @@ bool SwapChain::CreateFactory()
 	return true;
 }
 
-bool SwapChain::CreateSwapChain(std::shared_ptr<CommandQueue> commandQueue, const Window & window, unsigned int renderTargetNum)
+bool SwapChain::CreateSwapChain(std::shared_ptr<CommandQueue> commandQueue, const Window & window, unsigned int backBufferNum)
 {
 	DXGI_SWAP_CHAIN_DESC1 swapChainDesc{};
 	auto windowRect = window.GetWindowRect();
@@ -69,7 +69,7 @@ bool SwapChain::CreateSwapChain(std::shared_ptr<CommandQueue> commandQueue, cons
 	swapChainDesc.SampleDesc.Count = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapChainDesc.BufferCount = renderTargetNum;
+	swapChainDesc.BufferCount = backBufferNum;
 	swapChainDesc.Scaling = DXGI_SCALING_STRETCH;
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;

@@ -17,6 +17,7 @@
 // ComPtrg—péŒ¾
 using Microsoft::WRL::ComPtr;
 class Device;
+class RenderTargetTexture;
 
 class RenderTarget
 {
@@ -53,7 +54,7 @@ protected:
 	const UINT RENDER_TARGET_VIEW_DESCRIPTOR_SIZE;
 
 	/* •Ï”’è‹` */
-	std::vector<ComPtr<ID3D12Resource>> mRenderTargets;
+	std::vector<std::shared_ptr<RenderTargetTexture>> mRenderTargets;
 	ComPtr<ID3D12DescriptorHeap> mRTVDescHeap;
 	int mRenderTargetIndex;
 

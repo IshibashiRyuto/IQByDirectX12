@@ -29,7 +29,7 @@ public:
 
 	/// @brief	インスタンスを生成する
 	/// @note	このクラスのインスタンスはこのメソッドを通じてのみ生成可能
-	static std::shared_ptr<SwapChain> Create(std::shared_ptr<CommandQueue> commandQueue,const Window& window, unsigned int renderTargetNum);
+	static std::shared_ptr<SwapChain> Create(std::shared_ptr<CommandQueue> commandQueue,const Window& window, unsigned int backBufferNum = 2);
 
 	/// @brief	画面をスワップする
 	void Swap();
@@ -53,9 +53,9 @@ private:
 	/// @brief スワップチェインの生成
 	/// @param[in]	commandQueue	: コマンドキュー
 	/// @param[in]	window			: ウィンドウ情報クラス
-	/// @param[in]	renderTargetNum : レンダーターゲット数
+	/// @param[in]	backBufferNum	: バックバッファ数
 	/// @retval true	: 生成成功
 	/// @retval false	: 生成失敗
-	bool CreateSwapChain(std::shared_ptr<CommandQueue> commandQueue, const Window& window, unsigned int renderTargetNum);
+	bool CreateSwapChain(std::shared_ptr<CommandQueue> commandQueue, const Window& window, unsigned int backBufferNum = 2);
 };
 

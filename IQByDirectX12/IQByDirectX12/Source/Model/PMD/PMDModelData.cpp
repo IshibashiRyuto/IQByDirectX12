@@ -140,7 +140,9 @@ void PMDModelData::SetMaterialData(std::shared_ptr<Device> device, const std::ve
 void PMDModelData::SetBoneData(std::shared_ptr<Device> device, const std::vector<PMDBone>& boneData)
 {
 	mBoneHeap = DescriptorHeap::Create(device, 1);
-	mBoneMatrixBuffer = ConstantBuffer::Create(device, sizeof(Math::Matrix4x4) * boneData.size(), 1);
+	mBoneMatrixBuffer = ConstantBuffer::Create(device, 
+		static_cast<UINT>( sizeof(Math::Matrix4x4) * boneData.size() )
+		, 1);
 	mPose = Pose::Create(boneData.size());
 	for (unsigned int i = 0; i < boneData.size(); ++i)
 	{
