@@ -63,7 +63,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 		}
 		else
 		{
-			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(device, 800, 600);
+			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(device, 1280, 720);
 		}
 
 		auto rtvDesc = renderTarget->mRenderTargets[i]->GetRenderTargetViewDesc();
@@ -93,6 +93,12 @@ D3D12_CPU_DESCRIPTOR_HANDLE RenderTarget::GetRTVHandle()
 
 void RenderTarget::ClearRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
-	float color[4] = { 0.5f,0.5f,0.5f,1.0f };
+	const float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+
 	commandList->ClearRenderTargetView(GetRTVHandle(), color, 0, nullptr);
+}
+
+std::shared_ptr<RenderTargetTexture> RenderTarget::GetRenderTargetTexture(int targetIndex)
+{
+	return mRenderTargets[targetIndex];
 }

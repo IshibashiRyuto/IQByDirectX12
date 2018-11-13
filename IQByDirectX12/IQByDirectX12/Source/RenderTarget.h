@@ -49,6 +49,9 @@ public:
 	/// @fn ClearRenderTarget
 	void ClearRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList);
 
+	/// @brief RenderTargetTexture‚ğæ“¾‚·‚é
+	std::shared_ptr<RenderTargetTexture> GetRenderTargetTexture(int targetIndex);
+
 protected:
 	/* ’è”’è‹` */
 	const UINT RENDER_TARGET_VIEW_DESCRIPTOR_SIZE;

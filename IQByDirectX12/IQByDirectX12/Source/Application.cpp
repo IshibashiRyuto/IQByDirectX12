@@ -36,6 +36,7 @@
 #include "Camera/Camera.h"
 #include "Camera/Dx12Camera.h"
 #include "PipelineStateObject.h"
+#include "Texture/RenderTargetTexture.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -123,6 +124,12 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
+	// ペラポリ用パイプラインステートオブジェクトの作成
+	if (!CreatePeraPipelineStateObject())
+	{
+		return false;
+	}
+
 	// コマンドリストの作成
 	if (!CreateCommandList())
 	{
@@ -142,6 +149,9 @@ bool Application::Initialize(const Window & window)
 	LoadPMD();
 	LoadPMX();
 	LoadMotion();
+
+	// ペラポリ用データ作成
+	_DebugCreatePeraPolyData();
 
 	return true;
 }
@@ -241,8 +251,9 @@ void Application::Render()
 	// endDebug
 
 	// コマンドリスト初期化
-	mCommandList->Reset(mPipelineState);
+	mCommandList->Reset();
 	(*mCommandList)->SetGraphicsRootSignature(mRootSignature->GetRootSignature().Get());
+
 
 
 	// 描画範囲設定
@@ -251,10 +262,11 @@ void Application::Render()
 	(*mCommandList)->RSSetViewports(1, &vp);
 	(*mCommandList)->RSSetScissorRects(1, &rc);
 
+	/* 1パス目描画 */
+
 	// 描画先変更処理
-	int backBufferIndex = mSwapChain->GetBackBufferIndex();
 	
-	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), backBufferIndex);
+	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), 2);
 
 	auto rtvHandle = mRenderTarget->GetRTVHandle();
 	auto dsvHandle = mDepthBuffer->GetDSVHandle();
@@ -265,7 +277,7 @@ void Application::Render()
 	mDepthBuffer->ClearDepthBuffer(mCommandList->GetCommandList());
 
 
-	// ポリゴン描画
+	// トポロジセット
 	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// 定数バッファ登録
@@ -275,9 +287,49 @@ void Application::Render()
 	// モデル描画
 	ModelDataManager::GetInstance().Draw(mCommandList->GetCommandList());
 
-	//描画終了処理
+	//　1パス目描画終了処理
 	mRenderTarget->FinishRendering(mCommandList->GetCommandList());
+
+
+	/* 1パス目描画終了 */
+	/* 2パス目描画 */
+
+	// 描画先変更
+	int backBuffer = mSwapChain->GetBackBufferIndex();
+	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), backBuffer);
+
+	rtvHandle = mRenderTarget->GetRTVHandle();
+	dsvHandle = mDepthBuffer->GetDSVHandle();
+
+	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+
+	mRenderTarget->ClearRenderTarget(mCommandList->GetCommandList());
+	mDepthBuffer->ClearDepthBuffer(mCommandList->GetCommandList());
+
+	// パイプライン、ルートシグネチャ変更
+	(*mCommandList)->SetPipelineState(mPeraPipelineState->GetPipelineStateObject().Get());
+	(*mCommandList)->SetGraphicsRootSignature(mPeraRootSignature->GetRootSignature().Get());
+
+	//トポロジセット
+	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+	// データセット
+	mPeraDescHeap->BindGraphicsCommandList(mCommandList->GetCommandList());
+	mPeraDescHeap->BindRootDescriptorTable(0, 0);
+	
+	// ペラポリの描画
+	(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
+	(*mCommandList)->DrawInstanced(4, 1, 0, 0);
+
+
+	//　2パス目描画終了処理
+	mRenderTarget->FinishRendering(mCommandList->GetCommandList());
+
+	/* 2パス目描画終了 */
+	//描画終了処理
 	mCommandList->Close();
+
+	int backBufferIndex = mSwapChain->GetBackBufferIndex();
 
 	// 描画コマンド実行
 	ID3D12CommandList* commandLists[] = { mCommandList->GetCommandList().Get() };
@@ -322,6 +374,19 @@ bool Application::CreatePMXPipelineStateObject()
 	return CreatePipelineState();
 }
 
+bool Application::CreatePeraPipelineStateObject()
+{
+	if (!CreatePeraRootSignature())
+	{
+		return false;
+	}
+	if (!ReadPeraShader())
+	{
+		return false;
+	}
+	return CreatePeraPipelineState();
+}
+
 bool Application::CreateRootSignature()
 {
 	mRootSignature = RootSignature::Create();
@@ -351,6 +416,15 @@ bool Application::_DebugCreatePMDRootSignature()
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
 
+bool Application::CreatePeraRootSignature()
+{
+	mPeraRootSignature = RootSignature::Create();
+	int idx = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
+
+	return mPeraRootSignature->ConstructRootSignature(mDevice->GetDevice());
+}
+
 
 bool Application::ReadShader()
 {
@@ -370,6 +444,23 @@ bool Application::_DebugReadPMDShader()
 
 
 	if (! (mVertexShaderClass && mPixelShaderClass) )
+	{
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Read Shader.\n");
+		return false;
+	}
+
+	return true;
+}
+
+bool Application::ReadPeraShader()
+{
+	mVertexShaderClass = Shader::Create(L"Resource/Shader/pera.hlsl", "VSMain", "vs_5_0");
+
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/SSAA.hlsl", "PSMain", "ps_5_0");
+
+
+
+	if (!mVertexShaderClass || !mPixelShaderClass)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Read Shader.\n");
 		return false;
@@ -514,6 +605,58 @@ bool Application::_DebugCreatePMDPipelineState()
 	return true;
 }
 
+bool Application::CreatePeraPipelineState()
+{
+	// 頂点情報定義
+	{
+		mInputLayoutDescs.clear();
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"	, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"	, 0, DXGI_FORMAT_R32G32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+	}
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
+
+	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
+	for (int i = 0; i < 8; ++i)
+	{
+		gpsDesc.BlendState.RenderTarget[i].BlendEnable = true;
+		gpsDesc.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+		gpsDesc.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
+		gpsDesc.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ONE;
+		gpsDesc.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_MAX;
+
+		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
+		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
+		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
+	}
+
+	gpsDesc.DepthStencilState.DepthEnable = false;
+	gpsDesc.DepthStencilState.StencilEnable = false;
+
+	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
+	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
+	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
+	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
+	gpsDesc.pRootSignature = mPeraRootSignature->GetRootSignature().Get();
+
+	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
+	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+
+	gpsDesc.NumRenderTargets = 1;
+	gpsDesc.SampleDesc.Count = 1;
+	gpsDesc.SampleMask = UINT_MAX;
+
+	mPeraPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
+	if (!mPeraPipelineState)
+	{
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
+		return false;
+	}
+	return true;
+}
+
 bool Application::CreateCommandList()
 {
 	mCommandList = GraphicsCommandList::Create(mDevice, D3D12_COMMAND_LIST_TYPE_DIRECT, L"DefaultCommandList");
@@ -601,4 +744,24 @@ void Application::UpdateMatrix()
 {
 	//mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 60.0f, 0.0f)));
 	mDx12Camera->UpdateMatrix();
+}
+
+void Application::_DebugCreatePeraPolyData()
+{
+	PeraVertex verts[4] = 
+	{
+		{ { -1.0f,  1.0f, 0.0f },{ 0.0f, 0.0f } },
+		{ {  1.0f,  1.0f, 0.0f },{ 1.0f, 0.0f } },
+		{ { -1.0f, -1.0f, 0.0f },{ 0.0f, 1.0f } },
+		{ {  1.0f, -1.0f, 0.0f },{ 1.0f, 1.0f } },
+	};
+
+	mPeraVert = VertexBuffer::Create(mDevice, verts, 4, sizeof(PeraVertex));
+
+	mPeraDescHeap = DescriptorHeap::Create(mDevice, 1);
+	auto rtTexture = mRenderTarget->GetRenderTargetTexture(2);
+	mPeraDescHeap->SetShaderResourceView(rtTexture->GetShaderResourceViewDesc(),
+		rtTexture->GetTextureData().Get(),
+		0);
+
 }

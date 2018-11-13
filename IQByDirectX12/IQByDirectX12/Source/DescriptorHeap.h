@@ -13,6 +13,7 @@
 /*前方宣言*/
 using Microsoft::WRL::ComPtr;
 class Texture;
+class RenderTargetTexture;
 class Device;
 
 class DescriptorHeap
@@ -56,6 +57,12 @@ public:
 	/// @param[in]	texture			テクスチャ
 	/// @param[in]	index			ヒープのインデックス
 	void SetTexture(std::shared_ptr<Texture> texture, UINT index);
+
+	/// @fn SetTexture
+	/// テクスチャ情報をセットする
+	/// @param[in]	texture			テクスチャ
+	/// @param[in]	index			ヒープのインデックス
+	void SetTexture(std::shared_ptr<RenderTargetTexture> texture, UINT index);
 
 	/// @fn UnorderedAccessView
 	/// 構造化バッファビューをセットする

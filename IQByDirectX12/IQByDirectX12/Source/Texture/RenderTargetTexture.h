@@ -9,6 +9,7 @@
 
 /* ヘッダインクルード */
 #include "Texture.h"
+#include "../Math/Math.h"
 
 /* クラス使用宣言 */
 class Device;
@@ -32,7 +33,7 @@ public:
 	///	@param[in]	format		: レンダーターゲットのフォーマット(デフォルト:DXGI_FORMAT_R8G8B8A8_UNORM)
 	///	@retval		生成成功	: RenderTargetTextureのshared_ptr
 	///	@retval		生成失敗	: nullptr
-	static std::shared_ptr<RenderTargetTexture> Create(std::shared_ptr<Device> device, int width, int height, DXGI_FORMAT format = DXGI_FORMAT_R8G8B8A8_UNORM);
+	static std::shared_ptr<RenderTargetTexture> Create(std::shared_ptr<Device> device, int width, int height, Math::Vector4 clearColor = Math::Vector4(0.0f,0.0f,0.0f,1.0f), DXGI_FORMAT format = DXGI_FORMAT_R8G8B8A8_UNORM);
 
 	///	@brief レンダーターゲットに指定可能なテクスチャを生成する
 	/// @param[in]	buffer		: バッファ

@@ -320,5 +320,12 @@
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />
     <FxCompile Include="Resource\Shader\PMXModelShader.hlsl" />
     <FxCompile Include="Resource\Shader\3DPrimitiveShader.hlsl" />
+    <FxCompile Include="Resource\Shader\pera.hlsl" />
+    <FxCompile Include="Resource\Shader\EmbossPS.hlsl" />
+    <FxCompile Include="Resource\Shader\MonoPS.hlsl" />
+    <FxCompile Include="Resource\Shader\SharpnessPS.hlsl" />
+    <FxCompile Include="Resource\Shader\ContourExtractionPS.hlsl" />
+    <FxCompile Include="Resource\Shader\PosterizationPS.hlsl" />
+    <FxCompile Include="Resource\Shader\SSAA.hlsl" />
   </ItemGroup>
 </Project>

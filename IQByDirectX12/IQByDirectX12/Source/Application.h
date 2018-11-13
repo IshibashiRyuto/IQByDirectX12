@@ -90,12 +90,17 @@ private:
 	std::shared_ptr<Animation>				mAnimationData;
 	std::vector<std::shared_ptr<Model>>		mInstancingTestModels;
 
+	std::shared_ptr<RootSignature>			mPeraRootSignature;	
+
 	std::shared_ptr<PipelineStateObject>	mPMDPipelineState;		//! PMDパイプラインステート
 	std::shared_ptr<PipelineStateObject>	mPMXPipelineState;		//! PMXパイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPeraPipelineState;		//! ペラポリ用パイプラインステート
 
 	std::shared_ptr<Keyboard>			mKeyboard;
 	std::shared_ptr<Dx12Camera>			mDx12Camera;
 
+	std::shared_ptr<VertexBuffer>		mPeraVert;
+	std::shared_ptr<DescriptorHeap>		mPeraDescHeap;
 	
 	int mWindowWidth;
 	int mWindowHeight;
@@ -108,6 +113,9 @@ private:
 	/// @brief PMX用PSOを作成する
 	bool CreatePMXPipelineStateObject();
 
+	/// @brief ペラポリ用PSOを作成する
+	bool CreatePeraPipelineStateObject();
+
 	/// @fn CreateRootSignature
 	/// ルートシグネチャを生成する
 	/// @retval ture: 生成成功, false: 生成失敗
@@ -116,12 +124,16 @@ private:
 	/// @fn _DebugCreatePMDRootSignature
 	bool _DebugCreatePMDRootSignature();
 
+	bool CreatePeraRootSignature();
+
 	/// @fn ReadShader
 	/// シェーダを読み込む
 	/// @retval true: 読込成功, false: 読込失敗
 	bool ReadShader();
 
 	bool _DebugReadPMDShader();
+
+	bool ReadPeraShader();
 
 	/// @fn CreatePipelineState
 	/// パイプラインステートの作成
@@ -132,6 +144,8 @@ private:
 	/// PMD用パイプラインステートの作成
 	/// @retval true: 生成成功, false: 生成失敗
 	bool _DebugCreatePMDPipelineState();
+
+	bool CreatePeraPipelineState();
 
 	/// @fn CreateCommandList
 	/// コマンドリストの生成
@@ -155,5 +169,15 @@ private:
 
 	/// @brief 行列情報を更新する
 	void UpdateMatrix();
+
+	struct PeraVertex
+	{
+		Math::Vector3 position;
+		Math::Vector2 uv;
+	};
+
+	/// @brief	ペラポリ用データを作成する
+	void _DebugCreatePeraPolyData();
+
 };
 

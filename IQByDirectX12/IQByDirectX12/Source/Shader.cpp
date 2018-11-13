@@ -17,6 +17,10 @@ std::shared_ptr<Shader> Shader::Create(const std::wstring & filePath, const std:
 {
 	auto shader = std::shared_ptr<Shader>(new Shader());
 	shader->LoadShader(filePath, entryPoint, target);
+	if (!shader->mShaderCode)
+	{
+		return nullptr;
+	}
 	return shader;
 }
 

@@ -2,7 +2,7 @@
 #include "../Device.h"
 #include <d3dx12.h>
 
-std::shared_ptr<RenderTargetTexture> RenderTargetTexture::Create(std::shared_ptr<Device> device, int width, int height, DXGI_FORMAT format)
+std::shared_ptr<RenderTargetTexture> RenderTargetTexture::Create(std::shared_ptr<Device> device, int width, int height, Math::Vector4 clearColor, DXGI_FORMAT format)
 {
 	// ÉäÉ\Å[ÉXÇÃçÏê¨
 	ComPtr<ID3D12Resource> rsc;
@@ -27,11 +27,18 @@ std::shared_ptr<RenderTargetTexture> RenderTargetTexture::Create(std::shared_ptr
 	rscDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
 	rscDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET;
 
+	D3D12_CLEAR_VALUE clearValue;
+	clearValue.Format = format;
+	clearValue.Color[0] = clearColor.x;
+	clearValue.Color[1] = clearColor.y;
+	clearValue.Color[2] = clearColor.z;
+	clearValue.Color[3] = clearColor.w;
+
 	auto result = (*device)->CreateCommittedResource(&heapProp,
 		D3D12_HEAP_FLAG_NONE,
 		&rscDesc,
 		D3D12_RESOURCE_STATE_PRESENT,
-		nullptr,
+		&clearValue,
 		IID_PPV_ARGS(&rsc));
 
 	if (FAILED(result))
