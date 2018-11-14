@@ -1,7 +1,7 @@
 #include <iostream>
 #include "SwapChain.h"
 #include "CommandQueue.h"
-#include "Debug\DebugLayer.h"
+#include "../Debug\DebugLayer.h"
 
 
 SwapChain::SwapChain()

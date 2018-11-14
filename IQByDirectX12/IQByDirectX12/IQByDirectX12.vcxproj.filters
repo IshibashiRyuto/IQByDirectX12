@@ -178,6 +178,7 @@
     <ClCompile Include="Source\Dx12\SwapChain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Dx12\RenderState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -317,6 +318,7 @@
     <ClInclude Include="Source\Dx12\SwapChain.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Dx12\ShaderList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

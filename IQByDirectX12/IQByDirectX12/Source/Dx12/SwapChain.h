@@ -12,7 +12,7 @@
 #include <wrl.h>
 
 // 自作ヘッダインクルード
-#include "Window.h"
+#include "../Window.h"
 
 // クラス使用宣言
 using Microsoft::WRL::ComPtr;

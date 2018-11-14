@@ -595,7 +595,6 @@ bool Application::_DebugCreatePMDPipelineState()
 	gpsDesc.SampleDesc.Count = 1;
 	gpsDesc.SampleMask = UINT_MAX;
 
-	//auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
 	mPMDPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
 	if (!mPMDPipelineState)
 	{
