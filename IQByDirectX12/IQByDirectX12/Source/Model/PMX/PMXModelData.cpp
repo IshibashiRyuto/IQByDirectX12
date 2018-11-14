@@ -1,16 +1,16 @@
 #include "PMXModelData.h"
 #include "../VertexBuffer.h"
 #include "../IndexBuffer.h"
-#include "../DescriptorHeap.h"
-#include "../ConstantBuffer.h"
+#include "../Dx12/DescriptorHeap.h"
+#include "../Dx12/ConstantBuffer.h"
 #include "../InstancingDataManager.h"
 #include "../InstanceBuffer.h"
 #include "../Texture/TextureLoader.h"
 #include "../Texture/TextureManager.h"
 #include "../Motion/Pose.h"
 #include "../Motion/Bone.h"
-#include "../Device.h"
-#include "../PipelineStateObject.h"
+#include "../Dx12/Device.h"
+#include "../Dx12/PipelineStateObject.h"
 #include <algorithm>
 
 const int MATERIAL_HEAP_STRIDE = 5;		// マテリアル1要素当たりのヒープのストライド数

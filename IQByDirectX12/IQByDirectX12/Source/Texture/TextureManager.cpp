@@ -1,5 +1,5 @@
 #include "TextureManager.h"
-#include "../Device.h"
+#include "../Dx12/Device.h"
 #include <vector>
 #include <algorithm>
 

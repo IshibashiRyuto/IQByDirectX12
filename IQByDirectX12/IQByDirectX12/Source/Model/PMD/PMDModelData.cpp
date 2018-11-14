@@ -1,17 +1,17 @@
 #include "PMDModelData.h"
 #include "../VertexBuffer.h"
 #include "../IndexBuffer.h"
-#include "../DescriptorHeap.h"
-#include "../ConstantBuffer.h"
+#include "../Dx12/DescriptorHeap.h"
+#include "../Dx12/ConstantBuffer.h"
 #include "../InstanceBuffer.h"
 #include "../InstancingDataManager.h"
-#include "../Device.h"
+#include "../Dx12/Device.h"
 #include "../Texture//TextureLoader.h"
 #include "../Texture/TextureManager.h"
 #include "../Motion/Pose.h"
 #include "../Motion/Bone.h"
 #include "../ConvertString.h"
-#include "../PipelineStateObject.h"
+#include "../Dx12/PipelineStateObject.h"
 
 PMDModelData::PMDModelData(std::shared_ptr<Device> device,
 	const PMDModelInfo& modelInfo,

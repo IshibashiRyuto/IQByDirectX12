@@ -82,28 +82,10 @@
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CommandAllocator.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CommandQueue.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ConstantBuffer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ConvertString.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\DepthBuffer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DescriptorHeap.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Device.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GraphicsCommandList.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\IndexBuffer.cpp">
@@ -118,19 +100,7 @@
     <ClCompile Include="Source\MathConvert.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RenderTarget.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\RootSignature.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sampler.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SwapChain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\VertexBuffer.cpp">
@@ -143,7 +113,6 @@
     <ClCompile Include="Source\Math\Math_Matrix4x4.cpp">
       <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PipelineStateObject.cpp" />
     <ClCompile Include="Source\Debug\DebugLayer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -177,6 +146,38 @@
     </ClCompile>
     <ClCompile Include="Source\Camera\Dx12Camera.cpp" />
     <ClCompile Include="Source\Texture\RenderTargetTexture.cpp" />
+    <ClCompile Include="Source\Sprite\Sprite.cpp" />
+    <ClCompile Include="Source\Dx12\CommandAllocator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\CommandQueue.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\ConstantBuffer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\DescriptorHeap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\Device.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\GraphicsCommandList.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\PipelineStateObject.cpp" />
+    <ClCompile Include="Source\Dx12\RenderTarget.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\RootSignature.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\Sampler.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dx12\SwapChain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -221,28 +222,10 @@
     <ClInclude Include="Source\Application.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CommandAllocator.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CommandQueue.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ConstantBuffer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ConvertString.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\DepthBuffer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DescriptorHeap.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Device.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GraphicsCommandList.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\IndexBuffer.h">
@@ -254,22 +237,7 @@
     <ClInclude Include="Source\MathConvert.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RenderState.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RenderTarget.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RootSignature.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Sampler.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Shader.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SwapChain.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\VertexBuffer.h">
@@ -278,7 +246,6 @@
     <ClInclude Include="Source\Window.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PipelineStateObject.h" />
     <ClInclude Include="Source\Debug\DebugLayer.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -315,6 +282,41 @@
     </ClInclude>
     <ClInclude Include="Source\Camera\Dx12Camera.h" />
     <ClInclude Include="Source\Texture\RenderTargetTexture.h" />
+    <ClInclude Include="Source\Sprite\Sprite.h" />
+    <ClInclude Include="Source\Dx12\CommandAllocator.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\CommandQueue.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\ConstantBuffer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\DescriptorHeap.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\Device.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\GraphicsCommandList.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\PipelineStateObject.h" />
+    <ClInclude Include="Source\Dx12\RenderState.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\RenderTarget.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\RootSignature.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\Sampler.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Dx12\SwapChain.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

@@ -1,5 +1,5 @@
 #include "RenderTargetTexture.h"
-#include "../Device.h"
+#include "../Dx12/Device.h"
 #include <d3dx12.h>
 
 std::shared_ptr<RenderTargetTexture> RenderTargetTexture::Create(std::shared_ptr<Device> device, int width, int height, Math::Vector4 clearColor, DXGI_FORMAT format)

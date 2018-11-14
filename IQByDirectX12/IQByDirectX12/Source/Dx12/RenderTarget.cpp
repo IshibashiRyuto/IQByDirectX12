@@ -2,8 +2,8 @@
 #include <d3dx12.h>
 #include "Device.h"
 #include "RenderTarget.h"
-#include "Debug\DebugLayer.h"
-#include "Texture/RenderTargetTexture.h"
+#include "../Debug/DebugLayer.h"
+#include "../Texture/RenderTargetTexture.h"
 
 
 

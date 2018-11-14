@@ -13,7 +13,7 @@
 #include "../Math/Math.h"
 #include "../VertexBuffer.h"
 #include "../IndexBuffer.h"
-#include "../DescriptorHeap.h"
+#include "../Dx12/DescriptorHeap.h"
 
 // クラス使用宣言
 struct InstanceData;

@@ -1,7 +1,7 @@
 #include <d3dx12.h>
 #include <iostream>
 #include "VertexBuffer.h"
-#include "Device.h"
+#include "Dx12/Device.h"
 #include "Debug\DebugLayer.h"
 
 

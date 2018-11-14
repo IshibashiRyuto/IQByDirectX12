@@ -1,9 +1,9 @@
 #include <iostream>
 #include "DescriptorHeap.h"
 #include "Device.h"
-#include "Texture/Texture.h"
-#include "Debug/DebugLayer.h"
-
+#include "../Texture/Texture.h"
+#include "../Debug/DebugLayer.h"
+#include "../Texture/RenderTargetTexture.h"
 
 
 DescriptorHeap::DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc)
@@ -64,6 +64,17 @@ void DescriptorHeap::SetTexture(std::shared_ptr<Texture> texture, UINT index)
 	auto srv = texture->GetShaderResourceViewDesc();
 	SetShaderResourceView(srv, texture->GetTextureData(), index);
 }
+
+void DescriptorHeap::SetTexture(std::shared_ptr<RenderTargetTexture> texture, UINT index) 
+{
+	if (!texture)
+	{
+		return;
+	}
+	auto srv = texture->GetShaderResourceViewDesc();
+	SetShaderResourceView(srv, texture->GetTextureData(), index);
+}
+
 
 void DescriptorHeap::SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC & unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index)
 {

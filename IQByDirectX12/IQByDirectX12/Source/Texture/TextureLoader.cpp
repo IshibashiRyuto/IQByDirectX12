@@ -4,9 +4,9 @@
 #include <DirectXTex.h>
 #include "WICTextureLoader/WICTextureLoader12.h"
 #include "TextureLoader.h"
-#include "../CommandQueue.h"
-#include "../GraphicsCommandList.h"
-#include "../Device.h"
+#include "../Dx12/CommandQueue.h"
+#include "../Dx12/GraphicsCommandList.h"
+#include "../Dx12/Device.h"
 #include "../ConvertString.h"
 #include "../Debug/DebugLayer.h"
 #include <d3d12.h>

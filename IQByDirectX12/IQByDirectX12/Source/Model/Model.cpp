@@ -1,6 +1,6 @@
 #include "Model.h"
 #include "ModelDataManager.h"
-#include "../DescriptorHeap.h"
+#include "../Dx12/DescriptorHeap.h"
 #include "ModelData.h"
 #include "InstancingDataManager.h"
 #include "../MathConvert.h"

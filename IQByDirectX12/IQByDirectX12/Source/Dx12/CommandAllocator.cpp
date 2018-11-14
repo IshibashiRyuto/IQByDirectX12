@@ -1,7 +1,7 @@
 #include <iostream>
 #include "CommandAllocator.h"
 #include "Device.h"
-#include "Debug\DebugLayer.h"
+#include "../Debug\DebugLayer.h"
 
 
 

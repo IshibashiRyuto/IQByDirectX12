@@ -1,7 +1,7 @@
 #include "Dx12Camera.h"
-#include "../DescriptorHeap.h"
-#include "../ConstantBuffer.h"
-#include "../GraphicsCommandList.h"
+#include "../Dx12/DescriptorHeap.h"
+#include "../Dx12/ConstantBuffer.h"
+#include "../Dx12/GraphicsCommandList.h"
 
 /* ’è”’è‹` */
 namespace

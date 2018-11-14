@@ -2,7 +2,7 @@
 #include <d3dx12.h>
 #include "InstanceBuffer.h"
 #include "Debug\DebugLayer.h"
-#include "Device.h"
+#include "Dx12/Device.h"
 
 
 InstanceBuffer::InstanceBuffer()

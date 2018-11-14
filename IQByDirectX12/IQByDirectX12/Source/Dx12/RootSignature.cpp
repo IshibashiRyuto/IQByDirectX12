@@ -1,7 +1,7 @@
 #include <iostream>
 #include <d3dx12.h>
 #include "RootSignature.h"
-#include "Debug\DebugLayer.h"
+#include "../Debug/DebugLayer.h"
 
 
 RootSignature::RootSignature()

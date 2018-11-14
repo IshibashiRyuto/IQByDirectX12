@@ -8,16 +8,16 @@
 
 #include "Application.h"
 #include "Window.h"
-#include "Device.h"
-#include "CommandQueue.h"
-#include "CommandAllocator.h"
-#include "RenderTarget.h"
+#include "Dx12/Device.h"
+#include "Dx12/CommandQueue.h"
+#include "Dx12/CommandAllocator.h"
+#include "Dx12/RenderTarget.h"
 #include "DepthBuffer.h"
 #include "VertexBuffer.h"
 #include "Texture/TextureLoader.h"
 #include "Texture/Texture.h"
-#include "DescriptorHeap.h"
-#include "ConstantBuffer.h"
+#include "Dx12/DescriptorHeap.h"
+#include "Dx12/ConstantBuffer.h"
 #include "MathConvert.h"
 #include "Model/PMD/PMDLoader.h"
 #include "Model/PMD/PMDModelData.h"
@@ -25,17 +25,17 @@
 #include "Model/PMX/PMXModelData.h"
 #include "Texture/TextureManager.h"
 #include "Model/InstancingDataManager.h"
-#include "RootSignature.h"
+#include "Dx12/RootSignature.h"
 #include "Shader.h"
 #include "Motion/VMDLoader.h"
-#include "SwapChain.h"
+#include "Dx12/SwapChain.h"
 #include "Motion/Animation.h"
-#include "GraphicsCommandList.h"
+#include "Dx12/GraphicsCommandList.h"
 #include "Input/Keyboard.h"
 #include "Debug/DebugLayer.h"
 #include "Camera/Camera.h"
 #include "Camera/Dx12Camera.h"
-#include "PipelineStateObject.h"
+#include "Dx12/PipelineStateObject.h"
 #include "Texture/RenderTargetTexture.h"
 
 // ƒ‰ƒCƒuƒ‰ƒŠƒŠƒ“ƒN
@@ -760,8 +760,5 @@ void Application::_DebugCreatePeraPolyData()
 
 	mPeraDescHeap = DescriptorHeap::Create(mDevice, 1);
 	auto rtTexture = mRenderTarget->GetRenderTargetTexture(2);
-	mPeraDescHeap->SetShaderResourceView(rtTexture->GetShaderResourceViewDesc(),
-		rtTexture->GetTextureData().Get(),
-		0);
-
+	mPeraDescHeap->SetTexture(rtTexture, 0);
 }
