@@ -16,7 +16,8 @@
 using Microsoft::WRL::ComPtr;
 class Device;
 class RenderState;
-class ShaderList;
+struct ShaderList;
+class RootSignature;
 
 class PipelineStateObject
 {
@@ -39,6 +40,7 @@ public:
 	/// @retval	ê∂ê¨é∏îs	: nullptr
 	static std::shared_ptr<PipelineStateObject> Create(std::shared_ptr<Device> device,
 		const std::vector<D3D12_INPUT_ELEMENT_DESC> inputLayout,
+		std::shared_ptr<RootSignature> rootSignature,
 		const RenderState& renderState,
 		const ShaderList& shaderList
 		);

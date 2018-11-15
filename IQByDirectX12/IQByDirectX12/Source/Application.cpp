@@ -37,6 +37,8 @@
 #include "Camera/Dx12Camera.h"
 #include "Dx12/PipelineStateObject.h"
 #include "Texture/RenderTargetTexture.h"
+#include "Dx12/RenderState.h"
+#include "Dx12/ShaderList.h"
 
 // ƒ‰ƒCƒuƒ‰ƒŠƒŠƒ“ƒN
 #pragma comment(lib,"d3d12.lib")
@@ -456,7 +458,7 @@ bool Application::ReadPeraShader()
 {
 	mVertexShaderClass = Shader::Create(L"Resource/Shader/pera.hlsl", "VSMain", "vs_5_0");
 
-	mPixelShaderClass = Shader::Create(L"Resource/Shader/SSAA.hlsl", "PSMain", "ps_5_0");
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/MonoPS.hlsl", "PSMain", "ps_5_0");
 
 
 
@@ -491,47 +493,18 @@ bool Application::CreatePipelineState()
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 3, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 	}
 
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
-
-	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
-	for (int i = 0; i < 8; ++i)
-	{
-		gpsDesc.BlendState.RenderTarget[i].BlendEnable = true;
-		gpsDesc.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-		gpsDesc.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
-		gpsDesc.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ONE;
-		gpsDesc.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_MAX;
-
-		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
-		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
-		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
-
-	}
-
-	gpsDesc.DepthStencilState.DepthEnable = true;
-	gpsDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
-	gpsDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
-	gpsDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
-	gpsDesc.DepthStencilState.StencilEnable = FALSE;
-
-	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
-	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
-	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
-	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
-	gpsDesc.pRootSignature = mRootSignature->GetRootSignature().Get();
-
-	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
-	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
-
-	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+	ShaderList shaderList;
+	shaderList.VS = mVertexShaderClass;
+	shaderList.PS = mPixelShaderClass;
 	
-	gpsDesc.NumRenderTargets = 1;
-	gpsDesc.SampleDesc.Count = 1;
-	gpsDesc.SampleMask = UINT_MAX;
+	RenderState renderState;
+	renderState.alphaBlendType = AlphaBlendType::Blend;
+	renderState.depthTest = true;
+	renderState.depthWrite = true;
+	renderState.cullingType = CullingType::Double;
+	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
 
-	//auto result = (*mDevice)->CreateGraphicsPipelineState(&gpsDesc, IID_PPV_ARGS(&mPipelineState));
-	mPMXPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
+	mPMXPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature, renderState, shaderList);
 	if (!mPMXPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
@@ -557,45 +530,19 @@ bool Application::_DebugCreatePMDPipelineState()
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 3, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
 	}
 
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
+	ShaderList shaderList;
 
-	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
-	for (int i = 0; i < 8; ++i)
-	{
-		gpsDesc.BlendState.RenderTarget[i].BlendEnable = true;
-		gpsDesc.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-		gpsDesc.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
-		gpsDesc.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ONE;
-		gpsDesc.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_MAX;
+	shaderList.VS = mVertexShaderClass;
+	shaderList.PS = mPixelShaderClass;
+	
+	RenderState renderState;
+	renderState.alphaBlendType = AlphaBlendType::Opacity;
+	renderState.depthTest = true;
+	renderState.depthWrite = true;
+	renderState.cullingType = CullingType::Double;
+	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
 
-		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
-		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
-		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
-	}
-
-	gpsDesc.DepthStencilState.DepthEnable = true;
-	gpsDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
-	gpsDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
-	gpsDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
-	gpsDesc.DepthStencilState.StencilEnable = FALSE;
-
-	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
-	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
-	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
-	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
-	gpsDesc.pRootSignature = mRootSignature->GetRootSignature().Get();
-
-	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
-	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
-
-	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
-
-	gpsDesc.NumRenderTargets = 1;
-	gpsDesc.SampleDesc.Count = 1;
-	gpsDesc.SampleMask = UINT_MAX;
-
-	mPMDPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
+	mPMDPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature,renderState, shaderList);
 	if (!mPMDPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
@@ -612,42 +559,21 @@ bool Application::CreatePeraPipelineState()
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"	, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"	, 0, DXGI_FORMAT_R32G32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
 	}
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC gpsDesc{};
 
-	gpsDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
-	for (int i = 0; i < 8; ++i)
-	{
-		gpsDesc.BlendState.RenderTarget[i].BlendEnable = true;
-		gpsDesc.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-		gpsDesc.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
-		gpsDesc.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ONE;
-		gpsDesc.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_MAX;
+	ShaderList shaderList;
+	shaderList.VS = mVertexShaderClass;
+	shaderList.PS = mPixelShaderClass;
+	
+	RenderState renderState;
+	renderState.alphaBlendType = AlphaBlendType::Blend;
+	renderState.cullingType = CullingType::Front;
+	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
+	renderState.depthTest = false;
+	renderState.depthWrite = false;
 
-		gpsDesc.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
-		gpsDesc.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
-		gpsDesc.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
-	}
 
-	gpsDesc.DepthStencilState.DepthEnable = false;
-	gpsDesc.DepthStencilState.StencilEnable = false;
 
-	gpsDesc.VS = mVertexShaderClass->GetShaderByteCode();
-	gpsDesc.PS = mPixelShaderClass->GetShaderByteCode();
-	gpsDesc.InputLayout.NumElements = (UINT)mInputLayoutDescs.size();
-	gpsDesc.InputLayout.pInputElementDescs = mInputLayoutDescs.data();
-	gpsDesc.pRootSignature = mPeraRootSignature->GetRootSignature().Get();
-
-	gpsDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
-	gpsDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-	gpsDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
-
-	gpsDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
-
-	gpsDesc.NumRenderTargets = 1;
-	gpsDesc.SampleDesc.Count = 1;
-	gpsDesc.SampleMask = UINT_MAX;
-
-	mPeraPipelineState = PipelineStateObject::Create(mDevice, gpsDesc);
+	mPeraPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList);
 	if (!mPeraPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");

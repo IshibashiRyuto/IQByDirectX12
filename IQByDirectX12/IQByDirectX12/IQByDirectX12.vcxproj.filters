@@ -331,5 +331,6 @@
     <FxCompile Include="Resource\Shader\ContourExtractionPS.hlsl" />
     <FxCompile Include="Resource\Shader\PosterizationPS.hlsl" />
     <FxCompile Include="Resource\Shader\SSAA.hlsl" />
+    <FxCompile Include="Resource\Shader\Distortion.hlsl" />
   </ItemGroup>
 </Project>
