@@ -294,6 +294,12 @@ void Application::Render()
 
 
 	/* 1パス目描画終了 */
+	//デプスバッファをデプス書き込み状態から読み取り状態に移行
+	/*
+	(*mCommandList)->ResourceBarrier(1, 
+		&CD3DX12_RESOURCE_BARRIER::Transition( mDepthBuffer->GetDepthBufferResource().Get(),
+		D3D12_RESOURCE_STATE_DEPTH_WRITE, D3D12_RESOURCE_STATE_DEPTH_READ));*/
+	
 	/* 2パス目描画 */
 
 	// 描画先変更
@@ -301,12 +307,10 @@ void Application::Render()
 	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), backBuffer);
 
 	rtvHandle = mRenderTarget->GetRTVHandle();
-	dsvHandle = mDepthBuffer->GetDSVHandle();
 
 	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
 	mRenderTarget->ClearRenderTarget(mCommandList->GetCommandList());
-	mDepthBuffer->ClearDepthBuffer(mCommandList->GetCommandList());
 
 	// パイプライン、ルートシグネチャ変更
 	(*mCommandList)->SetPipelineState(mPeraPipelineState->GetPipelineStateObject().Get());
@@ -328,6 +332,13 @@ void Application::Render()
 	mRenderTarget->FinishRendering(mCommandList->GetCommandList());
 
 	/* 2パス目描画終了 */
+
+	//デプスバッファをデプス読み取り状態から書き込み状態に移行
+	
+	/*(*mCommandList)->ResourceBarrier(1, 
+		&CD3DX12_RESOURCE_BARRIER::Transition(mDepthBuffer->GetDepthBufferResource().Get(),
+		D3D12_RESOURCE_STATE_DEPTH_READ, D3D12_RESOURCE_STATE_DEPTH_WRITE));*/
+
 	//描画終了処理
 	mCommandList->Close();
 
@@ -421,8 +432,8 @@ bool Application::_DebugCreatePMDRootSignature()
 bool Application::CreatePeraRootSignature()
 {
 	mPeraRootSignature = RootSignature::Create();
-	int idx = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
+	int idx = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_PIXEL);
+	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 2, 0);
 
 	return mPeraRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
@@ -458,8 +469,7 @@ bool Application::ReadPeraShader()
 {
 	mVertexShaderClass = Shader::Create(L"Resource/Shader/pera.hlsl", "VSMain", "vs_5_0");
 
-	mPixelShaderClass = Shader::Create(L"Resource/Shader/MonoPS.hlsl", "PSMain", "ps_5_0");
-
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/Distortion.hlsl", "PSMain", "ps_5_0");
 
 
 	if (!mVertexShaderClass || !mPixelShaderClass)
@@ -683,7 +693,10 @@ void Application::_DebugCreatePeraPolyData()
 
 	mPeraVert = VertexBuffer::Create(mDevice, verts, 4, sizeof(PeraVertex));
 
-	mPeraDescHeap = DescriptorHeap::Create(mDevice, 1);
+	mPeraDescHeap = DescriptorHeap::Create(mDevice, 2);
 	auto rtTexture = mRenderTarget->GetRenderTargetTexture(2);
 	mPeraDescHeap->SetTexture(rtTexture, 0);
+	auto depthBuffer = mDepthBuffer->GetDepthBufferResource();
+	auto depthBufferSRV = mDepthBuffer->DebugShaderResourceView();
+	mPeraDescHeap->SetShaderResourceView(depthBufferSRV, depthBuffer, 1);
 }

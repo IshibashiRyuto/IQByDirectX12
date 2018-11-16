@@ -30,6 +30,8 @@ public:
 	/// @note RenderTargetクラスはこのメソッドでのみ生成可能
 	/// @param[in] device:				ID3D12デバイス
 	/// @param[in] swapChain:			IDXGIスワップチェイン
+	/// @param[in] windowWidth;			ウィンドウ幅
+	/// @param[in] windowHeight;		ウィンドウ高さ
 	/// @param[in] renderTargetsNum:	レンダーターゲットの数
 	/// @retval 生成成功時: RenderTargetクラスのshared_ptr, 生成失敗時: nullptr
 	static std::shared_ptr<RenderTarget> Create(std::shared_ptr<Device> device, ComPtr<IDXGISwapChain1> swapChain, int renderTargetsNum);

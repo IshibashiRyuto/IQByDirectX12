@@ -179,6 +179,7 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
+    <ClCompile Include="Source\Dx12\Resource\Dx12Resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -319,6 +320,7 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Dx12\ShaderList.h" />
+    <ClInclude Include="Source\Dx12\Resource\Dx12Resource.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

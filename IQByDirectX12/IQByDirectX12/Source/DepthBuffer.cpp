@@ -29,7 +29,7 @@ std::shared_ptr<DepthBuffer> DepthBuffer::Create(ComPtr<ID3D12Device> device, in
 	depthBufferDesc.Width = (UINT)windowWidth;
 	depthBufferDesc.Height = (UINT)windowHeight;
 	depthBufferDesc.DepthOrArraySize = 1;
-	depthBufferDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	depthBufferDesc.Format = DXGI_FORMAT_R32_TYPELESS;
 	depthBufferDesc.SampleDesc.Count = 1;
 	depthBufferDesc.SampleDesc.Quality = 0;
 	depthBufferDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
@@ -49,7 +49,7 @@ std::shared_ptr<DepthBuffer> DepthBuffer::Create(ComPtr<ID3D12Device> device, in
 		}
 	}
 
-	// デプスステンシルビューの作成
+	// DSVの作成
 	D3D12_DESCRIPTOR_HEAP_DESC dsvHeapDesc{};
 	D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc{};
 
@@ -70,6 +70,12 @@ std::shared_ptr<DepthBuffer> DepthBuffer::Create(ComPtr<ID3D12Device> device, in
 	dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
 	device->CreateDepthStencilView(depthBuffer->mDepthBuffer.Get(), &dsvDesc, depthBuffer->mDSVCPUHandle);
 
+	depthBuffer->mSRVDesc = D3D12_SHADER_RESOURCE_VIEW_DESC{};
+	depthBuffer->mSRVDesc.Format = DXGI_FORMAT_R32_FLOAT;
+	depthBuffer->mSRVDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+	depthBuffer->mSRVDesc.Texture2D.MipLevels = depthBuffer->mDepthBuffer->GetDesc().MipLevels;
+	depthBuffer->mSRVDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+
 	return depthBuffer;
 }
 
@@ -81,4 +87,14 @@ D3D12_CPU_DESCRIPTOR_HANDLE DepthBuffer::GetDSVHandle()
 void DepthBuffer::ClearDepthBuffer(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
 	commandList->ClearDepthStencilView(GetDSVHandle(), D3D12_CLEAR_FLAG_DEPTH, DEPTH_CLEAR_VALUE.DepthStencil.Depth, 0, 0, nullptr);
+}
+
+ComPtr<ID3D12Resource> DepthBuffer::GetDepthBufferResource()
+{
+	return mDepthBuffer;
+}
+
+const D3D12_SHADER_RESOURCE_VIEW_DESC & DepthBuffer::DebugShaderResourceView()
+{
+	return mSRVDesc;
 }

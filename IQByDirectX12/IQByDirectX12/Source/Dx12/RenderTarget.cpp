@@ -46,6 +46,10 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	swapChain->GetDesc(&swapChainDesc);
 	int backBufferNum = swapChainDesc.BufferCount;
+	int windowWidth = swapChainDesc.BufferDesc.Width;
+	int windowHeight = swapChainDesc.BufferDesc.Height;
+	auto bufferFormat = swapChainDesc.BufferDesc.Format;
+
 	for (int i = 0; i < renderTargetsNum; ++i)
 	{
 		if (i < backBufferNum)
@@ -63,7 +67,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 		}
 		else
 		{
-			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(device, 1280, 720);
+			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(device, windowWidth, windowHeight, Math::Vector4(0.0f,0.0f,0.0f,1.0f), bufferFormat);
 		}
 
 		auto rtvDesc = renderTarget->mRenderTargets[i]->GetRenderTargetViewDesc();
