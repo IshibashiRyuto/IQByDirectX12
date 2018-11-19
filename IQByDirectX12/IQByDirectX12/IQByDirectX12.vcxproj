@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Model\Primitive\PrimitiveModelData.cpp" />
     <ClCompile Include="Source\Dx12\Resource\Dx12Resource.cpp" />
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
     <ClCompile Include="Source\Texture\RenderTargetTexture.cpp" />
@@ -77,6 +78,7 @@
     <ClCompile Include="Source\Sprite\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Model\Primitive\PrimitiveModelData.h" />
     <ClInclude Include="Source\Dx12\Resource\Dx12Resource.h" />
     <ClInclude Include="Source\Dx12\ShaderList.h" />
     <ClInclude Include="Source\Texture\RenderTargetTexture.h" />

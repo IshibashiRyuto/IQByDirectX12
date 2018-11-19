@@ -180,6 +180,7 @@
     </ClCompile>
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
     <ClCompile Include="Source\Dx12\Resource\Dx12Resource.cpp" />
+    <ClCompile Include="Source\Model\Primitive\PrimitiveModelData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -321,6 +322,7 @@
     </ClInclude>
     <ClInclude Include="Source\Dx12\ShaderList.h" />
     <ClInclude Include="Source\Dx12\Resource\Dx12Resource.h" />
+    <ClInclude Include="Source\Model\Primitive\PrimitiveModelData.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />
