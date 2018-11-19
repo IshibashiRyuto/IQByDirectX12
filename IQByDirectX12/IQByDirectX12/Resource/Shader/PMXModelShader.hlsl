@@ -131,8 +131,8 @@ float4 PSMain(PSInput input) : SV_Target
 
 
 	// スフィアマップ用uv計算
-	float3 vrayAxisX = right;
-	float3 vrayAxisY = upper;
+    float3 vrayAxisX = normalize(cross(vray, upper));
+    float3 vrayAxisY = normalize(cross(vray, vrayAxisX));
 	float2 sphereUV = float2(dot(vrayAxisX, input.normal), dot(vrayAxisY, input.normal));
 	sphereUV = sphereUV * float2(0.5, -0.5) + float2(0.5f, 0.5f);
 

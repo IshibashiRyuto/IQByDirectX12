@@ -40,6 +40,7 @@ public:
 	void SetRotation();
 
 	/// @brief	スプライトの拡大率を設定する
+	void SetScale();
 
 	///	@brief	スプライトに張り付けるテクスチャを変更する
 	void SetTexture();

@@ -24,7 +24,7 @@
 #include "Model/PMX/PMXLoader.h"
 #include "Model/PMX/PMXModelData.h"
 #include "Texture/TextureManager.h"
-#include "Model/InstancingDataManager.h"
+#include "InstancingDataManager.h"
 #include "Dx12/RootSignature.h"
 #include "Shader.h"
 #include "Motion/VMDLoader.h"

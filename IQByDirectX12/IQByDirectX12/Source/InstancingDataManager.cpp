@@ -1,4 +1,4 @@
-#include "../InstanceBuffer.h"
+#include "InstanceBuffer.h"
 #include "InstancingDataManager.h"
 
 

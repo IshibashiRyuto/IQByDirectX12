@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Font\BMFontData.cpp" />
+    <ClCompile Include="Source\Font\Font.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveModelData.cpp" />
     <ClCompile Include="Source\Dx12\Resource\Dx12Resource.cpp" />
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
@@ -52,7 +54,7 @@
     <ClCompile Include="Source\Math\Math_Vector2.cpp" />
     <ClCompile Include="Source\Math\Math_Vector3.cpp" />
     <ClCompile Include="Source\Math\Math_Vector4.cpp" />
-    <ClCompile Include="Source\Model\InstancingDataManager.cpp" />
+    <ClCompile Include="Source\InstancingDataManager.cpp" />
     <ClCompile Include="Source\Model\Model.cpp" />
     <ClCompile Include="Source\Model\ModelData.cpp" />
     <ClCompile Include="Source\Model\ModelDataManager.cpp" />
@@ -78,6 +80,8 @@
     <ClCompile Include="Source\Sprite\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Font\Font.h" />
+    <ClInclude Include="Source\Font\BMFontData.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveModelData.h" />
     <ClInclude Include="Source\Dx12\Resource\Dx12Resource.h" />
     <ClInclude Include="Source\Dx12\ShaderList.h" />
@@ -104,7 +108,7 @@
     <ClInclude Include="Source\InstanceBuffer.h" />
     <ClInclude Include="Source\MathConvert.h" />
     <ClInclude Include="Source\Math\Math.h" />
-    <ClInclude Include="Source\Model\InstancingDataManager.h" />
+    <ClInclude Include="Source\InstancingDataManager.h" />
     <ClInclude Include="Source\Model\Model.h" />
     <ClInclude Include="Source\Model\ModelData.h" />
     <ClInclude Include="Source\Model\ModelDataManager.h" />

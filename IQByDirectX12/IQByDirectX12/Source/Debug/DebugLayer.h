@@ -30,11 +30,12 @@ public:
 	}
 
 	/// @brief デバッグメッセージを出力する
+	/// @@param[in]	message	: メッセージ
 	void PrintDebugMessage(const std::string& message);
 	void PrintDebugMessage(const std::wstring& message);
 
 	/// @brief		デバッグメッセージの出力先を設定する
-	/// @param[in]	OutputDestination
+	/// @param[in]	OutputDestination	: 出力先
 	void SetOutputDestination(OutputDestination outputDestination);
 
 private:
@@ -47,4 +48,6 @@ private:
 	// ローカルメソッド定義
 	/// @brief コンストラクタ
 	DebugLayer();
+	DebugLayer(const DebugLayer&) {}
+	void operator=(const DebugLayer&){}
 };
