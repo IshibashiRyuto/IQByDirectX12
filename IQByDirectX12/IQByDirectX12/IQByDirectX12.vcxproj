@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="Source\Font\BMFontData.cpp" />
     <ClCompile Include="Source\Font\Font.cpp" />
+    <ClCompile Include="Source\Math\Math.cpp" />
+    <ClCompile Include="Source\Math\Math_Matrix3x3.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveModelData.cpp" />
     <ClCompile Include="Source\Dx12\Resource\Dx12Resource.cpp" />
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
@@ -78,6 +80,8 @@
     <ClCompile Include="Source\Motion\VMDLoader.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\Sprite\Sprite.cpp" />
+    <ClCompile Include="Source\Sprite\SpriteData.cpp" />
+    <ClCompile Include="Source\Sprite\SpriteDataManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Font\Font.h" />
@@ -85,6 +89,7 @@
     <ClInclude Include="Source\Model\Primitive\PrimitiveModelData.h" />
     <ClInclude Include="Source\Dx12\Resource\Dx12Resource.h" />
     <ClInclude Include="Source\Dx12\ShaderList.h" />
+    <ClInclude Include="Source\Sprite\SpriteVertex.h" />
     <ClInclude Include="Source\Texture\RenderTargetTexture.h" />
     <ClInclude Include="Source\Camera\Dx12Camera.h" />
     <ClInclude Include="Source\Camera\Camera.h" />
@@ -134,6 +139,8 @@
     <ClInclude Include="Source\Motion\VMDLoader.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Sprite\Sprite.h" />
+    <ClInclude Include="Source\Sprite\SpriteData.h" />
+    <ClInclude Include="Source\Sprite\SpriteDataManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\3DPrimitiveShader.hlsl">
@@ -255,6 +262,20 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resource\Shader\Sprite.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

@@ -39,6 +39,8 @@
 #include "Texture/RenderTargetTexture.h"
 #include "Dx12/RenderState.h"
 #include "Dx12/ShaderList.h"
+#include "Sprite/Sprite.h"
+#include "Sprite/SpriteDataManager.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -132,6 +134,11 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
+	if (!CreateSpritePipelineStateObject())
+	{
+		return false;
+	}
+
 	// コマンドリストの作成
 	if (!CreateCommandList())
 	{
@@ -154,6 +161,13 @@ bool Application::Initialize(const Window & window)
 
 	// ペラポリ用データ作成
 	_DebugCreatePeraPolyData();
+
+	// スプライトデータ作成
+
+	if (!_DebugCreateSprite())
+	{
+		return false;
+	}
 
 	return true;
 }
@@ -252,6 +266,8 @@ void Application::Render()
 	mModelData->Draw();
 	// endDebug
 
+	mSprite->Draw();
+
 	// コマンドリスト初期化
 	mCommandList->Reset();
 	(*mCommandList)->SetGraphicsRootSignature(mRootSignature->GetRootSignature().Get());
@@ -322,10 +338,14 @@ void Application::Render()
 	// データセット
 	mPeraDescHeap->BindGraphicsCommandList(mCommandList->GetCommandList());
 	mPeraDescHeap->BindRootDescriptorTable(0, 0);
+	mPeraDescHeap->BindRootDescriptorTable(1, 1);
 	
 	// ペラポリの描画
 	(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
 	(*mCommandList)->DrawInstanced(4, 1, 0, 0);
+
+	// スプライトの描画
+	SpriteDataManager::GetInstance().Draw(mCommandList);
 
 
 	//　2パス目描画終了処理
@@ -400,6 +420,19 @@ bool Application::CreatePeraPipelineStateObject()
 	return CreatePeraPipelineState();
 }
 
+bool Application::CreateSpritePipelineStateObject()
+{
+	if (!CreatePeraRootSignature())
+	{
+		return false;
+	}
+	if (!ReadSpriteShader())
+	{
+		return false;
+	}
+	return CreateSpritePipelineState();
+}
+
 bool Application::CreateRootSignature()
 {
 	mRootSignature = RootSignature::Create();
@@ -433,7 +466,9 @@ bool Application::CreatePeraRootSignature()
 {
 	mPeraRootSignature = RootSignature::Create();
 	int idx = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_PIXEL);
-	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 2, 0);
+	int idx2 = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_PIXEL);
+	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
+	mPeraRootSignature->AddDescriptorRange(idx2, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 1);
 
 	return mPeraRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
@@ -470,6 +505,22 @@ bool Application::ReadPeraShader()
 	mVertexShaderClass = Shader::Create(L"Resource/Shader/pera.hlsl", "VSMain", "vs_5_0");
 
 	mPixelShaderClass = Shader::Create(L"Resource/Shader/Distortion.hlsl", "PSMain", "ps_5_0");
+
+
+	if (!mVertexShaderClass || !mPixelShaderClass)
+	{
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Read Shader.\n");
+		return false;
+	}
+
+	return true;
+}
+
+bool Application::ReadSpriteShader()
+{
+	mVertexShaderClass = Shader::Create(L"Resource/Shader/Sprite.hlsl", "VSMain", "vs_5_0");
+
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/Sprite.hlsl", "PSMain", "ps_5_0");
 
 
 	if (!mVertexShaderClass || !mPixelShaderClass)
@@ -592,6 +643,41 @@ bool Application::CreatePeraPipelineState()
 	return true;
 }
 
+bool Application::CreateSpritePipelineState()
+{// 頂点情報定義
+	{
+		mInputLayoutDescs.clear();
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"		, 0, DXGI_FORMAT_R32G32B32A32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"		, 0, DXGI_FORMAT_R32G32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 0, DXGI_FORMAT_R32G32B32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 1, DXGI_FORMAT_R32G32B32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 2, DXGI_FORMAT_R32G32B32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+	}
+
+	ShaderList shaderList;
+	shaderList.VS = mVertexShaderClass;
+	shaderList.PS = mPixelShaderClass;
+
+	RenderState renderState;
+	renderState.alphaBlendType = AlphaBlendType::Opacity;
+	renderState.cullingType = CullingType::Double;
+	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
+	renderState.depthTest = false;
+	renderState.depthWrite = false;
+
+
+
+	mSpritePipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList);
+	if (!mSpritePipelineState)
+	{
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
+		return false;
+	}
+
+	return true;
+}
+
 bool Application::CreateCommandList()
 {
 	mCommandList = GraphicsCommandList::Create(mDevice, D3D12_COMMAND_LIST_TYPE_DIRECT, L"DefaultCommandList");
@@ -699,4 +785,21 @@ void Application::_DebugCreatePeraPolyData()
 	auto depthBuffer = mDepthBuffer->GetDepthBufferResource();
 	auto depthBufferSRV = mDepthBuffer->DebugShaderResourceView();
 	mPeraDescHeap->SetShaderResourceView(depthBufferSRV, depthBuffer, 1);
+}
+
+bool Application::_DebugCreateSprite()
+{
+	Sprite::SetPipelineStateObject(mSpritePipelineState);
+	mTextureLoader = TextureLoader::Create(mDevice);
+	if (!mTextureLoader)
+	{
+		return false;
+	}
+	mSprite = Sprite::Create(mDevice, TextureManager::GetInstance().GetTexture(mTextureLoader->Load("Resource/Texture/Eevee.png")));
+	if (!mSprite)
+	{
+		return false;
+	}
+
+	return true;
 }

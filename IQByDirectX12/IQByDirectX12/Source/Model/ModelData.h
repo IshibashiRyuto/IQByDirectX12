@@ -1,15 +1,13 @@
 /*
 	@file	ModelData.h
 	@brief	モデルデータを格納するクラス
-	@param	history
-	2018/08/28	初版作成
+	@author	Ishibashi Ryuto
+	@date	2018/08/28	初版作成
 */
 #pragma once
-// システムヘッダインクルード
+/* ヘッダインクルード */
 #include<memory>
 #include <list>
-
-//自作ヘッダインクルード
 #include "../Math/Math.h"
 #include "../VertexBuffer.h"
 #include "../IndexBuffer.h"

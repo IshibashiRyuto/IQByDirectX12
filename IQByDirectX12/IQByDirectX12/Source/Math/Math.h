@@ -2,13 +2,13 @@
 	@file Math.h
 	@brief 自作数学関連ライブラリ
 	@author Ishibashi Ryuto
-	@history 
-	2018/07/19 初版作成
-	2018/08/26 行列クラスに機能を追加
-		・LookAt行列の生成
-		・Perspective行列の生成
-	2018/10/03	データ量削減のため4x3行列を追加
-	2018/10/22	Perspective行列,OrthoGraphic行列,単位クォータニオン生成関数を追加
+	@date	2018/07/19 初版作成
+	@date	2018/08/26 行列クラスに機能を追加
+			・LookAt行列の生成
+			・Perspective行列の生成
+	@date	2018/10/03	データ量削減のため4x3行列を追加
+	@date	2018/10/22	Perspective行列,OrthoGraphic行列,単位クォータニオン生成関数を追加
+	@date	2018/11/20	Matrix3x3構造体を追加
 */
 #pragma once
 namespace Math
@@ -17,6 +17,7 @@ namespace Math
 	struct Vector2;
 	struct Vector3;
 	struct Vector4;
+	struct Matrix3x3;
 	struct Matrix4x4;
 	struct Matrix4x3;
 	struct Quaternion;
@@ -68,6 +69,8 @@ namespace Math
 		Vector2& operator-=(const Vector2& value);
 		Vector2& operator*=(float scale);
 		Vector2& operator/=(float scale);
+
+		float Length() const;
 	};
 	bool operator==(const Vector2& t1, const Vector2& t2);
 	bool operator!=(const Vector2& t1, const Vector2& t2);
@@ -148,6 +151,106 @@ namespace Math
 	Vector4 operator*(const Vector4& value, float scale);
 	Vector4 operator*(float scale, const Vector4& value);
 	Vector4 operator/(const Vector4& value, float scale);
+
+	/**
+	*	@struct	Matrix3x3
+	*	@brief	3x3行列を表す構造体
+	*/
+	struct Matrix3x3
+	{
+		union
+		{
+			float matrix[3][3];
+			struct
+			{
+				float _11, _12, _13;
+				float _21, _22, _23;
+				float _31, _32, _33;
+			};
+		};
+
+		Matrix3x3();
+		Matrix3x3(const Matrix3x3& mat);
+		Matrix3x3(float m11, float m12, float m13,
+			float m21, float m22, float m23,
+			float m31, float m32, float m33);
+
+		float& operator()(unsigned int row, unsigned int col);
+		const float& operator()(unsigned int row, unsigned int col) const;
+
+		Matrix3x3 operator+() const;
+		Matrix3x3 operator-() const;
+		Matrix3x3& operator=(const Matrix3x3& value);
+		Matrix3x3& operator+=(const Matrix3x3& value);
+		Matrix3x3& operator-=(const Matrix3x3& value);
+		Matrix3x3& operator*=(const Matrix3x3& value);
+		Matrix3x3& operator*=(float scale);
+		Matrix3x3& operator/=(float scale);
+
+		/**
+		*	@brief	行列式計算
+		*/
+		float Determinant() const;
+	};
+	bool operator==(const Matrix3x3& mat1, const Matrix3x3& mat2);
+	bool operator!=(const Matrix3x3& mat1, const Matrix3x3& mat2);
+
+	Matrix3x3 operator+(const Matrix3x3& mat1, const Matrix3x3& mat2);
+	Matrix3x3 operator-(const Matrix3x3& mat1, const Matrix3x3& mat2);
+	Matrix3x3 operator*(const Matrix3x3& mat1, const Matrix3x3& mat2);
+	Matrix3x3 operator*(const Matrix3x3& mat1, float scale);
+	Matrix3x3 operator*(float scale, const Matrix3x3& mat2);
+	Vector2 operator*(const Vector2& vec, const Matrix3x3& mat);
+	Vector3 operator*(const Vector3& vec, const Matrix3x3& mat);
+	Matrix3x3 operator/(const Matrix3x3& mat1, float scale);
+
+	/**
+	*	@brief	3x3行列から2次元の拡縮成分を取得する
+	*/
+	Vector2 GetMatrixScale(const Matrix3x3& mat);
+
+	/**
+	*	@brief	3x3行列から2次元の平行移動成分を取得する
+	*/
+	Vector2 GetMatrixTranslate(const Matrix3x3& mat);
+
+	/**
+	*	@brief	3x3行列から回転角を取得する
+	*/
+	float GetMatrixRotation(const Matrix3x3& mat);
+
+	/**
+	*	@brief	転置行列を取得する
+	*/
+	Matrix3x3 GetTransposeMatrix(const Matrix3x3& mat);
+
+	/**
+	*	@brief	逆行列を取得する
+	*/
+	Matrix3x3 GetInvertMatrix(const Matrix3x3& mat);
+
+	/**
+	*	@brief	単位行列を取得する
+	*/
+	Matrix3x3 CreateIdentMat3x3();
+
+	/**
+	*	@brief	特定のスケールで拡縮する3x3行列を作成する
+	*/
+	Matrix3x3 CreateScaleMatrix3x3(float scale);
+	Matrix3x3 CreateScaleMatrix3x3(float sx, float sy);
+	Matrix3x3 CreateScaleMatrix3x3(const Vector2 scale);
+
+	/**
+	*	@brief	指定した分だけ平行移動する
+	*/
+	Matrix3x3 CreateTranslateMatrix3x3(float tx, float ty);
+	Matrix3x3 CreateTranslateMatrix3x3(const Vector2& movement);
+
+	/**
+	*	@brief	指定量回転する3x3行列を取得する
+	*/
+	Matrix3x3 CreateRotMatrix3x3(float rad);
 
 	/// @struct Matrix4x4
 	/// 4x4行列を表す構造体

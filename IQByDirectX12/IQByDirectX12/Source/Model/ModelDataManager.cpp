@@ -18,8 +18,8 @@ void ModelDataManager::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandLis
 		}
 		modelData->Update();
 		modelData->Draw(graphicsCommandList, instancingDataMap[modelHandle]);
+		mInstancingDataManager.ResetInstanceData(modelHandle);
 	}
-	mInstancingDataManager.ResetInstanceDataAll();
 }
 
 ModelDataManager::ModelDataManager()

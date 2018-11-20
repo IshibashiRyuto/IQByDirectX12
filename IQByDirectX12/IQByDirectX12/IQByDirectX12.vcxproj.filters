@@ -183,6 +183,10 @@
     <ClCompile Include="Source\InstancingDataManager.cpp">
       <Filter>Source\Model</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Sprite\SpriteData.cpp" />
+    <ClCompile Include="Source\Sprite\SpriteDataManager.cpp" />
+    <ClCompile Include="Source\Math\Math_Matrix3x3.cpp" />
+    <ClCompile Include="Source\Math\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -327,6 +331,9 @@
     <ClInclude Include="Source\InstancingDataManager.h">
       <Filter>Source\Model</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Sprite\SpriteData.h" />
+    <ClInclude Include="Source\Sprite\SpriteDataManager.h" />
+    <ClInclude Include="Source\Sprite\SpriteVertex.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />
@@ -340,5 +347,6 @@
     <FxCompile Include="Resource\Shader\PosterizationPS.hlsl" />
     <FxCompile Include="Resource\Shader\SSAA.hlsl" />
     <FxCompile Include="Resource\Shader\Distortion.hlsl" />
+    <FxCompile Include="Resource\Shader\Sprite.hlsl" />
   </ItemGroup>
 </Project>

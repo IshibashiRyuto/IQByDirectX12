@@ -73,6 +73,11 @@ Vector2& Vector2::operator/=(float scale)
 	return *this;
 }
 
+float Math::Vector2::Length() const
+{
+	return sqrt(x*x+y*y);
+}
+
 bool Math::operator==(const Vector2& t1, const Vector2& t2)
 {
 	return (IsEqual(t1.x,t2.x) && IsEqual(t1.y,t2.y));

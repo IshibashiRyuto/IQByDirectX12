@@ -42,7 +42,7 @@ public:
 	void Erase(int handle);
 	
 	/// @fn GetModelData
-	/// モデルデータを作成する
+	/// モデルデータを取得する
 	/// @param[in] handle	: モデルハンドル
 	/// @retval モデルデータ
 	std::shared_ptr<ModelData> GetModelData(int handle) const;

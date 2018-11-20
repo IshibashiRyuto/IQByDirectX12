@@ -36,6 +36,7 @@ class Animation;
 class Keyboard;
 class GraphicsCommandList;
 class PipelineStateObject;
+class Sprite;
 
 class Camera;
 class Dx12Camera;
@@ -101,6 +102,10 @@ private:
 
 	std::shared_ptr<VertexBuffer>		mPeraVert;
 	std::shared_ptr<DescriptorHeap>		mPeraDescHeap;
+
+	std::shared_ptr<TextureLoader>			mTextureLoader;			//! テクスチャローダ
+	std::shared_ptr<Sprite>					mSprite;				//! スプライト
+	std::shared_ptr<PipelineStateObject>	mSpritePipelineState;	//! スプライト用パイプラインステート
 	
 	int mWindowWidth;
 	int mWindowHeight;
@@ -115,6 +120,9 @@ private:
 
 	/// @brief ペラポリ用PSOを作成する
 	bool CreatePeraPipelineStateObject();
+
+	/// @brief	スプライト用PSOを作成する
+	bool CreateSpritePipelineStateObject();
 
 	/// @fn CreateRootSignature
 	/// ルートシグネチャを生成する
@@ -135,6 +143,8 @@ private:
 
 	bool ReadPeraShader();
 
+	bool ReadSpriteShader();
+
 	/// @fn CreatePipelineState
 	/// パイプラインステートの作成
 	/// @retval ture: 生成成功, false: 生成失敗
@@ -146,6 +156,8 @@ private:
 	bool _DebugCreatePMDPipelineState();
 
 	bool CreatePeraPipelineState();
+
+	bool CreateSpritePipelineState();
 
 	/// @fn CreateCommandList
 	/// コマンドリストの生成
@@ -178,6 +190,9 @@ private:
 
 	/// @brief	ペラポリ用データを作成する
 	void _DebugCreatePeraPolyData();
+
+	/// @brief	スプライトを作成する
+	bool _DebugCreateSprite();
 
 };
 
