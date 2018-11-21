@@ -39,12 +39,13 @@ public:
 	/// @retvval D3D12_VERTEX_BUFFER_VIEW 頂点バッファビューへの参照
 	const D3D12_VERTEX_BUFFER_VIEW & GetVertexBufferView() const;
 
-	/// @fn SetInstanceData
-	/// インスタンスデータをセットする
-	/// @param[in] pInstanceData		: インスタンスデータへのポインタ
-	/// @param[in] instanceDataIndex	: 何番目のインスタンスデータをセットするか
-	/// @note	インスタンスデータのサイズはインスタンスバッファ生成時のものを参照
-	///			あとから変更することは不可能
+	/**
+	*	@brief	インスタンスデータをセットする
+	*	@param[in] pInstanceData		: インスタンスデータへのポインタ
+	*	@param[in] instanceDataIndex	: 何番目のインスタンスデータをセットするか
+	*	@note	インスタンスデータのサイズはインスタンスバッファ生成時のものを参照
+	*			あとから変更することは不可能
+	*/
 	void SetInstanceData(void* pInstanceData, int instanceDataIndex);
 
 private:

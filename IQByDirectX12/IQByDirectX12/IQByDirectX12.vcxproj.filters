@@ -94,9 +94,6 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MathConvert.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -176,7 +173,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
-    <ClCompile Include="Source\Dx12\Resource\Dx12Resource.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveModelData.cpp" />
     <ClCompile Include="Source\Font\Font.cpp" />
     <ClCompile Include="Source\Font\BMFontData.cpp" />
@@ -187,6 +183,7 @@
     <ClCompile Include="Source\Sprite\SpriteDataManager.cpp" />
     <ClCompile Include="Source\Math\Math_Matrix3x3.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\Dx12Resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -238,9 +235,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\InstanceBuffer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MathConvert.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
@@ -324,7 +318,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Dx12\ShaderList.h" />
-    <ClInclude Include="Source\Dx12\Resource\Dx12Resource.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveModelData.h" />
     <ClInclude Include="Source\Font\Font.h" />
     <ClInclude Include="Source\Font\BMFontData.h" />
@@ -334,6 +327,7 @@
     <ClInclude Include="Source\Sprite\SpriteData.h" />
     <ClInclude Include="Source\Sprite\SpriteDataManager.h" />
     <ClInclude Include="Source\Sprite\SpriteVertex.h" />
+    <ClInclude Include="Source\Dx12\Buffer\Dx12Resource.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

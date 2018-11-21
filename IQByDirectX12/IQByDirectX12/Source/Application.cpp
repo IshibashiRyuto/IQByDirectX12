@@ -18,7 +18,6 @@
 #include "Texture/Texture.h"
 #include "Dx12/DescriptorHeap.h"
 #include "Dx12/ConstantBuffer.h"
-#include "MathConvert.h"
 #include "Model/PMD/PMDLoader.h"
 #include "Model/PMD/PMDModelData.h"
 #include "Model/PMX/PMXLoader.h"
