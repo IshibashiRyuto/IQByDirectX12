@@ -3,6 +3,8 @@
 	@brief	DescriptorHeapクラスを記述する
 	@author	Ishibashi Ryuto
 	@date	2018/??/??	初版作成
+	@date	2018/11/24	DSV,RTV用ヒープの作成に対応
+						DSV,RTVのセットに対応
 */
 #pragma once
 /*システムヘッダインクルード*/
@@ -38,10 +40,22 @@ public:
 	/// @param[in] descriptorNum	セット可能なデスクリプタの個数
 	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, UINT numDescriptors);
 
-	/// @brief	コンスタントバッファビューをセットする
-	/// @param[in] constantBufferView	コンスタントバッファビュー
-	/// @param[in] constantBuffer		コンスタントバッファ
-	/// @param[in] index				ヒープのインデックス
+	/**
+	*	@brief	ディスクリプタヒープの作成
+	*	
+	*	@param[in]	device			: dx12デバイス
+	*	@param[in]	type			: ディスクリプタヒープタイプ
+	*	@param[in]	descriptorsNum	: セット可能なデスクリプタの個数
+	*	@param[in]	flag			: ヒープフラグ
+	*/
+	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, D3D12_DESCRIPTOR_HEAP_TYPE heapType, unsigned int descriptorsNum, D3D12_DESCRIPTOR_HEAP_FLAGS flag);
+
+	/**
+	*	@brief	コンスタントバッファビューをセットする
+	*	@param[in] constantBufferView	コンスタントバッファビュー
+	*	@param[in] constantBuffer		コンスタントバッファ
+	*	@param[in] index				ヒープのインデックス
+	*/
 	void SetConstantBufferView(const D3D12_CONSTANT_BUFFER_VIEW_DESC& constantBufferView, UINT index);
 
 	/// @brief	シェーダリソースビューをセットする
@@ -66,15 +80,38 @@ public:
 	/// @param[in] index				ヒープのインデックス
 	void SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC& unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index);
 
-	/// @brief	デスクリプタヒープをコマンドリストにバインドする
+	/**
+	*	@brief	デプスステンシルビューをセットする
+	*
+	*	@param[in]	depthStencilViewDesc	: デプスステンシルビュー情報
+	*	@param[in]	depthBuffer				: 深度バッファ
+	*	@param[in]	index					: セット先のインデックス
+	*/
+	void SetDepthStencilView(const D3D12_DEPTH_STENCIL_VIEW_DESC& depthStencilViewDesc, ComPtr<ID3D12Resource> resource, UINT index);
+
+	/**
+	*	@brief	デスクリプタヒープをコマンドリストにバインドする
+	*/
 	void BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> commandList);
 
-
-	/// @brief	ディスクリプタテーブルとヒープをバインドする
-	/// @param[in]	rootParamIndex	: ルートパラメータのインデックス
-	/// @param[in]	descriptorHeapIndex	:	ヒープ側のインデックス
+	/**
+	*	@brief	ディスクリプタテーブルとヒープをバインドする
+	*	@param[in]	rootParamIndex	: ルートパラメータのインデックス
+	*	@param[in]	descriptorHeapIndex	:	ヒープ側のインデックス
+	*/
 	void BindRootDescriptorTable(int rootParamIndex, int descriptorHeapIndex);
 
+	/**
+	*	@brief	指定したインデックスのGPUハンドルを取得する
+	*	@param[in]	index	: 取得したいいハンドルのインデックス
+	*/
+	D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle(UINT index);
+
+	/**
+	*	@brief	指定したインデックスのCPUハンドルを取得する
+	*	@param[in]	index	: 取得したいハンドルのインデックス
+	*/
+	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle(UINT index);
 private:
 	/*定数宣言*/
 	const UINT HEAP_STRIDE;								//! ヒープ一つ当たりの幅
@@ -88,7 +125,7 @@ private:
 	/*ローカルメソッド*/
 
 	/// コンストラクタ
-	DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc);
+	DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc, HRESULT& result);
 
 };
 

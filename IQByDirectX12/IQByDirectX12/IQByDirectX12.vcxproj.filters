@@ -67,9 +67,6 @@
     <ClCompile Include="Source\Texture\WICTextureLoader\WICTextureLoader12.cpp">
       <Filter>Source\Texture\WICTextureLoader</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Texture\Texture.cpp">
-      <Filter>Source\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Texture\TextureLoader.cpp">
       <Filter>Source\Texture</Filter>
     </ClCompile>
@@ -82,22 +79,10 @@
     <ClCompile Include="Source\ConvertString.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DepthBuffer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\IndexBuffer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InstanceBuffer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VertexBuffer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Window.cpp">
@@ -184,6 +169,12 @@
     <ClCompile Include="Source\Math\Math_Matrix3x3.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\Dx12Resource.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\VertexBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\InstanceDataBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\IndexBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\Texture.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\DepthBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\RenderTargetBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -213,9 +204,6 @@
     <ClInclude Include="Source\Texture\WICTextureLoader\WICTextureLoader12.h">
       <Filter>Source\Texture\WICTextureLoader</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Texture\Texture.h">
-      <Filter>Source\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Texture\TextureLoader.h">
       <Filter>Source\Texture</Filter>
     </ClInclude>
@@ -228,19 +216,7 @@
     <ClInclude Include="Source\ConvertString.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DepthBuffer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\IndexBuffer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InstanceBuffer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Shader.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\VertexBuffer.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Window.h">
@@ -328,6 +304,12 @@
     <ClInclude Include="Source\Sprite\SpriteDataManager.h" />
     <ClInclude Include="Source\Sprite\SpriteVertex.h" />
     <ClInclude Include="Source\Dx12\Buffer\Dx12Resource.h" />
+    <ClInclude Include="Source\Dx12\Buffer\VertexBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\InstanceDataBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\IndexBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\Texture.h" />
+    <ClInclude Include="Source\Dx12\Buffer\DepthBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\RenderTargetBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

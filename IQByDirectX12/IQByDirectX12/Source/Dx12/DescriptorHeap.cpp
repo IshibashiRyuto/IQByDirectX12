@@ -4,13 +4,15 @@
 #include "../Texture/Texture.h"
 #include "../Debug/DebugLayer.h"
 #include "../Texture/RenderTargetTexture.h"
+#include <d3dx12.h>
 
 
-DescriptorHeap::DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc)
+DescriptorHeap::DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc, HRESULT& result)
 	: HEAP_STRIDE((*device)->GetDescriptorHandleIncrementSize(heapDesc.Type))
 	, mDevice(device)
 	, mNumDescriptors(heapDesc.NumDescriptors)
 {
+	result = (*device)->CreateDescriptorHeap(&heapDesc, IID_PPV_ARGS(&mDescriptorHeap));
 }
 
 
@@ -20,13 +22,13 @@ DescriptorHeap::~DescriptorHeap()
 
 std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC & desc)
 {
-	auto descHeap = std::shared_ptr<DescriptorHeap>(new DescriptorHeap(device, desc) );
-	
-	auto result = (*device)->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descHeap->mDescriptorHeap));
+	HRESULT result;
+	auto descHeap = std::shared_ptr<DescriptorHeap>(new DescriptorHeap(device, desc, result) );
 	
 	if (FAILED(result))
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create Descriptor Heap.");
+		return nullptr;
 	}
 
 	return descHeap;
@@ -38,6 +40,15 @@ std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(std::shared_ptr<Device> d
 	heapDesc.NumDescriptors = numDescriptors;
 	heapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	heapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	return Create(device, heapDesc);
+}
+
+std::shared_ptr<DescriptorHeap> DescriptorHeap::Create(std::shared_ptr<Device> device, D3D12_DESCRIPTOR_HEAP_TYPE heapType, unsigned int descriptorsNum, D3D12_DESCRIPTOR_HEAP_FLAGS flag)
+{
+	D3D12_DESCRIPTOR_HEAP_DESC heapDesc{};
+	heapDesc.NumDescriptors = descriptorsNum;
+	heapDesc.Flags = flag;
+	heapDesc.Type = heapType;
 	return Create(device, heapDesc);
 }
 
@@ -80,6 +91,13 @@ void DescriptorHeap::SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DE
 {
 }
 
+void DescriptorHeap::SetDepthStencilView(const D3D12_DEPTH_STENCIL_VIEW_DESC & depthStencilViewDesc, ComPtr<ID3D12Resource> resource, UINT index)
+{
+	auto handle = mDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+	handle.ptr += HEAP_STRIDE * index;
+	(*mDevice)->CreateDepthStencilView(resource.Get(), &depthStencilViewDesc, handle);
+}
+
 void DescriptorHeap::BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
 	mGraphicsCommandList = commandList;
@@ -100,4 +118,14 @@ void DescriptorHeap::BindRootDescriptorTable(int rootParamIndex, int descriptorH
 	}
 
 	mGraphicsCommandList->SetGraphicsRootDescriptorTable(rootParamIndex, gpuHandle);
+}
+
+D3D12_GPU_DESCRIPTOR_HANDLE DescriptorHeap::GetGPUHandle(UINT index)
+{
+	return CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetGPUDescriptorHandleForHeapStart(),index, HEAP_STRIDE );
+}
+
+D3D12_CPU_DESCRIPTOR_HANDLE DescriptorHeap::GetCPUHandle(UINT index)
+{
+	return CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), index, HEAP_STRIDE);
 }

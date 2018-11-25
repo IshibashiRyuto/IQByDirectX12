@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Dx12\Buffer\DepthBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\RenderTargetBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\IndexBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\InstanceDataBuffer.cpp" />
     <ClCompile Include="Source\Font\BMFontData.cpp" />
     <ClCompile Include="Source\Font\Font.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
@@ -38,15 +42,12 @@
     <ClCompile Include="Source\Dx12\CommandQueue.cpp" />
     <ClCompile Include="Source\Dx12\ConstantBuffer.cpp" />
     <ClCompile Include="Source\ConvertString.cpp" />
-    <ClCompile Include="Source\DepthBuffer.cpp" />
     <ClCompile Include="Source\Dx12\DescriptorHeap.cpp" />
     <ClCompile Include="Source\Dx12\Device.cpp" />
     <ClCompile Include="Source\Dx12\GraphicsCommandList.cpp" />
-    <ClCompile Include="Source\IndexBuffer.cpp" />
     <ClCompile Include="Source\Input\GamePad.cpp" />
     <ClCompile Include="Source\Input\Keyboard.cpp" />
     <ClCompile Include="Source\Input\Mouse.cpp" />
-    <ClCompile Include="Source\InstanceBuffer.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Math_Matrix4x3.cpp" />
     <ClCompile Include="Source\Math\Math_Common.cpp" />
@@ -70,19 +71,23 @@
     <ClCompile Include="Source\Dx12\Sampler.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Dx12\SwapChain.cpp" />
-    <ClCompile Include="Source\Texture\Texture.cpp" />
     <ClCompile Include="Source\Texture\TextureLoader.cpp" />
     <ClCompile Include="Source\Texture\TextureManager.cpp" />
     <ClCompile Include="Source\Texture\WICTextureLoader\WICTextureLoader12.cpp" />
-    <ClCompile Include="Source\VertexBuffer.cpp" />
     <ClCompile Include="Source\Motion\VMDData.cpp" />
     <ClCompile Include="Source\Motion\VMDLoader.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\Sprite\Sprite.cpp" />
     <ClCompile Include="Source\Sprite\SpriteData.cpp" />
     <ClCompile Include="Source\Sprite\SpriteDataManager.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\VertexBuffer.cpp" />
+    <ClCompile Include="Source\Dx12\Buffer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Dx12\Buffer\DepthBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\RenderTargetBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\IndexBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\InstanceDataBuffer.h" />
     <ClInclude Include="Source\Font\Font.h" />
     <ClInclude Include="Source\Font\BMFontData.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveModelData.h" />
@@ -101,15 +106,12 @@
     <ClInclude Include="Source\Dx12\CommandQueue.h" />
     <ClInclude Include="Source\Dx12\ConstantBuffer.h" />
     <ClInclude Include="Source\ConvertString.h" />
-    <ClInclude Include="Source\DepthBuffer.h" />
     <ClInclude Include="Source\Dx12\DescriptorHeap.h" />
     <ClInclude Include="Source\Dx12\Device.h" />
     <ClInclude Include="Source\Dx12\GraphicsCommandList.h" />
-    <ClInclude Include="Source\IndexBuffer.h" />
     <ClInclude Include="Source\Input\GamePad.h" />
     <ClInclude Include="Source\Input\Keyboard.h" />
     <ClInclude Include="Source\Input\Mouse.h" />
-    <ClInclude Include="Source\InstanceBuffer.h" />
     <ClInclude Include="Source\Math\Math.h" />
     <ClInclude Include="Source\InstancingDataManager.h" />
     <ClInclude Include="Source\Model\Model.h" />
@@ -128,17 +130,17 @@
     <ClInclude Include="Source\Dx12\Sampler.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Dx12\SwapChain.h" />
-    <ClInclude Include="Source\Texture\Texture.h" />
     <ClInclude Include="Source\Texture\TextureLoader.h" />
     <ClInclude Include="Source\Texture\TextureManager.h" />
     <ClInclude Include="Source\Texture\WICTextureLoader\WICTextureLoader12.h" />
-    <ClInclude Include="Source\VertexBuffer.h" />
     <ClInclude Include="Source\Motion\VMDData.h" />
     <ClInclude Include="Source\Motion\VMDLoader.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Sprite\Sprite.h" />
     <ClInclude Include="Source\Sprite\SpriteData.h" />
     <ClInclude Include="Source\Sprite\SpriteDataManager.h" />
+    <ClInclude Include="Source\Dx12\Buffer\VertexBuffer.h" />
+    <ClInclude Include="Source\Dx12\Buffer\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\3DPrimitiveShader.hlsl">
