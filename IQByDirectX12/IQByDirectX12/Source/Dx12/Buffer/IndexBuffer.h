@@ -16,22 +16,6 @@ class IndexBuffer :
 	public Dx12Resource
 {
 public:
-	/**
-	*	@brief	コンストラクタ
-	*
-	*	@param[in]	device			: dx12デバイス
-	*	@param[in]	indexDataSize	: インデックスデータのサイズ
-	*	@param[in]	indexCount		: インデックスの数
-	*	@param[in]	bufferName		: バッファ名
-	*	@param[out]	result			: バッファの生成結果
-	*/
-	IndexBuffer(
-		std::shared_ptr<Device> device,
-		size_t indexDataSize,
-		size_t indexCount,
-		const std::wstring& bufferName,
-		HRESULT& result
-	);
 
 	/**
 	*	@biref	デストラクタ
@@ -78,8 +62,16 @@ public:
 	*/
 	void WriteIndexData(void* pIndexData, size_t indexDataSize, size_t dataCount, unsigned int offsetIndex = 0);
 
+	/**
+	*	@brief	インデックス数を取得する
+	*
+	*	@return インデックス数
+	*/
+	unsigned int GetIndexCount() const;
+
 private:
 	D3D12_INDEX_BUFFER_VIEW mIndexBufferView;	//! 頂点インデックスバッファビュー
+	unsigned int mIndexCount;
 
 	/**
 	*	@brief	インデックスバッファビューを構築する
@@ -89,5 +81,22 @@ private:
 	*	@param[out]	result			: 構築結果
 	*/
 	void ConstructIndexBufferView(size_t indexDataSize, size_t indexCount, HRESULT& result);
+
+	/**
+	*	@brief	コンストラクタ
+	*
+	*	@param[in]	device			: dx12デバイス
+	*	@param[in]	indexDataSize	: インデックスデータのサイズ
+	*	@param[in]	indexCount		: インデックスの数
+	*	@param[in]	bufferName		: バッファ名
+	*	@param[out]	result			: バッファの生成結果
+	*/
+	IndexBuffer(
+		std::shared_ptr<Device> device,
+		size_t indexDataSize,
+		size_t indexCount,
+		const std::wstring& bufferName,
+		HRESULT& result
+	);
 };
 

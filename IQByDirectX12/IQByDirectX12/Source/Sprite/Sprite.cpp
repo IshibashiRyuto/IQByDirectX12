@@ -1,6 +1,6 @@
 #include "Sprite.h"
 #include "../InstancingDataManager.h"
-#include "../Texture/Texture.h"
+#include "../Dx12/Buffer/Texture.h"
 #include "SpriteVertex.h"
 #include "SpriteData.h"
 #include "SpriteDataManager.h"
@@ -31,25 +31,25 @@ void Sprite::SetPipelineStateObject(std::shared_ptr<PipelineStateObject> pso)
 
 std::shared_ptr<Sprite> Sprite::Create(std::shared_ptr<Device> device, std::shared_ptr<Texture> texture)
 {
-	auto resDesc = texture->GetTextureData()->GetDesc();
+	auto resDesc = texture->GetResource()->GetDesc();
 	
 	// 頂点情報作成
 	// 頂点はTriangleStrip
 	// 左上→右上→左下→右下の順に作成
 	// 座標系はwindow座標系(右下正の平面)
 	SpriteVertex vert[4];
-	float width = resDesc.Width;
-	float height = resDesc.Height;
-	vert[0].pos = Vector4(-1, 1, 0.0f, 0.0f);
+	float width = static_cast<float>(resDesc.Width);
+	float height = static_cast<float>(resDesc.Height);
+	vert[0].pos = Vector4(-1, 1, 0.0f, 1.0f);
 	vert[0].uv = Vector2(0.0f, 0.0f);
-	vert[1].pos = Vector4(1, 1, 0.0f, 0.0f);
+	vert[1].pos = Vector4(1, 1, 0.0f, 1.0f);
 	vert[1].uv = Vector2(1.0f, 0.0f);
-	vert[2].pos = Vector4(-1, -1, 0.0f, 0.0f);
+	vert[2].pos = Vector4(-1, -1, 0.0f, 1.0f);
 	vert[2].uv = Vector2(0.0f, 1.0f);
-	vert[3].pos = Vector4(1, -1, 0.0f, 0.0f);
+	vert[3].pos = Vector4(1, -1, 0.0f, 1.0f);
 	vert[3].uv = Vector2(1.0f, 1.0f);
 
-	auto vertBuf = VertexBuffer::Create(device, vert, 4, sizeof(SpriteVertex));
+	auto vertBuf = VertexBuffer::Create(device, vert, sizeof(SpriteVertex), 4, L"Sprite");
 	auto descHeap = DescriptorHeap::Create(device, 1);
 	if (!descHeap)
 	{

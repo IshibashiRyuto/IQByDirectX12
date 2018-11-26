@@ -3,8 +3,9 @@
 #include "Device.h"
 #include "RenderTarget.h"
 #include "../Debug/DebugLayer.h"
-#include "../Texture/RenderTargetTexture.h"
-
+#include "../Dx12/Buffer/RenderTargetBuffer.h"
+#include "../Dx12/Buffer/Texture.h"
+#include "../Dx12/GraphicsCommandList.h"
 
 
 RenderTarget::RenderTarget(std::shared_ptr<Device> device)
@@ -40,6 +41,7 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 
 	// レンダーターゲットビューの作成
 	renderTarget->mRenderTargets.resize(renderTargetsNum);
+	renderTarget->mRenderTextures.resize(renderTargetsNum);
 
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE descHandle(renderTarget->mRTVDescHeap->GetCPUDescriptorHandleForHeapStart());
@@ -63,31 +65,33 @@ std::shared_ptr<RenderTarget> RenderTarget::Create(std::shared_ptr<Device> devic
 				return nullptr;
 			}
 
-			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(resource);
+			renderTarget->mRenderTargets[i] = RenderTargetBuffer::Create(resource,D3D12_RESOURCE_STATE_PRESENT);
 		}
 		else
 		{
-			renderTarget->mRenderTargets[i] = RenderTargetTexture::Create(device, windowWidth, windowHeight, Math::Vector4(0.0f,0.0f,0.0f,1.0f), bufferFormat);
+			renderTarget->mRenderTargets[i] = RenderTargetBuffer::Create(device, windowWidth, windowHeight);
 		}
+
+		renderTarget->mRenderTextures[i] = Texture::Create(renderTarget->mRenderTargets[i]);
 
 		auto rtvDesc = renderTarget->mRenderTargets[i]->GetRenderTargetViewDesc();
 		
-		device->GetDevice()->CreateRenderTargetView(renderTarget->mRenderTargets[i]->GetTextureData().Get(), &rtvDesc, descHandle);
+		device->GetDevice()->CreateRenderTargetView(renderTarget->mRenderTargets[i]->GetResource().Get(), &rtvDesc, descHandle);
 		descHandle.Offset(1, renderTarget->RENDER_TARGET_VIEW_DESCRIPTOR_SIZE);
 	}
 
 	return renderTarget;
 }
 
-void RenderTarget::ChangeRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList, int targetIndex)
+void RenderTarget::ChangeRenderTarget(std::shared_ptr<GraphicsCommandList> commandList, int targetIndex)
 {
 	mRenderTargetIndex = targetIndex;
-	commandList->ResourceBarrier(1, &mRenderTargets[targetIndex]->GetTransitionBarrier(D3D12_RESOURCE_STATE_RENDER_TARGET));
+	mRenderTargets[targetIndex]->TransitionState(commandList, D3D12_RESOURCE_STATE_RENDER_TARGET);
 }
 
-void RenderTarget::FinishRendering(ComPtr<ID3D12GraphicsCommandList> commandList)
+void RenderTarget::FinishRendering(std::shared_ptr<GraphicsCommandList> commandList)
 {
-	commandList->ResourceBarrier(1, &mRenderTargets[mRenderTargetIndex]->GetTransitionBarrier(D3D12_RESOURCE_STATE_PRESENT));
+	mRenderTargets[mRenderTargetIndex]->TransitionState(commandList, D3D12_RESOURCE_STATE_PRESENT);
 }
 
 D3D12_CPU_DESCRIPTOR_HANDLE RenderTarget::GetRTVHandle()
@@ -95,14 +99,18 @@ D3D12_CPU_DESCRIPTOR_HANDLE RenderTarget::GetRTVHandle()
 	return CD3DX12_CPU_DESCRIPTOR_HANDLE(mRTVDescHeap->GetCPUDescriptorHandleForHeapStart(), mRenderTargetIndex, RENDER_TARGET_VIEW_DESCRIPTOR_SIZE);
 }
 
-void RenderTarget::ClearRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList)
+void RenderTarget::ClearRenderTarget(std::shared_ptr<GraphicsCommandList> commandList)
 {
-	const float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-
-	commandList->ClearRenderTargetView(GetRTVHandle(), color, 0, nullptr);
+	auto clearColor = mRenderTargets[mRenderTargetIndex]->GetClearValue();
+	(*commandList)->ClearRenderTargetView(GetRTVHandle(), clearColor.Color, 0, nullptr);
 }
 
-std::shared_ptr<RenderTargetTexture> RenderTarget::GetRenderTargetTexture(int targetIndex)
+std::shared_ptr<RenderTargetBuffer> RenderTarget::GetRenderTargetBuffer(int targetIndex) const
 {
 	return mRenderTargets[targetIndex];
+}
+
+std::shared_ptr<Texture> RenderTarget::GetRenderTexture(int targetIndex) const
+{
+	return mRenderTextures[targetIndex];
 }

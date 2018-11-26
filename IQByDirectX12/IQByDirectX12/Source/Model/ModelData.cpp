@@ -1,6 +1,6 @@
 #include "ModelData.h"
 #include "../InstancingDataManager.h"
-#include "../InstanceBuffer.h"
+#include "../Dx12/Buffer/InstanceDataBuffer.h"
 
 ModelData::ModelData(std::shared_ptr<VertexBuffer> vertexBuffer,
 	std::shared_ptr<IndexBuffer> indexBuffer, 

@@ -1,9 +1,9 @@
 #include "PMDModelData.h"
-#include "../VertexBuffer.h"
-#include "../IndexBuffer.h"
+#include "../Dx12/Buffer/VertexBuffer.h"
+#include "../Dx12/Buffer/IndexBuffer.h"
 #include "../Dx12/DescriptorHeap.h"
 #include "../Dx12/ConstantBuffer.h"
-#include "../InstanceBuffer.h"
+#include "../Dx12/Buffer/InstanceDataBuffer.h"
 #include "../InstancingDataManager.h"
 #include "../Dx12/Device.h"
 #include "../Texture//TextureLoader.h"
@@ -18,8 +18,8 @@ PMDModelData::PMDModelData(std::shared_ptr<Device> device,
 	const std::vector<int> shareToonTextureIndex,
 	std::shared_ptr<PipelineStateObject> pipelineStateObject)
 
-	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(),modelInfo.vertexData.size(), sizeof(PMDVertex)),
-		IndexBuffer::Create(device, (void*)modelInfo.indexData.data(), modelInfo.indexData.size(), sizeof(short)),
+	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(), sizeof(PMDVertex), modelInfo.vertexData.size()),
+		IndexBuffer::Create(device, (void*)modelInfo.indexData.data(), sizeof(short), modelInfo.indexData.size()),
 		DescriptorHeap::Create(device, (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM),
 		pipelineStateObject)
 	, mTextureLoader(TextureLoader::Create(device))

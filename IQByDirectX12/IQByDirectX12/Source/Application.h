@@ -102,6 +102,7 @@ private:
 
 	std::shared_ptr<VertexBuffer>		mPeraVert;
 	std::shared_ptr<DescriptorHeap>		mPeraDescHeap;
+	std::shared_ptr<Texture>			mDepthTexture;
 
 	std::shared_ptr<TextureLoader>			mTextureLoader;			//! テクスチャローダ
 	std::shared_ptr<Sprite>					mSprite;				//! スプライト

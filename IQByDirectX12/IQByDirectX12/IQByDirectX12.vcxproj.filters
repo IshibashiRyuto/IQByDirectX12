@@ -124,7 +124,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Camera\Dx12Camera.cpp" />
-    <ClCompile Include="Source\Texture\RenderTargetTexture.cpp" />
     <ClCompile Include="Source\Sprite\Sprite.cpp" />
     <ClCompile Include="Source\Dx12\CommandAllocator.cpp">
       <Filter>Source</Filter>
@@ -257,7 +256,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Camera\Dx12Camera.h" />
-    <ClInclude Include="Source\Texture\RenderTargetTexture.h" />
     <ClInclude Include="Source\Sprite\Sprite.h" />
     <ClInclude Include="Source\Dx12\CommandAllocator.h">
       <Filter>Source</Filter>

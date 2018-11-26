@@ -8,8 +8,8 @@
 /* ヘッダインクルード */
 #include <memory>
 #include "../Math/Math.h"
-#include "../VertexBuffer.h"
-#include "../IndexBuffer.h"
+#include "../Dx12/Buffer/VertexBuffer.h"
+#include "../Dx12/Buffer/IndexBuffer.h"
 #include "../Dx12/DescriptorHeap.h"
 
 

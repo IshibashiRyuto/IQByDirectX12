@@ -1,9 +1,9 @@
 /*
-	TextureLoader.h
-	テクスチャーローダー
+	@file	TextureLoader.h
+	@brief	テクスチャーローダー
 	@author Ishibashi Ryuto
-	@param history
-	2018/07/28 初版作成
+	@date	2018/07/28	初版作成
+			2018/11/25	新バッファクラスに合わせて記述変更
 */
 #pragma once
 
@@ -14,7 +14,7 @@
 #include <DirectXTex.h>
 
 /*自作ヘッダインクルード*/
-#include "Texture.h"
+#include "../Dx12/Buffer/Texture.h"
 #include "TextureManager.h"
 
 /*クラス仕様宣言*/
@@ -51,7 +51,7 @@ public:
 private:
 	/* 変数宣言 */
 	std::map< std::wstring, int> mTextureHandleManager;			// 読み込み済みテクスチャのハンドルを管理する
-	std::shared_ptr<Device> mDevice;								// デバイス
+	std::shared_ptr<Device> mDevice;							// デバイス
 	TextureManager &mTextureManager;							// テクスチャマネージャへの参照
 
 	ComPtr<ID3D12Resource> mUpdateBuffer;						// UpdateSubResourceで使用
@@ -84,14 +84,5 @@ private:
 	/// @param[out] image		: イメージデータ
 	/// @retval		読み込み成功の可否
 	bool LoadWICTexture(std::wstring filePath, DirectX::TexMetadata* metaData, DirectX::ScratchImage& imageData) const;
-
-	/// @fn CreateTextureResource
-	/// @brief テクスチャリソースを作成する
-	/// 受け取ったメタデータとイメージデータをもとに
-	/// テクスチャリソースを作成する
-	/// @param[in]	metaData	: メタデータ
-	/// @param[in]	image		: イメージデータ
-	/// @retval		テクスチャリソースへのComポインタ
-	ComPtr<ID3D12Resource> CreateTextureResource(const DirectX::TexMetadata& metaData, const DirectX::ScratchImage& imageData);
 };
 

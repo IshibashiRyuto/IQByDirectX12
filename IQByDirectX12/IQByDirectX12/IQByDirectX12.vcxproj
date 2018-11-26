@@ -30,7 +30,6 @@
     <ClCompile Include="Source\Model\Primitive\PrimitiveModelData.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\Dx12Resource.cpp" />
     <ClCompile Include="Source\Dx12\RenderState.cpp" />
-    <ClCompile Include="Source\Texture\RenderTargetTexture.cpp" />
     <ClCompile Include="Source\Camera\Dx12Camera.cpp" />
     <ClCompile Include="Source\Camera\Camera.cpp" />
     <ClCompile Include="Source\Debug\DebugLayer.cpp" />
@@ -94,7 +93,6 @@
     <ClInclude Include="Source\Dx12\Buffer\Dx12Resource.h" />
     <ClInclude Include="Source\Dx12\ShaderList.h" />
     <ClInclude Include="Source\Sprite\SpriteVertex.h" />
-    <ClInclude Include="Source\Texture\RenderTargetTexture.h" />
     <ClInclude Include="Source\Camera\Dx12Camera.h" />
     <ClInclude Include="Source\Camera\Camera.h" />
     <ClInclude Include="Source\Debug\DebugLayer.h" />

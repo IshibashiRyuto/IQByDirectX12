@@ -105,13 +105,13 @@ public:
 	*	@brief	指定したインデックスのGPUハンドルを取得する
 	*	@param[in]	index	: 取得したいいハンドルのインデックス
 	*/
-	D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle(UINT index);
+	D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle(UINT index) const;
 
 	/**
 	*	@brief	指定したインデックスのCPUハンドルを取得する
 	*	@param[in]	index	: 取得したいハンドルのインデックス
 	*/
-	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle(UINT index);
+	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle(UINT index) const;
 private:
 	/*定数宣言*/
 	const UINT HEAP_STRIDE;								//! ヒープ一つ当たりの幅

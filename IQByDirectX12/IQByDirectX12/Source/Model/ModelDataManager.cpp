@@ -1,6 +1,6 @@
 #include "ModelDataManager.h"
 #include "../InstancingDataManager.h"
-#include "../InstanceBuffer.h"
+#include "../Dx12/Buffer/InstanceDataBuffer.h"
 #include <DirectXMath.h>
 
 

@@ -57,6 +57,7 @@ std::shared_ptr<RenderTargetBuffer> RenderTargetBuffer::Create(std::shared_ptr<D
 	{
 		return nullptr;
 	}
+	return ret;
 }
 
 std::shared_ptr<RenderTargetBuffer> RenderTargetBuffer::Create(ComPtr<ID3D12Resource> buffer, D3D12_RESOURCE_STATES state)
@@ -65,7 +66,7 @@ std::shared_ptr<RenderTargetBuffer> RenderTargetBuffer::Create(ComPtr<ID3D12Reso
 	clearValue.Format = buffer->GetDesc().Format;
 	clearValue.Color[0] = 0.f;
 	clearValue.Color[1] = 0.f;
-	clearValue.Color[2] = 0.f;
+	clearValue.Color[2] = 1.f;
 	clearValue.Color[3] = 1.f;
 	return std::shared_ptr<RenderTargetBuffer>(new RenderTargetBuffer(buffer, state, clearValue));
 }
@@ -75,11 +76,16 @@ const D3D12_RENDER_TARGET_VIEW_DESC & RenderTargetBuffer::GetRenderTargetViewDes
 	return mRTVDesc;
 }
 
+const D3D12_CLEAR_VALUE & RenderTargetBuffer::GetClearValue() const
+{
+	return CLEAR_VALUE;
+}
+
 void RenderTargetBuffer::ConstructRTVDesc()
 {
 	auto rscDesc = mResource->GetDesc();
 	mRTVDesc.Format = rscDesc.Format;
 	mRTVDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
-	mRTVDesc.Texture2D.MipSlice = rscDesc.MipLevels;
+	mRTVDesc.Texture2D.MipSlice = 0;
 	mRTVDesc.Texture2D.PlaneSlice = 0;
 }

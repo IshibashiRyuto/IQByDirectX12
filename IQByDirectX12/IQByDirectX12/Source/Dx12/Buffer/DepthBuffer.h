@@ -63,7 +63,7 @@ public:
 		float depthClearValue = 1.0f);
 
 	/**
-	*	@brief	深度バッファを初期化する
+	*	@brief	深度バッファをクリアする
 	*	@param[in]	commandList	: クリアコマンドを載せるコマンドリスト
 	*/
 	void ClearDepthBuffer(std::shared_ptr<GraphicsCommandList> commandList);
@@ -90,6 +90,11 @@ public:
 	*	@return	デプスステンシルビュー情報
 	*/	
 	const D3D12_DEPTH_STENCIL_VIEW_DESC& GetDSVDesc() const;
+
+	/**
+	*	@brief	デプスステンシルビューのCPUアドレスを取得する
+	*/
+	D3D12_CPU_DESCRIPTOR_HANDLE GetDSVCPUHandle() const;
 private:
 	const D3D12_CLEAR_VALUE CLEAR_VALUE;
 

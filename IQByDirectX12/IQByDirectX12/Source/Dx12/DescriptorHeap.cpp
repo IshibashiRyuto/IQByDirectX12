@@ -1,9 +1,8 @@
 #include <iostream>
 #include "DescriptorHeap.h"
 #include "Device.h"
-#include "../Texture/Texture.h"
+#include "../Dx12/Buffer/Texture.h"
 #include "../Debug/DebugLayer.h"
-#include "../Texture/RenderTargetTexture.h"
 #include <d3dx12.h>
 
 
@@ -73,17 +72,7 @@ void DescriptorHeap::SetTexture(std::shared_ptr<Texture> texture, UINT index)
 		return;
 	}
 	auto srv = texture->GetShaderResourceViewDesc();
-	SetShaderResourceView(srv, texture->GetTextureData(), index);
-}
-
-void DescriptorHeap::SetTexture(std::shared_ptr<RenderTargetTexture> texture, UINT index) 
-{
-	if (!texture)
-	{
-		return;
-	}
-	auto srv = texture->GetShaderResourceViewDesc();
-	SetShaderResourceView(srv, texture->GetTextureData(), index);
+	SetShaderResourceView(srv, texture->GetResource(), index);
 }
 
 
@@ -120,12 +109,12 @@ void DescriptorHeap::BindRootDescriptorTable(int rootParamIndex, int descriptorH
 	mGraphicsCommandList->SetGraphicsRootDescriptorTable(rootParamIndex, gpuHandle);
 }
 
-D3D12_GPU_DESCRIPTOR_HANDLE DescriptorHeap::GetGPUHandle(UINT index)
+D3D12_GPU_DESCRIPTOR_HANDLE DescriptorHeap::GetGPUHandle(UINT index) const
 {
 	return CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetGPUDescriptorHandleForHeapStart(),index, HEAP_STRIDE );
 }
 
-D3D12_CPU_DESCRIPTOR_HANDLE DescriptorHeap::GetCPUHandle(UINT index)
+D3D12_CPU_DESCRIPTOR_HANDLE DescriptorHeap::GetCPUHandle(UINT index) const
 {
 	return CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), index, HEAP_STRIDE);
 }

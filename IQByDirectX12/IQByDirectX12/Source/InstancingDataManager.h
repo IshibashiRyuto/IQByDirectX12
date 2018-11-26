@@ -14,7 +14,7 @@
 // 自作ヘッダインクルード
 
 // クラス使用宣言
-class InstanceBuffer;
+class InstanceDataBuffer;
 class Device;
 using Microsoft::WRL::ComPtr;
 
@@ -24,7 +24,7 @@ struct InstanceData
 	int maxInstanceCount;
 	int nowInstanceCount;
 	size_t dataSize;
-	std::shared_ptr<InstanceBuffer> instanceBuffer;
+	std::shared_ptr<InstanceDataBuffer> instanceBuffer;
 };
 
 class InstancingDataManager

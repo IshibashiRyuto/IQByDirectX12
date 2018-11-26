@@ -12,10 +12,10 @@
 #include "Dx12/CommandQueue.h"
 #include "Dx12/CommandAllocator.h"
 #include "Dx12/RenderTarget.h"
-#include "DepthBuffer.h"
-#include "VertexBuffer.h"
+#include "Dx12/Buffer/DepthBuffer.h"
+#include "Dx12/Buffer/VertexBuffer.h"
 #include "Texture/TextureLoader.h"
-#include "Texture/Texture.h"
+#include "Dx12/Buffer/Texture.h"
 #include "Dx12/DescriptorHeap.h"
 #include "Dx12/ConstantBuffer.h"
 #include "Model/PMD/PMDLoader.h"
@@ -35,7 +35,7 @@
 #include "Camera/Camera.h"
 #include "Camera/Dx12Camera.h"
 #include "Dx12/PipelineStateObject.h"
-#include "Texture/RenderTargetTexture.h"
+#include "Dx12/Buffer/RenderTargetBuffer.h"
 #include "Dx12/RenderState.h"
 #include "Dx12/ShaderList.h"
 #include "Sprite/Sprite.h"
@@ -108,7 +108,7 @@ bool Application::Initialize(const Window & window)
 		auto windowRect = window.GetWindowRect();
 		int windowWidth = windowRect.right - windowRect.left;
 		int windowHeight = windowRect.bottom - windowRect.top;
-		mDepthBuffer = DepthBuffer::Create(mDevice->GetDevice().Get(), windowWidth, windowHeight);
+		mDepthBuffer = DepthBuffer::Create(mDevice, windowWidth, windowHeight, L"RenderDepthBuffer", false);
 		if (!mDepthBuffer)
 		{
 			return false;
@@ -282,16 +282,16 @@ void Application::Render()
 	/* 1パス目描画 */
 
 	// 描画先変更処理
-	
-	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), 2);
+	//int backBuffer = mSwapChain->GetBackBufferIndex();
+	mRenderTarget->ChangeRenderTarget(mCommandList, 2);
 
 	auto rtvHandle = mRenderTarget->GetRTVHandle();
-	auto dsvHandle = mDepthBuffer->GetDSVHandle();
+	auto dsvHandle = mDepthBuffer->GetDSVCPUHandle();
 	
 	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
-	mRenderTarget->ClearRenderTarget(mCommandList->GetCommandList());
-	mDepthBuffer->ClearDepthBuffer(mCommandList->GetCommandList());
+	mRenderTarget->ClearRenderTarget(mCommandList);
+	mDepthBuffer->BeginWriteDepth(mCommandList);
 
 
 	// トポロジセット
@@ -305,7 +305,8 @@ void Application::Render()
 	ModelDataManager::GetInstance().Draw(mCommandList->GetCommandList());
 
 	//　1パス目描画終了処理
-	mRenderTarget->FinishRendering(mCommandList->GetCommandList());
+	mRenderTarget->FinishRendering(mCommandList);
+	mDepthBuffer->EndWriteDepth(mCommandList);
 
 
 	/* 1パス目描画終了 */
@@ -319,13 +320,13 @@ void Application::Render()
 
 	// 描画先変更
 	int backBuffer = mSwapChain->GetBackBufferIndex();
-	mRenderTarget->ChangeRenderTarget(mCommandList->GetCommandList(), backBuffer);
+	mRenderTarget->ChangeRenderTarget(mCommandList, backBuffer);
 
 	rtvHandle = mRenderTarget->GetRTVHandle();
 
-	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
 
-	mRenderTarget->ClearRenderTarget(mCommandList->GetCommandList());
+	mRenderTarget->ClearRenderTarget(mCommandList);
 
 	// パイプライン、ルートシグネチャ変更
 	(*mCommandList)->SetPipelineState(mPeraPipelineState->GetPipelineStateObject().Get());
@@ -341,14 +342,14 @@ void Application::Render()
 	
 	// ペラポリの描画
 	(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
-	(*mCommandList)->DrawInstanced(4, 1, 0, 0);
+	(*mCommandList)->DrawInstanced(3, 1, 0, 0);
 
 	// スプライトの描画
-	SpriteDataManager::GetInstance().Draw(mCommandList);
+	//SpriteDataManager::GetInstance().Draw(mCommandList);
 
 
 	//　2パス目描画終了処理
-	mRenderTarget->FinishRendering(mCommandList->GetCommandList());
+	mRenderTarget->FinishRendering(mCommandList);
 
 	/* 2パス目描画終了 */
 
@@ -360,8 +361,6 @@ void Application::Render()
 
 	//描画終了処理
 	mCommandList->Close();
-
-	int backBufferIndex = mSwapChain->GetBackBufferIndex();
 
 	// 描画コマンド実行
 	ID3D12CommandList* commandLists[] = { mCommandList->GetCommandList().Get() };
@@ -776,14 +775,13 @@ void Application::_DebugCreatePeraPolyData()
 		{ {  1.0f, -1.0f, 0.0f },{ 1.0f, 1.0f } },
 	};
 
-	mPeraVert = VertexBuffer::Create(mDevice, verts, 4, sizeof(PeraVertex));
+	mPeraVert = VertexBuffer::Create(mDevice, verts, sizeof(PeraVertex), 4);
 
 	mPeraDescHeap = DescriptorHeap::Create(mDevice, 2);
-	auto rtTexture = mRenderTarget->GetRenderTargetTexture(2);
+	auto rtTexture = mRenderTarget->GetRenderTexture(2);
 	mPeraDescHeap->SetTexture(rtTexture, 0);
-	auto depthBuffer = mDepthBuffer->GetDepthBufferResource();
-	auto depthBufferSRV = mDepthBuffer->DebugShaderResourceView();
-	mPeraDescHeap->SetShaderResourceView(depthBufferSRV, depthBuffer, 1);
+	mDepthTexture = Texture::Create(mDepthBuffer);
+	mPeraDescHeap->SetTexture(mDepthTexture, 1);
 }
 
 bool Application::_DebugCreateSprite()

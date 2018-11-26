@@ -100,7 +100,6 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
-
 	float3 light = normalize(float3(-0.41f, -0.82f, 0.41f));
 	float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightDiffuseColor = float3(0.6f, 0.6f, 0.6f);

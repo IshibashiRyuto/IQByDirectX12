@@ -1,6 +1,6 @@
 #include "SpriteData.h"
 #include "../InstancingDataManager.h"
-#include "../InstanceBuffer.h"
+#include "../Dx12/Buffer/InstanceDataBuffer.h"
 #include "../Dx12/GraphicsCommandList.h"
 #include <d3d12.h>
 #include "../Dx12//PipelineStateObject.h"

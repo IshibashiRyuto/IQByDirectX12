@@ -1,10 +1,10 @@
 #include "PMXModelData.h"
-#include "../VertexBuffer.h"
-#include "../IndexBuffer.h"
+#include "../Dx12/Buffer/VertexBuffer.h"
+#include "../Dx12/Buffer/IndexBuffer.h"
 #include "../Dx12/DescriptorHeap.h"
 #include "../Dx12/ConstantBuffer.h"
 #include "../InstancingDataManager.h"
-#include "../InstanceBuffer.h"
+#include "../Dx12/Buffer/InstanceDataBuffer.h"
 #include "../Texture/TextureLoader.h"
 #include "../Texture/TextureManager.h"
 #include "../Motion/Pose.h"
@@ -21,8 +21,8 @@ PMXModelData::PMXModelData(std::shared_ptr<Device> device,
 	int materialCount, int boneCount,
 	std::shared_ptr<PipelineStateObject> pipelineStateObject)
 
-	: ModelData(VertexBuffer::Create(device, vertexData.data(), vertexData.size(), sizeof(PMX::Vertex)),
-		IndexBuffer::Create(device, indexData.data(), indexData.size(), sizeof(PMX::Index)),
+	: ModelData(VertexBuffer::Create(device, vertexData.data(), sizeof(PMX::Vertex), vertexData.size()),
+		IndexBuffer::Create(device, indexData.data(), sizeof(PMX::Index), indexData.size()),
 		DescriptorHeap::Create(device, materialCount * MATERIAL_HEAP_STRIDE),
 		pipelineStateObject)
 	, mMaterialDataBuffer(ConstantBuffer::Create(device, sizeof(PMX::Material), materialCount))

@@ -17,7 +17,9 @@
 // ComPtr使用宣言
 using Microsoft::WRL::ComPtr;
 class Device;
-class RenderTargetTexture;
+class RenderTargetBuffer;
+class Texture;
+class GraphicsCommandList;
 
 class RenderTarget
 {
@@ -38,28 +40,32 @@ public:
 
 	/// @fn ChangeRenderTarget
 	/// レンダーターゲットを変更する
-	void ChangeRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList, int targetIndex);
+	void ChangeRenderTarget(std::shared_ptr<GraphicsCommandList> commandList, int targetIndex);
 
 	/// @fn FinishRendering
 	/// 描画処理を終了する
-	void FinishRendering(ComPtr<ID3D12GraphicsCommandList> commandList);
+	void FinishRendering(std::shared_ptr<GraphicsCommandList> commandList);
 
 	/// @fn GetRTVHandle
 	/// レンダーターゲットビューのハンドルを取得する
 	D3D12_CPU_DESCRIPTOR_HANDLE GetRTVHandle();
 
 	/// @fn ClearRenderTarget
-	void ClearRenderTarget(ComPtr<ID3D12GraphicsCommandList> commandList);
+	void ClearRenderTarget(std::shared_ptr<GraphicsCommandList> commandList);
 
-	/// @brief RenderTargetTextureを取得する
-	std::shared_ptr<RenderTargetTexture> GetRenderTargetTexture(int targetIndex);
+	/// @brief RenderTargetバッファを取得する
+	std::shared_ptr<RenderTargetBuffer> GetRenderTargetBuffer(int targetIndex) const;
+
+	/// @brief レンダーテクスチャを取得する
+	std::shared_ptr<Texture> GetRenderTexture(int targetIndex) const;
 
 protected:
 	/* 定数定義 */
 	const UINT RENDER_TARGET_VIEW_DESCRIPTOR_SIZE;
 
 	/* 変数定義 */
-	std::vector<std::shared_ptr<RenderTargetTexture>> mRenderTargets;
+	std::vector<std::shared_ptr<RenderTargetBuffer>> mRenderTargets;
+	std::vector<std::shared_ptr<Texture>> mRenderTextures;
 	ComPtr<ID3D12DescriptorHeap> mRTVDescHeap;
 	int mRenderTargetIndex;
 

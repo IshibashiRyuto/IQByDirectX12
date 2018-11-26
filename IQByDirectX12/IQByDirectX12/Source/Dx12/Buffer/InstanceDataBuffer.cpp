@@ -11,7 +11,7 @@ InstanceDataBuffer::InstanceDataBuffer(std::shared_ptr<Device> device, size_t in
 		CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
 		D3D12_HEAP_FLAG_NONE,
 		CD3DX12_RESOURCE_DESC::Buffer(static_cast<UINT>(instanceDataSize * maxInstanceCount)),
-		D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
 		bufferName,
 		result
@@ -45,7 +45,7 @@ std::shared_ptr<InstanceDataBuffer> InstanceDataBuffer::Create(std::shared_ptr<D
 
 void InstanceDataBuffer::SetInstanceData(void * pInstanceData, int instanceDataIndex)
 {
-	if (mMaxInstanceCount <= instanceDataIndex)
+	if (mMaxInstanceCount <= instanceDataIndex || 0 > instanceDataIndex)
 	{
 		return;
 	}

@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include "../Dx12/Device.h"
+#include <d3dx12.h>
 #include <vector>
 #include <algorithm>
 
@@ -59,54 +60,20 @@ void TextureManager::UpdateNextTextureHandle()
 
 void TextureManager::CreateWhiteAndBlackTexture(std::shared_ptr<Device> device)
 {
-	ComPtr<ID3D12Resource> whiteTexture;
-	ComPtr<ID3D12Resource> blackTexture;
-
 	std::vector<unsigned char> whiteTextureData(4 * 4 * 4);
 	std::vector<unsigned char> blackTextureData(4 * 4 * 4);
 	std::fill(whiteTextureData.begin(), whiteTextureData.end(), 0xff);
 	std::fill(blackTextureData.begin(), blackTextureData.end(), 0x07);
+
+	auto whiteTexture = Texture::Create(device, 4, 4, DXGI_FORMAT_R8G8B8A8_UNORM, L"WhiteTexture");
+	auto blackTexture = Texture::Create(device, 4, 4, DXGI_FORMAT_R8G8B8A8_UNORM, L"BlackTexture");
+
+	whiteTexture->WriteTextureData(whiteTextureData.data(), 4, 4, 4);
+	blackTexture->WriteTextureData(blackTextureData.data(), 4, 4, 4);
+
 	
-	D3D12_HEAP_PROPERTIES heapProp = {};
-	heapProp.Type = D3D12_HEAP_TYPE_CUSTOM;
-	heapProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_WRITE_BACK;
-	heapProp.MemoryPoolPreference = D3D12_MEMORY_POOL_L0;
-	heapProp.CreationNodeMask = 1;
-	heapProp.VisibleNodeMask = 1;
-
-	D3D12_RESOURCE_DESC rscDesc;
-	rscDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
-	rscDesc.Alignment = 0;
-	rscDesc.Width = 2;
-	rscDesc.Height = 2;
-	rscDesc.DepthOrArraySize = 1;
-	rscDesc.MipLevels = 0;
-	rscDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	rscDesc.SampleDesc.Count = 1;
-	rscDesc.SampleDesc.Quality = 0;
-	rscDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
-	rscDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
-
-	auto result = (*device)->CreateCommittedResource(&heapProp,
-		D3D12_HEAP_FLAG_NONE,
-		&rscDesc,
-		D3D12_RESOURCE_STATE_GENERIC_READ,
-		nullptr,
-		IID_PPV_ARGS(&whiteTexture));
-	result = (*device)->CreateCommittedResource(&heapProp,
-		D3D12_HEAP_FLAG_NONE,
-		&rscDesc,
-		D3D12_RESOURCE_STATE_GENERIC_READ,
-		nullptr,
-		IID_PPV_ARGS(&blackTexture));
-
-	whiteTexture->WriteToSubresource(0, nullptr, whiteTextureData.data(), 4*4, 4*4*4);
-	blackTexture->WriteToSubresource(0, nullptr, blackTextureData.data(), 4*4, 4*4*4);
-	auto _whiteTexture = Texture::Create(whiteTexture);
-	auto _blackTexture = Texture::Create(blackTexture);
-	
-	mData[BLACK_TEXTURE] = _blackTexture;
-	mData[WHITE_TEXTURE] = _whiteTexture;
+	mData[BLACK_TEXTURE] = blackTexture;
+	mData[WHITE_TEXTURE] = whiteTexture;
 }
 
 

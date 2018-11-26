@@ -80,21 +80,11 @@ int TextureLoader::Load(const std::wstring & filePath)
 			return -1;
 		}
 
-		resource = CreateTextureResource(metaData, imageData);
-		
-		if (!resource)
+		auto textureData = Texture::Create(mDevice, metaData, imageData, filePath);
+		if (textureData == nullptr)
 		{
-			std::wstring str = L"Failed Load Texture File \"" + filePath;
-			if ((*str.rbegin()) == '\0')
-			{
-				(*str.rbegin()) = ' ';
-			}
-			str += L"\".";
-			DebugLayer::GetInstance().PrintDebugMessage(str);
 			return -1;
 		}
-
-		auto textureData = Texture::Create(resource);
 		mTextureHandleManager[filePath] = mTextureManager.Regist(textureData);
 	}
 	return mTextureHandleManager[filePath];
@@ -118,52 +108,4 @@ bool TextureLoader::LoadWICTexture(std::wstring filePath, TexMetadata * metaData
 	return static_cast<bool>(SUCCEEDED(result));
 }
 
-ComPtr<ID3D12Resource> TextureLoader::CreateTextureResource(const TexMetadata & metaData, const ScratchImage & imageData)
-{
-	ComPtr<ID3D12Resource> texResource;
-
-	D3D12_HEAP_PROPERTIES heapProp = {};
-	heapProp.Type = D3D12_HEAP_TYPE_CUSTOM;
-	heapProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_WRITE_BACK;
-	heapProp.MemoryPoolPreference = D3D12_MEMORY_POOL_L0;
-	heapProp.CreationNodeMask = 1;
-	heapProp.VisibleNodeMask = 1;
-
-	D3D12_RESOURCE_DESC resourceDesc = {};
-	resourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
-	resourceDesc.Alignment = 0;
-	resourceDesc.Width = metaData.width;
-	resourceDesc.Height = metaData.height;
-	resourceDesc.DepthOrArraySize = 1;
-	resourceDesc.MipLevels = 1;
-	resourceDesc.Format = metaData.format;
-	resourceDesc.SampleDesc.Count = 1;
-	resourceDesc.SampleDesc.Quality = 0;
-	resourceDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
-	resourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
-
-	auto result = (*mDevice)->CreateCommittedResource(&heapProp,
-		D3D12_HEAP_FLAG_NONE,
-		&resourceDesc,
-		D3D12_RESOURCE_STATE_GENERIC_READ,
-		nullptr,
-		IID_PPV_ARGS(&texResource));
-
-	if (FAILED(result))
-	{
-		return nullptr;
-	}
-	
-	D3D12_BOX writeBox = {};
-	writeBox.left = 0;
-	writeBox.right = (metaData.width);
-	writeBox.top = 0;
-	writeBox.bottom = (metaData.height);
-	writeBox.front = 0;
-	writeBox.back = 1;
-
-	texResource->WriteToSubresource(0, &writeBox, imageData.GetPixels(), 4 * metaData.width, 4 * metaData.width * metaData.height);
-	
-	return texResource;
-}
 

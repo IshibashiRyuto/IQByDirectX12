@@ -1,4 +1,4 @@
-#include "InstanceBuffer.h"
+#include "../Dx12/Buffer/InstanceDataBuffer.h"
 #include "InstancingDataManager.h"
 
 
@@ -42,7 +42,7 @@ void InstancingDataManager::ResetMaxInstanceCount(int handle, size_t instanceDat
 	mInstanceDataMap[handle].maxInstanceCount = maxInstanceCount;
 	mInstanceDataMap[handle].nowInstanceCount = 0;
 	mInstanceDataMap[handle].dataSize = instanceDataSize;
-	mInstanceDataMap[handle].instanceBuffer = InstanceBuffer::Create(mDevice, instanceDataSize, maxInstanceCount);
+	mInstanceDataMap[handle].instanceBuffer = InstanceDataBuffer::Create(mDevice, instanceDataSize, maxInstanceCount);
 }
 
 void InstancingDataManager::ResetInstanceData(int handle)

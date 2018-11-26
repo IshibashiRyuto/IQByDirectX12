@@ -82,6 +82,13 @@ public:
 	const D3D12_RENDER_TARGET_VIEW_DESC & GetRenderTargetViewDesc() const;
 
 
+	/**
+	*	@brief	クリア値を取得する
+	*	
+	*	@return	レンダーターゲットのクリア値
+	*/
+	const D3D12_CLEAR_VALUE& GetClearValue() const;
+
 private:
 	D3D12_RENDER_TARGET_VIEW_DESC mRTVDesc;		//! レンダーターゲットビュー情報
 	const D3D12_CLEAR_VALUE CLEAR_VALUE;		//! クリア値

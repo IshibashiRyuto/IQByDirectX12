@@ -80,6 +80,11 @@ const D3D12_DEPTH_STENCIL_VIEW_DESC & DepthBuffer::GetDSVDesc() const
 	return mDSVDesc;
 }
 
+D3D12_CPU_DESCRIPTOR_HANDLE DepthBuffer::GetDSVCPUHandle() const
+{
+	return mDepthDescHeap->GetCPUHandle(0);
+}
+
 unsigned int DepthBuffer::Alignment(unsigned int num)
 {
 	unsigned int alignmentDigit = 0;
@@ -89,10 +94,10 @@ unsigned int DepthBuffer::Alignment(unsigned int num)
 	{
 		if (((0x01 << i) & num) != 0)
 		{
-			return 0x01 << i;
+			return 0x01 << (i+1);
 		}
 	}
-
+	return 1;
 }
 
 void DepthBuffer::ConstructDSV(std::shared_ptr<Device> device)

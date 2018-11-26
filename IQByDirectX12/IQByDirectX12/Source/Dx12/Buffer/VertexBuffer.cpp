@@ -13,7 +13,7 @@ VertexBuffer::VertexBuffer(std::shared_ptr<Device> device,
 		CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
 		D3D12_HEAP_FLAG_NONE,
 		CD3DX12_RESOURCE_DESC::Buffer(static_cast<UINT>(dataSize * dataCount)),
-		D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
 		bufferName,
 		result
@@ -40,6 +40,7 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Create(std::shared_ptr<Device> devic
 		DebugLayer::GetInstance().PrintDebugMessage(L"Failed Create Vertex Buffer. : " + bufferName);
 		return nullptr;
 	}
+	ret->WriteVertexBuffer(pVertices, vertexSize, vertexCount);
 	return ret;
 }
 
@@ -54,6 +55,7 @@ void VertexBuffer::WriteVertexBuffer(void * data, size_t dataSize, size_t dataCo
 	void* pBuf;
 	mResource->Map(0, nullptr, &pBuf);
 	memcpy((char*)pBuf + dataSize * dataIndexOffset, data, dataSize);
+	mResource->Unmap(0, nullptr);
 }
 
 void VertexBuffer::ConstructVertexBufferView(size_t dataSize, size_t dataCount)

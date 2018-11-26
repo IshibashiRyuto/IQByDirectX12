@@ -11,7 +11,7 @@
 #include <map>
 
 // 自作ヘッダインクルード
-#include "Texture.h"
+#include "../Dx12/Buffer/Texture.h"
 
 // クラス使用宣言
 class Device;
