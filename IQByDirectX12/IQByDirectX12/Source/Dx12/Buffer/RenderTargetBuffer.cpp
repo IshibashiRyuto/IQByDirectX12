@@ -11,8 +11,7 @@ RenderTargetBuffer::RenderTargetBuffer(
 	HRESULT & result)
 	: Dx12Resource(
 		device,
-		CD3DX12_HEAP_PROPERTIES(D3D12_CPU_PAGE_PROPERTY_WRITE_BACK,
-			D3D12_MEMORY_POOL_L0),
+		CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
 		D3D12_HEAP_FLAG_NONE,
 		CD3DX12_RESOURCE_DESC::Tex2D(format, static_cast<UINT64>(width),
 			static_cast<UINT64>(height),

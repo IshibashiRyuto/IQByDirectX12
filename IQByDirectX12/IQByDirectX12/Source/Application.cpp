@@ -82,6 +82,9 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
+	// テクスチャマネージャの初期化
+	TextureManager::GetInstance().Initialize(mDevice);
+
 	// コマンドキューの生成
 	mCommandQueue = CommandQueue::Create(mDevice);
 	if (!mCommandQueue)
@@ -144,8 +147,6 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
-	// テクスチャマネージャの白黒テクスチャ作成
-	TextureManager::GetInstance().CreateWhiteAndBlackTexture(mDevice);
 
 	// カメラの作成
 	CreateCamera();
@@ -167,6 +168,9 @@ bool Application::Initialize(const Window & window)
 	{
 		return false;
 	}
+
+	//	テクスチャ情報の更新する
+	TextureManager::GetInstance().UpdateTextureData();
 
 	return true;
 }

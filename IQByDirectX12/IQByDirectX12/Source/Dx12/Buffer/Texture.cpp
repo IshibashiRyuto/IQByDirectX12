@@ -2,7 +2,7 @@
 #include "Texture.h"
 #include "DepthBuffer.h"
 #include "RenderTargetBuffer.h"
-
+#include "../GraphicsCommandList.h"
 
 
 
@@ -10,7 +10,7 @@ Texture::Texture(std::shared_ptr<Device> device, const DirectX::TexMetadata & me
 	: Dx12Resource
 	(
 		device,
-		CD3DX12_HEAP_PROPERTIES(D3D12_CPU_PAGE_PROPERTY_WRITE_BACK, D3D12_MEMORY_POOL_L0),
+		CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
 		D3D12_HEAP_FLAG_NONE,
 		CD3DX12_RESOURCE_DESC::Tex2D
 		(
@@ -24,9 +24,29 @@ Texture::Texture(std::shared_ptr<Device> device, const DirectX::TexMetadata & me
 		textureName,
 		result
 	)
+	, mIsUpdate(false)
+	, TEXTURE_SIZE(metaData.width,metaData.height)
 {
 	if (FAILED(result))
 	{
+		return;
+	}
+	mTemporaryResource = Dx12Resource::Create(device,
+		CD3DX12_HEAP_PROPERTIES(D3D12_CPU_PAGE_PROPERTY_WRITE_BACK, D3D12_MEMORY_POOL_L0),
+		D3D12_HEAP_FLAG_NONE,
+		CD3DX12_RESOURCE_DESC::Tex2D
+		(
+			metaData.format,
+			static_cast<UINT64>(metaData.width),
+			static_cast<UINT64>(metaData.height),
+			static_cast<UINT16>(metaData.arraySize),
+			static_cast<UINT16>(metaData.mipLevels)),
+		D3D12_RESOURCE_STATE_COMMON,
+		nullptr,
+		textureName + L"Copy");
+	if (!mTemporaryResource)
+	{
+		result = E_FAIL;
 		return;
 	}
 	ConstructSRVDesc();
@@ -36,7 +56,7 @@ Texture::Texture(std::shared_ptr<Device> device, unsigned int width, unsigned in
 	: Dx12Resource
 	(
 		device,
-		CD3DX12_HEAP_PROPERTIES(D3D12_CPU_PAGE_PROPERTY_WRITE_BACK, D3D12_MEMORY_POOL_L0),
+		CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
 		D3D12_HEAP_FLAG_NONE,
 		CD3DX12_RESOURCE_DESC::Tex2D
 		(
@@ -49,16 +69,31 @@ Texture::Texture(std::shared_ptr<Device> device, unsigned int width, unsigned in
 		textureName,
 		result
 	)
+	, mIsUpdate(false)
+	, TEXTURE_SIZE(width, height)
 {
 	if (FAILED(result))
 	{
 		return;
 	}
+	mTemporaryResource = Dx12Resource::Create(device,
+		CD3DX12_HEAP_PROPERTIES(D3D12_CPU_PAGE_PROPERTY_WRITE_BACK, D3D12_MEMORY_POOL_L0),
+		D3D12_HEAP_FLAG_NONE,
+		CD3DX12_RESOURCE_DESC::Tex2D
+		(
+			format,
+			static_cast<UINT64>(width),
+			static_cast<UINT64>(height)),
+		D3D12_RESOURCE_STATE_COMMON,
+		nullptr,
+		textureName + L"Copy");
 	ConstructSRVDesc();
 }
 
 Texture::Texture(std::shared_ptr<Dx12Resource> resource)
 	: Dx12Resource(resource)
+	, TEXTURE_SIZE({})
+	, mIsUpdate(false)
 {
 	ConstructSRVDesc();
 }
@@ -103,16 +138,17 @@ std::shared_ptr<Texture> Texture::Create(std::shared_ptr<RenderTargetBuffer> ren
 
 void Texture::WriteTextureData(const DirectX::TexMetadata & metaData, const DirectX::ScratchImage & texImage)
 {
-	D3D12_BOX writeBox = {};
-	writeBox.left = 0;
-	writeBox.right = static_cast<UINT>(metaData.width);
-	writeBox.top = 0;
-	writeBox.bottom = static_cast<UINT>(metaData.height);
-	writeBox.front = 0;
-	writeBox.back = 1;
-	// TODO: ピクセル当たりのデータサイズ調査
-	// 現状、4バイト固定になってるため、RGBテクスチャとか読み込めないので注意
-	mResource->WriteToSubresource(0, &writeBox, texImage.GetPixels(), static_cast<UINT>(4 * metaData.width), static_cast<UINT>(4 * metaData.width * metaData.height));
+	WriteTextureData(texImage.GetPixels(), metaData.width, metaData.height, static_cast<unsigned int>(texImage.GetPixelsSize() / metaData.width / metaData.height));
+	//D3D12_BOX writeBox = {};
+	//writeBox.left = 0;
+	//writeBox.right = static_cast<UINT>(metaData.width);
+	//writeBox.top = 0;
+	//writeBox.bottom = static_cast<UINT>(metaData.height);
+	//writeBox.front = 0;
+	//writeBox.back = 1;
+	//// TODO: ピクセル当たりのデータサイズ調査
+	//// 現状、4バイト固定になってるため、RGBテクスチャとか読み込めないので注意
+	//mResource->WriteToSubresource(0, &writeBox, texImage.GetPixels(), static_cast<UINT>(4 * metaData.width), static_cast<UINT>(4 * metaData.width * metaData.height));
 }
 
 void Texture::WriteTextureData(void * pImage, unsigned int width, unsigned int height, size_t pixelDataSize)
@@ -124,12 +160,43 @@ void Texture::WriteTextureData(void * pImage, unsigned int width, unsigned int h
 	writeBox.bottom = static_cast<UINT>(height);
 	writeBox.front = 0;
 	writeBox.back = 1;
-	mResource->WriteToSubresource(0, &writeBox, pImage, static_cast<UINT>(pixelDataSize * width), static_cast<UINT>(pixelDataSize * width * height));
+
+	mRowPitch = pixelDataSize * width;
+
+	mTemporaryResource->GetResource()->WriteToSubresource(0, &writeBox, pImage, static_cast<UINT>(mRowPitch), static_cast<UINT>(mRowPitch * height));
+	mIsUpdate = true;
 }
 
 const D3D12_SHADER_RESOURCE_VIEW_DESC & Texture::GetShaderResourceViewDesc() const
 {
 	return mShaderResourceViewDesc;
+}
+
+void Texture::UpdateTexture(std::shared_ptr<GraphicsCommandList> commandList)
+{
+	if (mIsUpdate)
+	{
+		mTemporaryResource->TransitionState(commandList, D3D12_RESOURCE_STATE_COPY_SOURCE);
+		TransitionState(commandList, D3D12_RESOURCE_STATE_COPY_DEST);
+
+		/*D3D12_PLACED_SUBRESOURCE_FOOTPRINT footPrint;
+		footPrint.Offset = 0;
+		footPrint.Footprint = CD3DX12_SUBRESOURCE_FOOTPRINT(mResource->GetDesc(), mRowPitch);
+		auto dstLocation = CD3DX12_TEXTURE_COPY_LOCATION(mResource.Get(),footPrint);
+
+		(*commandList)->CopyTextureRegion(
+			&CD3DX12_TEXTURE_COPY_LOCATION(mResource.Get(), footPrint),
+			0, 0, 0,
+			&CD3DX12_TEXTURE_COPY_LOCATION(mTemporaryResource->GetResource().Get()),
+			&CD3DX12_BOX(0, 0, TEXTURE_SIZE.x, TEXTURE_SIZE.y)
+		);*/
+
+		(*commandList)->CopyResource(mResource.Get(), mTemporaryResource->GetResource().Get());
+
+		mTemporaryResource->TransitionState(commandList, D3D12_RESOURCE_STATE_COMMON);
+		TransitionState(commandList, D3D12_RESOURCE_STATE_COMMON);
+		mIsUpdate = false;
+	}
 }
 
 void Texture::ConstructSRVDesc()

@@ -75,7 +75,7 @@ Vector2& Vector2::operator/=(float scale)
 
 float Math::Vector2::Length() const
 {
-	return sqrt(x*x+y*y);
+	return sqrtf(x*x+y*y);
 }
 
 bool Math::operator==(const Vector2& t1, const Vector2& t2)

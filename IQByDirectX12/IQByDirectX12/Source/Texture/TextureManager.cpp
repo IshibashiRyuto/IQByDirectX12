@@ -3,14 +3,20 @@
 #include <d3dx12.h>
 #include <vector>
 #include <algorithm>
+#include "../Dx12/CommandQueue.h"
+#include "../Dx12/GraphicsCommandList.h"
 
 
 int TextureManager::Regist(std::shared_ptr<Texture> texture)
 {
-	int handle = mNextTextureHandle;
-	mData[handle] = texture;
-	UpdateNextTextureHandle();
-	return handle;
+	if (mIsInit)
+	{
+		int handle = mNextTextureHandle;
+		mData[handle] = texture;
+		UpdateNextTextureHandle();
+		return handle;
+	}
+	return -1;
 }
 
 void TextureManager::Erase(int textureHandle)
@@ -41,7 +47,24 @@ bool TextureManager::IsExist(int handle) const
 	return false;
 }
 
+bool TextureManager::Initialize(std::shared_ptr<Device> device)
+{
+	if (!mIsInit)
+	{
+		mCommandList = GraphicsCommandList::Create(device, D3D12_COMMAND_LIST_TYPE_DIRECT, L"TextureUpdater");
+		mCommandQueue = CommandQueue::Create(device);
+		if (!mCommandList || !mCommandQueue)
+		{
+			return false;
+		}
+		CreateWhiteAndBlackTexture(device);
+		mIsInit = true;
+	}
+	return true;
+}
+
 TextureManager::TextureManager()
+	: mIsInit(false)
 {
 	mNextTextureHandle = TEXTURE_SIGNATURE;
 }
@@ -74,6 +97,17 @@ void TextureManager::CreateWhiteAndBlackTexture(std::shared_ptr<Device> device)
 	
 	mData[BLACK_TEXTURE] = blackTexture;
 	mData[WHITE_TEXTURE] = whiteTexture;
+}
+
+void TextureManager::UpdateTextureData()
+{
+	for (auto& texture : mData)
+	{
+		texture.second->UpdateTexture(mCommandList);
+	}
+	mCommandList->Close();
+	mCommandQueue->ExecuteCommandList(mCommandList);
+	mCommandQueue->Signal();
 }
 
 
