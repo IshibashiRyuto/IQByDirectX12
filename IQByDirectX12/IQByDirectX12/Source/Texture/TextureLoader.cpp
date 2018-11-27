@@ -70,6 +70,7 @@ int TextureLoader::Load(const std::wstring & filePath)
 
 void TextureLoader::UpdateTextureSubresource(ComPtr<ID3D12Resource> resource,D3D12_SUBRESOURCE_DATA & subresource)
 {
+	auto format = resource->GetDesc().Format;
 	D3D12_HEAP_PROPERTIES heapProp = {};
 	heapProp.Type = D3D12_HEAP_TYPE_UPLOAD;
 	heapProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
