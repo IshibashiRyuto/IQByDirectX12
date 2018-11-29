@@ -4,6 +4,9 @@
 	@author Ishibashi Ryuto
 	@date
 	2018/09/03	初版作成
+	2018/11/28	同一ハンドルを持つモデルの作成を外部から行えるようにした
+				モデルの複製を行うメソッドを追加
+				(複製したメソッドは同一モデルでも別インスタンス扱い)
 */
 #pragma once
 // システムヘッダインクルード
@@ -37,10 +40,22 @@ public:
 
 	/// @fn Create
 	/// モデルクラスを生成する
-	/// @note Modelクラスの実体はこのメソッドでのみ生成可能
 	/// @param[in] modelHandle	: モデルハンドル
 	/// @retval モデルのスマートポインタ
 	static std::shared_ptr<Model> Create(int modelHandle);
+
+	/**
+	*	@brief	モデルクラスを生成する
+	*
+	*	@param[in]	model	: 既存のモデルデータ
+	*/
+	static std::shared_ptr<Model> Create(std::shared_ptr<Model> model);
+
+	/**
+	*	@brief	モデルを複製する
+	*
+	*	@param[in]	model	: 複製するモデルデータ
+	*/
 
 	/// @fn SetPosition
 	/// 位置を指定する

@@ -12,7 +12,6 @@ struct PSInput
 
 float4 PSMain(PSInput input) : SV_Target
 {
-    return float4(1, 1, 1, 1);
     float2 uv = input.uv;
     if(uv.x + uv.y < 1)
     {

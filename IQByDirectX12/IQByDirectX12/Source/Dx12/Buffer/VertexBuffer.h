@@ -44,7 +44,7 @@ public:
 	static std::shared_ptr<VertexBuffer> Create
 	(
 		std::shared_ptr<Device> device,
-		void* pVertices,
+		const void* pVertices,
 		size_t vertexSize,
 		size_t vertexCount,
 		const std::wstring& bufferName = L""
@@ -67,7 +67,7 @@ public:
 	*	バッファの先頭から(dataSize * dataIndexOffset)分進んだ位置に
 	*	dataをdataSize分書き込む
 	*/
-	void WriteVertexBuffer(void* data, size_t dataSize, size_t dataCount, unsigned int dataIndexOffset = 0);
+	void WriteVertexBuffer(const void* data, size_t dataSize, size_t dataCount, unsigned int dataIndexOffset = 0);
 protected:
 	/* 変数宣言 */
 	D3D12_VERTEX_BUFFER_VIEW mVertexBufferView;	//! 頂点バッファビュー

@@ -36,7 +36,7 @@ public:
 	*/
 	static std::shared_ptr<IndexBuffer> Create(
 		std::shared_ptr<Device>device,
-		void* pVertexIndexes,
+		const void* pVertexIndexes,
 		size_t indexSize,
 		size_t indexCount,
 		const std::wstring& bufferName = L""
@@ -60,7 +60,7 @@ public:
 	*	書き込み先アドレスの先頭から(indexDataSize * offsetIndex)分ずれた場所に
 	*	(pIndexData)から(pIndexData + indexDataSize * dataCount)の範囲のデータを書きこむ
 	*/
-	void WriteIndexData(void* pIndexData, size_t indexDataSize, size_t dataCount, unsigned int offsetIndex = 0);
+	void WriteIndexData(const void* pIndexData, size_t indexDataSize, size_t dataCount, unsigned int offsetIndex = 0);
 
 	/**
 	*	@brief	インデックス数を取得する

@@ -93,9 +93,10 @@ private:
 
 	std::shared_ptr<RootSignature>			mPeraRootSignature;	
 
-	std::shared_ptr<PipelineStateObject>	mPMDPipelineState;		//! PMDパイプラインステート
-	std::shared_ptr<PipelineStateObject>	mPMXPipelineState;		//! PMXパイプラインステート
-	std::shared_ptr<PipelineStateObject>	mPeraPipelineState;		//! ペラポリ用パイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPMDPipelineState;			//! PMDパイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPMXPipelineState;			//! PMXパイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPeraPipelineState;			//! ペラポリ用パイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPrimitivePipelineState;	//! プリミティブ用パイプラインステート
 
 	std::shared_ptr<Keyboard>			mKeyboard;
 	std::shared_ptr<Dx12Camera>			mDx12Camera;
@@ -107,6 +108,8 @@ private:
 	std::shared_ptr<TextureLoader>			mTextureLoader;			//! テクスチャローダ
 	std::shared_ptr<Sprite>					mSprite;				//! スプライト
 	std::shared_ptr<PipelineStateObject>	mSpritePipelineState;	//! スプライト用パイプラインステート
+
+	std::shared_ptr<Dx12Camera>			mDirectionalLight;			//! 平行光源
 	
 	int mWindowWidth;
 	int mWindowHeight;
@@ -135,6 +138,8 @@ private:
 
 	bool CreatePeraRootSignature();
 
+	bool CreatePrimitiveRootSignature();
+
 	/// @fn ReadShader
 	/// シェーダを読み込む
 	/// @retval true: 読込成功, false: 読込失敗
@@ -145,6 +150,8 @@ private:
 	bool ReadPeraShader();
 
 	bool ReadSpriteShader();
+
+	bool ReadPrimitiveShader();
 
 	/// @fn CreatePipelineState
 	/// パイプラインステートの作成
@@ -159,6 +166,8 @@ private:
 	bool CreatePeraPipelineState();
 
 	bool CreateSpritePipelineState();
+
+	bool CreatePrimitivePipelineState();
 
 	/// @fn CreateCommandList
 	/// コマンドリストの生成
@@ -195,5 +204,14 @@ private:
 	/// @brief	スプライトを作成する
 	bool _DebugCreateSprite();
 
+	/**
+	*	@brief	ライトを作成する
+	*/
+	bool CreateDirectionalLight();
+
+	/**
+	*	@brief	プリミティブを作成する
+	*/
+	void CreatePrimitive();
 };
 

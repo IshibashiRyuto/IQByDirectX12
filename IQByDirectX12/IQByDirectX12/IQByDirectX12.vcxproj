@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Model\Primitive\PrimitiveCreator.cpp" />
+    <ClCompile Include="Source\Model\Primitive\PrimitiveCapsel.cpp" />
+    <ClCompile Include="Source\Model\Primitive\PrimitiveCube.cpp" />
+    <ClCompile Include="Source\Model\Primitive\PrimitiveData.cpp" />
+    <ClCompile Include="Source\Model\Primitive\PrimitiveSphere.cpp" />
+    <ClCompile Include="Source\Model\Primitive\PrimitivePlane.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\DepthBuffer.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\RenderTargetBuffer.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\IndexBuffer.cpp" />
@@ -83,6 +89,12 @@
     <ClCompile Include="Source\Dx12\Buffer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Model\Primitive\PrimitiveCreator.h" />
+    <ClInclude Include="Source\Model\Primitive\PrimitiveCapsel.h" />
+    <ClInclude Include="Source\Model\Primitive\PrimitiveCube.h" />
+    <ClInclude Include="Source\Model\Primitive\PrimitiveData.h" />
+    <ClInclude Include="Source\Model\Primitive\PrimitiveSphere.h" />
+    <ClInclude Include="Source\Model\Primitive\PrimitivePlane.h" />
     <ClInclude Include="Source\Dx12\Buffer\DepthBuffer.h" />
     <ClInclude Include="Source\Dx12\Buffer\RenderTargetBuffer.h" />
     <ClInclude Include="Source\Dx12\Buffer\IndexBuffer.h" />
@@ -229,6 +241,18 @@
       </EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+    <FxCompile Include="Resource\Shader\PMDModelShaderPS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resource\Shader\PMDModelShaderVS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="Resource\Shader\PMXModelShader.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -244,6 +268,18 @@
       </EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </EntryPointName>
+    </FxCompile>
+    <FxCompile Include="Resource\Shader\PMXModelShaderPS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resource\Shader\PMXModelShaderVS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="Resource\Shader\PosterizationPS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>

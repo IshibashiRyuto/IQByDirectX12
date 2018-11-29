@@ -1,9 +1,9 @@
 /*
 	@file		PMXModelData.h
 	@brief		PMXモデルのデータを格納する
-	@param		History
-		2018/08/28	初版作成
-		2018/09/09	頂点データの構造を変更
+	@date		2018/08/28	初版作成
+				2018/09/09	頂点データの構造を変更
+				2018/11/27	DrawNoMat追加	
 */
 #pragma once
 // システムヘッダインクルード
@@ -60,6 +60,14 @@ public:
 	/// @param[in]	graphicsCommandList	: コマンドリスト
 	/// @param[in]	instanceData		: インスタンスデータ
 	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+
+	/**
+	*	@brief	マテリアルを使わない描画
+	*
+	*	@param[in]	graphicsCommandList	: コマンドリスト
+	*	@param[in]	instanceData		: インスタンスデータ
+	*/
+	void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
 
 private:
 	/* 定数定義 */

@@ -3,6 +3,8 @@
 	@brief	モデルデータを格納するクラス
 	@author	Ishibashi Ryuto
 	@date	2018/08/28	初版作成
+			2018/11/25	バッファクラスのリファクタリングに対応
+			2018/11/27	DrawNoMat追加
 */
 #pragma once
 /* ヘッダインクルード */
@@ -48,6 +50,11 @@ public:
 
 	/// 描画処理
 	virtual void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+
+	/**
+	*	@brief	マテリアルを使用せずに描画する(モデルのガワだけ描画)
+	*/
+	virtual void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
 
 protected:
 	std::shared_ptr<VertexBuffer>			mVertexBuffer;

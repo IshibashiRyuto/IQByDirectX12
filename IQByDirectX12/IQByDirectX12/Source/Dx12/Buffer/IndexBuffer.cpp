@@ -33,7 +33,7 @@ IndexBuffer::~IndexBuffer()
 }
 
 std::shared_ptr<IndexBuffer> IndexBuffer::Create(std::shared_ptr<Device> device,
-	void * pVertexIndexes,
+	const void * pVertexIndexes,
 	size_t indexSize,
 	size_t indexCount,
 	const std::wstring & bufferName)
@@ -54,7 +54,7 @@ const D3D12_INDEX_BUFFER_VIEW & IndexBuffer::GetIndexBufferView() const
 	return mIndexBufferView;
 }
 
-void IndexBuffer::WriteIndexData(void * pIndexData, size_t indexDataSize, size_t dataCount, unsigned int offsetIndex)
+void IndexBuffer::WriteIndexData(const void * pIndexData, size_t indexDataSize, size_t dataCount, unsigned int offsetIndex)
 {
 	void* pResource;
 	mResource->Map(0, nullptr, &pResource);

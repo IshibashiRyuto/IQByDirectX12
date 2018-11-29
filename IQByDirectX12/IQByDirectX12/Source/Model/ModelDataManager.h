@@ -4,6 +4,7 @@
 	@author Ishibashi Ryuto
 	@date
 	2018/09/03	初版作成
+	2018/11/27	DrawNoMat追加
 */
 #pragma once
 // システムヘッダインクルード
@@ -21,7 +22,6 @@ class ModelDataManager
 public:
 	~ModelDataManager();
 
-	/// @fn static GetInstance
 	/// シングルトンインスタンスを取得する
 	/// @retval モデルマネージャのインスタンス
 	static ModelDataManager& GetInstance()
@@ -30,34 +30,38 @@ public:
 		return inst;
 	}
 
-	/// @fn Regist
 	/// モデルデータを登録し、管理ハンドルを返す
 	/// @param[in] modelData モデルデータ
 	/// @retval		モデルデータのハンドル
 	int Regist(std::shared_ptr<ModelData> modelData);
 
-	/// @fn Erase
 	/// 指定したハンドルのモデルデータを削除する
 	/// @param[in] handle モデルハンドル
 	void Erase(int handle);
 	
-	/// @fn GetModelData
 	/// モデルデータを取得する
 	/// @param[in] handle	: モデルハンドル
 	/// @retval モデルデータ
 	std::shared_ptr<ModelData> GetModelData(int handle) const;
 
-	/// @fn IsExist
 	/// 指定したハンドルを指すモデルデータが存在するが確認する
 	/// @param[in] handle : テクスチャハンドル
 	/// @retval 存在する: true
 	/// @retval 存在しない: false
 	bool IsExist(int handle) const;
 
-	/// @fn Draw
 	/// 管理しているモデルデータを描画する
-	/// @param[in] graphicsCommandList	: 描画先コマンドリスト
-	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList);
+	/// @param[in]	graphicsCommandList	: 描画先コマンドリスト
+	///	@param[in]	isReset				: 描画後、描画記録をリセットするか(default:true)
+	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, bool isReset = true);
+
+	/**
+	*	@brief	マテリアルを使用せずに描画する
+	*
+	*	@param[in]	graphicsCommandList	: 描画先コマンドリスト
+	*	@param[in]	isReset				: 描画後に描画記録をリセットするか(default: true)
+	*/
+	void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, bool isReset = true);
 
 private:
 	ModelDataManager();

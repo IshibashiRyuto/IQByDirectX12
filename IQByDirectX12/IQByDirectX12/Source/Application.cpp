@@ -169,6 +169,12 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
+
+	if (!CreateDirectionalLight())
+	{
+		return false;
+	}
+
 	//	テクスチャ情報の更新する
 	TextureManager::GetInstance().UpdateTextureData();
 
@@ -277,6 +283,14 @@ void Application::Render()
 
 
 
+	/* シャドウマップ生成 */
+	D3D12_VIEWPORT svp = { 0.0f,0.0f, (FLOAT)1024, (FLOAT)1024, 0.0f,1.0f };
+	D3D12_RECT src = { 0,0,1024, 1024 };
+
+	(*mCommandList)->RSSetViewports(1, &svp);
+	(*mCommandList)->RSSetScissorRects(1, &src);
+
+
 	// 描画範囲設定
 	D3D12_VIEWPORT vp = { 0.0f,0.0f, (FLOAT)mWindowWidth, (FLOAT)mWindowHeight, 0.0f,1.0f };
 	D3D12_RECT rc = { 0,0,mWindowWidth, mWindowHeight };
@@ -301,8 +315,7 @@ void Application::Render()
 	// トポロジセット
 	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	// 定数バッファ登録
-	
+	// カメラセット
 	mDx12Camera->SetCameraData(mCommandList, 0);
 
 	// モデル描画
@@ -346,7 +359,7 @@ void Application::Render()
 	
 	// ペラポリの描画
 	(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
-	(*mCommandList)->DrawInstanced(3, 1, 0, 0);
+	(*mCommandList)->DrawInstanced(4, 1, 0, 0);
 
 	// スプライトの描画
 	//SpriteDataManager::GetInstance().Draw(mCommandList);
@@ -634,8 +647,6 @@ bool Application::CreatePeraPipelineState()
 	renderState.depthTest = false;
 	renderState.depthWrite = false;
 
-
-
 	mPeraPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList);
 	if (!mPeraPipelineState)
 	{
@@ -668,8 +679,6 @@ bool Application::CreateSpritePipelineState()
 	renderState.depthTest = false;
 	renderState.depthWrite = false;
 
-
-
 	mSpritePipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList);
 	if (!mSpritePipelineState)
 	{
@@ -678,6 +687,11 @@ bool Application::CreateSpritePipelineState()
 	}
 
 	return true;
+}
+
+bool Application::CreatePrimitivePipelineState()
+{
+	return false;
 }
 
 bool Application::CreateCommandList()
@@ -803,4 +817,26 @@ bool Application::_DebugCreateSprite()
 	}
 
 	return true;
+}
+
+bool Application::CreateDirectionalLight()
+{
+	ProjectionParam projParam;
+	projParam.nearZ = 0.03f;
+	projParam.farZ = 1000.f;
+	projParam.width = 512.f;
+	projParam.height = 512.f;
+	mDirectionalLight = Dx12Camera::Create(Math::Vector3(50.f, 50.f, -50.f), Math::Vector3(-0.41f, -0.82f, 0.41f), ProjectionType::Orthographic, projParam, mDevice);
+	if (!mDirectionalLight)
+	{
+		false;
+	}
+
+	mDirectionalLight->UpdateMatrix();
+
+	return true;
+}
+
+void Application::CreatePrimitive()
+{
 }

@@ -83,6 +83,24 @@ void PMXModelData::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, c
 	}
 }
 
+void PMXModelData::DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData & instanceData) const
+{// PSOセット
+	graphicsCommandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
+
+	// ボーン情報バインド
+	mBoneHeap->BindGraphicsCommandList(graphicsCommandList);
+	mBoneHeap->BindRootDescriptorTable(2, 0);
+
+	// 頂点情報セット
+	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
+	graphicsCommandList->IASetVertexBuffers(0, 2, vbViews);
+	graphicsCommandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
+
+
+	// 描画
+	graphicsCommandList->DrawIndexedInstanced(mIndexBuffer->GetIndexCount(), instanceData.nowInstanceCount, 0, 0, 0);
+}
+
 void PMXModelData::LoadModelTexture(const std::vector<PMX::Texture>& textures, const std::wstring& modelFilePath)
 {
 	mTextureHandle.resize(textures.size());

@@ -129,6 +129,13 @@ public:
 	/// @param[in]	instanceData	: インスタンス情報
 	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
+	/**
+	*	@brief	マテリアルを使わない描画処理
+	*	@param[in]	commandList		: 描画対象コマンドリスト
+	*	@param[in]	instanceData	: インスタンス情報
+	*/
+	void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
+
 private:
 	static const int MATERIAL_SHADER_RESOURCE_NUM = 5;
 

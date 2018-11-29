@@ -200,6 +200,24 @@ void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const Ins
 	}
 }
 
+void PMDModelData::DrawNoMat(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData & instanceData) const
+{
+	// psoセット
+	commandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
+
+	// 頂点情報セット
+	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
+	commandList->IASetVertexBuffers(0, 2, vbViews);
+	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
+
+	// ボーン情報をセット
+	mBoneHeap->BindGraphicsCommandList(commandList);
+	mBoneHeap->BindRootDescriptorTable(2, 0);
+
+	//	モデル描画
+	commandList->DrawIndexedInstanced(mIndexBuffer->GetIndexCount(), instanceData.nowInstanceCount, 0, 0, 0);
+}
+
 void PMDModelData::UpdatePose()
 {
 	std::vector<Math::Matrix4x4> boneMatrixes;

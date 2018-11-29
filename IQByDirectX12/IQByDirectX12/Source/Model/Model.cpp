@@ -29,6 +29,11 @@ std::shared_ptr<Model> Model::Create(int modelHandle)
 	return std::shared_ptr<Model>(new Model(modelHandle));
 }
 
+std::shared_ptr<Model> Model::Create(std::shared_ptr<Model> model)
+{
+	return std::shared_ptr<Model>(new Model(model->mModelHandle));
+}
+
 void Model::SetPosition(const Math::Vector3 & position)
 {
 	mPosition = position;
@@ -62,6 +67,7 @@ void Model::Draw() const
 {
 	mInstancingDataManager.SetInstanceData(mModelHandle, (void*)&mModelMatrix, sizeof(Math::Matrix4x4));
 }
+
 
 std::shared_ptr<DescriptorHeap> Model::_DebugGetDescHeap()
 {
