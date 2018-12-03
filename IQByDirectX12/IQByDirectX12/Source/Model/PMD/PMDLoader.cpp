@@ -127,7 +127,8 @@ std::shared_ptr<PMDLoader> PMDLoader::Create(std::shared_ptr<Device> device, con
 	return pmdLoader;
 }
 
-std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath, std::shared_ptr<PipelineStateObject> pso)
+std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath, std::shared_ptr<PipelineStateObject> pso,
+	std::shared_ptr<PipelineStateObject> shadowPSO, std::shared_ptr<RootSignature> rootSignature)
 {
 	auto handleItr = mModelHandleManager.find(filePath);
 	
@@ -201,7 +202,7 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath, std::s
 		fclose(fp);
 
 		/// モデルデータの生成、登録
-		auto modelData = PMDModelData::Create(mDevice, modelInfo, toonTextureHandle, pso);
+		auto modelData = PMDModelData::Create(mDevice, modelInfo, toonTextureHandle, pso, shadowPSO, rootSignature);
 
 		mModelHandleManager[filePath] = mModelDataManager.Regist(modelData);
 	}

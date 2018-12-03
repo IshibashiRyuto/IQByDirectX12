@@ -36,13 +36,15 @@ public:
 	/// @param[in]	inputLayout	: 頂点レイアウト
 	///	@param[in]	renderState	: レンダリングステート
 	/// @param[in]	shaderList	: シェーダリスト
+	///	@param[in]	rtvFormat	: RTVフォーマット
 	///	@retval	生成成功	: パイプラインステートオブジェクト
 	/// @retval	生成失敗	: nullptr
 	static std::shared_ptr<PipelineStateObject> Create(std::shared_ptr<Device> device,
-		const std::vector<D3D12_INPUT_ELEMENT_DESC> inputLayout,
+		const std::vector<D3D12_INPUT_ELEMENT_DESC>& inputLayout,
 		std::shared_ptr<RootSignature> rootSignature,
 		const RenderState& renderState,
-		const ShaderList& shaderList
+		const ShaderList& shaderList,
+		const std::vector<DXGI_FORMAT>& rtvFormat
 		);
 
 	/// @brief	パイプラインステートオブジェクトを取得する

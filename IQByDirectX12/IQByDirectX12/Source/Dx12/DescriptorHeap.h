@@ -5,20 +5,22 @@
 	@date	2018/??/??	初版作成
 	@date	2018/11/24	DSV,RTV用ヒープの作成に対応
 						DSV,RTVのセットに対応
+	@date	2018/11/30	BindRootParameter, SetBindHeapIndexを追加
+						伴ってルートパラメータのバインド方法を変更
 */
 #pragma once
-/*システムヘッダインクルード*/
+/*ヘッダインクルード*/
 #include <d3d12.h>
 #include <wrl.h>
 #include <memory>
 
-/*自作ヘッダインクルード*/
 
-/*前方宣言*/
+/*クラス使用宣言*/
 using Microsoft::WRL::ComPtr;
 class Texture;
 class RenderTargetTexture;
 class Device;
+class GraphicsCommandList;
 
 class DescriptorHeap
 {
@@ -99,7 +101,24 @@ public:
 	*	@param[in]	rootParamIndex	: ルートパラメータのインデックス
 	*	@param[in]	descriptorHeapIndex	:	ヒープ側のインデックス
 	*/
-	void BindRootDescriptorTable(int rootParamIndex, int descriptorHeapIndex);
+	void BindRootDescriptorTable(unsigned int rootParamIndex, unsigned int descriptorHeapIndex);
+
+	/**
+	*	@brief	ヒープをルートパラメータにバインドする
+	*
+	*	@param[in]	commandList		: バインドするコマンドリスト
+	*	@param[in]	rootParamIndex	: バインドするルートパラメータインデックス
+	*
+	*	@note		バインドするヒープ側のインデックスは事前に設定しておく
+	*/
+	void BindRootParameter(std::shared_ptr<GraphicsCommandList> commandList, unsigned int rootParamIndex);
+
+	/**
+	*	@brief	ルートパラメータにバインドする、ヒープのインデックスを指定する
+	*	
+	*	@param[in]	heapIndex	: バインドするヒープ位置
+	*/
+	void SetBindHeapIndex(unsigned int heapIndex);
 
 	/**
 	*	@brief	指定したインデックスのGPUハンドルを取得する
@@ -114,13 +133,14 @@ public:
 	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle(UINT index) const;
 private:
 	/*定数宣言*/
-	const UINT HEAP_STRIDE;								//! ヒープ一つ当たりの幅
+	const UINT HEAP_STRIDE;										//! ヒープ一つ当たりの幅
 
 	/*変数定義*/
-	std::shared_ptr<Device>			mDevice;			//! デバイス
-	ComPtr<ID3D12DescriptorHeap>	mDescriptorHeap;	//! ディスクリプタヒープの実態
-	UINT							mNumDescriptors;		//! ディスクリプタの数
+	std::shared_ptr<Device>			mDevice;					//! デバイス
+	ComPtr<ID3D12DescriptorHeap>	mDescriptorHeap;			//! ディスクリプタヒープの実態
+	UINT							mNumDescriptors;			//! ディスクリプタの数
 	ComPtr<ID3D12GraphicsCommandList>	mGraphicsCommandList;	//!	描画コマンドリスト
+	unsigned int mHeapIndex;									//! セットするヒープのインデックス
 
 	/*ローカルメソッド*/
 

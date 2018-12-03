@@ -5,21 +5,26 @@
 	@date 2018/10/21	初版作成
 */
 #pragma once
-/* システムヘッダインクルード */
+/* ヘッダインクルード */
 #include <memory>
 #include <map>
 #include <functional>
-
-/* 自作ヘッダインクルード */
 #include "../Math/Math.h"
 
+/**
+*	@enum	ProjectionType
+*	@brief	投影方法
+*/
 enum class ProjectionType
 {
 	Perspective,
 	Orthographic
 };
 
-/// @brief 射影行列の設定パラメータ
+/**
+*	@struct	ProjectionParam
+*	@brief	射影行列の設定パラメータ
+*/
 struct ProjectionParam
 {
 	float width;
@@ -29,67 +34,105 @@ struct ProjectionParam
 	float farZ;
 };
 
-/// @brief カメラ情報を管理する
+/**
+*	@class	Camera
+*	@brief	カメラ情報を管理する
+*/
 class Camera
 {
 public:
-	/// @brief	コンストラクタ
-	Camera(const Math::Vector3& pos,
-		const Math::Vector3& direction,
-		ProjectionType projType,
-		const ProjectionParam& projParam);
 
-	/// @brief	デストラクタ
+	/**
+	*	@brief	デストラクタ
+	*/
 	virtual ~Camera();
 
-	/// @brief	カメラクラスを生成する
-	/// @note	カメラクラスはこのメソッドを通してのみ生成可能
-	/// @param[in]	pos			: 初期位置
-	/// @param[in]	direction	: 初期方向
-	/// @param[in]	projType	: 射影方法
-	/// @param[in]	projParam	: 射影方法のパラメータ
+	/**
+	*	@brief	カメラクラスを生成する
+	*
+	*	@note	カメラクラスはこのメソッドを通してのみ生成可能
+	*
+	*	@param[in]	pos			: 初期位置
+	*	@param[in]	direction	: 初期方向
+	*	@param[in]	projType	: 射影方法
+	*	@param[in]	projParam	: 射影方法のパラメータ
+	*/
 	static std::shared_ptr<Camera> Create(const Math::Vector3& pos,
 		const Math::Vector3& direction,
 		ProjectionType projType,
 		const ProjectionParam& projParam);
 
-	/// @brief	カメラの注視点を指定する
-	/// @param[in]	targetPos :カメラの注視点
+	/**
+	*	@brief	カメラの注視点を指定する
+	*
+	*	@param[in]	targetPos :カメラの注視点
+	*/
 	void SetTargetPos(const Math::Vector3& targetPos);
 
-	/// @brief	カメラの視点(位置)を指定する
-	/// @param[in]	pos	: カメラの位置
+	/**
+	*	@brief	カメラの視点(位置)を指定する
+	*
+	*	@param[in]	pos	: カメラの位置
+	*/
 	void SetPos(const Math::Vector3& pos);
 
-	/// @brief	カメラの方向を指定する
-	/// @param[in]	direction	: カメラの向き
+	/**
+	*	@brief	カメラの方向を指定する
+	*
+	*	@param[in]	direction	: カメラの向き
+	*/
 	void SetDirection(const Math::Vector3& direction);
 
-	/// @brief	カメラの方向を指定する
-	/// @param[in]	direction	: z軸正向きからのカメラの回転
+	/**
+	*	@brief	カメラの方向を指定する
+	*
+	*	@param[in]	direction	: z軸正向きからのカメラの回転
+	*/
 	void SetDirection(const Math::Quaternion& direction);
+	
 
-	/// @brief	カメラの射影方法を指定する
+	/**
+	*	@brief	カメラの射影方法を指定する
+	*
+	*	@param[in]	projType	: 投影方法
+	*	@param[in]	projParam	: 投影パラメータ
+	*/
 	void SetProjectionType(ProjectionType projType, const ProjectionParam& projParam);
 
-	/// @brief	カメラを回転させる
-	/// @param[in]	rotation	: 回転量
+	/**
+	*	@brief	カメラを回転させる
+	*
+	*	@param[in]	rotation	: 回転量
+	*/
 	void Rotate(const Math::Quaternion& rotation);
 
-	/// @brief	カメラをアッパーベクトルとともに回転させる
+	/**
+	*	@brief	カメラをアッパーベクトルとともに回転させる
+	*
+	*	@param[in]	rotation	: 回転量
+	*/
 	void RotateWithUpper(const Math::Quaternion& rotation);
 
-	/// @brief	カメラを移動させる
-	/// @param[in]	movement	: 移動量
+	/**
+	*	@brief	カメラを移動させる
+	*
+	*	@param[in]	movement	: 移動量
+	*/
 	void Move(const Math::Vector3& movement);
 
-	/// @brief	カメラ行列を更新する
+	/**
+	*	@brief	カメラ行列を更新する
+	*/
 	void UpdateMatrix();
 
-	/// @brief	ビュー行列を取得する
+	/**
+	*	@brief	ビュー行列を取得する
+	*/
 	const Math::Matrix4x4& GetViewMatrix() const;
 	
-	/// @brief	プロジェクション行列を取得する
+	/**
+	*@brief	プロジェクション行列を取得する
+	*/
 	const Math::Matrix4x4& GetProjMatrix() const;
 
 protected:
@@ -103,14 +146,37 @@ protected:
 	std::map<ProjectionType, std::function<Math::Matrix4x4(const ProjectionParam&)>> CreateProjMat;	//! 射影行列生成を行う関数
 
 	/* ローカルメソッド定義 */
+
+	/**
+	*	@brief	コンストラクタ
+	*
+	*	@param[in]	pos			: 初期座標
+	*	@param[in]	direction	: 初期向き
+	*	@param[in]	projType	: 投影方法
+	*	@param[in]	projParam	: 投影パラメータ
+	*/
+	Camera(const Math::Vector3& pos,
+		const Math::Vector3& direction,
+		ProjectionType projType,
+		const ProjectionParam& projParam);
 	
-	/// @brief	透視投影行列を作成する
+	/**
+	*	@brief	透視投影行列を作成する
+	*
+	*	@param[in]	projParam	: 投影パラメータ
+	*/
 	static Math::Matrix4x4 CreatePerspectiveMatrix(const ProjectionParam& projParam);
 
-	/// @brief	平行投影行列を作成する
+	/**
+	*	@brief	平行投影行列を作成する
+	*
+	*	@param[in]	projParam	: 投影パラメータ
+	*/
 	static Math::Matrix4x4 CreateOrthographicMatrix(const ProjectionParam& projParam);
 
-	/// @brief	ビュー行列を更新する
+	/**
+	*	@brief	ビュー行列を更新する
+	*/
 	void _UpdateViewMat();
 };
 

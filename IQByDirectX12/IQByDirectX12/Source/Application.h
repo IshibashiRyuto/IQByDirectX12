@@ -92,25 +92,34 @@ private:
 	std::vector<std::shared_ptr<Model>>		mInstancingTestModels;
 
 	std::shared_ptr<RootSignature>			mPeraRootSignature;	
+	std::shared_ptr<RootSignature>			mPrimitiveRootSignature;	//! プリミティブ用ルートシグネチャ
 
 	std::shared_ptr<PipelineStateObject>	mPMDPipelineState;			//! PMDパイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPMDShadowPSO;				//! PMDシャドウ用パイプライン
 	std::shared_ptr<PipelineStateObject>	mPMXPipelineState;			//! PMXパイプラインステート
+	std::shared_ptr<PipelineStateObject>	mPMXShadowPSO;				//! PMDシャドウ用パイプライン
 	std::shared_ptr<PipelineStateObject>	mPeraPipelineState;			//! ペラポリ用パイプラインステート
 	std::shared_ptr<PipelineStateObject>	mPrimitivePipelineState;	//! プリミティブ用パイプラインステート
-
+	std::shared_ptr<PipelineStateObject>	mPrimitiveShadowPSO;		//! PMDシャドウ用パイプライン
+	
 	std::shared_ptr<Keyboard>			mKeyboard;
 	std::shared_ptr<Dx12Camera>			mDx12Camera;
 
 	std::shared_ptr<VertexBuffer>		mPeraVert;
 	std::shared_ptr<DescriptorHeap>		mPeraDescHeap;
 	std::shared_ptr<Texture>			mDepthTexture;
+	std::shared_ptr<DepthBuffer>		mShadowDepth;
+	std::shared_ptr<DescriptorHeap>		mShadowMapHeap;
 
 	std::shared_ptr<TextureLoader>			mTextureLoader;			//! テクスチャローダ
 	std::shared_ptr<Sprite>					mSprite;				//! スプライト
 	std::shared_ptr<PipelineStateObject>	mSpritePipelineState;	//! スプライト用パイプラインステート
 
+	std::shared_ptr<Model>				mPlane;						//! プリミティブの床モデル
+
 	std::shared_ptr<Dx12Camera>			mDirectionalLight;			//! 平行光源
-	
+	std::vector<DXGI_FORMAT>			mRTVFormat;
+
 	int mWindowWidth;
 	int mWindowHeight;
 
@@ -127,6 +136,9 @@ private:
 
 	/// @brief	スプライト用PSOを作成する
 	bool CreateSpritePipelineStateObject();
+
+	/// @brief	プリミティブ用PSOを作成する
+	bool CreatePrimitivePipelineStateObject();
 
 	/// @fn CreateRootSignature
 	/// ルートシグネチャを生成する
@@ -213,5 +225,10 @@ private:
 	*	@brief	プリミティブを作成する
 	*/
 	void CreatePrimitive();
+
+	/**
+	*	@brief	シャドウマップヒープを作成する
+	*/
+	void CreateShadowMap();
 };
 

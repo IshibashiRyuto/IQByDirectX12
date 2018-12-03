@@ -12,16 +12,25 @@
 #include "../Motion/Bone.h"
 #include "../ConvertString.h"
 #include "../Dx12/PipelineStateObject.h"
+#include "../Dx12/RootSignature.h"
+#include "../Dx12/GraphicsCommandList.h"
+
+constexpr int BONE_MATRIX_ROOT_IDX = 2;		//! ボーン行列をバインドするルートパラメータ番号
+constexpr int MATERIAL_ROOT_IDX = 3;		//! マテリアルをバインドするルートパラメータ番号
 
 PMDModelData::PMDModelData(std::shared_ptr<Device> device,
 	const PMDModelInfo& modelInfo,
 	const std::vector<int> shareToonTextureIndex,
-	std::shared_ptr<PipelineStateObject> pipelineStateObject)
+	std::shared_ptr<PipelineStateObject> pipelineStateObject,
+	std::shared_ptr<PipelineStateObject> shadowPSO,
+	std::shared_ptr<RootSignature> rootSignature)
 
 	: ModelData(VertexBuffer::Create(device,(void*)modelInfo.vertexData.data(), sizeof(PMDVertex), modelInfo.vertexData.size()),
 		IndexBuffer::Create(device, (void*)modelInfo.indexData.data(), sizeof(short), modelInfo.indexData.size()),
 		DescriptorHeap::Create(device, (int)modelInfo.materials.size() * MATERIAL_SHADER_RESOURCE_NUM),
-		pipelineStateObject)
+		pipelineStateObject,
+		shadowPSO,
+		rootSignature)
 	, mTextureLoader(TextureLoader::Create(device))
 {
 	SetVertexData(modelInfo.vertexData);
@@ -37,9 +46,11 @@ PMDModelData::~PMDModelData()
 std::shared_ptr<PMDModelData> PMDModelData::Create(std::shared_ptr<Device> device,
 	const PMDModelInfo& modelInfo,
 	const std::vector<int> shareToonTextureIndex,
-	std::shared_ptr<PipelineStateObject> pipelineStateObject)
+	std::shared_ptr<PipelineStateObject> pipelineStateObject,
+	std::shared_ptr<PipelineStateObject> shadowPSO,
+	std::shared_ptr<RootSignature> rootSignature)
 {
-	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo, shareToonTextureIndex, pipelineStateObject));
+	auto model = std::shared_ptr<PMDModelData>(new PMDModelData(device, modelInfo, shareToonTextureIndex, pipelineStateObject,shadowPSO, rootSignature));
 	if (model->mVertexBuffer == nullptr || model->mIndexBuffer == nullptr)
 	{
 		return nullptr;
@@ -175,47 +186,54 @@ void PMDModelData::Update()
 	UpdatePose();
 }
 
-void PMDModelData::Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData & instanceData) const
+void PMDModelData::Draw(std::shared_ptr<GraphicsCommandList> commandList, const InstanceData & instanceData) const
 {
 	// psoセット
-	commandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
+	(*commandList)->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
 
 	// 頂点情報セット
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
-	commandList->IASetVertexBuffers(0, 2, vbViews);
-	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
+	(*commandList)->IASetVertexBuffers(0, 2, vbViews);
+	(*commandList)->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
 
-	// ボーン情報をセット
-	mBoneHeap->BindGraphicsCommandList(commandList);
-	mBoneHeap->BindRootDescriptorTable(2, 0);
 
-	// マテリアルをセットして描画
-	mDescHeap->BindGraphicsCommandList(commandList);
+	mRootSignature->SetRootSignature(commandList);
+	mDescHeap->SetBindHeapIndex(0);
+	mBoneHeap->SetBindHeapIndex(0);
+	mRootSignature->SetBindDescriptorHeap(BONE_MATRIX_ROOT_IDX, mBoneHeap);
+	mRootSignature->SetBindDescriptorHeap(MATERIAL_ROOT_IDX, mDescHeap);
 	int indexOffset = 0;
 	for (unsigned int i = 0; i < mMaterialCount; ++i)
 	{
-		mDescHeap->BindRootDescriptorTable(1, i * MATERIAL_SHADER_RESOURCE_NUM);
-		commandList->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);
+		mDescHeap->SetBindHeapIndex(i * MATERIAL_SHADER_RESOURCE_NUM);
+		mRootSignature->SetRootParameter(commandList);
+		(*commandList)->DrawIndexedInstanced(mMaterials[i].faceVertexCount, instanceData.nowInstanceCount, indexOffset, 0, 0);
 		indexOffset += mMaterials[i].faceVertexCount;
 	}
 }
 
-void PMDModelData::DrawNoMat(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData & instanceData) const
+void PMDModelData::DrawShadow(std::shared_ptr<GraphicsCommandList> commandList, const InstanceData & instanceData) const
 {
 	// psoセット
-	commandList->SetPipelineState(mPipelineStateObject->GetPipelineStateObject().Get());
+	(*commandList)->SetPipelineState(mShadowPSO->GetPipelineStateObject().Get());
+
+	// ルートシグネチャセット
+	mRootSignature->SetRootSignature(commandList);
 
 	// 頂点情報セット
 	D3D12_VERTEX_BUFFER_VIEW vbViews[2] = { mVertexBuffer->GetVertexBufferView(), instanceData.instanceBuffer->GetVertexBufferView() };
-	commandList->IASetVertexBuffers(0, 2, vbViews);
-	commandList->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
+	(*commandList)->IASetVertexBuffers(0, 2, vbViews);
+	(*commandList)->IASetIndexBuffer(&mIndexBuffer->GetIndexBufferView());
 
 	// ボーン情報をセット
-	mBoneHeap->BindGraphicsCommandList(commandList);
-	mBoneHeap->BindRootDescriptorTable(2, 0);
+	mBoneHeap->SetBindHeapIndex(0);
+	mDescHeap->SetBindHeapIndex(0);
+	mRootSignature->SetBindDescriptorHeap(MATERIAL_ROOT_IDX, mDescHeap);
+	mRootSignature->SetBindDescriptorHeap(BONE_MATRIX_ROOT_IDX, mBoneHeap);
+	mRootSignature->SetRootParameter(commandList);
 
 	//	モデル描画
-	commandList->DrawIndexedInstanced(mIndexBuffer->GetIndexCount(), instanceData.nowInstanceCount, 0, 0, 0);
+	(*commandList)->DrawIndexedInstanced(mIndexBuffer->GetIndexCount(), instanceData.nowInstanceCount, 0, 0, 0);
 }
 
 void PMDModelData::UpdatePose()

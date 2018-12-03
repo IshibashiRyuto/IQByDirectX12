@@ -15,7 +15,8 @@ public:
 	static std::shared_ptr<PMDLoader> Create(std::shared_ptr<Device> device, const std::string& shareToonFolderPath);
 
 	/// @fn LoadModel
-	std::shared_ptr<Model> LoadModel(const std::string& filePath, std::shared_ptr<PipelineStateObject> pso);
+	std::shared_ptr<Model> LoadModel(const std::string& filePath, std::shared_ptr<PipelineStateObject> pso,
+		std::shared_ptr<PipelineStateObject> shadowPSO, std::shared_ptr<RootSignature> rootSignature);
 
 	/// @fn ClearModelData
 	/// “Ç‚İ‚ñ‚¾ƒ‚ƒfƒ‹î•ñ‚ğíœ‚·‚é

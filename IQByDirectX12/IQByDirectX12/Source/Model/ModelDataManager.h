@@ -53,15 +53,15 @@ public:
 	/// 管理しているモデルデータを描画する
 	/// @param[in]	graphicsCommandList	: 描画先コマンドリスト
 	///	@param[in]	isReset				: 描画後、描画記録をリセットするか(default:true)
-	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, bool isReset = true);
+	void Draw(std::shared_ptr<GraphicsCommandList> graphicsCommandList, bool isReset = true);
 
 	/**
-	*	@brief	マテリアルを使用せずに描画する
+	*	@brief	モデルの影のみ描画する
 	*
 	*	@param[in]	graphicsCommandList	: 描画先コマンドリスト
 	*	@param[in]	isReset				: 描画後に描画記録をリセットするか(default: true)
 	*/
-	void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, bool isReset = true);
+	void DrawShadow(std::shared_ptr<GraphicsCommandList> graphicsCommandList, bool isReset = false);
 
 private:
 	ModelDataManager();

@@ -20,6 +20,7 @@ class ModelData;
 class Device;
 class TextureLoader;
 class PipelineStateObject;
+class RootSignature;
 
 class ModelLoader
 {
@@ -31,7 +32,8 @@ public:
 	/// @fn LoadModel
 	/// モデルをロードする
 	/// @param[in] filePath	: ファイルパス
-	virtual std::shared_ptr<Model> LoadModel(const std::string& filePath, std::shared_ptr<PipelineStateObject> pso) = 0;
+	virtual std::shared_ptr<Model> LoadModel(const std::string& filePath, std::shared_ptr<PipelineStateObject> pso,
+		std::shared_ptr<PipelineStateObject> shadowPSO, std::shared_ptr<RootSignature> rootSignature) = 0;
 
 	/// @fn ClearModelData
 	/// 読み込んだモデル情報を削除する

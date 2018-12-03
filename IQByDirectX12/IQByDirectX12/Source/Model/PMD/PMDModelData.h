@@ -100,7 +100,9 @@ public:
 	PMDModelData(std::shared_ptr<Device> device,
 		const PMDModelInfo& modelInfo,
 		const std::vector<int> shareToonTextureIndex,
-		std::shared_ptr<PipelineStateObject> pipelineStateObject);
+		std::shared_ptr<PipelineStateObject> pipelineStateObject,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature> rootSignature);
 	~PMDModelData();
 	
 	/// @brief	PMDモデルを生成する
@@ -108,10 +110,13 @@ public:
 	/// @param[in]	modelInfo				: モデル情報
 	/// @param[in]	shareToonTextureIndex	: 共有テクスチャトゥーンのインデックス
 	/// @param[in]	pipelineStateObject		: パイプラインステートオブジェクト
+	/// @param[in]	rootSignature			: ルートシグネチャ
 	static std::shared_ptr<PMDModelData> Create(std::shared_ptr<Device> device,
 		const PMDModelInfo& modelInfo,
 		const std::vector<int> shareToonTextureIndex,
-		std::shared_ptr<PipelineStateObject> pipelineStateObject);
+		std::shared_ptr<PipelineStateObject> pipelineStateObject,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature>	rootSignature);
 
 	void SetVertexData(const std::vector<PMDVertex>& vertexData);
 
@@ -127,14 +132,14 @@ public:
 	/// @brief		描画処理
 	/// @param[in]	commandList		: 描画対象コマンドリスト
 	/// @param[in]	instanceData	: インスタンス情報
-	void Draw(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
+	void Draw(std::shared_ptr<GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 	/**
 	*	@brief	マテリアルを使わない描画処理
 	*	@param[in]	commandList		: 描画対象コマンドリスト
 	*	@param[in]	instanceData	: インスタンス情報
 	*/
-	void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> commandList, const InstanceData& instanceData) const;
+	void DrawShadow(std::shared_ptr<GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
 	static const int MATERIAL_SHADER_RESOURCE_NUM = 5;

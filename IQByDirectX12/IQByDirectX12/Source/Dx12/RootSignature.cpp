@@ -2,6 +2,8 @@
 #include <d3dx12.h>
 #include "RootSignature.h"
 #include "../Debug/DebugLayer.h"
+#include "GraphicsCommandList.h"
+#include "DescriptorHeap.h"
 
 
 RootSignature::RootSignature()
@@ -71,6 +73,10 @@ bool RootSignature::ConstructRootSignature(ComPtr<ID3D12Device> device)
 		}
 	}
 
+	// デスクリプタヒープ格納用の場所確保
+	mDescriptorHeap.clear();
+	mDescriptorHeap.resize(mRootParameters.size());
+
 	return true;
 }
 
@@ -106,4 +112,26 @@ int RootSignature::AddRootParameter(D3D12_SHADER_VISIBILITY shaderVisibility, D3
 ComPtr<ID3D12RootSignature> RootSignature::GetRootSignature() const
 {
 	return mRootSignature;
+}
+
+void RootSignature::SetBindDescriptorHeap(unsigned int rootParamIndex, std::shared_ptr<DescriptorHeap> descHeap)
+{
+	if (static_cast<size_t>(rootParamIndex) >= mDescriptorHeap.size())
+	{
+		return;
+	}
+	mDescriptorHeap[rootParamIndex] = descHeap;
+}
+
+void RootSignature::SetRootParameter(std::shared_ptr<GraphicsCommandList> commandList) const
+{
+	for (unsigned int i = 0; i < mDescriptorHeap.size(); ++i)
+	{
+		mDescriptorHeap[i]->BindRootParameter(commandList, i);
+	}
+}
+
+void RootSignature::SetRootSignature(std::shared_ptr<GraphicsCommandList> commandList) const
+{
+	(*commandList)->SetGraphicsRootSignature(mRootSignature.Get());
 }

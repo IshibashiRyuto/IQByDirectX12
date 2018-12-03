@@ -5,6 +5,7 @@
 	@date	2018/08/28	初版作成
 			2018/11/25	バッファクラスのリファクタリングに対応
 			2018/11/27	DrawNoMat追加
+			2018/11/30	ルートシグネチャの管理をこのクラスに委譲
 */
 #pragma once
 /* ヘッダインクルード */
@@ -19,6 +20,8 @@
 struct InstanceData;
 class Pose;
 class PipelineStateObject;
+class RootSignature;
+class GraphicsCommandList;
 
 class ModelData
 {
@@ -27,7 +30,9 @@ public:
 	ModelData(std::shared_ptr<VertexBuffer> vertexBuffer, 
 		std::shared_ptr<IndexBuffer> indexBuffer,
 		std::shared_ptr<DescriptorHeap> descriptorHeap,
-		std::shared_ptr<PipelineStateObject> pipelineStateObject);
+		std::shared_ptr<PipelineStateObject> pipelineStateObject,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature> rootSignature);
 
 	/// デストラクタ
 	virtual ~ModelData();
@@ -49,12 +54,13 @@ public:
 	virtual void Update();
 
 	/// 描画処理
-	virtual void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+	virtual void Draw(std::shared_ptr<GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
 
 	/**
-	*	@brief	マテリアルを使用せずに描画する(モデルのガワだけ描画)
+	*	@brief	シャドウを描画する(ライティング用)
 	*/
-	virtual void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+	virtual void DrawShadow(std::shared_ptr<GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+
 
 protected:
 	std::shared_ptr<VertexBuffer>			mVertexBuffer;
@@ -62,6 +68,8 @@ protected:
 	std::shared_ptr<DescriptorHeap>			mDescHeap;
 	std::shared_ptr<Pose>					mPose;
 	std::shared_ptr<PipelineStateObject>	mPipelineStateObject;
+	std::shared_ptr<PipelineStateObject>	mShadowPSO;
+	std::shared_ptr<RootSignature>			mRootSignature;
 private:
 };
 

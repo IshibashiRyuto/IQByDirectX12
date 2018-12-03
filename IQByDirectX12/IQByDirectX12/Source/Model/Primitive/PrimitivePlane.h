@@ -24,12 +24,15 @@ public:
 	*	@param[in]	indexes			: 頂点インデックス情報
 	*	@param[in]	material		: マテリアル情報
 	*	@param[in]	pipelineState	: パイプラインステート
+	*	@param[in]	rootSignature	: ルートシグネチャ
 	*/
 	PrimitivePlane(std::shared_ptr<Device> device,
 		const std::vector<Primitive::Vertex>& vertices,
 		const std::vector<short>& indexes,
 		const Primitive::Material& material,
-		std::shared_ptr<PipelineStateObject> pipelineState);
+		std::shared_ptr<PipelineStateObject> pipelineState,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature> rootSignature);
 	~PrimitivePlane();
 
 	/**
@@ -44,7 +47,9 @@ public:
 		std::shared_ptr<Device> device,
 		const Math::Vector2& size,
 		const Primitive::Material& material,
-		std::shared_ptr<PipelineStateObject> pipelineState);
+		std::shared_ptr<PipelineStateObject> pipelineState,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature> rootSignature);
 
 private:
 
@@ -55,7 +60,7 @@ private:
 	*	@param[out]	vertices	: 頂点情報格納先
 	*	@param[out] indexes		: 頂点インデックス情報格納先
 	*/
-	void ConstructVertices(const Math::Vector2& size, std::vector<Primitive::Vertex>& vertices, std::vector<short>& indexes);
+	static void ConstructVertices(const Math::Vector2& size, std::vector<Primitive::Vertex>& vertices, std::vector<short>& indexes);
 
 };
 

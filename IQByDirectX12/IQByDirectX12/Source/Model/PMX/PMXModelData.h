@@ -36,7 +36,9 @@ public:
 		std::vector<PMX::Index> indexData,
 		int materialCount,
 		int boneCount,
-		std::shared_ptr<PipelineStateObject> pipelineStateObject);
+		std::shared_ptr<PipelineStateObject> pipelineStateObject,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature> rootSignature);
 	~PMXModelData();
 
 	/// @fn Create
@@ -49,7 +51,9 @@ public:
 	/// @retval 生成失敗時: nullptr
 	static std::shared_ptr<PMXModelData> Create(std::shared_ptr<Device> device,
 		const PMX::ModelDataDesc& modelDataDesc,
-		std::shared_ptr<PipelineStateObject> pipelineStateObject);
+		std::shared_ptr<PipelineStateObject> pipelineStateObject,
+		std::shared_ptr<PipelineStateObject> shadowPSO,
+		std::shared_ptr<RootSignature> rootSignature);
 
 	/// @fn Update
 	/// モデル情報の更新処理
@@ -59,7 +63,7 @@ public:
 	/// 描画処理
 	/// @param[in]	graphicsCommandList	: コマンドリスト
 	/// @param[in]	instanceData		: インスタンスデータ
-	void Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+	void Draw(std::shared_ptr<GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 	/**
 	*	@brief	マテリアルを使わない描画
@@ -67,7 +71,7 @@ public:
 	*	@param[in]	graphicsCommandList	: コマンドリスト
 	*	@param[in]	instanceData		: インスタンスデータ
 	*/
-	void DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, const InstanceData& instanceData) const;
+	void DrawShadow(std::shared_ptr<GraphicsCommandList> commandList, const InstanceData& instanceData) const;
 
 private:
 	/* 定数定義 */

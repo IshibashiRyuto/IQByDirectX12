@@ -3,6 +3,7 @@
 #include "Device.h"
 #include "../Dx12/Buffer/Texture.h"
 #include "../Debug/DebugLayer.h"
+#include "GraphicsCommandList.h"
 #include <d3dx12.h>
 
 
@@ -93,7 +94,7 @@ void DescriptorHeap::BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> c
 	commandList->SetDescriptorHeaps(1, (mDescriptorHeap.GetAddressOf()));
 }
 
-void DescriptorHeap::BindRootDescriptorTable(int rootParamIndex, int descriptorHeapIndex)
+void DescriptorHeap::BindRootDescriptorTable(unsigned int rootParamIndex, unsigned int descriptorHeapIndex)
 {
 	if (descriptorHeapIndex >= (int)mNumDescriptors)
 	{
@@ -107,6 +108,17 @@ void DescriptorHeap::BindRootDescriptorTable(int rootParamIndex, int descriptorH
 	}
 
 	mGraphicsCommandList->SetGraphicsRootDescriptorTable(rootParamIndex, gpuHandle);
+}
+
+void DescriptorHeap::BindRootParameter(std::shared_ptr<GraphicsCommandList> commandList, unsigned int rootParamIndex)
+{
+	BindGraphicsCommandList(commandList->GetCommandList());
+	BindRootDescriptorTable(rootParamIndex, mHeapIndex);
+}
+
+void DescriptorHeap::SetBindHeapIndex(unsigned int heapIndex)
+{
+	mHeapIndex = heapIndex;
 }
 
 D3D12_GPU_DESCRIPTOR_HANDLE DescriptorHeap::GetGPUHandle(UINT index) const

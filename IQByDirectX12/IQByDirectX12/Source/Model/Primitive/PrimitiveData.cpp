@@ -18,7 +18,7 @@ Primitive::Material::Material()
 	: diffuse(Math::Vector4(0.8f, 0.8f, 0.8f, 1.f))
 	, specular(Math::Vector3(1.f, 1.f, 1.f))
 	, ambient(Math::Vector3(0.2f, 0.2f, 0.2f))
-	, specularity(20.f)
+	, specularity(1.f)
 {
 }
 

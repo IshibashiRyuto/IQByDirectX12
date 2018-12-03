@@ -1,4 +1,11 @@
+/**
+*	@file	Dx12Camera.h
+*	@brief	Dx12Cameraクラスの宣言を記述する
+*	@author	Ishibashi Ryuto
+*	@date	2018/10/23	初版作成
+*/
 #pragma once
+/* ヘッダインクルード */
 #include "Camera.h"
 
 /* クラス使用宣言 */
@@ -6,15 +13,21 @@ class Device;
 class ConstantBuffer;
 class DescriptorHeap;
 class GraphicsCommandList;
+class RootSignature;
 
-/// @brief Dx12で使用するためのカメラクラス
-///	自身で定数バッファ、ヒープを持ち、
-/// 描画時のヒープセットまで行う
+/**
+*	@class	Dx12Camera
+*	@brief	Dx12で使用するためのカメラクラス
+*			自身で定数バッファ、ヒープを持ち、
+*			描画時のヒープセットまで行う
+*/
 class Dx12Camera :
 	public Camera
 {
 public:
-	/// @brief コンストラクタ
+	/**
+	*	@brief コンストラクタ
+	*/
 	Dx12Camera(
 		const Math::Vector3& pos,
 		const Math::Vector3& direction,
@@ -50,6 +63,14 @@ public:
 	/// @param[in]	rootParamIndex	: バッファをセットするルートパラメータのインデックス
 	void SetCameraData(std::shared_ptr<GraphicsCommandList> commandList, int rootParamIndex);
 
+	/**
+	*	@brief	デスクリプタをルートシグネチャにセットする
+	*
+	*	@param[in]	rootSignature	: バインド対象のルートシグネチャ
+	*	@param[in]	rootParamIndex	: バインドするルートパラメータのインデックス
+	*/
+	void BindDescriptorHeap(std::shared_ptr<RootSignature> rootSignature, int rootParamIndex);
+
 private:
 	Math::Matrix4x4 mWorldMatrix;	//! World行列
 	std::shared_ptr<ConstantBuffer> mCameraDataBuffer;	//! カメラ情報格納バッファ
@@ -62,10 +83,10 @@ private:
 		Math::Matrix4x4 worldMat;	//! World行列
 		Math::Matrix4x4 viewMat;	//! View行列
 		Math::Matrix4x4 projMat;	//! Projection行列
-		Math::Vector3	eyePos;		//! 視点
-		Math::Vector3	eyeDir;		//! 視線ベクトル
-		Math::Vector3	upper;		//! 上方向ベクトル
-		Math::Vector3	right;		//! 右方向ベクトル
+		Math::Vector4	eyePos;		//! 視点
+		Math::Vector4	eyeDir;		//! 視線ベクトル
+		Math::Vector4	upper;		//! 上方向ベクトル
+		Math::Vector4	right;		//! 右方向ベクトル
 	};
 };
 

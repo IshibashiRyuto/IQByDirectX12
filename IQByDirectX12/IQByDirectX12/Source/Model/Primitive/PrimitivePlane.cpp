@@ -3,8 +3,14 @@
 using namespace Math;
 
 
-PrimitivePlane::PrimitivePlane(std::shared_ptr<Device> device, const std::vector<Primitive::Vertex>& vertices, const std::vector<short>& indexes, const Primitive::Material & material, std::shared_ptr<PipelineStateObject> pipelineState)
-	: PrimitiveModelData( device, vertices, indexes, material, pipelineState)
+PrimitivePlane::PrimitivePlane(std::shared_ptr<Device> device,
+	const std::vector<Primitive::Vertex>& vertices,
+	const std::vector<short>& indexes,
+	const Primitive::Material & material,
+	std::shared_ptr<PipelineStateObject> pipelineState,
+	std::shared_ptr<PipelineStateObject> shadowPSO,
+	std::shared_ptr<RootSignature> rootSignature)
+	: PrimitiveModelData( device, vertices, indexes, material, pipelineState, shadowPSO, rootSignature)
 {
 }
 
@@ -12,9 +18,17 @@ PrimitivePlane::~PrimitivePlane()
 {
 }
 
-std::shared_ptr<PrimitivePlane> PrimitivePlane::Create(std::shared_ptr<Device> device, const Math::Vector2 & size, const Primitive::Material & material, std::shared_ptr<PipelineStateObject> pipelineState)
+std::shared_ptr<PrimitivePlane> PrimitivePlane::Create(std::shared_ptr<Device> device,
+	const Math::Vector2 & size,
+	const Primitive::Material & material,
+	std::shared_ptr<PipelineStateObject> pipelineState,
+	std::shared_ptr<PipelineStateObject> shadowPSO,
+	std::shared_ptr<RootSignature> rootSignature)
 {
-	return std::shared_ptr<PrimitivePlane>();
+	std::vector<Primitive::Vertex> vertices;
+	std::vector<Primitive::Index> indexes;
+	ConstructVertices(size, vertices, indexes);
+	return std::shared_ptr<PrimitivePlane>(new PrimitivePlane(device, vertices, indexes, material, pipelineState, shadowPSO, rootSignature));
 }
 
 void PrimitivePlane::ConstructVertices(const Math::Vector2 & size, std::vector<Primitive::Vertex>& vertices, std::vector<short>& indexes)

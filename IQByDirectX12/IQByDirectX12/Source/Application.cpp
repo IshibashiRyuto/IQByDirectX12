@@ -40,6 +40,7 @@
 #include "Dx12/ShaderList.h"
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteDataManager.h"
+#include "Model/Primitive/PrimitiveCreator.h"
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -84,6 +85,7 @@ bool Application::Initialize(const Window & window)
 
 	// テクスチャマネージャの初期化
 	TextureManager::GetInstance().Initialize(mDevice);
+	mRTVFormat.push_back(DXGI_FORMAT_R8G8B8A8_UNORM);
 
 	// コマンドキューの生成
 	mCommandQueue = CommandQueue::Create(mDevice);
@@ -141,11 +143,20 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
+	// プリミティブ用パイプラインステートオブジェクトの作成
+	if (!CreatePrimitivePipelineStateObject())
+	{
+		return false;
+	}
+
 	// コマンドリストの作成
 	if (!CreateCommandList())
 	{
 		return false;
 	}
+
+	// シャドウマップの作成
+	CreateShadowMap();
 
 
 	// カメラの作成
@@ -169,11 +180,14 @@ bool Application::Initialize(const Window & window)
 		return false;
 	}
 
-
+	// ライト作成
 	if (!CreateDirectionalLight())
 	{
 		return false;
 	}
+
+	// プリミティブモデル作成
+	CreatePrimitive();
 
 	//	テクスチャ情報の更新する
 	TextureManager::GetInstance().UpdateTextureData();
@@ -188,7 +202,7 @@ void Application::Render()
 	////debug
 	static float t = 0;
 
-	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f,0.f,0.f));
+	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f, 0.f, 0.f));
 	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
 	static Math::Vector3 pos(0.0f, 0.0f, 0.0f);
 	static float speed = 0.05f;
@@ -239,7 +253,7 @@ void Application::Render()
 	}
 
 	static bool isStop = true;
-	
+
 	if (mKeyboard->IsKeyTrigger(VirtualKeyIndex::Z))
 	{
 		isStop = !isStop;
@@ -247,7 +261,7 @@ void Application::Render()
 
 	if (!isStop)
 	{
-		
+
 		t += 0.5f;
 		if (t > mAnimationData->GetDuration())
 		{
@@ -270,12 +284,15 @@ void Application::Render()
 
 	// PMD Draw
 	mModelData->SetRotation(rot);
-	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f,0.0f));
+	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f, 0.0f));
 	//mAnimationData->SetPose(t, mModelData->_DebugGetPose());
 	mModelData->Draw();
-	// endDebug
 
-	mSprite->Draw();
+	//mSprite->Draw();
+
+	mPlane->Draw();
+
+	// endDebug
 
 	// コマンドリスト初期化
 	mCommandList->Reset();
@@ -283,7 +300,7 @@ void Application::Render()
 
 
 
-	/* シャドウマップ生成 */
+	/* シャドウマップ用描画範囲 */
 	D3D12_VIEWPORT svp = { 0.0f,0.0f, (FLOAT)1024, (FLOAT)1024, 0.0f,1.0f };
 	D3D12_RECT src = { 0,0,1024, 1024 };
 
@@ -291,90 +308,109 @@ void Application::Render()
 	(*mCommandList)->RSSetScissorRects(1, &src);
 
 
+
+	/* 1パス目(深度描画) */
+	{
+		mRenderTarget->ChangeRenderTarget(mCommandList, 2);
+
+		// モデルの参照深度マップ変更
+		mShadowMapHeap->SetBindHeapIndex(0);
+
+		auto dsvHandle = mShadowDepth->GetDSVCPUHandle();
+
+		(*mCommandList)->OMSetRenderTargets(0, nullptr, false, &dsvHandle);
+
+		mShadowDepth->BeginWriteDepth(mCommandList);
+
+		// トポロジセット
+		(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		// カメラセット
+		mDirectionalLight->BindDescriptorHeap(mRootSignature, 0);
+		mDirectionalLight->BindDescriptorHeap(mPrimitiveRootSignature, 0);
+		// モデル描画
+		ModelDataManager::GetInstance().DrawShadow(mCommandList,false);
+
+		//　1パス目描画終了処理
+		mShadowDepth->EndWriteDepth(mCommandList);
+	}
+
 	// 描画範囲設定
 	D3D12_VIEWPORT vp = { 0.0f,0.0f, (FLOAT)mWindowWidth, (FLOAT)mWindowHeight, 0.0f,1.0f };
 	D3D12_RECT rc = { 0,0,mWindowWidth, mWindowHeight };
 	(*mCommandList)->RSSetViewports(1, &vp);
 	(*mCommandList)->RSSetScissorRects(1, &rc);
 
-	/* 1パス目描画 */
+	/* 2パス目(モデル描画) */
+	{
+		// モデルの参照深度マップ変更
+		mShadowMapHeap->SetBindHeapIndex(1);
 
-	// 描画先変更処理
-	//int backBuffer = mSwapChain->GetBackBufferIndex();
-	mRenderTarget->ChangeRenderTarget(mCommandList, 2);
+		// 描画先変更処理
+		//int backBuffer = mSwapChain->GetBackBufferIndex();
+		mRenderTarget->ChangeRenderTarget(mCommandList, 2);
 
-	auto rtvHandle = mRenderTarget->GetRTVHandle();
-	auto dsvHandle = mDepthBuffer->GetDSVCPUHandle();
-	
-	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+		auto rtvHandle = mRenderTarget->GetRTVHandle();
+		auto dsvHandle = mDepthBuffer->GetDSVCPUHandle();
 
-	mRenderTarget->ClearRenderTarget(mCommandList);
-	mDepthBuffer->BeginWriteDepth(mCommandList);
+		(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
+		mRenderTarget->ClearRenderTarget(mCommandList);
+		mDepthBuffer->BeginWriteDepth(mCommandList);
 
-	// トポロジセット
-	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		// トポロジセット
+		(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	// カメラセット
-	mDx12Camera->SetCameraData(mCommandList, 0);
+		// カメラセット
+		mDx12Camera->BindDescriptorHeap(mRootSignature, 0);
+		mDx12Camera->BindDescriptorHeap(mPrimitiveRootSignature, 0);
 
-	// モデル描画
-	ModelDataManager::GetInstance().Draw(mCommandList->GetCommandList());
+		// モデル描画
+		ModelDataManager::GetInstance().Draw(mCommandList);
 
-	//　1パス目描画終了処理
-	mRenderTarget->FinishRendering(mCommandList);
-	mDepthBuffer->EndWriteDepth(mCommandList);
+		//　2パス目描画終了処理
+		mRenderTarget->FinishRendering(mCommandList);
+		mDepthBuffer->EndWriteDepth(mCommandList);
 
-
-	/* 1パス目描画終了 */
-	//デプスバッファをデプス書き込み状態から読み取り状態に移行
-	/*
-	(*mCommandList)->ResourceBarrier(1, 
-		&CD3DX12_RESOURCE_BARRIER::Transition( mDepthBuffer->GetDepthBufferResource().Get(),
-		D3D12_RESOURCE_STATE_DEPTH_WRITE, D3D12_RESOURCE_STATE_DEPTH_READ));*/
-	
-	/* 2パス目描画 */
-
-	// 描画先変更
-	int backBuffer = mSwapChain->GetBackBufferIndex();
-	mRenderTarget->ChangeRenderTarget(mCommandList, backBuffer);
-
-	rtvHandle = mRenderTarget->GetRTVHandle();
-
-	(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
-
-	mRenderTarget->ClearRenderTarget(mCommandList);
-
-	// パイプライン、ルートシグネチャ変更
-	(*mCommandList)->SetPipelineState(mPeraPipelineState->GetPipelineStateObject().Get());
-	(*mCommandList)->SetGraphicsRootSignature(mPeraRootSignature->GetRootSignature().Get());
-
-	//トポロジセット
-	(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-	// データセット
-	mPeraDescHeap->BindGraphicsCommandList(mCommandList->GetCommandList());
-	mPeraDescHeap->BindRootDescriptorTable(0, 0);
-	mPeraDescHeap->BindRootDescriptorTable(1, 1);
-	
-	// ペラポリの描画
-	(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
-	(*mCommandList)->DrawInstanced(4, 1, 0, 0);
-
-	// スプライトの描画
-	//SpriteDataManager::GetInstance().Draw(mCommandList);
-
-
-	//　2パス目描画終了処理
-	mRenderTarget->FinishRendering(mCommandList);
-
+	}
 	/* 2パス目描画終了 */
 
-	//デプスバッファをデプス読み取り状態から書き込み状態に移行
-	
-	/*(*mCommandList)->ResourceBarrier(1, 
-		&CD3DX12_RESOURCE_BARRIER::Transition(mDepthBuffer->GetDepthBufferResource().Get(),
-		D3D12_RESOURCE_STATE_DEPTH_READ, D3D12_RESOURCE_STATE_DEPTH_WRITE));*/
+	/* 3パス目(ポストエフェクト) */
+	{
+		// 描画先変更
+		int backBuffer = mSwapChain->GetBackBufferIndex();
+		mRenderTarget->ChangeRenderTarget(mCommandList, backBuffer);
+
+		auto rtvHandle = mRenderTarget->GetRTVHandle();
+
+		(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
+
+		mRenderTarget->ClearRenderTarget(mCommandList);
+
+		// パイプライン、ルートシグネチャ変更
+		(*mCommandList)->SetPipelineState(mPeraPipelineState->GetPipelineStateObject().Get());
+		(*mCommandList)->SetGraphicsRootSignature(mPeraRootSignature->GetRootSignature().Get());
+
+		//トポロジセット
+		(*mCommandList)->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+		// データセット
+		mPeraDescHeap->BindGraphicsCommandList(mCommandList->GetCommandList());
+		mPeraDescHeap->BindRootDescriptorTable(0, 0);
+		mPeraDescHeap->BindRootDescriptorTable(1, 1);
+
+		// ペラポリの描画
+		(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
+		(*mCommandList)->DrawInstanced(4, 1, 0, 0);
+
+		// スプライトの描画
+		//SpriteDataManager::GetInstance().Draw(mCommandList);
+
+
+		//　3パス目描画終了処理
+		mRenderTarget->FinishRendering(mCommandList);
+	}
+	/* 3パス目描画終了 */
 
 	//描画終了処理
 	mCommandList->Close();
@@ -395,9 +431,12 @@ void Application::Terminate()
 
 bool Application::CreatePMDPipelineStateObject()
 {
-	if (!_DebugCreatePMDRootSignature())
+	if (!mRootSignature)
 	{
-		return false;
+		if (!CreateRootSignature())
+		{
+			return false;
+		}
 	}
 
 	if (!_DebugReadPMDShader())
@@ -410,9 +449,12 @@ bool Application::CreatePMDPipelineStateObject()
 
 bool Application::CreatePMXPipelineStateObject()
 {
-	if (!CreateRootSignature())
+	if (!mRootSignature)
 	{
-		return false;
+		if (!CreateRootSignature())
+		{
+			return false;
+		}
 	}
 	if (!ReadShader())
 	{
@@ -448,32 +490,35 @@ bool Application::CreateSpritePipelineStateObject()
 	return CreateSpritePipelineState();
 }
 
+bool Application::CreatePrimitivePipelineStateObject()
+{
+	if (!CreatePrimitiveRootSignature())
+	{
+		return false;
+	}
+
+	if (!ReadPrimitiveShader())
+	{
+		return false;
+	}
+
+	return CreatePrimitivePipelineState();
+}
+
 bool Application::CreateRootSignature()
 {
 	mRootSignature = RootSignature::Create();
 	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	int materialIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int light = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 	int boneMatrixBufferIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-
-	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 4, 0);
-	mRootSignature->AddDescriptorRange(boneMatrixBufferIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
-	
-	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
-}
-
-bool Application::_DebugCreatePMDRootSignature()
-{
-	mRootSignature = RootSignature::Create();
-	int cbvIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
 	int materialIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	int boneIndex = mRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
-	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
-	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 4, 0);
-	mRootSignature->AddDescriptorRange(boneIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
 
+	mRootSignature->AddDescriptorRange(cbvIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+	mRootSignature->AddDescriptorRange(light, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	mRootSignature->AddDescriptorRange(boneMatrixBufferIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 3);
+	mRootSignature->AddDescriptorRange(materialIndex, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 4, 0);
+	
 	return mRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
 
@@ -481,11 +526,23 @@ bool Application::CreatePeraRootSignature()
 {
 	mPeraRootSignature = RootSignature::Create();
 	int idx = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_PIXEL);
-	int idx2 = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_PIXEL);
 	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
-	mPeraRootSignature->AddDescriptorRange(idx2, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 1);
 
 	return mPeraRootSignature->ConstructRootSignature(mDevice->GetDevice());
+}
+
+bool Application::CreatePrimitiveRootSignature()
+{
+	mPrimitiveRootSignature = RootSignature::Create();
+	int camera = mPrimitiveRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int light = mPrimitiveRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int shadowMap = mPrimitiveRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	int material = mPrimitiveRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_ALL);
+	mPrimitiveRootSignature->AddDescriptorRange(camera, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+	mPrimitiveRootSignature->AddDescriptorRange(light, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	mPrimitiveRootSignature->AddDescriptorRange(shadowMap, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
+	mPrimitiveRootSignature->AddDescriptorRange(material, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
+	return mPrimitiveRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
 
 
@@ -547,6 +604,21 @@ bool Application::ReadSpriteShader()
 	return true;
 }
 
+bool Application::ReadPrimitiveShader()
+{
+	mVertexShaderClass = Shader::Create(L"Resource/Shader/3DPrimitiveShader.hlsl", "VSMain", "vs_5_0");
+
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/3DPrimitiveShader.hlsl", "PSMain", "ps_5_0");
+
+	if (!mVertexShaderClass || !mPixelShaderClass)
+	{
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Read Shader.\n");
+		return false;
+	}
+
+	return true;
+}
+
 bool Application::CreatePipelineState()
 {
 	// 頂点情報定義
@@ -580,7 +652,9 @@ bool Application::CreatePipelineState()
 	renderState.cullingType = CullingType::Double;
 	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
 
-	mPMXPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature, renderState, shaderList);
+	mPMXPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature, renderState, shaderList, mRTVFormat);
+	mPMXShadowPSO = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature, renderState, shaderList, std::vector<DXGI_FORMAT>());
+
 	if (!mPMXPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
@@ -618,7 +692,9 @@ bool Application::_DebugCreatePMDPipelineState()
 	renderState.cullingType = CullingType::Double;
 	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
 
-	mPMDPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature,renderState, shaderList);
+	mPMDPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature,renderState, shaderList, mRTVFormat);
+
+	mPMDShadowPSO = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mRootSignature, renderState, shaderList, std::vector<DXGI_FORMAT>());
 	if (!mPMDPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
@@ -647,7 +723,7 @@ bool Application::CreatePeraPipelineState()
 	renderState.depthTest = false;
 	renderState.depthWrite = false;
 
-	mPeraPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList);
+	mPeraPipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList, mRTVFormat);
 	if (!mPeraPipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
@@ -679,7 +755,7 @@ bool Application::CreateSpritePipelineState()
 	renderState.depthTest = false;
 	renderState.depthWrite = false;
 
-	mSpritePipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList);
+	mSpritePipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPeraRootSignature, renderState, shaderList, mRTVFormat);
 	if (!mSpritePipelineState)
 	{
 		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
@@ -691,7 +767,37 @@ bool Application::CreateSpritePipelineState()
 
 bool Application::CreatePrimitivePipelineState()
 {
-	return false;
+	{
+		mInputLayoutDescs.clear();
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "POSITION"		, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "NORMAL"			, 0, DXGI_FORMAT_R32G32B32_FLOAT	, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "TEXCOORD"		, 0, DXGI_FORMAT_R32G32_FLOAT		, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 0, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 1, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 2, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+		mInputLayoutDescs.push_back(D3D12_INPUT_ELEMENT_DESC{ "INSTANCE_MATRIX"	, 3, DXGI_FORMAT_R32G32B32A32_FLOAT,	1,	D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_INSTANCE_DATA, 1 });
+	}
+	ShaderList shaderList;
+	shaderList.VS = mVertexShaderClass;
+	shaderList.PS = mPixelShaderClass;
+
+	RenderState renderState;
+	renderState.alphaBlendType = AlphaBlendType::Blend;
+	renderState.depthTest = true;
+	renderState.depthWrite = true;
+	renderState.cullingType = CullingType::Double;
+	renderState.depthFunc = D3D12_COMPARISON_FUNC_LESS;
+
+	mPrimitivePipelineState = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPrimitiveRootSignature, renderState, shaderList, mRTVFormat);
+	mPrimitiveShadowPSO = PipelineStateObject::Create(mDevice, mInputLayoutDescs, mPrimitiveRootSignature, renderState, shaderList, std::vector<DXGI_FORMAT>());
+	if (!mPrimitivePipelineState)
+	{
+		DebugLayer::GetInstance().PrintDebugMessage("Failed Create PipelineObject.\n");
+		return false;
+	}
+
+	return true;
 }
 
 bool Application::CreateCommandList()
@@ -720,16 +826,18 @@ void Application::CreateCamera()
 		Math::Vector3(0.0f, 10.0f, 0.0f) - Math::Vector3(0.0f, 30.0f, -50.0f),
 		ProjectionType::Perspective,
 		projParam, mDevice);
+	mDx12Camera->BindDescriptorHeap(mRootSignature, 0);
+	mDx12Camera->BindDescriptorHeap(mPrimitiveRootSignature, 0);
 }
 
 void Application::LoadPMD()
 {
 	mModelLoader = PMDLoader::Create(mDevice, "Resource/Model/Toon");
 	//mModelData = mModelLoader->LoadModel("Resource/Model/博麗霊夢/reimu_G02.pmd", mPMDPipelineState);
-	//mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState);
+	mModelData = mModelLoader->LoadModel("Resource/Model/初音ミク.pmd", mPMDPipelineState, mPMDShadowPSO, mRootSignature);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/我那覇響v1.0/我那覇響v1.pmd", mPMDPipelineState);
 	//mModelData = mModelLoader->LoadModel("Resource/Model/MMD_Default/初音ミクmetal.pmd", mPMDPipelineState);
-	mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd", mPMDPipelineState);
+	//mModelData = mModelLoader->LoadModel("Resource/Model/hibari/雲雀Ver1.10.pmd", mPMDPipelineState, mRootSignature);
 	if (!mModelData)
 	{
 		return;
@@ -748,7 +856,7 @@ void Application::LoadPMX()
 	srand((unsigned int)time(0));
 	for (auto &model : mInstancingTestModels)
 	{
-		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx", mPMXPipelineState);
+		model = mPMXModelLoader->LoadModel("Resource/Model/Mirai_Akari_v1.0/MiraiAkari_v1.0.pmx", mPMXPipelineState, mPMXShadowPSO, mRootSignature);
 		//model = mPMXModelLoader->LoadModel("Resource/Model/KizunaAI_ver1.01/kizunaai/kizunaai.pmx", mPMXPipelineState);
 		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx", mPMXPipelineState);
 		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx", mPMXPipelineState);
@@ -772,9 +880,10 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
-	mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
+	//mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/charge.vmd");
+	mAnimationData = loader->Load("Resource/Motion/Koikaze_V2/Koikaze_V2.vmd");
 }
 
 void Application::UpdateMatrix()
@@ -795,11 +904,9 @@ void Application::_DebugCreatePeraPolyData()
 
 	mPeraVert = VertexBuffer::Create(mDevice, verts, sizeof(PeraVertex), 4);
 
-	mPeraDescHeap = DescriptorHeap::Create(mDevice, 2);
+	mPeraDescHeap = DescriptorHeap::Create(mDevice, 1);
 	auto rtTexture = mRenderTarget->GetRenderTexture(2);
 	mPeraDescHeap->SetTexture(rtTexture, 0);
-	mDepthTexture = Texture::Create(mDepthBuffer);
-	mPeraDescHeap->SetTexture(mDepthTexture, 1);
 }
 
 bool Application::_DebugCreateSprite()
@@ -824,19 +931,34 @@ bool Application::CreateDirectionalLight()
 	ProjectionParam projParam;
 	projParam.nearZ = 0.03f;
 	projParam.farZ = 1000.f;
-	projParam.width = 512.f;
-	projParam.height = 512.f;
-	mDirectionalLight = Dx12Camera::Create(Math::Vector3(50.f, 50.f, -50.f), Math::Vector3(-0.41f, -0.82f, 0.41f), ProjectionType::Orthographic, projParam, mDevice);
+	projParam.width = 64.f;
+	projParam.height = 64.f;
+	mDirectionalLight = Dx12Camera::Create(Math::Vector3(100, 100, -300), Math::Vector3(-1.f, -1.f, 3.f), ProjectionType::Orthographic, projParam, mDevice);
 	if (!mDirectionalLight)
 	{
 		false;
 	}
 
 	mDirectionalLight->UpdateMatrix();
+	mDirectionalLight->BindDescriptorHeap(mPrimitiveRootSignature, 1);
+	mDirectionalLight->BindDescriptorHeap(mRootSignature, 1);
 
 	return true;
 }
 
 void Application::CreatePrimitive()
 {
+	PrimitiveCreator::GetInstance().Initialize(mDevice, mPrimitivePipelineState, mPrimitiveShadowPSO, mPrimitiveRootSignature);
+	mPlane = PrimitiveCreator::GetInstance().CreatePlane(Math::Vector2(100.f, 100.f));
+}
+
+void Application::CreateShadowMap()
+{
+	mShadowDepth = DepthBuffer::Create(mDevice, 1024, 1024, L"ShadowMap");
+	mDepthTexture = Texture::Create(mShadowDepth);
+	mShadowMapHeap = DescriptorHeap::Create(mDevice, 2);
+	mShadowMapHeap->SetBindHeapIndex(0);
+	mShadowMapHeap->SetTexture(TextureManager::GetInstance().GetTexture(TextureManager::WHITE_TEXTURE), 0);
+	mShadowMapHeap->SetTexture(mDepthTexture, 1);
+	mPrimitiveRootSignature->SetBindDescriptorHeap(2, mShadowMapHeap);
 }

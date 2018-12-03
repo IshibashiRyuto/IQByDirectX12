@@ -2,6 +2,9 @@
 #include "../Dx12/DescriptorHeap.h"
 #include "../Dx12/ConstantBuffer.h"
 #include "../Dx12/GraphicsCommandList.h"
+#include "../Dx12/RootSignature.h"
+
+using namespace Math;
 
 /* ’è”’è‹` */
 namespace
@@ -22,6 +25,7 @@ Dx12Camera::Dx12Camera(
 {
 	UpdateMatrix();
 	mCameraHeap->SetConstantBufferView(mCameraDataBuffer->GetConstantBufferView(), 0);
+	mCameraHeap->SetBindHeapIndex(0);
 }
 
 Dx12Camera::~Dx12Camera()
@@ -46,10 +50,10 @@ void Dx12Camera::UpdateMatrix()
 		data.viewMat = mViewMat;
 		data.projMat = mProjMat;
 		data.wvpMat = mWorldMatrix * mViewMat * mProjMat;
-		data.eyePos = mPosition;
-		data.eyeDir = (mDirection * Math::Quaternion(Z_AXIS) * Math::CreateConjugateQuaternion(mDirection)).v;
-		data.right = Math::Cross(mUpper, data.eyeDir);
-		data.upper = Math::Cross(data.eyeDir, data.right);
+		data.eyePos = Vector4(mPosition);
+		data.eyeDir = Vector4( (mDirection * Math::Quaternion(Z_AXIS) * Math::CreateConjugateQuaternion(mDirection)).v );
+		data.right = Vector4( Math::Cross(mUpper, data.eyeDir) );
+		data.upper = Vector4( Math::Cross(data.eyeDir, data.right) );
 		mCameraDataBuffer->SetData(&data, sizeof(data));
 		mIsUpdate = false;
 	}
@@ -65,4 +69,9 @@ void Dx12Camera::SetCameraData(std::shared_ptr<GraphicsCommandList> commandList,
 {
 	mCameraHeap->BindGraphicsCommandList(commandList->GetCommandList());
 	mCameraHeap->BindRootDescriptorTable(rootParamIndex, 0);
+}
+
+void Dx12Camera::BindDescriptorHeap(std::shared_ptr<RootSignature> rootSignature, int rootParamIndex)
+{
+	rootSignature->SetBindDescriptorHeap(rootParamIndex, mCameraHeap);
 }

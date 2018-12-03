@@ -11,22 +11,34 @@ cbuffer mat : register(b0)
     float4x4 world;         // world行列
     float4x4 view;          // view行列
     float4x4 projection;    // projection行列	
-    float3 eyePos;          // 視点
-    float3 eyeDir;          // 視線ベクトル
-    float upper;            // 上方向ベクトル
-    float right;            // 右方向ベクトル
+    float4 eyePos;          // 視点
+    float4 eyeDir;          // 視線ベクトル
+    float4 upper;            // 上方向ベクトル
+    float4 right;            // 右方向ベクトル
 }
 
-cbuffer material : register(b1)
+cbuffer light : register(b1)
 {
-    float4 diffuseColor;
-    float4 specularColor;
-    float3 ambientColor;
+    float4x4 lightWvp; // wvp行列
+    float4x4 lightWorld; // world行列
+    float4x4 lightView; // view行列
+    float4x4 lightProjection; // projection行列
+    float4 lightEyePos; // 視点
+    float4 lightEyeDir; // 視線ベクトル
+    float4 lightUpper; // 上方向ベクトル
+    float4 lightRight; // 右方向ベクトル
 }
 
 cbuffer boneMatrix : register(b2)
 {
-	float4x4 boneMatrix[256];
+    float4x4 boneMatrix[512];
+}
+
+cbuffer material : register(b3)
+{
+    float4 diffuseColor;
+    float4 specularColor;
+    float3 ambientColor;
 }
 
 struct VSInput
@@ -100,12 +112,12 @@ VSOutput VSMain(VSInput input)
 
 float4 PSMain(PSInput input) : SV_Target
 {
-	float3 light = normalize(float3(-0.41f, -0.82f, 0.41f));
+    float3 light = lightEyeDir.xyz;
 	float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightDiffuseColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightAmbientColor = float3(1.0f, 1.0f, 1.0f);
 
-    float3 vray = normalize(input.origPosition - eyePos);
+    float3 vray = normalize(input.origPosition - eyePos.xyz);
 	
     float brightness = dot(input.normal, -light);
     
@@ -130,7 +142,7 @@ float4 PSMain(PSInput input) : SV_Target
 
 
 	// スフィアマップ用uv計算
-    float3 vrayAxisX = normalize(cross(vray, upper));
+    float3 vrayAxisX = normalize(cross(vray, upper.xyz));
     float3 vrayAxisY = normalize(cross(vray, vrayAxisX));
 	float2 sphereUV = float2(dot(vrayAxisX, input.normal), dot(vrayAxisY, input.normal));
 	sphereUV = sphereUV * float2(0.5, -0.5) + float2(0.5f, 0.5f);

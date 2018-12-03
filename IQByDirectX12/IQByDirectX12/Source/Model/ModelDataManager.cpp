@@ -4,7 +4,7 @@
 #include <DirectXMath.h>
 
 
-void ModelDataManager::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, bool isReset)
+void ModelDataManager::Draw(std::shared_ptr<GraphicsCommandList> graphicsCommandList, bool isReset)
 {
 	auto instancingDataMap = mInstancingDataManager.GetInstanceDataAll();
 	for (auto tData : mData)
@@ -25,7 +25,7 @@ void ModelDataManager::Draw(ComPtr<ID3D12GraphicsCommandList> graphicsCommandLis
 	}
 }
 
-void ModelDataManager::DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsCommandList, bool isReset)
+void ModelDataManager::DrawShadow(std::shared_ptr<GraphicsCommandList> graphicsCommandList, bool isReset)
 {
 	auto instancingDataMap = mInstancingDataManager.GetInstanceDataAll();
 	for (auto tData : mData)
@@ -38,7 +38,7 @@ void ModelDataManager::DrawNoMat(ComPtr<ID3D12GraphicsCommandList> graphicsComma
 			continue;
 		}
 		modelData->Update();
-		modelData->DrawNoMat(graphicsCommandList, instancingDataMap[modelHandle]);
+		modelData->DrawShadow(graphicsCommandList, instancingDataMap[modelHandle]);
 		if (isReset)
 		{
 			mInstancingDataManager.ResetInstanceData(modelHandle);

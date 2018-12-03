@@ -13,6 +13,7 @@
 class Device;
 class Model;
 class PipelineStateObject;
+class RootSignature;
 
 /**
 *	@class	PrimitiveCreator
@@ -37,8 +38,10 @@ public:
 	*
 	*	@param[in]	device			: dx12デバイス
 	*	@param[in]	pipelineState	: プリミティブ用パイプラインステート
+	*	@param[in]	rootSignature	: プリミティブ用ルートシグネチャ
 	*/
-	void Initialize(std::shared_ptr<Device> device, std::shared_ptr<PipelineStateObject> pipelineState);
+	void Initialize(std::shared_ptr<Device> device, std::shared_ptr<PipelineStateObject> pipelineState,
+		std::shared_ptr<PipelineStateObject> shadowPSO, std::shared_ptr<RootSignature> rootSignature);
 
 	/**
 	*	@brief	床を生成する
@@ -67,5 +70,7 @@ private:
 	bool mIsInit{ false };									//! 初期化処理が終了しているか
 	std::shared_ptr<Device> mDevice;						//! デバイス
 	std::shared_ptr<PipelineStateObject> mPipelineState;	//! プリミティブ用パイプラインステート
+	std::shared_ptr<RootSignature> mRootSignature;			//! ルートシグネチャ
+	std::shared_ptr<PipelineStateObject> mShadowPSO;		//! 深度書き込み用
 };
 

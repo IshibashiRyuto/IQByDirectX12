@@ -26,10 +26,11 @@ std::shared_ptr<PipelineStateObject> PipelineStateObject::Create(std::shared_ptr
 
 std::shared_ptr<PipelineStateObject> PipelineStateObject::Create(
 	std::shared_ptr<Device> device,
-	const std::vector<D3D12_INPUT_ELEMENT_DESC> inputLayout,
+	const std::vector<D3D12_INPUT_ELEMENT_DESC>& inputLayout,
 	std::shared_ptr<RootSignature> rootSignature,
 	const RenderState & renderState,
-	const ShaderList & shaderList)
+	const ShaderList & shaderList,
+	const std::vector<DXGI_FORMAT>& rtvFormat)
 {
 	//	レンダリングステートからパイプラインを構築して取得
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC pipelineStateDesc = renderState.GetPipelineStateDesc();
@@ -45,6 +46,12 @@ std::shared_ptr<PipelineStateObject> PipelineStateObject::Create(
 	pipelineStateDesc.SampleDesc.Count = 1;
 	pipelineStateDesc.SampleDesc.Quality = 0;
 	pipelineStateDesc.SampleMask = UINT_MAX;
+	pipelineStateDesc.NumRenderTargets = rtvFormat.size();
+	for (unsigned int i = 0; i < 8; ++i)
+	{
+		auto format = i < rtvFormat.size() ? rtvFormat.at(i) : DXGI_FORMAT_UNKNOWN;
+		pipelineStateDesc.RTVFormats[i] = format;
+	}
 
 	// 頂点レイアウトの設定
 	pipelineStateDesc.InputLayout.NumElements = static_cast<UINT>(inputLayout.size());

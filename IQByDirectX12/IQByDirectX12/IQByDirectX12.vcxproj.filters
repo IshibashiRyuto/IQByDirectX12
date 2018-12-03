@@ -338,5 +338,6 @@
     <FxCompile Include="Resource\Shader\PMDModelShaderVS.hlsl" />
     <FxCompile Include="Resource\Shader\PMXModelShaderVS.hlsl" />
     <FxCompile Include="Resource\Shader\PMXModelShaderPS.hlsl" />
+    <FxCompile Include="Resource\Shader\3DPrimitiveShadow.hlsl" />
   </ItemGroup>
 </Project>
