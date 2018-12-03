@@ -18,38 +18,12 @@ class RenderTargetBuffer :
 {
 public:
 	/**
-	*	@brief	コンストラクタ
-	*
-	*	@param[in]	device		: dx12デバイス
-	*	@param[in]	width		: 横幅
-	*	@param[in]	height		: 縦幅
-	*	@param[in]	format		: フォーマット
-	*	@param[in]	clearValue	: クリアカラー
-	*	@param[out] result		: バッファの生成結果
-	*/
-	RenderTargetBuffer(std::shared_ptr<Device> device,
-		unsigned int width,
-		unsigned int height,
-		const std::wstring& bufferName,
-		DXGI_FORMAT format,
-		const D3D12_CLEAR_VALUE& clearValue,
-		HRESULT & result);
-	
-	/**
-	*	@brief	コンストラクタ
-	*
-	*	@param[in]	buffer	: 構築済みバッファ
-	*	@param[in]	state	: 現在のバッファステート
-	*/
-	RenderTargetBuffer(ComPtr<ID3D12Resource> buffer, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE& clearValue);
-
-	/**
 	*	@brief	デストラクタ
 	*/
 	~RenderTargetBuffer();
 
 	/**
-	*	@brief	RenderTargetBufferを作成する
+	*	@brief		RenderTargetBufferを作成する
 	*
 	*	@param[in]	device		: dx12デバイス
 	*	@param[in]	width		: バッファ横幅
@@ -78,6 +52,8 @@ public:
 
 	/**
 	*	@brief	RTV情報を取得する
+	*
+	*	@return	レンダーターゲットのクリア値
 	*/
 	const D3D12_RENDER_TARGET_VIEW_DESC & GetRenderTargetViewDesc() const;
 
@@ -97,5 +73,32 @@ private:
 	*	@brief	レンダーターゲットビュー情報を構築する
 	*/
 	void ConstructRTVDesc();
+
+	/**
+	*	@brief	コンストラクタ
+	*
+	*	@param[in]	device		: dx12デバイス
+	*	@param[in]	width		: 横幅
+	*	@param[in]	height		: 縦幅
+	*	@param[in]	format		: フォーマット
+	*	@param[in]	clearValue	: クリアカラー
+	*	@param[out] result		: バッファの生成結果
+	*/
+	RenderTargetBuffer(std::shared_ptr<Device> device,
+		unsigned int width,
+		unsigned int height,
+		const std::wstring& bufferName,
+		DXGI_FORMAT format,
+		const D3D12_CLEAR_VALUE& clearValue,
+		HRESULT & result);
+
+	/**
+	*	@brief	コンストラクタ
+	*
+	*	@param[in]	buffer	: 構築済みバッファ
+	*	@param[in]	state	: 現在のバッファステート
+	*/
+	RenderTargetBuffer(ComPtr<ID3D12Resource> buffer, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE& clearValue);
+
 };
 

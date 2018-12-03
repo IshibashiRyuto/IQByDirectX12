@@ -75,7 +75,7 @@ float4 PSMain(PSInput input) : SV_Target
     float brightness = saturate(dot(input.normal, -light));
 
     float2 shadowMapUV = (float2(1, 1) + input.lightDepth.xy * float2(1, -1)) * 0.5;
-    if (shadowMapUV.x > 0 && shadowMapUV.x < 1 && shadowMapUV.y > 0 && shadowMapUV.y < 1)
+    //if (shadowMapUV.x > 0 && shadowMapUV.x < 1 && shadowMapUV.y > 0 && shadowMapUV.y < 1)
     {
         if (shadowMap.Sample(smp, shadowMapUV) + 0.00005 < input.lightDepth.z)
         {

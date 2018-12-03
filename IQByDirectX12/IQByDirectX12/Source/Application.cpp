@@ -197,102 +197,14 @@ bool Application::Initialize(const Window & window)
 
 void Application::Render()
 {
-	UpdateMatrix();
-
-	////debug
-	static float t = 0;
-
-	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f, 0.f, 0.f));
-	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
-	static Math::Vector3 pos(0.0f, 0.0f, 0.0f);
-	static float speed = 0.05f;
 
 	mKeyboard->UpdateKeyState();
 
+	ModelMove();
 
+	CameraMove();
 
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
-	{
-		rot *= Math::CreateRotAxisQuaternion(rotAxis, 0.03f);
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
-	{
-		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.03f);
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
-	{
-		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.03f);
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
-	{
-		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.03f);
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad8))
-	{
-		pos.y += speed;
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad2))
-	{
-		pos.y -= speed;
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad4))
-	{
-		pos.x -= speed;
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad6))
-	{
-		pos.x += speed;
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad7))
-	{
-		pos.z -= speed;
-	}
-	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad9))
-	{
-		pos.z += speed;
-	}
-
-	static bool isStop = true;
-
-	if (mKeyboard->IsKeyTrigger(VirtualKeyIndex::Z))
-	{
-		isStop = !isStop;
-	}
-
-	if (!isStop)
-	{
-
-		t += 0.5f;
-		if (t > mAnimationData->GetDuration())
-		{
-			t = 0;
-		}
-	}
-	int i = 0;
-	// PMX Instance Draw
-	for (auto model : mInstancingTestModels)
-	{
-		if (i++ == 5)
-		{
-			model->SetRotation(rot);
-			model->SetPosition(pos);
-			mAnimationData->SetPose(static_cast<int>(t), model->_DebugGetPose());
-			//mAnimationData->SetPose(50, model->_DebugGetPose());
-			model->Draw();
-		}
-	}
-
-	// PMD Draw
-	mModelData->SetRotation(rot);
-	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f, 0.0f));
-	//mAnimationData->SetPose(t, mModelData->_DebugGetPose());
-	mModelData->Draw();
-
-	//mSprite->Draw();
-
-	mPlane->Draw();
-
-	// endDebug
+	//LightMove();
 
 	// コマンドリスト初期化
 	mCommandList->Reset();
@@ -576,7 +488,7 @@ bool Application::ReadPeraShader()
 {
 	mVertexShaderClass = Shader::Create(L"Resource/Shader/pera.hlsl", "VSMain", "vs_5_0");
 
-	mPixelShaderClass = Shader::Create(L"Resource/Shader/Distortion.hlsl", "PSMain", "ps_5_0");
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/SSAA.hlsl", "PSMain", "ps_5_0");
 
 
 	if (!mVertexShaderClass || !mPixelShaderClass)
@@ -850,7 +762,7 @@ void Application::LoadPMX()
 	mPMXModelLoader = PMXLoader::Create(mDevice, "Resource/Model/Toon");
 
 
-	mInstancingTestModels.resize(100);
+	mInstancingTestModels.resize(10);
 	float x = -10.0f;
 	float z = 0.0f;
 	srand((unsigned int)time(0));
@@ -861,7 +773,7 @@ void Application::LoadPMX()
 		//model = mPMXModelLoader->LoadModel("Resource/Model/フェネック/フェネック.pmx", mPMXPipelineState);
 		//model = mPMXModelLoader->LoadModel("Resource/Model/TokinoSora_mmd_v.1.3/TokinoSora_2017.pmx", mPMXPipelineState);
 	}
-
+/*
 	int modelCount = 0;
 	for (int x = 0; z < 10; ++z)
 	{
@@ -870,7 +782,7 @@ void Application::LoadPMX()
 			mInstancingTestModels[modelCount]->SetPosition(Math::Vector3(x * 15.0f, 0.0f, z*15.0f));
 			++modelCount;
 		}
-	}
+	}*/
 }
 
 void Application::LoadMotion()
@@ -880,16 +792,10 @@ void Application::LoadMotion()
 	//mAnimationData =loader->Load("Resource/Motion/腕捻り.vmd");
 	//mAnimationData =loader->Load("Resource/Motion/応援ループモーション素材161025/10_チョコレートディスコっぽい.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/応援ループモーション素材161025/01_ジャンプ手拍子01.vmd");
-	//mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
+	mAnimationData = loader->Load("Resource/Model/博麗霊夢/モーション/ヤゴコロダンス.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/charge.vmd");
-	mAnimationData = loader->Load("Resource/Motion/Koikaze_V2/Koikaze_V2.vmd");
-}
-
-void Application::UpdateMatrix()
-{
-	//mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.0f, Math::F_PI / 60.0f, 0.0f)));
-	mDx12Camera->UpdateMatrix();
+	//mAnimationData = loader->Load("Resource/Motion/Koikaze_V2/Koikaze_V2.vmd");
 }
 
 void Application::_DebugCreatePeraPolyData()
@@ -931,8 +837,8 @@ bool Application::CreateDirectionalLight()
 	ProjectionParam projParam;
 	projParam.nearZ = 0.03f;
 	projParam.farZ = 1000.f;
-	projParam.width = 64.f;
-	projParam.height = 64.f;
+	projParam.width = 128.f;
+	projParam.height = 128.f;
 	mDirectionalLight = Dx12Camera::Create(Math::Vector3(100, 100, -300), Math::Vector3(-1.f, -1.f, 3.f), ProjectionType::Orthographic, projParam, mDevice);
 	if (!mDirectionalLight)
 	{
@@ -961,4 +867,174 @@ void Application::CreateShadowMap()
 	mShadowMapHeap->SetTexture(TextureManager::GetInstance().GetTexture(TextureManager::WHITE_TEXTURE), 0);
 	mShadowMapHeap->SetTexture(mDepthTexture, 1);
 	mPrimitiveRootSignature->SetBindDescriptorHeap(2, mShadowMapHeap);
+}
+
+void Application::ModelMove()
+{
+	static float t = 0;
+
+	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f, 0.f, 0.f));
+	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
+	static Math::Vector3 pos(0.0f, 0.0f, 0.0f);
+	static float speed = 0.05f;
+
+
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::C))
+	{
+		rot *= Math::CreateRotAxisQuaternion(rotAxis, 0.03f);
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::V))
+	{
+		rot *= Math::CreateRotAxisQuaternion(rotAxis, -0.03f);
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Z))
+	{
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), 0.03f);
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::X))
+	{
+		rot *= Math::CreateRotAxisQuaternion(Math::Vector3(0.f, 1.f, 0.f), -0.03f);
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
+	{
+		pos.y += speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
+	{
+		pos.y -= speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
+	{
+		pos.x -= speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
+	{
+		pos.x += speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Q))
+	{
+		pos.z -= speed;
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::E))
+	{
+		pos.z += speed;
+	}
+
+	static bool isStop = false;
+
+	if (mKeyboard->IsKeyTrigger(VirtualKeyIndex::Space))
+	{
+		isStop = !isStop;
+	}
+
+	if (!isStop)
+	{
+
+		t += 0.5f;
+		if (t > mAnimationData->GetDuration())
+		{
+			t = 0;
+		}
+		mAnimationData->SetPose(static_cast<int>(t), mInstancingTestModels[0]->_DebugGetPose());
+		
+	}
+	int i = 0;
+	// PMX Instance Draw
+	for (auto model : mInstancingTestModels)
+	{
+		{
+			model->SetRotation(rot);
+			model->SetPosition(pos + Math::Vector3(-10.f * (i % 5), 0.f, 10.f * (i / 5)));
+			model->Draw();
+		}
+		++i;
+	}
+
+	// PMD Draw
+	mModelData->SetRotation(rot);
+	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f, 0.0f));
+	mModelData->Draw();
+
+	mPlane->Draw();
+}
+
+void Application::CameraMove()
+{
+
+	static float speed = 0.5f;
+
+	if(mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad8))
+	{
+		mDx12Camera->Move(Math::Vector3(0, speed, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad4))
+	{
+		mDx12Camera->Move(Math::Vector3(-speed, 0, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad2))
+	{
+		mDx12Camera->Move(Math::Vector3(0, -speed, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad6))
+	{
+		mDx12Camera->Move(Math::Vector3(speed, 0, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad1))
+	{
+		mDx12Camera->Move(Math::Vector3(0, 0, speed));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad3))
+	{
+		mDx12Camera->Move(Math::Vector3(0, 0, -speed));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad9))
+	{
+		mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.f, Math::F_PI/ 90.f, 0.f)));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Numpad7))
+	{
+		mDx12Camera->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.f, -Math::F_PI / 90.f, 0.f)));
+	}
+	
+	mDx12Camera->UpdateMatrix();
+}
+
+void Application::LightMove()
+{
+	static float speed = 0.5f;
+
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::I))
+	{
+		mDirectionalLight->Move(Math::Vector3(0, speed, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::J))
+	{
+		mDirectionalLight->Move(Math::Vector3(-speed, 0, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::K))
+	{
+		mDirectionalLight->Move(Math::Vector3(0, -speed, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::L))
+	{
+		mDirectionalLight->Move(Math::Vector3(speed, 0, 0));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::U))
+	{
+		mDirectionalLight->Move(Math::Vector3(0, 0, speed));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::O))
+	{
+		mDirectionalLight->Move(Math::Vector3(0, 0, -speed));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::N))
+	{
+		mDirectionalLight->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.f, Math::F_PI / 90.f, 0.f)));
+	}
+	if (mKeyboard->IsKeyDown(VirtualKeyIndex::M))
+	{
+		mDirectionalLight->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.f, -Math::F_PI / 90.f, 0.f)));
+	}
+
+	mDirectionalLight->UpdateMatrix();
 }

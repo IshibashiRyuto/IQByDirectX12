@@ -145,8 +145,6 @@ private:
 	/// @retval ture: 生成成功, false: 生成失敗
 	bool CreateRootSignature();
 
-	/// @fn _DebugCreatePMDRootSignature
-	bool _DebugCreatePMDRootSignature();
 
 	bool CreatePeraRootSignature();
 
@@ -201,8 +199,6 @@ private:
 	/// @brief モーションデータをロードする
 	void LoadMotion();
 
-	/// @brief 行列情報を更新する
-	void UpdateMatrix();
 
 	struct PeraVertex
 	{
@@ -230,5 +226,12 @@ private:
 	*	@brief	シャドウマップヒープを作成する
 	*/
 	void CreateShadowMap();
+
+	void ModelMove();
+
+	void CameraMove();
+
+	void LightMove();
+
 };
 

@@ -334,10 +334,5 @@
     <FxCompile Include="Resource\Shader\SSAA.hlsl" />
     <FxCompile Include="Resource\Shader\Distortion.hlsl" />
     <FxCompile Include="Resource\Shader\Sprite.hlsl" />
-    <FxCompile Include="Resource\Shader\PMDModelShaderPS.hlsl" />
-    <FxCompile Include="Resource\Shader\PMDModelShaderVS.hlsl" />
-    <FxCompile Include="Resource\Shader\PMXModelShaderVS.hlsl" />
-    <FxCompile Include="Resource\Shader\PMXModelShaderPS.hlsl" />
-    <FxCompile Include="Resource\Shader\3DPrimitiveShadow.hlsl" />
   </ItemGroup>
 </Project>

@@ -28,10 +28,8 @@ std::shared_ptr<ConstantBuffer> ConstantBuffer::Create(std::shared_ptr<Device> d
 	}
 
 	// 定数バッファビューの作成
-	if (!constantBuffer->CreateConstantBufferView())
-	{
-		return nullptr;
-	}
+	constantBuffer->CreateConstantBufferView();
+	
 
 	return constantBuffer;
 }
@@ -80,9 +78,8 @@ bool ConstantBuffer::CreateConstantBuffer(const ComPtr<ID3D12Device> device)
 	return true;
 }
 
-bool ConstantBuffer::CreateConstantBufferView()
+void ConstantBuffer::CreateConstantBufferView()
 {
 	mCBVDesc.BufferLocation = mBuffer->GetGPUVirtualAddress();
 	mCBVDesc.SizeInBytes = mElementSize;
-	return true;
 }

@@ -65,12 +65,6 @@ void Dx12Camera::SetWorldMatrix(const Math::Matrix4x4 & worldMat)
 	mIsUpdate = true;
 }
 
-void Dx12Camera::SetCameraData(std::shared_ptr<GraphicsCommandList> commandList, int rootParamIndex)
-{
-	mCameraHeap->BindGraphicsCommandList(commandList->GetCommandList());
-	mCameraHeap->BindRootDescriptorTable(rootParamIndex, 0);
-}
-
 void Dx12Camera::BindDescriptorHeap(std::shared_ptr<RootSignature> rootSignature, int rootParamIndex)
 {
 	rootSignature->SetBindDescriptorHeap(rootParamIndex, mCameraHeap);

@@ -28,17 +28,6 @@ class DepthBuffer :
 {
 public:
 	/**
-	*	@brief	コンストラクタ
-	*/
-	DepthBuffer( std::shared_ptr<Device> device,
-		unsigned int width,
-		unsigned int height,
-		const D3D12_CLEAR_VALUE& clearValue,
-		const std::wstring& bufferName,
-		HRESULT& result
-		);
-
-	/**
 	*	@brief	デストラクタ
 	*/
 	~DepthBuffer();
@@ -113,5 +102,17 @@ private:
 	*	@param[in]	device	: dx12デバイス
 	*/
 	void ConstructDSV(std::shared_ptr<Device> device);
+
+	/**
+	*	@brief	コンストラクタ
+	*/
+	DepthBuffer(std::shared_ptr<Device> device,
+		unsigned int width,
+		unsigned int height,
+		const D3D12_CLEAR_VALUE& clearValue,
+		const std::wstring& bufferName,
+		HRESULT& result
+	);
+
 };
 

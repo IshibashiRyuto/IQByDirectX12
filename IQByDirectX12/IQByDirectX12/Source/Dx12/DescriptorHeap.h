@@ -1,8 +1,8 @@
 /*
 	@file	DescriptorHeap.h
-	@brief	DescriptorHeapクラスを記述する
+	@brief	DescriptorHeapクラスの宣言を記述する
 	@author	Ishibashi Ryuto
-	@date	2018/??/??	初版作成
+	@date	2018/08/23以前(詳細不明)	初版作成
 	@date	2018/11/24	DSV,RTV用ヒープの作成に対応
 						DSV,RTVのセットに対応
 	@date	2018/11/30	BindRootParameter, SetBindHeapIndexを追加
@@ -15,31 +15,55 @@
 #include <memory>
 
 
-/*クラス使用宣言*/
+/* クラス使用宣言 */
 using Microsoft::WRL::ComPtr;
 class Texture;
 class RenderTargetTexture;
 class Device;
 class GraphicsCommandList;
 
+/**
+*	@class	DescriptorHeap
+*	@brief	デスクリプタヒープクラス
+*
+*	シェーダにリソースの読み取り方法を教えるための情報である
+*	Descriptorを格納するDescriptorHeapのラッパークラス
+*	Descriptorはデータの見方をViewという形で具象化しており、
+*	そのViewをHeapに格納していき、ルートパラメータにバインドして読み取っていく
+*	そのため、バインド先のルートパラメータのインデックス等を情報として持つ
+*/
 class DescriptorHeap
 {
 public:
-	/// @brief	デストラクタ
+	/**
+	*	@brief	デストラクタ
+	*/
 	~DescriptorHeap();
 
-	/// @brief	ディスクリプタヒープの作成
-	/// @note DescriptorHeapはこのメソッドを通じてのみ作成可能
-	/// @param[in]	device		デバイス
-	/// @param[in]	desc		デスクリプタヒープの設定
-	/// @retval		生成成功	DescriptorHeapのポインタ
-	/// @retval		生成失敗	nullptr
+	/**
+	*	@brief	ディスクリプタヒープの作成
+	*
+	*	@param[in]	device		: デバイス
+	*	@param[in]	desc		: デスクリプタヒープの設定
+	*
+	*	@retval		生成成功	: DescriptorHeapのポインタ
+	*	@retval		生成失敗	: nullptr
+	*
+	*	@note DescriptorHeapはこのメソッドを通じてのみ作成可能
+	*/
 	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& desc);
 
-	/// @brief	ディスクリプタヒープの作成
-	/// @note DescriptorHeapはこのメソッドを通じてのみ作成可能
-	/// @param[in] device			デバイス
-	/// @param[in] descriptorNum	セット可能なデスクリプタの個数
+	/**
+	*	@brief	ディスクリプタヒープの作成
+	*
+	*	@param[in] device			: デバイス
+	*	@param[in] descriptorNum	: セット可能なデスクリプタの個数
+	*
+	*	@retval		生成成功		: DescriptorHeapのポインタ
+	*	@retval		生成失敗		: nullptr
+	*
+	*	@note DescriptorHeapはこのメソッドを通じてのみ作成可能
+	*/
 	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, UINT numDescriptors);
 
 	/**
@@ -49,37 +73,53 @@ public:
 	*	@param[in]	type			: ディスクリプタヒープタイプ
 	*	@param[in]	descriptorsNum	: セット可能なデスクリプタの個数
 	*	@param[in]	flag			: ヒープフラグ
+	*
+	*	@retval		生成成功		: DescriptorHeapのポインタ
+	*	@retval		生成失敗		: nullptr
 	*/
 	static std::shared_ptr<DescriptorHeap> Create(std::shared_ptr<Device> device, D3D12_DESCRIPTOR_HEAP_TYPE heapType, unsigned int descriptorsNum, D3D12_DESCRIPTOR_HEAP_FLAGS flag);
 
 	/**
 	*	@brief	コンスタントバッファビューをセットする
-	*	@param[in] constantBufferView	コンスタントバッファビュー
-	*	@param[in] constantBuffer		コンスタントバッファ
-	*	@param[in] index				ヒープのインデックス
+	*
+	*	@param[in] constantBufferView	: コンスタントバッファビュー
+	*	@param[in] constantBuffer		: コンスタントバッファ
+	*	@param[in] index				: ヒープのインデックス
 	*/
 	void SetConstantBufferView(const D3D12_CONSTANT_BUFFER_VIEW_DESC& constantBufferView, UINT index);
 
-	/// @brief	シェーダリソースビューをセットする
-	/// @param[in]	shaderResourceView	シェーダリソースビュー
-	/// @param[in]	shaderResource		シェーダリソース
-	/// @param[in] index				ヒープのインデックス
+	/**
+	*	@brief	シェーダリソースビューをセットする
+	*
+	*	@param[in]	shaderResourceView	: シェーダリソースビュー
+	*	@param[in]	shaderResource		: シェーダリソース
+	*	@param[in] index				: ヒープのインデックス
+	*/
 	void SetShaderResourceView(const D3D12_SHADER_RESOURCE_VIEW_DESC& shaderResourceView, ComPtr<ID3D12Resource> shaderResource, UINT index);
 
-	/// @brief	テクスチャ情報をセットする
-	/// @param[in]	texture			テクスチャ
-	/// @param[in]	index			ヒープのインデックス
+	/**
+	*	@brief	テクスチャ情報をセットする
+	*
+	*	@param[in]	texture		: テクスチャ
+	*	@param[in]	index		: ヒープのインデックス
+	*/
 	void SetTexture(std::shared_ptr<Texture> texture, UINT index);
 
-	/// @brief	テクスチャ情報をセットする
-	/// @param[in]	texture			テクスチャ
-	/// @param[in]	index			ヒープのインデックス
+	/**
+	*	@brief	テクスチャ情報をセットする
+	*
+	*	@param[in]	texture		: テクスチャ
+	*	@param[in]	index		: ヒープのインデックス
+	*/
 	void SetTexture(std::shared_ptr<RenderTargetTexture> texture, UINT index);
 
-	/// @brief	構造化バッファビューをセットする
-	/// @param[in]	unorderedAccessView	構造化バッファビュー
-	/// @param[in]	structuredBuffer	構造化バッファ
-	/// @param[in] index				ヒープのインデックス
+	/**
+	*	@brief	構造化バッファビューをセットする
+	*
+	*	@param[in]	unorderedAccessView	構造化バッファビュー
+	*	@param[in]	structuredBuffer	構造化バッファ
+	*	@param[in] index				ヒープのインデックス
+	*/
 	void SetUnorderedAccessView(const D3D12_UNORDERED_ACCESS_VIEW_DESC& unorderedAccessView, ComPtr<ID3D12Resource> structuredBuffer, UINT index);
 
 	/**
@@ -93,12 +133,15 @@ public:
 
 	/**
 	*	@brief	デスクリプタヒープをコマンドリストにバインドする
+	*
+	*	@param[in]	commandList	: バインド対象のコマンドリスト
 	*/
 	void BindGraphicsCommandList(ComPtr<ID3D12GraphicsCommandList> commandList);
 
 	/**
 	*	@brief	ディスクリプタテーブルとヒープをバインドする
-	*	@param[in]	rootParamIndex	: ルートパラメータのインデックス
+	*
+	*	@param[in]	rootParamIndex		: ルートパラメータのインデックス
 	*	@param[in]	descriptorHeapIndex	:	ヒープ側のインデックス
 	*/
 	void BindRootDescriptorTable(unsigned int rootParamIndex, unsigned int descriptorHeapIndex);
@@ -122,13 +165,19 @@ public:
 
 	/**
 	*	@brief	指定したインデックスのGPUハンドルを取得する
+	*
 	*	@param[in]	index	: 取得したいいハンドルのインデックス
+	*
+	*	@return	GPUハンドル
 	*/
 	D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle(UINT index) const;
 
 	/**
 	*	@brief	指定したインデックスのCPUハンドルを取得する
+	*
 	*	@param[in]	index	: 取得したいハンドルのインデックス
+	*
+	*	@return	CPUハンドル
 	*/
 	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle(UINT index) const;
 private:
@@ -144,7 +193,13 @@ private:
 
 	/*ローカルメソッド*/
 
-	/// コンストラクタ
+	/**
+	*	@brief	コンストラクタ
+	*
+	*	@param[in]	device		: dx12デバイス
+	*	@param[in]	heapDesc	: ヒープ構築情報
+	*	@param[out]	result		: ヒープの構築に成功したか
+	*/
 	DescriptorHeap(std::shared_ptr<Device> device, const D3D12_DESCRIPTOR_HEAP_DESC& heapDesc, HRESULT& result);
 
 };

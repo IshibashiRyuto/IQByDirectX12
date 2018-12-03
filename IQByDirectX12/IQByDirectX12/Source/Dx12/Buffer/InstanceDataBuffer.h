@@ -20,20 +20,6 @@ class InstanceDataBuffer :
 {
 public:
 	/**
-	*	@biref	コンストラクタ
-	*	@param[in]	device				: dx12デバイス
-	*	@param[in]	instanceDataSize	: インスタンスデータ一つ当たりのサイズ
-	*	@param[in]	maxInstanceCount	: 最大インスタンス数
-	*	@param[in]	bufferName			: バッファ名
-	*	@param[out]	result				: バッファの生成結果
-	*/
-	InstanceDataBuffer(std::shared_ptr<Device> device,
-		size_t instanceDataSize,
-		size_t maxInstanceCount,
-		const std::wstring& bufferName,
-		HRESULT& result);
-
-	/**
 	*	@biref	デストラクタ
 	*/
 	~InstanceDataBuffer();
@@ -83,5 +69,20 @@ private:
 	*	@biref	バッファをマップする
 	*/
 	void Map();
+
+	/**
+	*	@biref	コンストラクタ
+	*	@param[in]	device				: dx12デバイス
+	*	@param[in]	instanceDataSize	: インスタンスデータ一つ当たりのサイズ
+	*	@param[in]	maxInstanceCount	: 最大インスタンス数
+	*	@param[in]	bufferName			: バッファ名
+	*	@param[out]	result				: バッファの生成結果
+	*/
+	InstanceDataBuffer(std::shared_ptr<Device> device,
+		size_t instanceDataSize,
+		size_t maxInstanceCount,
+		const std::wstring& bufferName,
+		HRESULT& result);
+
 };
 

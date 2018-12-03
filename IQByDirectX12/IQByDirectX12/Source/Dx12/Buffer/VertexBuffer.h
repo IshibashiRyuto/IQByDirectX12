@@ -52,7 +52,8 @@ public:
 
 	/**
 	*	@brief	頂点バッファビューを取得する
-	*	@retval	頂点バッファビューへの参照
+	*
+	*	@return	頂点バッファビューへの参照
 	*/
 	const D3D12_VERTEX_BUFFER_VIEW& GetVertexBufferView() const;
 
@@ -74,6 +75,7 @@ protected:
 
 	/**
 	*	@brief	頂点バッファビューを構築する
+	*
 	*	@param[in]	dataSize	: データサイズ
 	*	@param[in]	dataCount	: データ数
 	*/
@@ -82,6 +84,7 @@ protected:
 
 	/**
 	*	@brief	コンストラクタ
+	*
 	*	@param[in]	device		: デバイス
 	*	@param[in]	dataSize	: データサイズ
 	*	@param[in]	dataCount	: データ数

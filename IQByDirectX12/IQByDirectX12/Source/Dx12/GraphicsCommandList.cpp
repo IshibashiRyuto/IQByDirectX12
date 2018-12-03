@@ -20,7 +20,7 @@ std::shared_ptr<GraphicsCommandList> GraphicsCommandList::Create(std::shared_ptr
 	return std::shared_ptr<GraphicsCommandList>( new GraphicsCommandList(device, commandListType, name) );
 }
 
-ComPtr<ID3D12GraphicsCommandList1> GraphicsCommandList::GetCommandList()
+ComPtr<ID3D12GraphicsCommandList1> GraphicsCommandList::GetCommandList() const
 {
 	return mCommandList;
 }

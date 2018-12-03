@@ -15,6 +15,10 @@
 class DepthBuffer;
 class RenderTargetBuffer;
 
+/**
+*	@class	Texture
+*	@brief	リソースをテクスチャとして扱うクラス
+*/
 class Texture :
 	public Dx12Resource
 {
