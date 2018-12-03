@@ -1,6 +1,6 @@
 /*
-	Model.h
-	ゲーム内のモデル毎に扱う情報の管理と描画等を行う
+	@file	Model.h
+	@brief	Modelクラスの宣言を記述する
 	@author Ishibashi Ryuto
 	@date
 	2018/09/03	初版作成
@@ -14,20 +14,20 @@
 #include <d3d12.h>
 #include <DirectXMath.h>
 #include <wrl.h>
-
-// 自作ヘッダインクルード
 #include "../Math/Math.h"
 
 // クラス使用宣言
 class ModelDataManager;
 class CommandList;
-/*Debug*/
 class DescriptorHeap;
 class Pose;
-/*DebugEnd*/
 using Microsoft::WRL::ComPtr;
 class InstancingDataManager;
 
+/**
+*	@class	Model
+*	@brief	ゲーム内のモデル毎に扱う情報の管理と描画等を行う
+*/
 class Model
 {
 public:
@@ -55,49 +55,73 @@ public:
 	*	@brief	モデルを複製する
 	*
 	*	@param[in]	model	: 複製するモデルデータ
+	*
+	*	@return		複製されたモデルデータ
+	*
+	*	TODO	: 一時実装保留
 	*/
 
-	/// @fn SetPosition
-	/// 位置を指定する
-	/// @param[in] position : モデル配置位置
+
+	/**
+	*	@brief	位置を指定する
+	*
+	*	@param[in] position : モデル配置位置
+	*/
 	void SetPosition(const Math::Vector3& position);
 
-	/// @fn SetRotation
-	/// モデルの回転を指定する
-	/// @param[in] rotation : 各軸回転角度
+	/**
+	*	@brief	モデルの回転を指定する
+	*
+	*	@param[in] rotation : 各軸回転角度
+	*/
 	void SetRotation(const Math::Vector3& rotation);
 
-	/// @fn SetRotation
-	/// モデルの回転を指定する
-	/// @param[in] rotQuaternion : 各軸回転角度(quaternion)
+	/**
+	*	モデルの回転を指定する
+	*	@param[in] rotQuaternion : 各軸回転角度(quaternion)
+	*/
 	void SetRotation(const Math::Quaternion& rotQuaternion);
 
-	/// @fn SetScale
-	/// モデルの拡縮率を指定する
-	/// @param scale : モデルスケール
+	/**
+	*	モデルの拡縮率を指定する
+	*	@param[in]	 scale	: モデルスケール
+	*/
 	void SetScale(const Math::Vector3& scale);
+
+	/**
+	*	モデルの拡縮率を指定する
+	*	@param[in]	 scale	: モデルスケール
+	*/
 	void SetScale(float scale);
 
-	/// @fn Draw
-	/// モデルの描画処理を行う
+	/**
+	*	@brief	モデルの描画処理を行う
+	*/
 	void Draw() const;
 
+	/**
+	*	@brief	デバッグ用のデスクリプタヒープ取得
+	*/
 	std::shared_ptr<DescriptorHeap> _DebugGetDescHeap();
 
+	/**
+	*	@brief	ポーズを取得する
+	*/
 	std::shared_ptr<Pose> _DebugGetPose();
 
 private:
 	// 変数宣言
-	Math::Vector3		mPosition;		// 位置
-	Math::Quaternion	mRotation;		// 回転
-	Math::Vector3		mScale;			// 拡縮
-	Math::Matrix4x4		mModelMatrix;	// モデル行列
-	int					mModelHandle;	// モデルハンドル
-	InstancingDataManager& mInstancingDataManager;// インスタンシングデータのマネージャ
+	Math::Vector3		mPosition;					//! 位置
+	Math::Quaternion	mRotation;					//! 回転
+	Math::Vector3		mScale;						//! 拡縮
+	Math::Matrix4x4		mModelMatrix;				//! モデル行列
+	int					mModelHandle;				//! モデルハンドル
+	InstancingDataManager& mInstancingDataManager;	//! インスタンシングデータのマネージャ
 
 	// ローカルメソッド定義
-	/// @fn CalcModelMatrix
-	/// 現在の位置、回転、拡縮からモデル行列を計算する
+	/**
+	*	@brief	現在の位置、回転、拡縮からモデル行列を計算する
+	*/
 	void CalcModelMatrix();
 };
 

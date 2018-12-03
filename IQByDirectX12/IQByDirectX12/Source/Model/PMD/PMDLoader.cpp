@@ -19,7 +19,7 @@ void PMDLoader::LoadShareToon(const std::string & toonFolderPath)
 	}
 }
 
-void PMDLoader::LoadToonData(FILE * fp, std::vector<int>& toonTextureHandle, const std::string& modelPath)
+void PMDLoader::LoadToonData(FILE * fp, const std::string& modelPath, std::vector<int>& toonTextureHandle)
 {
 	fseek(fp, 0, SEEK_SET);
 	// æ“ª‚©‚çƒwƒbƒ_î•ñ‚ğ“Ç‚İ”ò‚Î‚µ
@@ -197,7 +197,7 @@ std::shared_ptr<Model> PMDLoader::LoadModel(const std::string & filePath, std::s
 
 		// toonî•ñ“Ç‚İ‚İ(‰¼)
 		std::vector<int> toonTextureHandle;
-		LoadToonData(fp, toonTextureHandle, filePath);
+		LoadToonData(fp, filePath, toonTextureHandle);
 
 		fclose(fp);
 
