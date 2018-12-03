@@ -108,6 +108,7 @@ void TextureManager::UpdateTextureData()
 	mCommandList->Close();
 	mCommandQueue->ExecuteCommandList(mCommandList);
 	mCommandQueue->Signal();
+	mCommandList->Reset();
 }
 
 

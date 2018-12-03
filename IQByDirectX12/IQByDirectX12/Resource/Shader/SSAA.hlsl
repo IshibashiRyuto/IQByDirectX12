@@ -17,12 +17,12 @@ float4 PSMain(PSInput input) : SV_TARGET
     dx = 1.0f / size.x / 2.0f;
     dy = 1.0f / size.y / 2.0f;
 
-    float4 color = float4(0.0f, 0.0f, 0.0f, 0.0f);
+    float4 color = float4(0.0f, 0.0f, 0.0f, 1.0f);
 	
-    color += tex.Sample(smp, input.uv + float2(0.0f, 0.0f)) * 0.25f;
-    color += tex.Sample(smp, input.uv + float2(dx, 0.0f)) * 0.25f;
-    color += tex.Sample(smp, input.uv + float2(0.0f, dy)) * 0.25f;
-    color += tex.Sample(smp, input.uv + float2(dx, dy)) * 0.25f;
+    color.rgb += tex.Sample(smp, input.uv + float2(0.0f, 0.0f)).rgb * 0.25f;
+    color.rgb += tex.Sample(smp, input.uv + float2(dx, 0.0f)).rgb * 0.25f;
+    color.rgb += tex.Sample(smp, input.uv + float2(0.0f, dy)).rgb * 0.25f;
+    color.rgb += tex.Sample(smp, input.uv + float2(dx, dy)).rgb * 0.25f;
 
     saturate(color);
     

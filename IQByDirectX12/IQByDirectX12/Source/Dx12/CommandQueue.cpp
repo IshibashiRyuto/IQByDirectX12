@@ -9,6 +9,7 @@
 CommandQueue::CommandQueue()
 	: mCommandQueue(nullptr)
 	, mFenceEvent( CreateEvent(nullptr, false, false, nullptr))
+	, mFenceValue(0)
 {
 }
 
@@ -76,9 +77,11 @@ void CommandQueue::ExecuteCommandList(const std::vector<std::shared_ptr<Graphics
 
 void CommandQueue::Signal()
 {
+	
+	++mFenceValue;
+	HANDLE fenceEvent = CreateEvent(nullptr, false, false, nullptr);
 	mCommandQueue->Signal(mFence.Get(), mFenceValue);
 	mFence->SetEventOnCompletion(mFenceValue, mFenceEvent);
 	WaitForSingleObject(mFenceEvent, INFINITE);
-	
-	++mFenceValue;
+
 }
