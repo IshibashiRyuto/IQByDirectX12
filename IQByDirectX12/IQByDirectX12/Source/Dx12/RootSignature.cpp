@@ -11,7 +11,7 @@ RootSignature::RootSignature()
 	// ê√ìIÉTÉìÉvÉâÇÃê›íË
 	{
 		mStaticSamplerDesc = D3D12_STATIC_SAMPLER_DESC();
-		mStaticSamplerDesc.Filter = D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT;
+		mStaticSamplerDesc.Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
 		mStaticSamplerDesc.AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
 		mStaticSamplerDesc.AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
 		mStaticSamplerDesc.AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;

@@ -70,7 +70,13 @@ public:
 private:
 
 	/* 定数定義 */
-	const int RENDER_TARGET_NUM = 3;		//!	レンダーターゲット数
+	const int RENDER_TARGET_NUM = 4;		//!	レンダーターゲット数 
+	/*
+	*	0	: スワップチェーン
+	*	1	: スワップチェーン
+	*	2	: 通常レンダリング先
+	*	3	: 高輝度ピクセル算出用
+	*/
 
 	/* 変数宣言 */
 	std::shared_ptr<SwapChain>				mSwapChain;				//! スワップチェイン

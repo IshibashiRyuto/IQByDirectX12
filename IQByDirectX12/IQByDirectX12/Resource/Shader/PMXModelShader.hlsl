@@ -110,8 +110,16 @@ VSOutput VSMain(VSInput input)
 }
 
 
-float4 PSMain(PSInput input) : SV_Target
+struct PSOutput
 {
+    float4 baseColor : SV_Target0;
+    float4 heightLumaColor : SV_Target1;
+};
+
+PSOutput PSMain(PSInput input)
+{
+
+    PSOutput output;
     float3 light = lightEyeDir.xyz;
 	float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
 	float3 lightDiffuseColor = float3(0.6f, 0.6f, 0.6f);
@@ -152,6 +160,8 @@ float4 PSMain(PSInput input) : SV_Target
 	modelColor = modelColor * toonTexture.Sample(smp, float2(0.0f, saturate( acos(brightness) / (3.141592f) )));
 	modelColor = saturate(modelColor * materialMulSphereTexture.Sample(smp, sphereUV) + materialAddSphereTexture.Sample(smp, sphereUV) +float4(modelSpecularColor, 0.0f));
     
+    output.baseColor = modelColor;
+    output.heightLumaColor = dot(output.baseColor.rgb, float3(0.299, 0.587, 0.114)) > 0.9 ? output.baseColor : float4(0, 0, 0, 1);
 
-    return modelColor;
+    return output;
 }

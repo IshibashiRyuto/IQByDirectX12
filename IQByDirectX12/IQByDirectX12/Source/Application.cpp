@@ -260,12 +260,14 @@ void Application::Render()
 
 		// 描画先変更処理
 		//int backBuffer = mSwapChain->GetBackBufferIndex();
+		mRenderTarget->ChangeRenderTarget(mCommandList, 3);
+		mRenderTarget->ClearRenderTarget(mCommandList);
 		mRenderTarget->ChangeRenderTarget(mCommandList, 2);
 
 		auto rtvHandle = mRenderTarget->GetRTVHandle();
 		auto dsvHandle = mDepthBuffer->GetDSVCPUHandle();
 
-		(*mCommandList)->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+		(*mCommandList)->OMSetRenderTargets(2, &rtvHandle, true, &dsvHandle);
 
 		mRenderTarget->ClearRenderTarget(mCommandList);
 		mDepthBuffer->BeginWriteDepth(mCommandList);
@@ -309,7 +311,6 @@ void Application::Render()
 		// データセット
 		mPeraDescHeap->BindGraphicsCommandList(mCommandList->GetCommandList());
 		mPeraDescHeap->BindRootDescriptorTable(0, 0);
-		mPeraDescHeap->BindRootDescriptorTable(1, 1);
 
 		// ペラポリの描画
 		(*mCommandList)->IASetVertexBuffers(0, 1, &mPeraVert->GetVertexBufferView());
@@ -438,7 +439,7 @@ bool Application::CreatePeraRootSignature()
 {
 	mPeraRootSignature = RootSignature::Create();
 	int idx = mPeraRootSignature->AddRootParameter(D3D12_SHADER_VISIBILITY_PIXEL);
-	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
+	mPeraRootSignature->AddDescriptorRange(idx, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 2, 0);
 
 	return mPeraRootSignature->ConstructRootSignature(mDevice->GetDevice());
 }
@@ -488,7 +489,7 @@ bool Application::ReadPeraShader()
 {
 	mVertexShaderClass = Shader::Create(L"Resource/Shader/pera.hlsl", "VSMain", "vs_5_0");
 
-	mPixelShaderClass = Shader::Create(L"Resource/Shader/SSAA.hlsl", "PSMain", "ps_5_0");
+	mPixelShaderClass = Shader::Create(L"Resource/Shader/Bloom.hlsl", "PSMain", "ps_5_0");
 
 
 	if (!mVertexShaderClass || !mPixelShaderClass)
@@ -762,7 +763,7 @@ void Application::LoadPMX()
 	mPMXModelLoader = PMXLoader::Create(mDevice, "Resource/Model/Toon");
 
 
-	mInstancingTestModels.resize(10);
+	mInstancingTestModels.resize(1);
 	float x = -10.0f;
 	float z = 0.0f;
 	srand((unsigned int)time(0));
@@ -800,9 +801,11 @@ void Application::_DebugCreatePeraPolyData()
 
 	mPeraVert = VertexBuffer::Create(mDevice, verts, sizeof(PeraVertex), 4);
 
-	mPeraDescHeap = DescriptorHeap::Create(mDevice, 1);
+	mPeraDescHeap = DescriptorHeap::Create(mDevice, 2);
 	auto rtTexture = mRenderTarget->GetRenderTexture(2);
 	mPeraDescHeap->SetTexture(rtTexture, 0);
+	auto lumaTexture = mRenderTarget->GetRenderTexture(3);
+	mPeraDescHeap->SetTexture(lumaTexture, 1);
 }
 
 bool Application::_DebugCreateSprite()

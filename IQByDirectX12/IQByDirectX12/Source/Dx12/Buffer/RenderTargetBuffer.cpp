@@ -15,7 +15,7 @@ RenderTargetBuffer::RenderTargetBuffer(
 		D3D12_HEAP_FLAG_NONE,
 		CD3DX12_RESOURCE_DESC::Tex2D(format, static_cast<UINT64>(width),
 			static_cast<UINT64>(height),
-			1, 0, 1, 0,
+			1, 5, 1, 0,
 			D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET),
 		D3D12_RESOURCE_STATE_PRESENT,
 		&clearValue,
@@ -70,9 +70,11 @@ std::shared_ptr<RenderTargetBuffer> RenderTargetBuffer::Create(ComPtr<ID3D12Reso
 	return std::shared_ptr<RenderTargetBuffer>(new RenderTargetBuffer(buffer, state, clearValue));
 }
 
-const D3D12_RENDER_TARGET_VIEW_DESC & RenderTargetBuffer::GetRenderTargetViewDesc() const
+D3D12_RENDER_TARGET_VIEW_DESC  RenderTargetBuffer::GetRenderTargetViewDesc(UINT mipLevels) const
 {
-	return mRTVDesc;
+	auto rtvDesc = mRTVDesc;
+	rtvDesc.Texture2D.MipSlice = mipLevels;
+	return rtvDesc;
 }
 
 const D3D12_CLEAR_VALUE & RenderTargetBuffer::GetClearValue() const

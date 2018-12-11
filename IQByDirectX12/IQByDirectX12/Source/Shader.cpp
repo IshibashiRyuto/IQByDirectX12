@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "Debug/DebugLayer.h"
 #include <iostream>
 #include <D3DCompiler.h>
 #include <d3dx12.h>
@@ -50,7 +51,7 @@ void Shader::LoadShader(const std::wstring & filePath, const std::string & entry
 
 	if (FAILED(result))
 	{
-		std::cout << "Failed Load Shader \" " << filePath.c_str() << "\"." << std::endl;
+		DebugLayer::GetInstance().PrintDebugMessage(L"Failed Load Shader \"" + filePath + L"\".");
 		return;
 	}
 	mShaderByteCode = CD3DX12_SHADER_BYTECODE(mShaderCode.Get());

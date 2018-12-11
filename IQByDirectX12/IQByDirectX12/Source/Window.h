@@ -36,7 +36,7 @@ private:
 	
 	/*定数定義*/
 	const RECT WINDOW_RECT = { 0, 0, 1280, 720 };
-	const char* WINDOW_TITLE = "IQByDirectX12";
+	const char* WINDOW_TITLE = "DirectX12Framework";
 
 	/*変数宣言*/
 	// ウィンドウハンドル

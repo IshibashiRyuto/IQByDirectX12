@@ -86,8 +86,16 @@ VSOutput VSMain(VSInput input)
 }
 
 
-float4 PSMain(PSInput input) : SV_Target
+struct PSOutput
 {
+    float4 baseColor : SV_Target0;
+    float4 heightLumaColor : SV_Target1;
+};
+
+PSOutput PSMain(PSInput input)
+{
+    PSOutput output;
+
     //float3 light = float3(-0.41, -0.82, 0.41);
     float3 light = lightEyeDir.xyz;
     float3 lightSpecularColor = float3(0.6f, 0.6f, 0.6f);
@@ -132,5 +140,7 @@ float4 PSMain(PSInput input) : SV_Target
 
 	modelColor = saturate(modelColor + float4(modelSpecularColor, 0.0f));
 
-    return modelColor;
+    output.baseColor = modelColor;
+    output.heightLumaColor = dot(output.baseColor.rgb, float3(0.299, 0.587, 0.114)) > 0.95 ? output.baseColor : float4(0, 0, 0, 1);
+    return output;
 }

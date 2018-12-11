@@ -52,10 +52,11 @@ public:
 
 	/**
 	*	@brief	RTV情報を取得する
+	*	@param[in]	mipLevel	: 使用するミップレベル
 	*
 	*	@return	レンダーターゲットのクリア値
 	*/
-	const D3D12_RENDER_TARGET_VIEW_DESC & GetRenderTargetViewDesc() const;
+	D3D12_RENDER_TARGET_VIEW_DESC  GetRenderTargetViewDesc(UINT mipLevels = 0) const;
 
 
 	/**

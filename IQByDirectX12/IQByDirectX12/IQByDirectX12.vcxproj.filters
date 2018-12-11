@@ -334,5 +334,7 @@
     <FxCompile Include="Resource\Shader\SSAA.hlsl" />
     <FxCompile Include="Resource\Shader\Distortion.hlsl" />
     <FxCompile Include="Resource\Shader\Sprite.hlsl" />
+    <FxCompile Include="Resource\Shader\FXAAorig.hlsl" />
+    <FxCompile Include="Resource\Shader\Bloom.hlsl" />
   </ItemGroup>
 </Project>

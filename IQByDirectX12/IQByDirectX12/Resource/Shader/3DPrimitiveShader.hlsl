@@ -68,18 +68,25 @@ VSOutput VSMain( VSInput input )
 	return output;
 }
 
-
-float4 PSMain(PSInput input) : SV_Target
+struct PSOutput
 {
+    float4 baseColor : SV_Target0;
+    float4 heightLumaColor : SV_Target1;
+};
+
+PSOutput PSMain(PSInput input)
+{
+    PSOutput output;
     float3 light = lightEyeDir.xyz;
     float brightness = saturate(dot(input.normal, -light));
 
     float2 shadowMapUV = (float2(1, 1) + input.lightDepth.xy * float2(1, -1)) * 0.5;
-    //if (shadowMapUV.x > 0 && shadowMapUV.x < 1 && shadowMapUV.y > 0 && shadowMapUV.y < 1)
     {
         if (shadowMap.Sample(smp, shadowMapUV) + 0.00005 < input.lightDepth.z)
         {
-            return float4(ambientColor, diffuseColor.a);
+            output.baseColor = float4(ambientColor, diffuseColor.a);
+            output.heightLumaColor = dot(output.baseColor.rgb, float3(0.299, 0.587, 0.114)) > 0.7 ? output.baseColor : float4(0, 0, 0, 1);
+            return output;
         }
     }
 
@@ -90,6 +97,9 @@ float4 PSMain(PSInput input) : SV_Target
 
     float3 color = saturate(diffuseColor.xyz * brightness + ambientColor + spec * specularColor);
 
-    return float4(color, diffuseColor.a);
+    output.baseColor = float4(color, diffuseColor.a);
+    output.heightLumaColor = dot(output.baseColor.rgb, float3(0.299, 0.587, 0.114)) > 0.9 ? output.baseColor : float4(0, 0, 0, 1);
+
+    return output;
 }
 

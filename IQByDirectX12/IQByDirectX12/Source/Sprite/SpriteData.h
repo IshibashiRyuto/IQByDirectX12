@@ -17,7 +17,7 @@
 struct InstanceData;
 class PipelineStateObject;
 class GraphicsCommandList;
-
+class RootSignature;
 
 /**
 *	@class	SpriteData
@@ -64,5 +64,6 @@ private:
 	std::shared_ptr<VertexBuffer>	mVertexBuffer;	//! 頂点バッファ
 	std::shared_ptr<DescriptorHeap>	mDescHeap;		//! デスクリプタヒープ
 	std::shared_ptr<PipelineStateObject> mPSO;		//! パイプラインステートオブジェクト
+	std::shared_ptr<RootSignature> mRootSignature;	//! ルートシグネチャ
 };
 

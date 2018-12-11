@@ -1,6 +1,13 @@
+/**
+*   Super Sampling Anti Aliasing    (SSAA)
+*/
 Texture2D<float4> tex : register(t0);
-Texture2D<float> depthMap : register(t1);
 SamplerState smp : register(s0);
+
+
+// サンプル数指定
+// 出来ればシェーダパラメータで書き換えたいが非常に面倒なので後回し
+#define SAMPLING_NUM 4
 
 struct PSInput
 {
@@ -14,15 +21,18 @@ float4 PSMain(PSInput input) : SV_TARGET
     float dx, dy;
     tex.GetDimensions(size.x, size.y);
 
-    dx = 1.0f / size.x / 2.0f;
-    dy = 1.0f / size.y / 2.0f;
+    dx = 1.0f / size.x / SAMPLING_NUM;
+    dy = 1.0f / size.y / SAMPLING_NUM;
 
     float4 color = float4(0.0f, 0.0f, 0.0f, 1.0f);
 	
-    color.rgb += tex.Sample(smp, input.uv + float2(0.0f, 0.0f)).rgb * 0.25f;
-    color.rgb += tex.Sample(smp, input.uv + float2(dx, 0.0f)).rgb * 0.25f;
-    color.rgb += tex.Sample(smp, input.uv + float2(0.0f, dy)).rgb * 0.25f;
-    color.rgb += tex.Sample(smp, input.uv + float2(dx, dy)).rgb * 0.25f;
+    for (uint x = 0; x < SAMPLING_NUM; ++x)
+    {
+        for (uint y = 0; y < SAMPLING_NUM; ++y)
+        {
+            color.rgb += tex.Sample(smp, input.uv + float2(dx * x, dy * y)) / float(SAMPLING_NUM * SAMPLING_NUM);
+        }
+    }
 
     saturate(color);
     
