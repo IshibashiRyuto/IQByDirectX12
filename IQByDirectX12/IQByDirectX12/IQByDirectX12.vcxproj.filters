@@ -180,6 +180,13 @@
     <ClCompile Include="Source\Model\Primitive\PrimitiveSphere.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveData.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveCreator.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_demo.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_impl_dx12.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\Sprite\SpriteCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\Keyboard.h">
@@ -320,6 +327,14 @@
     <ClInclude Include="Source\Model\Primitive\PrimitiveSphere.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveData.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveCreator.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui_internal.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imstb_textedit.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imstb_truetype.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui_impl_dx12.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="Source\Sprite\SpriteCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\PMDModelShader.hlsl" />

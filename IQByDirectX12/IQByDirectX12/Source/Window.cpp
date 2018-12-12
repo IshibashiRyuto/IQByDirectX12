@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Debug\DebugLayer.h"
 
-
 Window::Window(HINSTANCE hInstance)
 	: mHInst(hInstance)
 {
@@ -75,11 +74,18 @@ bool Window::_CreateWindow()
 	return true;
 }
 
+// ImGui_ImplWin32.cppで定義済みのImGui用プロシージャル関数を使用
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 LRESULT _WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	if (msg == WM_DESTROY)
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
 	{
-		//終了処理
+		return true;
+	}
+	switch (msg)
+	{
+	case WM_DESTROY:
+
 		PostQuitMessage(0);
 		return 0;
 	}

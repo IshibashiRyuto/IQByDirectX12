@@ -41,6 +41,9 @@
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteDataManager.h"
 #include "Model/Primitive/PrimitiveCreator.h"
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_dx12.h>
+#include <imgui/imgui_impl_win32.h>
 
 // ライブラリリンク
 #pragma comment(lib,"d3d12.lib")
@@ -189,6 +192,9 @@ bool Application::Initialize(const Window & window)
 	// プリミティブモデル作成
 	CreatePrimitive();
 
+	//Imgui初期化
+	InitImGUI(window.GetWindowHandle());
+
 	//	テクスチャ情報の更新する
 	TextureManager::GetInstance().UpdateTextureData();
 
@@ -204,7 +210,7 @@ void Application::Render()
 
 	CameraMove();
 
-	//LightMove();
+	LightMove();
 
 	// コマンドリスト初期化
 	mCommandList->Reset();
@@ -325,6 +331,14 @@ void Application::Render()
 	}
 	/* 3パス目描画終了 */
 
+	/**
+	*	ImGuiの描画処理
+	*/
+	UpdateImGUI();
+	mImguiDescHeap->BindGraphicsCommandList(mCommandList->GetCommandList());
+	ImGui::Render();
+	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), mCommandList->GetCommandList().Get());
+
 	//描画終了処理
 	mCommandList->Close();
 
@@ -340,6 +354,11 @@ void Application::Render()
 
 void Application::Terminate()
 {
+
+	ImGui_ImplDX12_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+
 }
 
 bool Application::CreatePMDPipelineStateObject()
@@ -832,7 +851,8 @@ bool Application::CreateDirectionalLight()
 	projParam.farZ = 1000.f;
 	projParam.width = 128.f;
 	projParam.height = 128.f;
-	mDirectionalLight = Dx12Camera::Create(Math::Vector3(100, 100, -300), Math::Vector3(-1.f, -1.f, 3.f), ProjectionType::Orthographic, projParam, mDevice);
+	mLightDir = Math::Vector3(-1.f, -1.f, 3.f).Normalized();
+	mDirectionalLight = Dx12Camera::Create(Math::Vector3(100, 100, -300), mLightDir, ProjectionType::Orthographic, projParam, mDevice);
 	if (!mDirectionalLight)
 	{
 		false;
@@ -868,7 +888,6 @@ void Application::ModelMove()
 
 	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f, 0.f, 0.f));
 	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
-	static Math::Vector3 pos(0.0f, 0.0f, 0.0f);
 	static float speed = 0.05f;
 
 
@@ -890,27 +909,27 @@ void Application::ModelMove()
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::W))
 	{
-		pos.y += speed;
+		mModelPos.y += speed;
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::S))
 	{
-		pos.y -= speed;
+		mModelPos.y -= speed;
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::A))
 	{
-		pos.x -= speed;
+		mModelPos.x -= speed;
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::D))
 	{
-		pos.x += speed;
+		mModelPos.x += speed;
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::Q))
 	{
-		pos.z -= speed;
+		mModelPos.z -= speed;
 	}
 	if (mKeyboard->IsKeyDown(VirtualKeyIndex::E))
 	{
-		pos.z += speed;
+		mModelPos.z += speed;
 	}
 
 	static bool isStop = false;
@@ -937,7 +956,7 @@ void Application::ModelMove()
 	{
 		{
 			model->SetRotation(rot);
-			model->SetPosition(pos + Math::Vector3(-10.f * (i % 5), 0.f, 10.f * (i / 5)));
+			model->SetPosition(mModelPos + Math::Vector3(-10.f * (i % 5), 0.f, 10.f * (i / 5)));
 			model->Draw();
 		}
 		++i;
@@ -945,7 +964,7 @@ void Application::ModelMove()
 
 	// PMD Draw
 	mModelData->SetRotation(rot);
-	mModelData->SetPosition(pos + Math::Vector3(10.0f, 0.0f, 0.0f));
+	mModelData->SetPosition(mModelPos + Math::Vector3(10.0f, 0.0f, 0.0f));
 	mModelData->Draw();
 
 	mPlane->Draw();
@@ -1028,6 +1047,40 @@ void Application::LightMove()
 	{
 		mDirectionalLight->Rotate(Math::CreateRotXYZQuaternion(Math::Vector3(0.f, -Math::F_PI / 90.f, 0.f)));
 	}
-
+	mDirectionalLight->SetDirection(mLightDir);
 	mDirectionalLight->UpdateMatrix();
+}
+
+void Application::InitImGUI(HWND hWnd)
+{
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	(void)io;
+
+	mImguiDescHeap = DescriptorHeap::Create(mDevice, 1);
+	CD3DX12_CPU_DESCRIPTOR_HANDLE imguiCPUHandle(mImguiDescHeap->GetCPUHandle(0));
+	CD3DX12_GPU_DESCRIPTOR_HANDLE imguiGPUHandle(mImguiDescHeap->GetGPUHandle(0));
+	if (ImGui_ImplDX12_Init(mDevice->GetDevice().Get(), 2, DXGI_FORMAT_R8G8B8A8_UNORM, imguiCPUHandle, imguiGPUHandle))
+	{
+		ImGui_ImplWin32_Init(hWnd);
+		//ImGui::StyleColorsDark();
+		ImGui_ImplDX12_InvalidateDeviceObjects();
+		ImGui_ImplDX12_CreateDeviceObjects();
+	}
+}
+
+void Application::UpdateImGUI()
+{
+	ImGui_ImplDX12_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	ImGui::Begin("Test");
+	ImGui::SliderFloat("testParameter", &_testParameter, 0.0f, 1.0f);
+	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
+	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
+	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
+	ImGui::SliderFloat3("LightDir", mLightDir.vec, -1.0f, 1.0f);
+	ImGui::End();
 }

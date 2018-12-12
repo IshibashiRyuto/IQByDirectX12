@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExternalLibrary\imgui\imgui.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_demo.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_impl_dx12.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ExternalLibrary\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveCreator.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveCapsel.cpp" />
     <ClCompile Include="Source\Model\Primitive\PrimitiveCube.cpp" />
@@ -87,8 +93,16 @@
     <ClCompile Include="Source\Sprite\SpriteDataManager.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\VertexBuffer.cpp" />
     <ClCompile Include="Source\Dx12\Buffer\Texture.cpp" />
+    <ClCompile Include="Source\Sprite\SpriteCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExternalLibrary\imgui\imgui.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui_impl_dx12.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imgui_internal.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imstb_textedit.h" />
+    <ClInclude Include="ExternalLibrary\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveCreator.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveCapsel.h" />
     <ClInclude Include="Source\Model\Primitive\PrimitiveCube.h" />
@@ -151,6 +165,7 @@
     <ClInclude Include="Source\Sprite\SpriteDataManager.h" />
     <ClInclude Include="Source\Dx12\Buffer\VertexBuffer.h" />
     <ClInclude Include="Source\Dx12\Buffer\Texture.h" />
+    <ClInclude Include="Source\Sprite\SpriteCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resource\Shader\3DPrimitiveShader.hlsl">
@@ -392,7 +407,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\IQByDirectX12\Source\ExternalLibraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\IQByDirectX12\Source\ExternalLibraries</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)IQByDirectX12\Source\ExternalLibraries</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -405,7 +420,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\IQByDirectX12\Source\ExternalLibraries</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)IQByDirectX12\Source\ExternalLibraries</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -423,7 +438,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\IQByDirectX12\Source\ExternalLibraries\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)IQByDirectX12\Source\ExternalLibraries</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -441,7 +456,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\IQByDirectX12\Source\ExternalLibraries\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)IQByDirectX12\Source\ExternalLibraries</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

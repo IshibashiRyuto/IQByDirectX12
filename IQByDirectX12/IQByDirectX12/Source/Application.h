@@ -70,12 +70,10 @@ public:
 private:
 
 	/* 定数定義 */
-	const int RENDER_TARGET_NUM = 4;		//!	レンダーターゲット数 
+	const int RENDER_TARGET_NUM{ 4 };		//!	レンダーターゲット数 
 	/*
-	*	0	: スワップチェーン
-	*	1	: スワップチェーン
-	*	2	: 通常レンダリング先
-	*	3	: 高輝度ピクセル算出用
+	*	1	: 通常レンダリング先
+	*	2	: 高輝度ピクセル算出用
 	*/
 
 	/* 変数宣言 */
@@ -120,6 +118,7 @@ private:
 	std::shared_ptr<TextureLoader>			mTextureLoader;			//! テクスチャローダ
 	std::shared_ptr<Sprite>					mSprite;				//! スプライト
 	std::shared_ptr<PipelineStateObject>	mSpritePipelineState;	//! スプライト用パイプラインステート
+	std::shared_ptr<DescriptorHeap>		mImguiDescHeap;
 
 	std::shared_ptr<Model>				mPlane;						//! プリミティブの床モデル
 
@@ -128,6 +127,10 @@ private:
 
 	int mWindowWidth;
 	int mWindowHeight;
+	float _testParameter;
+	Math::Vector3 mModelPos = { 0.0f, 0.0f, 0.0f };
+	Math::Vector3 mLightDir = { 0.0f, -1.0f, 0.0f };
+	Math::Vector3 mLightPos = { 0.0f,0.0f,0.0f };
 
 	/* ローカルメソッド定義 */
 
@@ -239,5 +242,14 @@ private:
 
 	void LightMove();
 
+	/**
+	*	@brief	ImGUI関連初期化処理
+	*/
+	void InitImGUI(HWND hWnd);
+
+	/**
+	*	@brief	ImGUI更新処理
+	*/
+	void UpdateImGUI();
 };
 

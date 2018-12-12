@@ -55,8 +55,15 @@ namespace Math
 	// 2次元ベクトル
 	struct Vector2
 	{
-		float x;
-		float y;
+		union
+		{
+			struct
+			{
+				float x;
+				float y;
+			};
+			float vec[2];
+		};
 
 		Vector2();
 		Vector2(float mx, float my);
@@ -83,9 +90,16 @@ namespace Math
 	// 3次元ベクトル
 	struct Vector3
 	{
-		float x;
-		float y;
-		float z;
+		union
+		{
+			struct
+			{
+				float x;
+				float y;
+				float z;
+			};
+			float vec[3];
+		};
 
 		Vector3();
 		Vector3(float mx, float my, float mz);
@@ -106,6 +120,11 @@ namespace Math
 
 		/// ベクトルの大きさの2乗値を取得する
 		float LengthSquare() const;
+
+		/// ノーマライズされたベクトルを返す
+		Vector3 Normalized() const;
+		// ノーマライズする
+		void Normalize();
 	};
 
 	bool operator==(const Vector3& t1, const Vector3& t2);
@@ -126,10 +145,17 @@ namespace Math
 	// 4次元ベクトル
 	struct Vector4
 	{
-		float x;
-		float y;
-		float z;
-		float w;
+		union
+		{
+			struct
+			{
+				float x;
+				float y;
+				float z;
+				float w;
+			};
+			float vec[4];
+		};
 
 		Vector4();
 		Vector4(float mx, float my, float mz, float mw);

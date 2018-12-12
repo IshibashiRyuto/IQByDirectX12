@@ -46,7 +46,7 @@ void Camera::SetPos(const Math::Vector3 & pos)
 
 void Camera::SetDirection(const Math::Vector3 & direction)
 {
-	mDirection = Math::CreateRotVecToVec(Z_AXIS, direction, mUpper);
+	mDirection = Math::CreateRotVecToVec(Z_AXIS, direction.Normalized(), mUpper);
 	mIsUpdate = true;
 }
 

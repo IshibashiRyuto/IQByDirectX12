@@ -99,6 +99,16 @@ float Math::Vector3::LengthSquare() const
 	return x*x + y*y + z*z;
 }
 
+Vector3 Math::Vector3::Normalized() const
+{
+	return Math::Normalize(*this);
+}
+
+void Math::Vector3::Normalize()
+{
+	*this = Math::Normalize(*this);
+}
+
 bool Math::operator== (const Vector3& t1, const Vector3& t2)
 {
 	return (IsEqual(t1.x,t2.x) && IsEqual(t1.y,t2.y));
