@@ -176,6 +176,7 @@ void Texture::UpdateTexture(std::shared_ptr<GraphicsCommandList> commandList)
 {
 	if (mIsUpdate)
 	{
+		CD3DX12_TEXTURE_COPY_LOCATION a;
 		mTemporaryResource->TransitionState(commandList, D3D12_RESOURCE_STATE_COPY_SOURCE);
 		TransitionState(commandList, D3D12_RESOURCE_STATE_COPY_DEST);
 

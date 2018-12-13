@@ -127,6 +127,10 @@ private:
 
 	int mWindowWidth;
 	int mWindowHeight;
+	float mAnimCnt{ 0 };
+	float mAnimDuration{ 0 };
+	bool mIsAnimPlay{ true };
+	float mAnimSpeed{ 1.0f };
 	float _testParameter;
 	Math::Vector3 mModelPos = { 0.0f, 0.0f, 0.0f };
 	Math::Vector3 mLightDir = { 0.0f, -1.0f, 0.0f };

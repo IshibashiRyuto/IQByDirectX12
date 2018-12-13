@@ -806,6 +806,8 @@ void Application::LoadMotion()
 	//mAnimationData = loader->Load("Resource/Motion/swing2.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/charge.vmd");
 	//mAnimationData = loader->Load("Resource/Motion/Koikaze_V2/Koikaze_V2.vmd");
+
+	mAnimDuration = mAnimationData->GetDuration();
 }
 
 void Application::_DebugCreatePeraPolyData()
@@ -884,7 +886,6 @@ void Application::CreateShadowMap()
 
 void Application::ModelMove()
 {
-	static float t = 0;
 
 	static Math::Quaternion rot = Math::CreateRotXYZQuaternion(Math::Vector3(0.f, 0.f, 0.f));
 	static Math::Vector3 rotAxis(1.f, 0.f, 0.f);
@@ -939,17 +940,16 @@ void Application::ModelMove()
 		isStop = !isStop;
 	}
 
-	if (!isStop)
+	if (mIsAnimPlay)
 	{
 
-		t += 0.5f;
-		if (t > mAnimationData->GetDuration())
+		mAnimCnt += 0.5f * mAnimSpeed;
+		if (mAnimCnt > mAnimDuration)
 		{
-			t = 0;
+			mAnimCnt = 0.f;
 		}
-		mAnimationData->SetPose(static_cast<int>(t), mInstancingTestModels[0]->_DebugGetPose());
-		
 	}
+	mAnimationData->SetPose(static_cast<int>(mAnimCnt), mInstancingTestModels[0]->_DebugGetPose());
 	int i = 0;
 	// PMX Instance Draw
 	for (auto model : mInstancingTestModels)
@@ -1076,11 +1076,20 @@ void Application::UpdateImGUI()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	ImGui::Begin("Test");
-	ImGui::SliderFloat("testParameter", &_testParameter, 0.0f, 1.0f);
-	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
-	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
-	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
+	ImGui::SetNextWindowPos(ImVec2(100, 50), ImGuiCond_Appearing);
+	ImGui::SetNextWindowSize(ImVec2(300, 80), ImGuiCond_Appearing);
+
+	ImGui::Begin("Light");
 	ImGui::SliderFloat3("LightDir", mLightDir.vec, -1.0f, 1.0f);
+	ImGui::End();
+
+	ImGui::SetNextWindowPos(ImVec2(50, 200), ImGuiCond_Appearing);
+	ImGui::SetNextWindowSize(ImVec2(350, 150), ImGuiCond_Appearing);
+
+	ImGui::Begin("Model");
+	ImGui::Checkbox("AnimationPlay", &mIsAnimPlay);
+	ImGui::SliderFloat("AnimationSpeed", &mAnimSpeed, 0.0f, 2.0f);
+	ImGui::SliderFloat("AnimationFrame", &mAnimCnt, 0.f, mAnimDuration, "%.1f");
+	ImGui::SliderFloat3("ModelPos", mModelPos.vec, -50.0f, 50.0f, "%.1f");
 	ImGui::End();
 }
