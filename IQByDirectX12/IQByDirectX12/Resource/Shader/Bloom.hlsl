@@ -25,40 +25,40 @@ float GaussianDist(float x, float y, float rho)
 float4 PSMain(PSInput input) : SV_TARGET
 {
     float4 color = float4(0, 0, 0, 0);
-    //float2 size;
-    //lumaTex.GetDimensions(size.x, size.y);
+    float2 size;
+    lumaTex.GetDimensions(size.x, size.y);
     float totalWeight = 0;
-    //float downScale = 1.0;
-    //for (int samplingCount = 0; samplingCount < 8; ++samplingCount, downScale *=2.0)
-    //{
-    //    float2 downSampleRate = size / float(downScale);
-    //    float2 offset = float2(1, 1) / downSampleRate;
-    //    for (int x = -1; x <= 1; ++x)
-    //    {
-    //        for (int y = -1; y <= 1; ++y)
-    //        {
-    //            float gaussWeight = GaussianDist(x, y, 10.0);
-    //            color += gaussWeight * lumaTex.Sample(smp, DownSamplingPos(input.uv + offset * float2(x, y), downSampleRate));
-    //            totalWeight += gaussWeight;
-    //        }
-    //    }
-    //}
-    
-    totalWeight = 0;
-    color = float4(0, 0, 0, 0);
-    // mipmapCalc
-    for (int mipLevel = 0; mipLevel < 4; ++mipLevel)
+    float downScale = 1.0;
+    for (int samplingCount = 0; samplingCount < 8; ++samplingCount, downScale *= 2.0)
     {
+        float2 downSampleRate = size / float(downScale);
+        float2 offset = float2(1, 1) / downSampleRate;
         for (int x = -1; x <= 1; ++x)
         {
             for (int y = -1; y <= 1; ++y)
             {
                 float gaussWeight = GaussianDist(x, y, 10.0);
-                color += gaussWeight * lumaTex.SampleLevel(smp, input.uv, mipLevel, int2(x, y));
+                color += gaussWeight * lumaTex.Sample(smp, DownSamplingPos(input.uv + offset * float2(x, y), downSampleRate));
                 totalWeight += gaussWeight;
             }
         }
     }
+    
+    //totalWeight = 0;
+    //color = float4(0, 0, 0, 0);
+    //// mipmapCalc
+    //for (int mipLevel = 0; mipLevel < 4; ++mipLevel)
+    //{
+    //    for (int x = -1; x <= 1; ++x)
+    //    {
+    //        for (int y = -1; y <= 1; ++y)
+    //        {
+    //            float gaussWeight = GaussianDist(x, y, 10.0);
+    //            color += gaussWeight * lumaTex.SampleLevel(smp, input.uv, mipLevel, int2(x, y));
+    //            totalWeight += gaussWeight;
+    //        }
+    //    }
+    //}
     
     color.rgb /= totalWeight;
     color.a = 1;
